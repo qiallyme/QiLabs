@@ -1,0 +1,38 @@
+# Node / PNPM / Vite / Next / Build
+node_modules/
+.pnpm-store/
+dist/
+build/
+.out/
+.next/
+.cache/
+coverage/
+*.log
+.turbo
+.vite
+.parcel-cache
+
+# Env / Secrets
+.env
+.env.*
+!.env.example
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+
+# Tests / Reports
+playwright-report/
+test-results/
+
+# PWA/Artifacts
+public/.well-known/*
+sw.js
+sw.js.map
+workbox-*.js
+
+# Prisma / SQLite (adjust if you commit schema only)
+*.db
+*.db-journal

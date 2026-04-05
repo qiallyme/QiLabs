@@ -1,0 +1,52 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.x"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext ts,tsx",
+    "test": "echo 'No unit tests yet'",
+    "test:e2e": "playwright test",
+    "qa:open-checklist": "node -e \"require('child_process').spawn(process.platform==='win32'?'start':'open',['../../docs/QA_Screenshot_Review.md'],{shell:true})\""
+  },
+  "dependencies": {
+    "@splitwise/types": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1",
+    "zustand": "^4.4.7",
+    "@tanstack/react-query": "^5.17.9",
+    "dexie": "^3.2.4",
+    "dexie-react-hooks": "^1.1.7",
+    "ulid": "^2.3.0",
+    "date-fns": "^3.0.6",
+    "zod": "^3.22.4",
+    "lucide-react": "^0.303.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.0",
+    "tesseract.js": "^5.0.4",
+    "workbox-window": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.11",
+    "vite-plugin-pwa": "^0.17.4",
+    "typescript": "^5.3.3",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.33",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/parser": "^6.18.1",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@playwright/test": "^1.40.1"
+  }
+}

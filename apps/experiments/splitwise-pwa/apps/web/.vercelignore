@@ -1,0 +1,14 @@
+node_modules
+.git
+*.log
+.env.local
+.env*.local
+coverage
+.cache
+.vscode
+.idea
+*.test.ts
+*.spec.ts
+e2e
+tests
+README.md
