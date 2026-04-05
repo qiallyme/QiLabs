@@ -1,0 +1,42 @@
+{{ template "header.html" . }}
+
+<!-- Email Content -->
+<div class="content">
+  <h1>Welcome to Your QiAlly Client Portal!</h1>
+  <p>Hello [Client Name],</p>
+  <p>
+    Welcome aboard! We're excited to have you. Your secure client portal is now
+    active and ready for you to access.
+  </p>
+  <p>
+    The portal is your central hub for managing our collaboration. Here, you can
+    access project files, view updates, manage invoices, and communicate
+    directly with our team.
+  </p>
+  <div class="button-container">
+    <a href="https://portal.qially.com" class="button">Access Your Portal</a>
+  </div>
+  <p>Your login credentials are:</p>
+  <p>
+    <strong>Username:</strong> [Client Email]<br /><strong
+      >Temporary Password:</strong
+    >
+    [Generated Password]
+  </p>
+  <p>
+    We recommend changing your password upon your first login. If you have any
+    questions, don't hesitate to reach out.
+  </p>
+</div>
+
+<!-- Signature -->
+<div class="signature">
+  <p>Best regards,</p>
+  <p>
+    <strong>Cody Rice Velasquez</strong><br />
+    Founder & Managing Partner<br />
+    QiAlly LLC
+  </p>
+</div>
+
+{{ template "footer.html" . }}

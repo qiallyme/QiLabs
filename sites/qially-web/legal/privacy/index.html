@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy — QiAlly</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 leading-relaxed">
+    <nav
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+      x-data="{ scrolled: false, mobileMenuOpen: false }"
+      @scroll.window="scrolled = (window.pageYOffset > 20)"
+      :class="{ 'bg-white/70 backdrop-blur-md shadow-sm': scrolled, 'bg-transparent': !scrolled }"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <a href="/" class="flex items-center gap-2 group">
+              <div
+                class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:scale-105 transition duration-300"
+              >
+                Q
+              </div>
+              <span
+                class="font-serif text-xl font-bold text-slate-800 tracking-tight group-hover:text-blue-600 transition"
+                >QiAlly</span
+              >
+            </a>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a
+                href="/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Home</a
+              >
+              <a
+                href="/services/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Services</a
+              >
+              <a
+                href="/pages/business_tools/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Tools</a
+              >
+              <a
+                href="/resources/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Resources</a
+              >
+              <a
+                href="/portfolio/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Portfolio</a
+              >
+              <a
+                href="/#contact"
+                class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30"
+              >
+                Start Request
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="-mr-2 flex md:hidden">
+            <button
+              type="button"
+              @click="mobileMenuOpen = !mobileMenuOpen"
+              class="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-blue-600 hover:bg-slate-100 focus:outline-none transition"
+            >
+              <span class="sr-only">Open main menu</span>
+              <i class="fa-solid fa-bars text-xl" x-show="!mobileMenuOpen"></i>
+              <i
+                class="fa-solid fa-xmark text-xl"
+                x-show="mobileMenuOpen"
+                x-cloak
+              ></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        class="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full"
+        x-show="mobileMenuOpen"
+        x-transition:enter="transition ease-out duration-100"
+        x-transition:enter-start="opacity-0 -translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-75"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-2"
+        x-cloak
+      >
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+          <a
+            href="/"
+            class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Home</a
+          >
+          <a
+            href="/services/"
+            class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Services</a
+          >
+          <a
+            href="/pages/business_tools/"
+            class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Tools</a
+          >
+          <a
+            href="/resources/"
+            class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Resources</a
+          >
+          <a
+            href="/portfolio/"
+            class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Portfolio</a
+          >
+          <a
+            href="/#contact"
+            class="text-blue-600 font-semibold block px-3 py-2 rounded-md text-base"
+            >Start Request &rarr;</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <header class="bg-white shadow-sm pt-24 pb-8">
+      <div class="max-w-5xl mx-auto px-6 py-4">
+        <a href="/" class="text-2xl font-serif font-bold text-slate-900"
+          >Qi<span class="text-blue-600 font-light italic">Ally</span></a
+        >
+      </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-12">
+      <h1 class="text-3xl font-serif font-bold mb-6">Privacy Policy</h1>
+
+      <div
+        class="bg-white p-8 rounded-xl shadow-sm border border-slate-200 mb-8"
+      >
+        <p class="text-slate-600 text-sm mb-6">
+          <strong>Last Updated:</strong> January 2025
+        </p>
+        <p class="text-slate-600 mb-4">
+          QiAlly LLC ("we," "our," or "us") is committed to protecting your
+          privacy. This Privacy Policy explains how we collect, use, disclose,
+          and safeguard your information when you use our services.
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        <section
+          class="bg-white p-8 rounded-xl shadow-sm border border-slate-200"
+        >
+          <h2 class="text-2xl font-serif font-semibold mb-4">
+            1. Information We Collect
+          </h2>
+          <p class="text-slate-600 mb-4">
+            We collect information necessary to provide our services:
+          </p>
+          <ul class="list-disc list-inside text-slate-600 space-y-2 ml-4">
+            <li>
+              <strong>Personal Information:</strong> Name, email, phone number,
+              mailing address, tax identification numbers, and other identifiers
+              required for service delivery.
+            </li>
+            <li>
+              <strong>Financial Information:</strong> Bank statements, invoices,
+              receipts, tax documents, and other financial records you provide.
+            </li>
+            <li>
+              <strong>Business Information:</strong> Company details, employee
+              information, operational data, and other business records.
+            </li>
+            <li>
+              <strong>Communication Data:</strong> Emails, messages, call
+              records, and other communications related to our services.
+            </li>
+            <li>
+              <strong>Technical Data:</strong> IP addresses, browser type,
+              device information, and usage data from our websites and portals.
+            </li>
+          </ul>
+        </section>
+
+        <section
+          class="bg-white p-8 rounded-xl shadow-sm border border-slate-200"
+        >
+          <h2 class="text-2xl font-serif font-semibold mb-4">
+            2. How We Use Your Information
+          </h2>
+          <ul class="list-disc list-inside text-slate-600 space-y-2 ml-4">
+            <li>
+              To provide, maintain, and improve our services (tax preparation,
+              bookkeeping, HR consulting, IT services, etc.)
+            </li>
+            <li>
+              To communicate with you about your account, services, and updates
+            </li>
+            <li>To process payments and manage billing</li>
+            <li>
+              To comply with legal obligations and regulatory requirements
+            </li>
+            <li>
+              To protect our rights, property, and safety, and that of our
+              clients
+            </li>
+            <li>To analyze usage patterns and improve our service delivery</li>
+          </ul>
+        </section>
+
+        <section
+          class="bg-white p-8 rounded-xl shadow-sm border border-slate-200"
+        >
+          <h2 class="text-2xl font-serif font-semibold mb-4">
+            3. How We Store and Protect Your Information
+          </h2>
+          <ul class="list-disc list-inside text-slate-600 space-y-2 ml-4">
+            <li>
+              <strong>Encryption:</strong> We use industry-standard encryption
+              (SSL/TLS) for data in transit and at rest.
+            </li>
+            <li>
+              <strong>Secure Storage:</strong> Data is stored on secure,
+              encrypted servers with access controls and regular security
+              audits.
+            </li>
+            <li>
+              <strong>Access Controls:</strong> Only authorized personnel with a
+              legitimate business need have access to your information.
+            </li>
+            <li>
+              <strong>Retention:</strong> We retain your information for as long
+              as necessary to provide services and comply with legal obligations
+              (typically 7 years for tax-related documents).
+            </li>
+            <li>
+              <strong>Third-Party Services:</strong> We use trusted third-party
+              services (Zoho, cloud storage providers, communication platforms)
+              that maintain their own security standards and privacy policies.
+            </li>
+          </ul>
+        </section>
+
+        <section
+          class="bg-white p-8 rounded-xl shadow-sm border border-slate-200"
+        >
+          <h2 class="text-2xl font-serif font-semibold mb-4">
+            4. Information Sharing and Disclosure
+          </h2>
+          <p class="text-slate-600 mb-4">
+            We do not sell your personal information. We may share information
+            only in these circumstances:
+          </p>
+          <ul class="list-disc list-inside text-slate-600 space-y-2 ml-4">
+            <li>
+              <strong>Service Providers:</strong> With trusted third-party
+              service providers who assist in delivering our services (e.g.,
+              cloud storage, email services, payment processors).
+            </li>
+            <li>
+              <strong>Legal Requirements:</strong> When required by law, court
+              order, or government regulation (e.g., tax authorities, legal
+              proceedings).
+            </li>
+            <li>
+              <strong>Business Transfers:</strong> In connection with a merger,
+              acquisition, or sale of assets (with notice to affected clients).
+            </li>
+            <li>
+              <strong>With Your Consent:</strong> When you explicitly authorize
+              us to share information with specific parties.
+            </li>
+          </ul>
+        </section>
+
+        <section
+          class="bg-white p-8 rounded-xl shadow-sm border border-slate-200"
+        >
+          <h2 class="text-2xl font-serif font-semibold mb-4">
+            5. Your Rights and Choices
+          </h2>
+          <p class="text-slate-600 mb-4">You have the right to:</p>
+          <ul class="list-disc list-inside text-slate-600 space-y-2 ml-4">
+            <li>
+              <strong>Access:</strong> Request copies of your personal
+              information we hold.
+            </li>
+            <li>
+              <strong>Correction:</strong> Request correction of inaccurate or
+              incomplete information.
+            </li>
+            <li>
+              <strong>Deletion:</strong> Request deletion of your information,
+              subject to legal retention requirements.
+            </li>
+            <li>
+              <strong>Opt-Out:</strong> Unsubscribe from marketing
+              communications (service-related communications may still be sent).
+            </li>
+            <li>
+              <strong>Data Portability:</strong> Request your data in a portable
+              format where applicable.
+            </li>
+          </ul>
+          <p class="text-slate-600 mt-4 text-sm">
+            To exercise these rights, contact us at
+            <a
+              href="mailto:cody@qially.com"
+              class="text-blue-600 hover:underline"
+              >cody@qially.com</a
+            >.
+          </p>
+        </section>
+
+        <section
+          class="bg-white p-8 rounded-xl shadow-sm border border-slate-200"
+        >
+          <h2 class="text-2xl font-serif font-semibold mb-4">
+            6. Third-Party Tools and Services
+          </h2>
+          <p class="text-slate-600 mb-4">
+            We use the following third-party services that have their own
+            privacy policies:
+          </p>
+          <ul class="list-disc list-inside text-slate-600 space-y-2 ml-4">
+            <li>
+              <strong>Zoho:</strong> CRM, email, and business management tools
+            </li>
+            <li>
+              <strong>Cloud Storage:</strong> Secure file storage and document
+              management
+            </li>
+            <li>
+              <strong>Communication Platforms:</strong> Email, phone systems,
+              and messaging services
+            </li>
+            <li>
+              <strong>Payment Processors:</strong> Secure payment processing
+              services
+            </li>
+          </ul>
+          <p class="text-slate-600 mt-4 text-sm">
+            We encourage you to review the privacy policies of these third-party
+            services.
+          </p>
+        </section>
+
+        <section
+          class="bg-white p-8 rounded-xl shadow-sm border border-slate-200"
+        >
+          <h2 class="text-2xl font-serif font-semibold mb-4">7. Contact Us</h2>
+          <p class="text-slate-600 mb-4">
+            For questions about this Privacy Policy or to exercise your rights,
+            contact us:
+          </p>
+          <ul class="text-slate-600 space-y-2">
+            <li>
+              <strong>Email:</strong>
+              <a
+                href="mailto:cody@qially.com"
+                class="text-blue-600 hover:underline"
+                >cody@qially.com</a
+              >
+            </li>
+            <li>
+              <strong>Phone:</strong>
+              <a href="tel:+13176433489" class="text-blue-600 hover:underline"
+                >+1 (317) 643-3489</a
+              >
+            </li>
+            <li>
+              <strong>Mailing Address:</strong> QiAlly LLC, Indianapolis, IN
+            </li>
+          </ul>
+          <p class="text-slate-600 mt-4 text-sm">
+            We reserve the right to update this Privacy Policy. Material changes
+            will be communicated to active clients via email or through our
+            service portals.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="bg-slate-50 border-t border-slate-200 pt-16 pb-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"
+        >
+          <!-- Brand -->
+          <div class="col-span-1 lg:col-span-1">
+            <a href="/" class="flex items-center gap-2 mb-6">
+              <div
+                class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-bold text-lg"
+              >
+                Q
+              </div>
+              <span class="font-serif text-xl font-bold text-slate-800"
+                >QiAlly</span
+              >
+            </a>
+            <p class="text-slate-500 text-sm leading-relaxed mb-6">
+              Solo-practitioner consulting across tax resolution, accounting
+              cleanup, and systems/AI.
+              <br /><br />Corporate-grade precision. Personal delivery.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="https://twitter.com/qiallyme"
+                class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"
+                aria-label="Twitter"
+              >
+                <i class="fa-brands fa-twitter"></i>
+              </a>
+              <a
+                href="https://linkedin.com/company/qially"
+                class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-700 hover:text-white transition"
+                aria-label="LinkedIn"
+              >
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div>
+            <h3 class="font-serif font-semibold text-slate-900 mb-6">
+              Services
+            </h3>
+            <ul class="space-y-3 text-sm text-slate-500">
+              <li>
+                <a href="/services/tax-preparation/" class="hover:text-blue-600 transition"
+                  >Tax & Accounting</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/modules/taxes/individual/"
+                  class="hover:text-blue-600 transition"
+                  >Individual Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/services/hr-operations/"
+                  class="hover:text-blue-600 transition"
+                  >HR & Ops</a
+                >
+              </li>
+              <li>
+                <a href="/services/automation-ai/" class="hover:text-blue-600 transition"
+                  >IT & AI Consulting</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Resources -->
+          <div>
+            <h3 class="font-serif font-semibold text-slate-900 mb-6">
+              Resources
+            </h3>
+            <ul class="space-y-3 text-sm text-slate-500">
+              <li>
+                <a
+                  href="/pages/business_tools/"
+                  class="hover:text-blue-600 transition"
+                  >Business Tools</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/resources/"
+                  class="hover:text-blue-600 transition"
+                  >Resource Center</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/portfolio/"
+                  class="hover:text-blue-600 transition"
+                  >Portfolio</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/pages/showcases/videos.html"
+                  class="hover:text-blue-600 transition"
+                  >Video Library</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/pages/compliance/"
+                  class="hover:text-blue-600 transition"
+                  >Compliance Hub</a
+                >
+              </li>
+              <li>
+                <a href="/sitemap.xml" class="hover:text-blue-600 transition"
+                  >Sitemap (XML)</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <h3 class="font-serif font-semibold text-slate-900 mb-6">
+              Contact
+            </h3>
+            <ul class="space-y-3 text-sm text-slate-500">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-envelope mt-1 text-blue-500"></i>
+                <a
+                  href="mailto:cody@qially.com"
+                  class="hover:text-blue-600 transition"
+                  >cody@qially.com</a
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-phone mt-1 text-blue-500"></i>
+                <a
+                  href="tel:+13176433489"
+                  class="hover:text-blue-600 transition"
+                  >+1 (317) 643-3489</a
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-location-dot mt-1 text-blue-500"></i>
+                <span>Indianapolis, IN<br />Serving Clients Virtually</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p class="text-xs text-slate-400">
+            © 2026 QiAlly LLC. All rights reserved.
+          </p>
+          <div class="flex gap-6 text-xs text-slate-400">
+            <a href="/privacy.html" class="hover:text-slate-600 transition"
+              >Privacy Policy</a
+            >
+            <a href="/legal/msa/" class="hover:text-slate-600 transition"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ElevenLabs ConvAI Widget -->
+    <elevenlabs-convai
+      agent-id="agent_5601kb789hcyfrw928kr2a0ged3z"
+    ></elevenlabs-convai>
+    <script
+      src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+      async
+      type="text/javascript"
+    ></script>
+  </body>
+</html>

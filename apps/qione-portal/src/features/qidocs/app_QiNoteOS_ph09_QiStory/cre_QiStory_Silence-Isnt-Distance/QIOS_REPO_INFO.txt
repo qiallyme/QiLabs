@@ -1,0 +1,6 @@
+Repo: C:\QiOS_v1\projects\QiStory_Silence-Isnt-Distance
+Branch: main
+HEAD: bd11038120718e93ecae97ddd8ae0d4f7f565723 updated chapters 1-3
+Remotes:
+origin	https://github.com/qiallyme/QiStory_Silence-Isnt-Distance.git (fetch)
+origin	https://github.com/qiallyme/QiStory_Silence-Isnt-Distance.git (push)

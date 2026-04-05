@@ -1,0 +1,89 @@
+{% load static %}
+<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+  <div class="sidebar-brand">
+    <a href="{% url "dashboard:index" %}" class="brand-link">
+      <img
+        src="{% static 'assets/img/AdminLTELogo.png' %}"
+        alt="Iuris Soft"
+        class="brand-image opacity-75 shadow"
+      />
+      <span class="brand-text fw-light">Iuris Soft</span>
+    </a>
+  </div>
+  <div class="sidebar-wrapper">
+    <nav class="mt-2">
+      <ul
+        class="nav sidebar-menu flex-column"
+        data-lte-toggle="treeview"
+        role="menu"
+        data-accordion="false"
+      >
+        <li class="nav-item menu-open">
+          <a href="#" class="nav-link active">
+            <i class="nav-icon bi bi-speedometer"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon bi bi-people-fill"></i>
+            <p>
+              User Management
+              <span class="nav-badge badge text-bg-secondary me-3">{{ global_user_count }}</span>
+              <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'accounts:users' %}" class="nav-link">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>All Users</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon bi bi-briefcase-fill"></i>
+            <p>
+              Cases
+              <span class="nav-badge badge text-bg-secondary me-3">{{ global_case_count }}</span>
+              <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'case:case-list' %}" class="nav-link">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>All Cases</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'case:document-list' %}" class="nav-link">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>All Case Documents</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon bi bi-credit-card-fill"></i>
+            <p>
+              Billing
+              <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'case:time-entry-list' %}" class="nav-link">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>All Time Entries</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

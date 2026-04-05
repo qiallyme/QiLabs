@@ -1,0 +1,7 @@
+name = "rideshare-battle-api"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+SUPABASE_URL = "https://vpwegwzronwnxvdturvy.supabase.co"
+CORS_ALLOW_ORIGINS = "https://rideshare-battle-boards.pages.dev"

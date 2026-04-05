@@ -1,0 +1,5 @@
+# Specialized drop zones allocated to this device node
+zones:
+  - id: "zone_5678"
+    path: "%QILABS_HOME%/QiData/dropzone/receipts"
+    tag_on_ingest: "receipt"

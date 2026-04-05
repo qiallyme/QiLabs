@@ -1,0 +1,54 @@
+Category,Feature,BASIC ($99),TAX+ ($199),GROWTH ($399),UNLIMITED ($999),Limits,Overage Fee,Order
+BOOKS,Monthly Bookkeeping,TRUE,TRUE,TRUE,TRUE,"Core bookkeeping each month","N/A",100
+BOOKS,Transaction Categorization (Monthly),TRUE,TRUE,TRUE,TRUE,"200/300/500/Unltd (by tier)","$0.49 per extra transaction",101
+BOOKS,Reconciliation of Accounts (Bank/Credit),TRUE,TRUE,TRUE,TRUE,"3/7/10/Unltd accounts (by tier)","$15/account over limit",102
+BOOKS,Profit & Loss Statements,TRUE,TRUE,TRUE,TRUE,"Monthly P&L","$5 per extra special run",103
+BOOKS,Balance Sheet,TRUE,TRUE,TRUE,TRUE,"Monthly balance sheet","$5 per extra special run",104
+BOOKS,Year-End Tax Summary,TRUE,TRUE,TRUE,TRUE,"Annual tax summary package","$50 per extra year",105
+BOOKS,Receipt Management & Matching,ADD-ON,TRUE,TRUE,TRUE,"50/150/500/Unltd (by tier)","$0.49 per extra receipt",106
+BOOKS,Quarterly Financial Review,ADD-ON,TRUE,TRUE,TRUE,"Quarterly review sessions","$50 per extra review",107
+
+TAX,Simple 1040 Personal Taxes,ADD-ON,TRUE,TRUE,TRUE,"0/1/1/Unltd returns (by tier)","From $149 if outside plan",200
+TAX,Schedule C Small Business,ADD-ON,TRUE,TRUE,TRUE,"0/1/2/Unltd (by tier)","$249 per extra Schedule C",201
+TAX,Schedule A/B/SE,ADD-ON,TRUE,TRUE,TRUE,"Up to 1 included","$35 each additional schedule",202
+TAX,One Business Filing,ADD-ON,ADD-ON,TRUE,TRUE,"Sole Prop / LLC","$150 per additional entity",203
+TAX,Multi-State Filing,ADD-ON,ADD-ON,TRUE,TRUE,"Up to 2 states included","$50 per extra state",204
+TAX,Depreciation Schedules,ADD-ON,ADD-ON,TRUE,TRUE,"Up to 5 items","$10 per extra asset",205
+TAX,Tax Amendments,ADD-ON,ADD-ON,TRUE,TRUE,"1 included per year in Growth+","$99 each additional",206
+TAX,IRS Letters Support,ADD-ON,ADD-ON,ADD-ON,TRUE,"Response drafting & support","$49 each outside Unlimited",207
+TAX,Audit Support,ADD-ON,ADD-ON,ADD-ON,TRUE,"Guidance and doc prep","Project-based fee",208
+
+SITE,Website Care (Edits & Maintenance),ADD-ON,ADD-ON,TRUE,TRUE,"Up to 1 hr/mo in Growth, 2+ in Unlimited","$30 per 30 min over",300
+SITE,Website Marketing (SEO & Analytics),ADD-ON,ADD-ON,TRUE,TRUE,"Monthly SEO checks + analytics in Growth+","Project SEO quoted separately",301
+SITE,Brand & Landing Pages,ADD-ON,ADD-ON,TRUE,TRUE,"Up to 2 landing page updates/mo","$30 per extra page",302
+SITE,Infrastructure & Rebuilds,ADD-ON,ADD-ON,ADD-ON,TRUE,"Rebuilds, performance, Cloudflare tuning","$499–1499 per project; $99–299 infra",303
+
+OPS,Operations & Workflow Advisory,ADD-ON,ADD-ON,TRUE,TRUE,"Workflow mapping, process optimization, vendor/software recs","$69/hr for project work",400
+OPS,Backoffice & Admin Support,ADD-ON,ADD-ON,TRUE,TRUE,"Admin/backoffice, expense controls, light payroll guidance","$69/hr for extra work",401
+OPS,Business Health & Planning,ADD-ON,ADD-ON,TRUE,TRUE,"Quarterly business review + planning","$40 per extra review/session",402
+OPS,Financial Coaching,ADD-ON,ADD-ON,TRUE,TRUE,"Money habits, planning, debt/budget coaching","$40 extra for Basic/TAX+ clients",403
+OPS,Recruiting & Vendor Projects,ADD-ON,ADD-ON,ADD-ON,TRUE,"Recruiting workflows, vendor sourcing, custom agreements","Custom / $75 per contract",404
+
+CONSULTING,Strategy Sessions (Monthly/Weekly),ADD-ON,ADD-ON,TRUE,TRUE,"1/mo in Growth, weekly in Unlimited","$40 per extra session",410
+CONSULTING,Minimum Meeting Fee ($40),ADD-ON,ADD-ON,ADD-ON,TRUE,"Applies to all ad-hoc meetings outside Unlimited","$40 per meeting",411
+CONSULTING,Rush & Emergency Sessions,<48h,ADD-ON,ADD-ON,ADD-ON,TRUE,"Last-minute or same-day sessions","$49 rush fee",412
+CONSULTING,Mediation & Partner Work,ADD-ON,ADD-ON,ADD-ON,TRUE,"Mediation between partners, co-owners, family","$99–199 per session",413
+
+IMMIGRATION,Support Letters (I-864, employment, relationship),ADD-ON,ADD-ON,ADD-ON,TRUE,"Income, employment, and relationship letters","$49–75 each outside Unlimited",500
+IMMIGRATION,Evidence & Case Organization,ADD-ON,ADD-ON,ADD-ON,TRUE,"Photos, chats, receipts, timelines, indexing","$399–899 typical per case",501
+IMMIGRATION,Core Immigration Packages (I-589/I-130/I-485/etc.),ADD-ON,ADD-ON,ADD-ON,TRUE,"Prepared per case","$249–899 per package",502
+IMMIGRATION,Work Authorization & Visas (I-765/DS-260),ADD-ON,ADD-ON,ADD-ON,TRUE,"Work permit, immigrant visa forms","$125–249 per filing",503
+IMMIGRATION,SIV & Special Cases (I-360 etc.),ADD-ON,ADD-ON,ADD-ON,TRUE,"Special immigrant & complex cases","From $799 per project",504
+IMMIGRATION,FOIA & Records Requests,ADD-ON,ADD-ON,ADD-ON,TRUE,"FOIA, records pulls, status requests","$99 each",505
+IMMIGRATION,Notarized Statements & Translations,ADD-ON,ADD-ON,ADD-ON,TRUE,"Notary + EN/PS/ES translations","$10–25 notary; $15/page translation",506
+IMMIGRATION,Case Check-Ins & Strategy Sessions,ADD-ON,ADD-ON,ADD-ON,TRUE,"Weekly in Unlimited; retainer otherwise","$40 per extra outside retainer",507
+IMMIGRATION,Attorney Coordination,ADD-ON,ADD-ON,ADD-ON,TRUE,"Coordinating with attorney of record","Included for active cases",508
+
+PORTAL+DOCS,Client Portal & Document Hub,TRUE,TRUE,TRUE,TRUE,"Portal, secure uploads, base storage","$5/GB over base",600
+PORTAL+DOCS,Knowledge Base & Smart Docs,ADD-ON,TRUE,TRUE,TRUE,"Client KB, simple letters, basic PDFs","After 10 docs: $5/doc; $10–25 per premium doc",601
+PORTAL+DOCS,Advanced Docs & Packages,ADD-ON,ADD-ON,TRUE,TRUE,"Spreadsheets, legal-style formatting, print packages, grants/proposals","$25–299 depending on scope",602
+PORTAL+DOCS,AI Assistance & Forms,ADD-ON,TRUE,TRUE,TRUE,"AI assistant, custom forms, simple automations","Usage-based; $49/form/task typical",603
+PORTAL+DOCS,Dashboards & Custom Portals,ADD-ON,ADD-ON,ADD-ON,TRUE,"Private dashboards, complex flows & views","Custom quote",604
+
+AI,Automation & Integrations ($69/hr),ADD-ON,ADD-ON,TRUE,TRUE,"All automation, integrations, Cloudflare, Supabase, Zapier, APIs, portal dev, etc.","$69/hr, 1-hour minimum",700
+AI,Complex Systems & Migrations,ADD-ON,ADD-ON,ADD-ON,TRUE,"Large moves, multi-system projects (8–20 hrs typical)","$69/hr; scoped per project",701

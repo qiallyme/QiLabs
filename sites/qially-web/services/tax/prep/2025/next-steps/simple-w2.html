@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2025 Tax Checklist — Simple W-2 | QiAlly</title>
+    <meta
+      name="description"
+      content="Tax document checklist for Simple W-2 returns. Lista de documentos para declaraciones W-2."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+              lato: ["Lato", "sans-serif"],
+            },
+            colors: {
+              "brand-bg": "#f8fafc",
+              "brand-green": "#1AB16D",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .blob-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(26, 177, 109, 0.1),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(219, 234, 254, 0.4),
+            transparent 25%
+          );
+        filter: blur(40px);
+      } /* Hide elements when printing */
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+        .print-only {
+          display: block !important;
+        }
+        body {
+          background: white;
+          color: black;
+        }
+        .glass-panel {
+          box-shadow: none;
+          border: 1px solid #ccc;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased relative font-sans">
+    <div class="blob-bg no-print"></div>
+
+    <!-- Nav -->
+    <nav
+      class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 no-print"
+    >
+      <div
+        class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between"
+      >
+        <a
+          href="./index.html"
+          class="text-slate-500 hover:text-brand-green flex items-center gap-2 text-sm font-medium transition-colors"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Back to Options
+          <span class="text-slate-400">/ Regresar</span>
+        </a>
+        <div class="flex gap-3">
+          <button
+            onclick="window.print()"
+            class="text-slate-600 hover:text-brand-green px-3 py-2 rounded-md transition-colors"
+            title="Print Checklist"
+          >
+            <i class="fa-solid fa-print text-xl"></i>
+          </button>
+          <a
+            href="https://us.bigin.online/org886848419/bookings/tax-prep-2025"
+            target="_blank"
+            class="bg-slate-800 text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-slate-700 transition"
+          >
+            Book Call
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 py-12">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <div
+          class="w-16 h-16 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-3xl mx-auto mb-6"
+        >
+          <i class="fa-solid fa-file-invoice-dollar"></i>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-serif text-slate-900 mb-2">
+          Simple W-2 Checklist
+        </h1>
+        <p class="text-xl text-slate-500 italic font-serif">
+          Lista de Documentos W-2
+        </p>
+        <p class="mt-4 text-slate-600 max-w-lg mx-auto">
+          For employees with standard income forms. <br />
+          <span class="text-slate-500 text-sm"
+            >Para empleados con formularios de ingresos estándar.</span
+          >
+        </p>
+      </div>
+
+      <!-- Checklist -->
+      <div
+        class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 mb-10 shadow-sm print:shadow-none print:border-slate-300"
+      >
+        <h2
+          class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2 border-b border-slate-100 pb-3"
+        >
+          <span class="w-2 h-8 bg-brand-green rounded-full"></span>
+          Required Documents
+          <span class="text-slate-400 font-normal text-base ml-auto"
+            >Documentos Requeridos</span
+          >
+        </h2>
+
+        <ul class="space-y-4 mb-8">
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Photo ID / Identificación</span
+              >
+              <span class="text-sm text-slate-500"
+                >Driver's License or Passport for you (and spouse if filing
+                jointly).</span
+              >
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Social Security Cards / Tarjetas de Seguro Social</span
+              >
+              <span class="text-sm text-slate-500"
+                >Physical cards or clear copies for everyone on the return (kids
+                included).</span
+              >
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >All W-2 Forms / Formularios W-2</span
+              >
+              <span class="text-sm text-slate-500"
+                >From all employers you worked for in 2024.</span
+              >
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Prior Year Return / Declaración Anterior</span
+              >
+              <span class="text-sm text-slate-500"
+                >If you are a new client, we need your 2023 tax return
+                copy.</span
+              >
+            </div>
+          </li>
+        </ul>
+
+        <h2
+          class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2 border-b border-slate-100 pb-3"
+        >
+          <span class="w-2 h-8 bg-blue-400 rounded-full"></span>
+          If Applicable
+          <span class="text-slate-400 font-normal text-base ml-auto"
+            >Si Aplica</span
+          >
+        </h2>
+
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Form 1095-A / Mercado de Seguros</span
+              >
+              <span class="text-sm text-slate-500"
+                >Required if you had Marketplace Health Insurance
+                (Obamacare).</span
+              >
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Childcare Expenses / Gastos de Cuidado</span
+              >
+              <span class="text-sm text-slate-500"
+                >Provider name, address, EIN/SSN, and total amount paid per
+                child.</span
+              >
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Education Forms (1098-T)</span
+              >
+              <span class="text-sm text-slate-500"
+                >If you or a dependent paid college tuition.</span
+              >
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Bank Info / Cuenta de Banco</span
+              >
+              <span class="text-sm text-slate-500"
+                >Routing and Account number for Direct Deposit.</span
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Action Buttons -->
+      <div
+        class="flex flex-col sm:flex-row gap-4 justify-center mb-16 no-print"
+      >
+        <!-- REPLACE LINK BELOW WITH ACTUAL ZOHO FORM URL -->
+        <a
+          href="https://forms.zohopublic.com/QiAlly/form/QiAllyTaxOrganizerDocumentUploadDetails/formperma/xajlmT1OnZoKAcRfuVSAyB_6HYjXbdOIPKXkun7HxPQ?taxorganizer=Simple%20W-2"
+          class="bg-brand-green text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-emerald-600 transition flex items-center justify-center gap-3 w-full sm:w-auto"
+        >
+          <i class="fa-solid fa-upload"></i> Upload & Start Organizer
+        </a>
+      </div>
+
+      <!-- Timeline -->
+      <div class="border-t border-slate-200 pt-12">
+        <h3 class="text-center font-serif text-2xl text-slate-900 mb-8">
+          What Happens Next / Qué Sigue
+        </h3>
+        <div class="grid md:grid-cols-3 gap-8 text-center">
+          <div>
+            <div
+              class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center mx-auto mb-3 font-bold"
+            >
+              1
+            </div>
+            <h4 class="font-bold text-slate-900">Upload Docs</h4>
+            <p class="text-sm text-slate-500">
+              Submit your organizer and documents via the secure link above.
+            </p>
+          </div>
+          <div>
+            <div
+              class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center mx-auto mb-3 font-bold"
+            >
+              2
+            </div>
+            <h4 class="font-bold text-slate-900">We Prep</h4>
+            <p class="text-sm text-slate-500">
+              We prepare your return and contact you with questions.
+            </p>
+          </div>
+          <div>
+            <div
+              class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center mx-auto mb-3 font-bold"
+            >
+              3
+            </div>
+            <h4 class="font-bold text-slate-900">Review & Sign</h4>
+            <p class="text-sm text-slate-500">
+              Review the draft, sign digitally, and we file electronically.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="mt-12 mb-16 print:hidden">
+        <h3 class="font-serif text-2xl text-slate-900 mb-6 text-center">
+          Common Questions / Preguntas Frecuentes
+        </h3>
+        <div class="space-y-4">
+          <details
+            class="group bg-white/60 p-4 rounded-xl border border-slate-200 open:bg-white open:shadow-lg transition"
+          >
+            <summary
+              class="font-semibold text-slate-800 cursor-pointer list-none flex justify-between items-center"
+            >
+              <span
+                >How do I send my documents? / ¿Cómo envío mis documentos?</span
+              >
+              <span class="transition group-open:rotate-180"
+                ><i class="fa-solid fa-chevron-down text-slate-400"></i
+              ></span>
+            </summary>
+            <div
+              class="text-sm text-slate-600 mt-3 pl-2 border-l-2 border-brand-green"
+            >
+              Use the secure upload button above. It's encrypted and faster than
+              email. <br />
+              Use el botón de carga segura arriba. Es encriptado y más rápido
+              que el correo electrónico.
+            </div>
+          </details>
+          <details
+            class="group bg-white/60 p-4 rounded-xl border border-slate-200 open:bg-white open:shadow-lg transition"
+          >
+            <summary
+              class="font-semibold text-slate-800 cursor-pointer list-none flex justify-between items-center"
+            >
+              <span>When is the deadline? / ¿Cuándo es la fecha límite?</span>
+              <span class="transition group-open:rotate-180"
+                ><i class="fa-solid fa-chevron-down text-slate-400"></i
+              ></span>
+            </summary>
+            <div
+              class="text-sm text-slate-600 mt-3 pl-2 border-l-2 border-brand-green"
+            >
+              The IRS filing deadline is usually April 15th. Extensions are
+              available if needed. <br />
+              La fecha límite del IRS suele ser el 15 de abril. Hay extensiones
+              disponibles si se necesitan.
+            </div>
+          </details>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8 mt-12 no-print">
+      <div class="text-center text-slate-500 text-sm">
+        <p>&copy; 2025 QiAlly Tax Services.</p>
+      </div>
+    </footer>
+  </body>
+</html>

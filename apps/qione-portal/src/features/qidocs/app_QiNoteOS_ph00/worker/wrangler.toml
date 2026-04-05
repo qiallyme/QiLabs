@@ -1,0 +1,19 @@
+# Cloudflare Worker configuration for Gina (QiCockpit)
+# This is for deploying the Worker, NOT for Pages
+
+name = "qicockpit-gina"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "qicockpit-gina"
+
+[env.production.vars]
+# These will be set via wrangler secret put
+
+[triggers]
+# Daily sync at 2 AM UTC
+crons = ["0 2 * * *"]
+
+# No build step needed - Wrangler handles TypeScript compilation
+

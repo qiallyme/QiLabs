@@ -1,0 +1,11 @@
+QIOS_SAFE_TO_DELETE.txt
+
+This marker means:
+- .gitignore has been standardized
+- git add/commit/push succeeded (at time of run)
+- You may remove this local repo directory ONLY AFTER:
+  1) Your Drive backup is verified, AND
+  2) You confirm the remote repo contains the latest snapshot.
+
+Report file: C:\QiOS_v1\git_sweep_apply_report_20251226_191302.txt
+Timestamp: 2025-12-26 19:41:12

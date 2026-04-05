@@ -1,0 +1,271 @@
+Yes — but not with Railway canvas lines unless a service truly needs private networking.
+
+What the PWA should connect to
+
+Your QiArchive PWA should connect to:
+	1.	QiArchive API for dashboard data
+	2.	optionally Paperless URL as an external link or embedded button
+
+That’s it.
+
+It does not need:
+	•	direct Postgres access
+	•	Redis access
+	•	direct connection to the local agent
+	•	a canvas connection line in Railway unless your PWA has a backend server that calls internal services privately
+
+Clean architecture
+
+Right now it should be:
+
+Phone PWA
+   ↓
+QiArchive API
+   ↓
+QiArchive Postgres
+
+And separately:
+
+Phone PWA
+   ↓
+Open Paperless link
+
+So the PWA talks to the API, not the database.
+
+⸻
+
+Do you need to “connect” the PWA service in Railway?
+
+If the PWA is just static frontend
+
+No private network connection is needed.
+
+You just need the frontend app to know the API base URL, like:
+
+VITE_API_BASE_URL=https://qiarchive-api-production.up.railway.app
+VITE_PAPERLESS_URL=https://paperless-ngx-production-feda.up.railway.app
+
+Then the browser calls those URLs directly.
+
+If the PWA is a server-rendered app
+
+Still usually no canvas line needed unless you want it to call the API over Railway private DNS. For your setup, public HTTPS is simpler and cleaner.
+
+So: don’t overconnect it.
+
+⸻
+
+Yes, you do need to set up the tables
+
+And this is now the real next move.
+
+You already noticed the important fact:
+
+your qiarchive-postgres is online, but empty.
+
+That means:
+	•	the database exists
+	•	the service exists
+	•	your schema does not yet
+
+Two ways to create tables
+
+Option A — easiest right now
+
+Let the QiArchive API create tables on startup with SQLAlchemy.
+
+That works if:
+	•	your models are defined
+	•	Base.metadata.create_all(bind=engine) runs successfully
+	•	your API is pointed at the correct DB
+
+Option B — cleaner long-term
+
+Use migrations, usually Alembic.
+
+That’s better later, but honestly for where you are today, Option A is fine.
+
+⸻
+
+What tables you need first
+
+Minimum v1:
+
+1. agent_status
+
+Tracks whether the laptop agent is alive.
+
+Suggested fields:
+
+id
+machine_name
+agent_status
+last_seen_at
+watch_folder
+queue_depth
+processed_today
+duplicates_today
+review_today
+created_at
+updated_at
+
+2. documents
+
+Tracks each QDOC and document state.
+
+Suggested fields:
+
+id
+qdoc_id
+original_filename
+canonical_filename
+sha256
+status
+paperless_document_id
+machine_name
+created_at
+updated_at
+
+3. document_events
+
+Tracks event history.
+
+Suggested fields:
+
+id
+document_id
+event_type
+machine_name
+payload_json
+created_at
+
+That is enough for:
+	•	dashboard
+	•	recent docs
+	•	issue queue
+	•	agent heartbeat
+
+⸻
+
+What the PWA needs from the API
+
+Your PWA should read from endpoints like:
+
+GET /api/dashboard/summary
+GET /api/documents/recent
+GET /api/agent/status
+GET /api/issues
+
+Your local agent should write to endpoints like:
+
+POST /api/agent/heartbeat
+POST /api/events/document
+
+
+⸻
+
+What you should do next, in order
+
+1. Fix the database schema first
+
+Because without tables the API has nothing meaningful to serve.
+
+2. Add heartbeat + event posting from local agent
+
+So the cloud starts receiving live data.
+
+3. Point the PWA to the API
+
+Then the phone UI becomes useful.
+
+⸻
+
+What to tell the IDE
+
+Paste this exactly:
+
+We need to finish the QiArchive cloud data layer before wiring the PWA.
+
+Goal:
+Create the initial QiArchive schema in qiarchive-postgres and wire the API to use it.
+
+Requirements:
+
+1. In apps/api/app, define SQLAlchemy models for:
+- AgentStatus
+- Document
+- DocumentEvent
+
+2. Minimum fields:
+
+AgentStatus:
+- id
+- machine_name
+- agent_status
+- last_seen_at
+- watch_folder
+- queue_depth
+- processed_today
+- duplicates_today
+- review_today
+- created_at
+- updated_at
+
+Document:
+- id
+- qdoc_id
+- original_filename
+- canonical_filename
+- sha256
+- status
+- paperless_document_id
+- machine_name
+- created_at
+- updated_at
+
+DocumentEvent:
+- id
+- document_id
+- event_type
+- machine_name
+- payload_json
+- created_at
+
+3. Ensure the API creates these tables automatically on startup using Base.metadata.create_all(bind=engine).
+
+4. Add these endpoints:
+- POST /api/agent/heartbeat
+- POST /api/events/document
+- GET /api/dashboard/summary
+- GET /api/documents/recent
+- GET /api/agent/status
+- GET /api/issues
+
+5. Update the local agent to POST:
+- heartbeat every 30 seconds
+- document events on upload / duplicate / review / error
+
+6. For the PWA:
+- do NOT connect it directly to Postgres
+- do NOT connect it directly to the local agent
+- use public HTTPS API only
+
+7. Return:
+- updated file tree
+- models created
+- route list
+- required env vars
+- any one-time deploy step needed
+
+
+⸻
+
+Straight answer
+
+Do you need to connect the PWA to anything?
+Yes — the API only.
+
+Do you need to set up the tables?
+Yes — absolutely, that’s the next real blocker.
+
+Once that’s done, QiArchive becomes a real control panel instead of just a shell.

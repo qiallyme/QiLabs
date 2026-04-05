@@ -1,0 +1,581 @@
+{
+  "generated_at": "2026-04-01T03:25:46",
+  "repo_root": "C:\\QiLabs",
+  "summary": {
+    "total": 81,
+    "keep": 2,
+    "move": 79,
+    "merge_review": 0,
+    "skip": 0,
+    "manual": 0
+  },
+  "items": [
+    {
+      "source": "apps/ai-api",
+      "target": null,
+      "action": "keep",
+      "reason": "canonical root app",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal",
+      "target": null,
+      "action": "keep",
+      "reason": "canonical root app",
+      "risk": "low"
+    },
+    {
+      "source": ".agents",
+      "target": "legacy/misc_root_strays/.agents",
+      "action": "move",
+      "reason": "non-canonical root directory; safe move to canonical location",
+      "risk": "medium"
+    },
+    {
+      "source": ".nogic",
+      "target": "legacy/misc_root_strays/.nogic",
+      "action": "move",
+      "reason": "non-canonical root directory; safe move to canonical location",
+      "risk": "medium"
+    },
+    {
+      "source": "apps/api",
+      "target": "legacy/unclassified_apps/api",
+      "action": "move",
+      "reason": "unclassified app root; quarantine first, decide later; safe move to canonical location",
+      "risk": "medium"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qicontacts/README.md.merge_1771318730",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qicontacts__README.md.merge_1771318730",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/app_QiNoteOS_ph09_QiStory/app/vault/projects/default/raw/Mirror, Mirror How to Critique a Family Manifesto for Trauma, (1).txt",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__app_QiNoteOS_ph09_QiStory__app__vault__projects__default__raw__Mirror_Mirror_How_to_Critique_a_Family_Manifesto_for_Trauma_1_.txt",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/app_QiNoteOS_ph09_QiStory/cre_QiStory_Pole_To_Power/assets/videos/boss (2).gif",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__app_QiNoteOS_ph09_QiStory__cre_QiStory_Pole_To_Power__assets__videos__boss_2_.gif",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/app_QiNoteOS_ph09_QiStory/cre_QiStory_Pole_To_Power/assets/videos/mirror (2).gif",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__app_QiNoteOS_ph09_QiStory__cre_QiStory_Pole_To_Power__assets__videos__mirror_2_.gif",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/index (2).html",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/package-lock (2).json",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__package-lock_2_.json",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/src/components/common/ErrorBoundary (2).tsx",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__src__components__common__ErrorBoundary_2_.tsx",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/src/styles/index (2).css",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__src__styles__index_2_.css",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/tailwind.config (2).js",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__tailwind.config_2_.js",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/tsconfig (2).json",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__tsconfig_2_.json",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/vault/README.md.merge_1772570691",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__vault__README.md.merge_1772570691",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/vault/package.json.merge_1772570691",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__vault__package.json.merge_1772570691",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qidocs/vite.config (2).ts",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qidocs__vite.config_2_.ts",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qina/app/index (2).html",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qina__app__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qina/app/src/App (2).css",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qina__app__src__App_2_.css",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qina/app/src/index (2).css",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qina__app__src__index_2_.css",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qinote/vault/modules/qid0400003_fcfcu_case/README.md.bak",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qinote__vault__modules__qid0400003_fcfcu_case__README.md.bak",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qinote/vault/modules/qid0400003_fcfcu_case/versions/log.md.bak",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qinote__vault__modules__qid0400003_fcfcu_case__versions__log.md.bak",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qinote/vault/modules/qid1500001_how_to_use_qinoteos/content.md.bak",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qinote__vault__modules__qid1500001_how_to_use_qinoteos__content.md.bak",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qinote/vault/modules/qid1500001_how_to_use_qinoteos/versions/log.md.bak",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qinote__vault__modules__qid1500001_how_to_use_qinoteos__versions__log.md.bak",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qistory/app/vault/projects/default/raw/Mirror, Mirror How to Critique a Family Manifesto for Trauma, (1).txt",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qistory__app__vault__projects__default__raw__Mirror_Mirror_How_to_Critique_a_Family_Manifesto_for_Trauma_1_.txt",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "apps/qione-portal/src/features/qistory/cre_QiStory_Pole_To_Power/assets/videos/mirror (2).gif",
+      "target": "legacy/_trash/apps__qione-portal__src__features__qistory__cre_QiStory_Pole_To_Power__assets__videos__mirror_2_.gif",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "data/.content-NOTCODE/assets/css/index (2).html",
+      "target": "legacy/_trash/data__.content-NOTCODE__assets__css__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "data/.content-NOTCODE/assets/css/style (2).css",
+      "target": "legacy/_trash/data__.content-NOTCODE__assets__css__style_2_.css",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "data/.content-NOTCODE/assets/imgs/index (2).html",
+      "target": "legacy/_trash/data__.content-NOTCODE__assets__imgs__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "data/.content-NOTCODE/assets/index (2).html",
+      "target": "legacy/_trash/data__.content-NOTCODE__assets__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "data/.content-NOTCODE/assets/js/index (2).html",
+      "target": "legacy/_trash/data__.content-NOTCODE__assets__js__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "data/.content-NOTCODE/assets/js/lina-api-client (2).js",
+      "target": "legacy/_trash/data__.content-NOTCODE__assets__js__lina-api-client_2_.js",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "data/.content-NOTCODE/assets/js/lina-widget (2).js",
+      "target": "legacy/_trash/data__.content-NOTCODE__assets__js__lina-widget_2_.js",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "data/.content-NOTCODE/assets/js/lina-widget-drop (2).js",
+      "target": "legacy/_trash/data__.content-NOTCODE__assets__js__lina-widget-drop_2_.js",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "data/.content-NOTCODE/data/csv/mirrors_between_us_spotlights (1).csv",
+      "target": "legacy/_trash/data__.content-NOTCODE__data__csv__mirrors_between_us_spotlights_1_.csv",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "data/.content-NOTCODE/data/docs/index (2).html",
+      "target": "legacy/_trash/data__.content-NOTCODE__data__docs__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/LICENSE (2)",
+      "target": "legacy/_trash/packages__gina__LICENSE_2",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/README (2).md",
+      "target": "legacy/_trash/packages__gina__README_2_.md",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/README (3).md",
+      "target": "legacy/_trash/packages__gina__README_3_.md",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/```markdown (2).md",
+      "target": "legacy/_trash/packages__gina___markdown_2_.md",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/demo/README (2).md",
+      "target": "legacy/_trash/packages__gina__demo__README_2_.md",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/demo/assets/branding-lina (2).md",
+      "target": "legacy/_trash/packages__gina__demo__assets__branding-lina_2_.md",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/demo/assets/index (2).html",
+      "target": "legacy/_trash/packages__gina__demo__assets__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/demo/assets/lina-config-prompt (2).md",
+      "target": "legacy/_trash/packages__gina__demo__assets__lina-config-prompt_2_.md",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/demo/assets/sora-prompts-lumara-lina (2).txt",
+      "target": "legacy/_trash/packages__gina__demo__assets__sora-prompts-lumara-lina_2_.txt",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/demo/index (2).html",
+      "target": "legacy/_trash/packages__gina__demo__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/demo/index (3).html",
+      "target": "legacy/_trash/packages__gina__demo__index_3_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/demo/index (4).html",
+      "target": "legacy/_trash/packages__gina__demo__index_4_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/functions/api/index (2).html",
+      "target": "legacy/_trash/packages__gina__functions__api__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/functions/api/lina-chat (2).js",
+      "target": "legacy/_trash/packages__gina__functions__api__lina-chat_2_.js",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/functions/index (2).html",
+      "target": "legacy/_trash/packages__gina__functions__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/index (2).html",
+      "target": "legacy/_trash/packages__gina__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/index (3).html",
+      "target": "legacy/_trash/packages__gina__index_3_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/index (4).html",
+      "target": "legacy/_trash/packages__gina__index_4_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/index (5).html",
+      "target": "legacy/_trash/packages__gina__index_5_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/index.html.merge_1763192572",
+      "target": "legacy/_trash/packages__gina__index.html.merge_1763192572",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/gina/lina-widget (2).html",
+      "target": "legacy/_trash/packages__gina__lina-widget_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/qiobject/energy/README.md.merge_1763241628",
+      "target": "legacy/_trash/packages__qiobject__energy__README.md.merge_1763241628",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/qiobject/energy/README.md.merge_1767756324",
+      "target": "legacy/_trash/packages__qiobject__energy__README.md.merge_1767756324",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/qiobject/energy/home-energy-tracker-v2 (1)",
+      "target": "legacy/_trash/packages__qiobject__energy__home-energy-tracker-v2_1",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "packages/qiobject/energy/index.html.merge_1769331278",
+      "target": "legacy/_trash/packages__qiobject__energy__index.html.merge_1769331278",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "tree-maker",
+      "target": "legacy/misc_root_strays/tree-maker",
+      "action": "move",
+      "reason": "non-canonical root directory; safe move to canonical location",
+      "risk": "medium"
+    },
+    {
+      "source": "workers/_shared/index (2).html",
+      "target": "legacy/_trash/workers___shared__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/_shared/index (3).html",
+      "target": "legacy/_trash/workers___shared__index_3_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/ingestion/.dev (2).vars",
+      "target": "legacy/_trash/workers__ingestion__.dev_2_.vars",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/ingestion/index (2).html",
+      "target": "legacy/_trash/workers__ingestion__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/ingestion/index (3).html",
+      "target": "legacy/_trash/workers__ingestion__index_3_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/ingestion/wrangler (2).toml",
+      "target": "legacy/_trash/workers__ingestion__wrangler_2_.toml",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/orchestrator/.wrangler/tmp/bundle-SLLT78/middleware-insertion-facade (2).js",
+      "target": "legacy/_trash/workers__orchestrator__.wrangler__tmp__bundle-SLLT78__middleware-insertion-facade_2_.js",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/orchestrator/.wrangler/tmp/bundle-SLLT78/middleware-loader.entry (2).ts",
+      "target": "legacy/_trash/workers__orchestrator__.wrangler__tmp__bundle-SLLT78__middleware-loader.entry_2_.ts",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/orchestrator/.wrangler/tmp/dev-2slNY1/worker_orchestrator (2).js",
+      "target": "legacy/_trash/workers__orchestrator__.wrangler__tmp__dev-2slNY1__worker_orchestrator_2_.js",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/orchestrator/.wrangler/tmp/dev-2slNY1/worker_orchestrator.js (2).map",
+      "target": "legacy/_trash/workers__orchestrator__.wrangler__tmp__dev-2slNY1__worker_orchestrator.js_2_.map",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/orchestrator/OrchestratorState (2).ts",
+      "target": "legacy/_trash/workers__orchestrator__OrchestratorState_2_.ts",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/orchestrator/index (2).html",
+      "target": "legacy/_trash/workers__orchestrator__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/orchestrator/index (3).html",
+      "target": "legacy/_trash/workers__orchestrator__index_3_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/orchestrator/qios_06_workers_orchestrator (2).canvas",
+      "target": "legacy/_trash/workers__orchestrator__qios_06_workers_orchestrator_2_.canvas",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/self_heal/index (2).html",
+      "target": "legacy/_trash/workers__self_heal__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/self_heal/index (3).html",
+      "target": "legacy/_trash/workers__self_heal__index_3_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/semantic_router/index (2).html",
+      "target": "legacy/_trash/workers__semantic_router__index_2_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    },
+    {
+      "source": "workers/semantic_router/index (3).html",
+      "target": "legacy/_trash/workers__semantic_router__index_3_.html",
+      "action": "move",
+      "reason": "obvious duplicate/merge/junk candidate",
+      "risk": "low"
+    }
+  ]
+}

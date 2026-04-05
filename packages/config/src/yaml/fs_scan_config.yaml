@@ -1,0 +1,63 @@
+# Filesystem Scanner Configuration
+# Defines which directories to scan and how to categorize them
+
+roots:
+  - path: "realms/qivault/kb"
+    realm: "QiVault"
+    include: ["**/*.md", "**/*.mdx", "**/*.txt"]
+  
+  - path: "docs"
+    realm: "QiOps"
+    include: ["**/*.md"]
+  
+  - path: "data"
+    realm: "QiData"
+    include: ["**/*.md", "**/*.csv", "**/*.yaml", "**/*.yml", "**/*.json"]
+  
+  - path: "projects"
+    realm: "QiBusiness"
+    include: ["**/*.md"]
+  
+  - path: "realms"
+    realm: "auto"   # infer from subdir: qivault, qibusiness, qiclients, etc.
+    include: ["**/*.md", "**/*.mdx", "**/*.txt"]
+  
+  - path: "rules"
+    realm: "QiOps"
+    include: ["**/*.yaml", "**/*.yml", "**/*.md"]
+  
+  - path: "sites"
+    realm: "QiSites"
+    include: ["**/*.md", "**/*.html"]
+  
+  - path: "templates"
+    realm: "QiOps"
+    include: ["**/*.md", "**/*.snippet"]
+  
+  - path: "tools"
+    realm: "QiOps"
+    include: ["**/*.md", "**/*.py", "**/*.ps1"]
+  
+  - path: "workers"
+    realm: "QiWorkers"
+    include: ["**/*.md", "**/*.py", "**/*.ts"]
+  
+  - path: "workflows"
+    realm: "QiWorkflows"
+    include: ["**/*.md", "**/*.yaml", "**/*.yml"]
+
+ignore:
+  - "**/node_modules/**"
+  - "**/.git/**"
+  - "**/.cache/**"
+  - "**/.DS_Store"
+  - "**/*.log"
+  - "_intake/**"
+  - "**/__pycache__/**"
+  - "**/.venv/**"
+  - "**/venv/**"
+  - "**/dist/**"
+  - "**/build/**"
+  - "**/.next/**"
+  - "**/.vite/**"
+

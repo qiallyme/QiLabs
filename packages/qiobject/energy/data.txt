@@ -1,0 +1,42 @@
+Here’s an expanded CSV with extra flags and context columns so you can sort/filter by budget status, extensions, disconnects, returned payments, late fees, and system issues.
+
+```csv
+BillingDate,PeriodDays,AvgDailyKWh,TotalKWh,TotalServicesBilled,AmountDue,BudgetPlanStatus,ExtensionEvent,ReturnedPayment,DisconnectOrNotice,LateFee,SystemIssueFlag,Notes
+2022-10-27,29,54.6,1583,258.63,271.00,Budget,None,No,None,,No,"Budget billing in effect"
+2022-11-28,31,70.9,2198,286.97,316.00,Budget,None,No,None,,No,"Budget payment changed"
+2022-12-28,30,81.4,2442,384.61,316.00,Budget,None,No,None,,No,""
+2023-01-27,30,121.7,3651,364.47,316.00,Budget,None,No,None,,No,""
+2023-02-24,28,126.4,3539,413.30,316.00,Budget,None,No,None,,No,"Includes small fuel adjustment credit"
+2023-03-28,32,76.7,2454,413.88,316.00,Budget,None,No,None,,No,""
+2023-04-26,30,61.8,1854,327.42,621.59,Budget-SettleUp,None,No,None,,No,"Budget plan settlement; new budget next bill"
+2023-05-26,30,53.0,1590,332.57,348.00,Budget,None,No,None,,No,""
+2023-06-28,33,64.6,2132,327.35,716.00,None,None,Yes,None,,No,"Returned payment plus 20 fee"
+2023-07-27,29,85.9,2491,296.83,759.75,Budget-Canceled,None,Yes,None,,No,"Budget plan canceled; returned payment plus 20 fee"
+2023-08-29,33,80.8,2666,319.12,657.87,None,None,Yes,None,,No,"Returned payment plus 20 fee"
+2023-09-27,29,76.8,2227,331.91,951.91,None,None,No,Disconnect,,No,"Non-pay disconnect with 22 disconnect and 64 reconnect fee"
+2023-10-25,28,64.0,1792,250.55,602.46,None,None,No,Disconnect-Suspended,,Yes,"Non-payment disconnections suspended due to system upgrade"
+2023-11-30,34,64.1,2180,365.24,330.00,None,None,No,None,,Yes,"New account number assigned due to system upgrade"
+2023-12-29,29,92.6,2685,352.94,330.00,None,None,No,None,,No,""
+2024-01-31,33,87.7,2894,592.35,660.00,Budget,None,No,None,,No,"Budget amount increased"
+2024-03-05,37,108.2,4003,414.87,990.00,Budget,None,No,None,,Yes,"Billing issues; late fees waived and no disconnections"
+2024-03-28,28,103.2,2890,336.18,1024.60,Budget,None,No,None,,Yes,"System upgrade issues ongoing"
+2024-04-30,31,82.0,2542,269.65,1354.60,Budget,None,No,None,,No,""
+2024-05-31,32,83.5,2672,297.87,1684.60,Budget,None,No,None,,No,"Rate adjustment approved effective mid May"
+2024-06-28,28,91.2,2554,374.19,2014.60,Budget,None,No,None,,No,""
+2024-07-29,29,92.8,2691,345.90,2344.60,Budget,None,No,None,,No,""
+2024-08-28,32,88.6,2835,382.19,2674.60,Budget,None,No,None,,Yes,"Limited customer systems operations noted"
+2024-09-30,31,79.7,2471,364.19,3004.60,Budget,None,No,None,,No,"Remote disconnections scheduled to begin November 2024"
+2024-10-31,33,84.9,2802,288.16,3758.33,Budget-SettleUp,None,No,None,,No,"Budget plan settlement; new budget 365"
+2024-11-27,27,104.9,2832,258.70,4017.03,Budget,None,No,None,,No,""
+2024-12-31,32,110.0,3520,630.08,4647.11,Budget,None,No,None,,No,""
+2025-01-31,33,171.7,5666,776.38,5441.37,Budget,None,No,None,17.88,No,"Includes late payment charge 17.88"
+2025-03-03,29,132.7,3848,613.88,6077.23,Budget,None,No,None,21.98,No,"Includes late payment charge 21.98"
+2025-03-31,28,105.7,2960,436.86,6531.51,Budget,None,No,Disconnect-Notice,17.42,No,"Includes late payment charge 17.42 and disconnect notice"
+2025-04-30,32,74.1,2371,400.20,1445.20,Budget,Created,No,None,,No,"Payment extension granted; total extension 6270"
+2025-05-30,30,92.0,2760,368.68,7050.31,Budget,Canceled,No,None,11.43,No,"Extension canceled; about 5225 added back; includes late payment charge 11.43"
+2025-06-30,29,103.3,2996,417.90,7478.76,Budget,None,No,Disconnect-Notice,10.55,No,"Includes late payment charge 10.55 and immediate disconnect notice"
+2025-07-31,33,94.2,3109,571.69,7184.23,Budget,None,Yes,None,11.93,No,"Includes returned payment 1570 plus 20 fee and late payment charge 11.93"
+2025-08-29,29,95.4,2767,376.94,7577.41,Budget,None,No,None,16.24,No,"Includes late payment charge 16.24"
+```
+
+If you want, next step I can give you a **second CSV just for 2025** with extra calculated fields (baseline kWh, deviation, est usage-only cost, etc.) plus ready-to-paste Google Sheets formulas.

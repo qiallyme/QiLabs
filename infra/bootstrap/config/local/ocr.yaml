@@ -1,0 +1,4 @@
+# Node-local OCR configuration
+engine: "tesseract"
+language: "eng"
+dpi: 300

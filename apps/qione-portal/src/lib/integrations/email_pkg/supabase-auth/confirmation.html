@@ -1,0 +1,27 @@
+{{ template "header.html" . }}
+
+<!-- Email Content -->
+<div class="content">
+  <h1>Just One More Step...</h1>
+  <p>Hello,</p>
+  <p>
+    Thanks for signing up for the QiAlly Client Portal! To complete your
+    registration, please confirm your email address by clicking the button
+    below.
+  </p>
+  <div class="button-container">
+    <a href="{{ .ConfirmationURL }}" class="button">Confirm Email Address</a>
+  </div>
+  <p>
+    This link will verify your email and activate your account. If you didn't
+    sign up for an account, you can safely ignore this email.
+  </p>
+</div>
+
+<!-- Signature -->
+<div class="signature">
+  <p>Best regards,</p>
+  <p><strong>The QiAlly Team</strong></p>
+</div>
+
+{{ template "footer.html" . }}

@@ -1,0 +1,67 @@
+flowchart TD
+    %% === PROJECT GOALS ===
+    %% Ultimate Goal: Ported LexChronicle Case Management System
+    %% Current Goal: Finalize UI Component and Route Migration
+
+    %% === START ===
+    %% @project_start [start, closed, 2026-02-09, user]
+    project_start("Project Porting Start<br/><sub>Transitioning Case-Manager-Pro<br/>to FCFCU_OPS_PRO monorepo<br/>structure for improved scale</sub>")
+
+    %% === PORTING TASKS ===
+    %% @ui_porting [ai-task, closed, 2026-02-09, antigravity]
+    ui_porting("UI Component Porting<br/><sub>Ported Dashboard, Library,<br/>Phases, Timeline, Resources,<br/>Settings, and TableData routes<br/>to TanStack Router</sub>")
+
+    %% @schema_porting [ai-task, closed, 2026-02-09, antigravity]
+    schema_porting("Schema Integration<br/><sub>Verified case management<br/>schema in db/schema/case.ts<br/>and consolidated migration SQL</sub>")
+
+    %% @scripts_porting [ai-task, closed, 2026-02-09, antigravity]
+    scripts_porting("Scripts Porting<br/><sub>Migrated data import and<br/>integrity verification scripts<br/>to root scripts directory</sub>")
+
+    %% @ruthless_cleanup [ai-task, closed, 2026-02-10, antigravity]
+    ruthless_cleanup("Ruthless Cleanup<br/><sub>Removed root /pages, /components,<br/>/server, /script, /shared and<br/>relocated to docs/legacy/</sub>")
+
+    %% @intense_cleanup [ai-task, closed, 2026-02-10, antigravity]
+    intense_cleanup("Intense Cleanup<br/><sub>Moved legacy docs, unused pnpm/turbo<br/>configs, and empty packages to .trash.<br/>Cleaned up tsconfig paths and<br/>package dependencies.</sub>")
+
+    %% @structural_fixes [ai-task, closed, 2026-02-10, antigravity]
+    structural_fixes("Structural Fixes<br/><sub>Fixed API exports, restored<br/>missing main.tsx entry point,<br/>and corrected Vite config paths<br/>to unblock development</sub>")
+
+    %% @final_polish [ai-task, closed, 2026-02-10, antigravity]
+    final_polish("Final Polish<br/><sub>Reorganized db scripts and<br/>legacy migrations. Fixed build<br/>errors, import paths and installed<br/>missing dependencies.</sub>")
+
+    %% @deployment_fix [ai-task, closed, 2026-02-10, antigravity]
+    deployment_fix("Deployment Cleanup<br/><sub>Removed @emotion/eslint-plugin<br/>to fix npm install conflict.<br/>Verified no root wrangler.toml.</sub>")
+
+    %% @final_verification [ai-task, opened, 2026-02-09, antigravity]
+    final_verification("Final Verification<br/><sub>Verify all routes render<br/>correctly (regenerate route tree),<br/>and API endpoints are fully<br/>functional in new setup</sub>")
+
+    %% === CONNECTIONS ===
+    project_start --> ui_porting
+    project_start --> schema_porting
+    project_start --> scripts_porting
+    ui_porting --> ruthless_cleanup
+    schema_porting --> ruthless_cleanup
+    scripts_porting --> ruthless_cleanup
+    ruthless_cleanup --> intense_cleanup
+    intense_cleanup --> structural_fixes
+    structural_fixes --> final_polish
+    final_polish --> deployment_fix
+    deployment_fix --> final_verification
+
+    %% === RECENT WORK HIGHLIGHT ===
+    subgraph recent [RECENT]
+        deployment_fix
+    end
+
+    %% === STYLES ===
+    style project_start fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style ui_porting fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style schema_porting fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style scripts_porting fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style ruthless_cleanup fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style intense_cleanup fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style structural_fixes fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style final_polish fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style deployment_fix fill:#2d1f4e,stroke:#c084fc,color:#e9d5ff,stroke-width:2px
+    style final_verification fill:#1a1a2e,stroke:#4ade80,color:#86efac,stroke-width:1px
+    style recent fill:transparent,stroke:#c084fc,color:#c084fc,stroke-width:2px,stroke-dasharray:5 5

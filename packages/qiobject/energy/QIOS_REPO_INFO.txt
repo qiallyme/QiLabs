@@ -1,0 +1,6 @@
+Repo: C:\QiOS_v1\projects\_QiLabs\QiEnergyMonitor
+Branch: main
+HEAD: 3057e7988ec7875df4d31756c3c7b5b25bc83c3e Convert to localStorage-based MVP - remove Supabase dependency, add real data persistence
+Remotes:
+origin	https://github.com/qiallyme/energy-monitor.git (fetch)
+origin	https://github.com/qiallyme/energy-monitor.git (push)

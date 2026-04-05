@@ -1,0 +1,33 @@
+Record Id,Invoice Number,Subject,Sales Order.id,Invoice Date,Purchase Order,Due Date,Excise Duty,Sales Commission,Status,Company Name.id,Invoice Owner.id,Created By.id,Modified By.id,Created Time,Modified Time,Sub Total,Tax,Adjustment,Grand Total,Billing Street,Shipping Street,Billing City,Shipping City,Billing State,Shipping State,Billing Code,Shipping Code,Billing Country,Shipping Country,Product Details,Terms and Conditions,Description,Contact Name.id,Discount,Currency,Exchange Rate,Layout.id,Tag,User Modified Time,System Related Activity Time,User Related Activity Time,System Modified Time,Discount Type Input,Discount Percentage Input,Engagement Name.id,Locked,Last Activity Time,Record Status,Payment_Link,Balance,QuickBooks_Invoice_ID,Payments,Total Paid,Payments Received,Balance Due,QB_Sync_URL,QB_Sync_Date,QB_Sync_Status,Connected To.id,Connected To.Module
+zcrm_6789162000001749505,6789162000001749511,Phone Transfer Sim,zcrm_6789162000001749471,2025-06-02,,2025-06-02,,,Cancelled,zcrm_6789162000000811920,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-02 18:48:06,2025-06-02 23:33:57,156.0,0.0,0.0,0,4817 Shadow Pointe Drive,,Indianapolis,,IN,,46254,,United States,,,,,zcrm_6789162000001316243,156.0,USD,1.000000000,zcrm_6789162000000091045,,2025-06-02 23:33:57,,,,,,zcrm_6789162000001749382,false,2025-06-02 23:33:57,Available,,,,,,,0,,,,,
+zcrm_6789162000001906028,6789162000001906030,WhatsApp Transfer,,2025-06-08,,2025-06-08,,,Created,zcrm_6789162000000811920,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-08 17:25:59,2025-06-08 17:25:59,78.0,0.0,0.0,0,,,,,,,,,,,,,,zcrm_6789162000001316243,78.0,USD,1.000000000,zcrm_6789162000000091045,,,,,,,,zcrm_6789162000001906001,false,,Available,,,,,0.0,0,0,,,,,
+zcrm_6789162000001991456,6789162000001991463,Dilshant - SSN Application Appointment,,2025-06-14,,2025-06-14,,,Created,,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-14 03:36:02,2025-06-15 14:39:21,0.0,0.0,0.0,0,8449 Welder Pl,,Indianapolis,,Indiana,,46237-8756,,,,,,,zcrm_6789162000001987451,0.0,USD,1.000000000,zcrm_6789162000000091045,,2025-06-14 03:36:37,,,2025-06-15 14:39:21,,,zcrm_6789162000001999001,false,2025-06-15 14:39:21,Available,,,,,,,0,,,,,
+zcrm_6789162000002572005,6789162000002572015,Client Work Summary: Employer Account Compliance Letter & BMV Submission,,2025-07-11,,2025-07-11,,,Created,zcrm_6789162000002167057,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-07-11 08:26:45,2025-07-11 08:26:58,430.0,0.0,-100.0,300,7305 Nantucket Court Apt 2C,,Indianapolis,,Indiana,,46214,,United States,,,"Turnaround Time: Final letter will be prepared and submitted within 2–3 business days after receipt of all client documents.
+
+Client Responsibilities: Provide accurate EIN confirmation and supporting documents within 5 business days.
+
+Payment Terms: Payment is due upon delivery of the compliance letter and BMV submission confirmation.
+
+Scope Limitation: This engagement covers only the letter drafting and submission to BMV. Any additional compliance work will require a separate quote.
+
+Quote Validity: 15 days from issuance.","This engagement involves the preparation and submission of a formal Tax Compliance Letter for a dissolved employer account. The letter confirms no wages were paid, includes the verified Employer Identification Number (EIN), and is submitted to the Indiana BMV to support vehicle registration or compliance resolution. Action Items for Client
+
+EIN VerificationPlease confirm whether the EIN noted in your records is the only one used. If you have used any other EINs, especially for business or vehicle activity, please notify us immediately.
+
+Submit Required DocumentsSend all available 1099 forms and receipts related to any of the following business names:
+
+Munoz Cleaning Corp LLC
+
+Impeccable Cleaning Group
+
+The Ausus Talent Group
+
+Clarify BMV PurposeLet us know if the compliance letter is being used for:
+
+Vehicle registration renewal
+
+New vehicle registration
+
+Another BMV-related matter",zcrm_6789162000000954677,30.0,USD,1.000000000,zcrm_6789162000000091045,,2025-07-11 08:26:58,,,,,,zcrm_6789162000002167151,false,2025-07-11 08:26:58,Available,,,,,,,300,,,,,
+zcrm_6789162000003044036,6789162000003044038,Doc Recreation: Bill + Lease,,2025-08-01,,2025-08-01,,,Paid,zcrm_6789162000002083105,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-08-01 00:40:12,2025-08-01 00:40:54,50.0,0.0,0.0,50,,,,,,,,,,,,,,zcrm_6789162000003044003,0.0,USD,1.000000000,zcrm_6789162000000091045,,2025-08-01 00:40:54,,,,,,zcrm_6789162000003044021,false,2025-08-01 00:40:54,Available,,50.0,,,50.0,50,0,,,,,
+zcrm_6789162000003147021,6789162000003147023,SSA Appointment Assistance,,2025-08-13,,2025-08-13,,,Created,zcrm_6789162000002083105,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-08-13 12:40:13,2025-08-13 12:40:13,150.0,0.0,0.0,150,,,,,,,,,,,,,,zcrm_6789162000003143003,0.0,USD,1.000000000,zcrm_6789162000000091045,,,,,,,,zcrm_6789162000003147003,false,,Available,https://connect.intuit.com/portal/app/CommerceNetwork/view/scs-v1-94f5cd8b5e30464e98946437f5bbf199917cc48525944f74a6fcb4b58e4a2aab0a1cba40021f414eb50a96ab05037417?locale=en_US&utm_source=sharelink,150.0,C1040,,,,150,,,,,

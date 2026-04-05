@@ -1,0 +1,43 @@
+{{ template "header.html" . }}
+
+<!-- Email Content -->
+<div class="content">
+  <h1>An Update on Your Project: [Project Name]</h1>
+  <p>Hello [Client Name],</p>
+  <p>
+    Here’s a quick update on the progress we've made on your project, "[Project
+    Name]".
+  </p>
+  <p>
+    <strong>Recent Progress:</strong><br />
+    - [Detail of recent task completed 1]<br />
+    - [Detail of recent task completed 2]<br />
+    - [Detail of recent task completed 3]
+  </p>
+  <p>
+    <strong>Next Steps:</strong><br />
+    - We will now be focusing on [Next major task or phase].
+  </p>
+  <p>
+    You can view all the latest files, detailed progress, and leave comments in
+    your client portal.
+  </p>
+  <div class="button-container">
+    <a href="https://portal.qially.com/projects/[ProjectID]" class="button"
+      >View Project Details</a
+    >
+  </div>
+  <p>As always, please let us know if you have any questions or feedback.</p>
+</div>
+
+<!-- Signature -->
+<div class="signature">
+  <p>Best regards,</p>
+  <p>
+    <strong>Cody Rice Velasquez</strong><br />
+    Founder & Managing Partner<br />
+    QiAlly LLC
+  </p>
+</div>
+
+{{ template "footer.html" . }}

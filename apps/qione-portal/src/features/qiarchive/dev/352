@@ -1,0 +1,115 @@
+Short answer: it isn’t running.
+
+If you don’t have a terminal open and you didn’t install it as a background service, the QiArchive agent is not running right now.
+
+Your current state is:
+
+Railway API      ✅ running
+Railway Postgres ✅ running
+Paperless        ✅ running
+Local Agent      ❌ not running
+
+The local agent only runs if you start it.
+
+⸻
+
+How to check quickly
+
+Look in your QiArchive repo for the watcher file:
+
+app/agent/watcher.py
+
+If that’s the ingestion loop, you start it like this:
+
+python app/agent/watcher.py
+
+If it’s running you would see logs like:
+
+Watching folder: G:\My Drive\QiArchive\00_INBOX
+Waiting for files...
+
+Since you said no terminals are open, it is definitely not running.
+
+⸻
+
+How the system works when it is running
+
+When the agent is running it does this loop:
+
+watch 00_INBOX
+     ↓
+new PDF detected
+     ↓
+calculate SHA256
+     ↓
+assign QDOC ID
+     ↓
+upload to Paperless
+     ↓
+move file to archive
+     ↓
+(optional) notify API
+
+So the trigger is simply dropping a file into:
+
+G:\My Drive\QiArchive\00_INBOX
+
+But that only works if watcher.py is running.
+
+⸻
+
+The better way (so you don’t think about it)
+
+You should run the agent as a background service on Windows.
+
+Two good options:
+
+Option 1 — simplest (Task Scheduler)
+
+Create a scheduled task:
+
+Trigger: At logon
+Action:
+python C:\QiLabs\QiArchive\app\agent\watcher.py
+
+Now it runs automatically whenever your machine starts.
+
+⸻
+
+Option 2 — real service (more pro)
+
+Install it with NSSM as a Windows service:
+
+QiArchiveAgent
+
+Then it runs permanently like Dropbox or Google Drive.
+
+⸻
+
+Quick test you can do right now
+
+Open PowerShell in your repo:
+
+cd C:\QiLabs\QiArchive
+python app\agent\watcher.py
+
+Then drop a PDF into:
+
+G:\My Drive\QiArchive\00_INBOX
+
+You should see logs immediately.
+
+⸻
+
+One more thing I want to confirm
+
+Does watcher.py call something like:
+
+time.sleep(5)
+while True:
+
+or is it using a filesystem watcher library?
+
+Because depending on that, I may suggest a much better ingestion architecture that will make this system way more reliable.
+
+If you want, show me the top ~40 lines of watcher.py.

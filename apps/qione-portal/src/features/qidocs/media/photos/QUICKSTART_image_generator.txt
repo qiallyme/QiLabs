@@ -1,0 +1,89 @@
+QIPICS - AI STOCK IMAGE GENERATOR
+==================================
+Quick Start Guide
+
+FIRST TIME SETUP
+----------------
+1. Double-click: setup_venv.bat (Windows) or run: ./setup_venv.sh (Mac/Linux)
+   → This creates a virtual environment and installs everything
+
+2. (Optional) Set up your API key:
+   - Copy .env.example to .env
+   - Edit .env and add your OpenAI API key: OPENAI_API_KEY=sk-...
+   - Or just enter it in the app UI later
+
+3. Wait for "Setup Complete!" message
+
+EVERY TIME YOU USE THE APP
+---------------------------
+Double-click: run_qipics.bat (Windows) or run: ./run_qipics.sh (Mac/Linux)
+
+API KEY OPTIONS
+---------------
+Three ways to provide your OpenAI API key:
+
+1. Create .env file (easiest):
+   - Copy .env.example to .env
+   - Edit and add: OPENAI_API_KEY=sk-your-key-here
+
+2. Enter in the app UI when it runs
+
+3. Set environment variable:
+   - Windows: set OPENAI_API_KEY=sk-your-key-here
+   - Mac/Linux: export OPENAI_API_KEY=sk-your-key-here
+
+Get your key at: https://platform.openai.com/api-keys
+
+Note: You can test without an API key - it generates placeholder images!
+
+HOW TO USE
+----------
+1. App opens in a desktop window
+2. Click "Browse" → Select your CSV file (or use example_images.csv)
+3. Paste API key (or leave blank for test mode)
+4. Click "Generate Images"
+5. Watch the progress circle
+6. Folder opens automatically when done!
+
+STEP 4: USE THE APP
+-------------------
+1. Click "Browse" and select example_images.csv (or your own CSV)
+2. Paste your API key in the field (or leave blank for test mode)
+3. Click "Generate Images"
+4. Wait for progress to complete
+5. Folder opens automatically with your images!
+
+CSV FORMAT
+----------
+Your CSV must have these 3 columns:
+
+filename,prompt,styling
+my_image.png,A beautiful sunset,photorealistic
+
+Styling options:
+- illustration
+- photorealistic
+- abstract
+- 3d
+- line art
+- random
+
+COST
+----
+With OpenAI DALL-E 3:
+- ~$0.04 per image
+- 30 images = ~$1.20
+
+Start with 5-10 images to test!
+
+TROUBLESHOOTING
+---------------
+Error: "No module named 'pandas'"
+  → Run: pip install pandas
+
+Error: "API key error"
+  → Check your API key is valid
+  → Verify you have OpenAI credits
+
+For more help, see README_image_generator.md
+

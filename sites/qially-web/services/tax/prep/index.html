@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2025 Tax Intake | QiAlly</title>
+    <meta
+      name="description"
+      content="Secure your spot for the 2025 Tax Season with QiAlly. Book your tax intake appointment now."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+              lato: ["Lato", "sans-serif"],
+            },
+            colors: {
+              "brand-bg": "#f8fafc",
+              "brand-green": "#1AB16D",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .blob-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(26, 177, 109, 0.15),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(219, 234, 254, 0.4),
+            transparent 25%
+          );
+        filter: blur(40px);
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.05),
+          0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      }
+      .booking-frame-container {
+        height: 800px;
+        width: 100%;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased relative">
+    <div class="blob-bg"></div>
+
+    <nav
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+      x-data="{ scrolled: false, mobileMenuOpen: false }"
+      @scroll.window="scrolled = (window.pageYOffset > 20)"
+      :class="{ 'bg-white/70 backdrop-blur-md shadow-sm': scrolled, 'bg-transparent': !scrolled }"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex-shrink-0">
+            <a href="/" class="flex items-center gap-2 group">
+              <div
+                class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-green to-emerald-600 flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:scale-105 transition duration-300"
+              >
+                Q
+              </div>
+              <span
+                class="font-serif text-xl font-bold text-slate-800 tracking-tight group-hover:text-brand-green transition"
+                >QiAlly</span
+              >
+            </a>
+          </div>
+
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a
+                href="/"
+                class="text-slate-600 hover:text-brand-green px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Home</a
+              >
+              <a
+                href="/services/tax-preparation/"
+                class="text-brand-green px-3 py-2 rounded-md text-sm font-medium"
+                >Tax & Accounting</a
+              >
+              <a
+                href="./tax-prep-2025-intake.html"
+                class="text-slate-600 hover:text-brand-green px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Intake Form</a
+              >
+              <a
+                href="/bookings/"
+                class="bg-brand-green text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-emerald-600 transition shadow-lg hover:shadow-emerald-500/30"
+                >Book Now</a
+              >
+            </div>
+          </div>
+
+          <div class="-mr-2 flex md:hidden">
+            <button
+              type="button"
+              @click="mobileMenuOpen = !mobileMenuOpen"
+              class="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-brand-green hover:bg-slate-100 focus:outline-none transition"
+            >
+              <span class="sr-only">Open main menu</span>
+              <i class="fa-solid fa-bars text-xl" x-show="!mobileMenuOpen"></i>
+              <i
+                class="fa-solid fa-xmark text-xl"
+                x-show="mobileMenuOpen"
+                x-cloak
+              ></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full"
+        x-show="mobileMenuOpen"
+        x-transition
+        x-cloak
+      >
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+          <a
+            href="/"
+            class="text-slate-600 hover:text-brand-green block px-3 py-2 rounded-md text-base font-medium"
+            >Home</a
+          >
+          <a
+            href="./tax-prep-2025-intake.html"
+            class="text-slate-600 hover:text-brand-green block px-3 py-2 rounded-md text-base font-medium"
+            >Intake Form</a
+          >
+          <a
+            href="/services/tax-preparation/"
+            class="text-brand-green block px-3 py-2 rounded-md text-base font-medium"
+            >Tax & Accounting</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <header class="pt-32 pb-8 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <span
+          class="text-brand-green font-bold tracking-widest text-xs uppercase mb-4 block"
+          >2025 Tax Season</span
+        >
+        <h1 class="text-4xl md:text-6xl font-serif text-slate-900 mb-6">
+          Tax Intake Booking
+        </h1>
+        <p
+          class="text-xl text-slate-600 font-light leading-relaxed max-w-2xl mx-auto mb-8"
+        >
+          Schedule your 2025 tax intake session with ease. Choose to book
+          directly here or scan the code for a mobile-friendly experience.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="./tax-prep-2025-intake.html"
+            class="inline-flex items-center px-6 py-3 rounded-full bg-brand-green text-white font-medium hover:bg-emerald-600 transition shadow-lg"
+          >
+            <i class="fa-solid fa-file-invoice mr-2"></i> Go to Intake Form
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-20">
+      <!-- Split Layout: Desktop Booking vs Mobile QR -->
+      <div class="grid lg:grid-cols-3 gap-8 items-start">
+        <!-- Left Column: Booking Form (Embed) -->
+        <div class="lg:col-span-2 space-y-6">
+          <div class="glass-panel p-1 rounded-2xl overflow-hidden shadow-xl">
+            <div
+              class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center gap-3"
+            >
+              <div class="flex gap-2">
+                <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                <div class="w-3 h-3 rounded-full bg-green-400"></div>
+              </div>
+              <span class="text-xs text-slate-400 font-mono ml-2"
+                >secure-booking.qi-ally.com</span
+              >
+            </div>
+            <div class="booking-frame-container bg-white">
+              <iframe
+                src="https://us.bigin.online/org886848419/bookings/tax-prep-2025"
+                title="Tax Prep 2025"
+                width="100%"
+                height="100%"
+                frameborder="0"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Mobile Option & Info -->
+        <div class="space-y-6 lg:sticky lg:top-24">
+          <!-- Mobile QR Card -->
+          <div class="glass-panel p-8 rounded-2xl text-center">
+            <div
+              class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-50 text-brand-green mb-4"
+            >
+              <i class="fa-solid fa-mobile-screen-button text-xl"></i>
+            </div>
+            <h2 class="text-2xl font-serif text-slate-900 mb-2">
+              Book on Mobile
+            </h2>
+            <p class="text-slate-500 text-sm mb-6">
+              Prefer using your phone? Scan the QR code below to open the
+              booking page on your device.
+            </p>
+
+            <div
+              class="bg-white p-4 rounded-xl shadow-inner inline-block border border-slate-200"
+            >
+              <img
+                src="./bookingQRCode.png"
+                alt="Scan to Book on Mobile"
+                class="w-48 h-48 object-contain"
+              />
+            </div>
+
+            <div class="mt-6">
+              <span
+                class="text-xs text-slate-400 uppercase tracking-wider font-semibold"
+                >Or use this link</span
+              >
+              <a
+                href="https://us.bigin.online/org886848419/bookings/tax-prep-2025"
+                target="_blank"
+                class="block mt-2 text-brand-green hover:text-emerald-700 font-bold underline decoration-2 underline-offset-4 transition"
+              >
+                Open Booking Page
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"
+                ></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Actions Button (from provided code, styled) -->
+          <div class="glass-panel p-6 rounded-2xl text-center">
+            <h3 class="font-serif text-lg text-slate-900 mb-4">Quick Access</h3>
+            <a
+              href="https://us.bigin.online/org886848419/bookings/tax-prep-2025"
+              target="_blank"
+            >
+              <button
+                class="w-full bg-brand-green hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-emerald-500/30 transition transform hover:-translate-y-0.5"
+                style="font-family: Lato, sans-serif"
+              >
+                Tax Intake 2025 Form
+              </button>
+            </a>
+          </div>
+
+          <!-- Info Card -->
+          <div class="bg-white/60 p-6 rounded-2xl border border-slate-200">
+            <h3
+              class="font-semibold text-slate-900 mb-3 flex items-center gap-2"
+            >
+              <i class="fa-regular fa-calendar-check text-brand-green"></i> Why
+              Book Now?
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-3">
+              <li class="flex gap-2 items-start">
+                <i class="fa-solid fa-check text-brand-green mt-1 text-xs"></i>
+                <span>Secure your preferred time slot before the rush.</span>
+              </li>
+              <li class="flex gap-2 items-start">
+                <i class="fa-solid fa-check text-brand-green mt-1 text-xs"></i>
+                <span
+                  >Receive a personalized checklist for your documents.</span
+                >
+              </li>
+              <li class="flex gap-2 items-start">
+                <i class="fa-solid fa-check text-brand-green mt-1 text-xs"></i>
+                <span>Avoid last-minute filing stress.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-white/80 border-t border-slate-200 py-12">
+      <div class="max-w-7xl mx-auto px-6 text-center text-slate-500 text-sm">
+        <p>&copy; 2025 QiAlly. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

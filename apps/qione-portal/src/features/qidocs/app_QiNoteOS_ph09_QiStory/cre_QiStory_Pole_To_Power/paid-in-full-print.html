@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paid In Full</title>
+    <style>
+    /* Print Styles for Paid In Full - Condensed Professional Edition */
+
+@page {
+    size: 8.5in 11in; /* US Letter Standard */
+    /* Aggressive margin reduction but with footer space */
+    margin: 0.5in 0.5in 0.75in 0.5in;
+    
+    @bottom-center {
+        content: counter(page);
+        font-family: "Georgia", serif;
+        font-size: 12pt;
+    }
+}
+
+@page :first {
+    margin: .5in .5in .75in .5in;
+    @bottom-center { content: none; }
+}
+
+@page :blank {
+    @bottom-center { content: none; }
+}
+
+body {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 12pt;     /* User requested small print */
+    line-height: 1.6;   /* User requested tighter leading (was 1, bumped slightly for readability) */
+    color: #111;
+    margin: .5in .5in .5in .5in;
+    text-align: justify;
+}
+
+/* Typography */
+h1 {
+    page-break-before: always;
+    margin-top: 5%;     /* Drastically reduced whitespace */
+    margin-bottom: 0.5rem;
+    font-size: 12pt;    /* Increased slightly over body, but kept small */
+    text-align: center;
+    font-weight: bold; 
+    font-family: "Georgia", serif;
+    text-transform: uppercase;
+}
+
+h2 {
+    margin-top: 0.5rem;
+    font-size: 12pt;
+    text-align: center;
+    font-weight: normal;
+    font-style: italic;
+}
+
+p {
+    margin: 0;
+    margin-bottom: 1em; /* Consistent spacing between paragraphs */
+    text-indent: 0;     /* True block style */
+}
+
+/* Specific fix for elements following headings to avoid double gaps */
+h1 + p, h2 + p, h3 + p {
+    margin-top: 0;
+}
+
+/* Cover Styling - Edge to Edge strategy */
+.cover-container {
+    page-break-after: always;
+    width: 9in; /* 8.5in + margin safety */
+    height: 11.5in; /* 11in + margin safety */
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    margin-left: -0.5in; /* Pull back into margin */
+    margin-top: -0.5in;
+    z-index: -1;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+/* Title Page */
+.title-page {
+    text-align: center;
+    margin-top: 10%;
+    page-break-after: always;
+}
+
+.title-page h1 {
+    font-size: 16pt;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.title-page h2 {
+    font-size: 14pt;
+}
+
+/* TOC Styling */
+#TOC {
+    page-break-after: always;
+    margin-top: 5%;
+}
+
+#TOC ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#TOC li {
+    margin-bottom: .5rem;
+    font-size: 14pt;
+    border-bottom: 1px dotted #ccc;
+}
+
+#TOC a {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+}
+
+#TOC a::after {
+    content: target-counter(attr(href), page);
+}
+
+/* Author Section - Compact */
+.author-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-top: .2rem;
+    border-top: 1px solid #eee;
+    padding-top: .2rem;
+}
+
+.author-image {
+    width: 100%;
+    max-width: 3in;
+    border-radius: 25;
+    margin: 0;
+}
+
+.author-bio {
+    flex: 1;
+    text-align: left;
+    font-size: 14pt;
+    line-height: 1.6;
+}
+
+/* Utilities */
+.page-break {
+    page-break-after: always;
+}
+
+    </style>
+</head>
+<body>
+    
+<header id="title-block-header">
+<h1 class="title">Cover</h1>
+</header>
+<div class="cover-container">
+<p><img src="./assets/imgs/PAIDINFULL.PNG" class="cover-image" alt="Paid In Full Cover" /></p>
+</div>
+<div class="page-break">
+
+</div>
+<section class="title-page">
+<p><br><br><br></p>
+<h1>
+PAID IN FULL
+</h1>
+<h2>
+POLE TO POWER
+</h2>
+<p><br><br><br></p>
+<p>
+By Lisa English &amp; Cody Rice-Velasquez
+</p>
+</section>
+<div class="page-break">
+
+</div>
+
+    
+<header id="title-block-header">
+<h1 class="title">Paid In Full</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#prologue-the-mirror-effect"
+id="toc-prologue-the-mirror-effect">Prologue: The Mirror Effect</a></li>
+<li><a href="#part-i-the-invisible-girl"
+id="toc-part-i-the-invisible-girl">Part I: The Invisible Girl</a></li>
+<li><a href="#part-ii-marrying-the-monster"
+id="toc-part-ii-marrying-the-monster">Part II: Marrying the
+Monster</a></li>
+<li><a href="#part-iii-the-business-of-pleasure"
+id="toc-part-iii-the-business-of-pleasure">Part III: The Business of
+Pleasure</a></li>
+<li><a href="#part-iv-the-crack-in-the-foundation"
+id="toc-part-iv-the-crack-in-the-foundation">Part IV: The Crack in the
+Foundation</a></li>
+<li><a href="#part-v-the-final-stand"
+id="toc-part-v-the-final-stand">Part V: The Final Stand</a></li>
+<li><a href="#epilogue-madam-of-her-own-life"
+id="toc-epilogue-madam-of-her-own-life">Epilogue: Madam of Her Own
+Life</a></li>
+</ul>
+</nav><div class="page-break"></div>
+<h1 id="prologue-the-mirror-effect">Prologue: The Mirror Effect</h1>
+<p>The lights in the Busybody were never just lights. They were pink
+gels and amber filters, designed to soften the edges of reality until
+every scar vanished under a layer of neon and sweat.</p>
+<p>On a Tuesday night in 1994, I stood backstage while the thump of
+Michael Jackson’s <em>Thriller</em> vibrated through the floorboards.
+The bass didn’t just rattle the walls; it rattled my teeth. I leaned
+into the vanity mirror to check my makeup. For the first time in a
+decade, I didn’t see the performer.</p>
+<p>I saw the ghost.</p>
+<p>I was twenty-nine and thin—too thin. Methamphetamine had carved
+hollows into my cheeks that no amount of contour could hide. My eyes
+were glassy, distant, staring back at a woman I hadn’t seen since
+outrunning a “Monster” ten years prior. I looked down at my hands. They
+were shaking. Not from the adrenaline of the stage, but from the
+chemically induced tremors of a life that had finally outpaced my
+ability to control it.</p>
+<p>The girl who dreamed of dancing for Elvis was gone. In her place was
+a “Madam”—a woman with three pagers clipped to her belt, a luxury car in
+the lot, and a list of clients who paid for the privilege of a few hours
+in my shadow. But in the harsh backlight of the dressing room, the
+shadow was all that was left.</p>
+<p>I leaned closer to the glass and whispered, “Lisa.”</p>
+<p>The glass didn’t answer.</p>
+<p>I knew then that the music was going to stop. Not because the song
+ended, but because I was finally asking for a payment I couldn’t
+afford.</p>
+<p>I chose the exit before the lights went out for good.</p>
+<h1 id="part-i-the-invisible-girl">Part I: The Invisible Girl</h1>
+<p>Poverty isn’t poetic. In Somerville, Indiana, it didn’t smell like
+woodsmoke or nostalgia; it smelled like the metallic tang of fear and
+the ozone of the RCA factory where my father, Claude, worked.</p>
+<p>He was a “funny drunk” until he wasn’t. I watched from the doorway,
+small and silent, as he flung a plate of corn and mashed potatoes
+against the kitchen walls because he decided the pepper my mother had
+used looked like “dirt.” The sound of the china shattering was less
+terrifying than the silence that followed. I can still see the food
+sliding down the cheap wallpaper, a yellow and white smear of a man’s
+fragility. In that house, you couldn’t predict the explosion. You just
+learned to be quiet enough to survive the night without being
+noticed.</p>
+<h3 id="pattern-the-architecture-of-invisibility">Pattern: The
+Architecture of Invisibility</h3>
+<p>Children raised in environments of unpredictable volatility—where a
+parent’s mood can shift from “funny” to violent without warning—often
+develop high-level preservation strategies. One of the most common is
+the role of the “Invisible Child.”</p>
+<p>By suppressing their own needs, voice, and physical presence, the
+child attempts to neutralize their existence to avoid becoming a target.
+This adaptation is effective for surviving a dangerous home, but it
+often lays the groundwork for future victimization. The child learns
+that safety equates to silence and that their primary function is to
+manage the emotional climate for the adults around them.</p>
+<p>When I was seven, my father took me to see Elvis Presley at the
+Coliseum. Under the white-hot spotlights, I saw a god. Even from the
+cheap seats, I could feel the pull. Everyone in that building was
+leaning toward him, willing to give him their money, their time, and
+their hearts just to be in his presence.</p>
+<p>I sat there, watching the Sweet Inspirations croon in the background,
+and I made a vow. <em>I will be one of them.</em> I didn’t want the
+crown; I wanted the gravity. I wanted to be the force in the room that
+pulled everyone else in.</p>
+<p>But the world has a way of turning a girl’s dreams into currency. By
+fifteen, I was looking for love in the backseats of trucks and the
+hollow promises of boys who saw a door where I saw a heart. I was
+pregnant at fourteen, a mother at fifteen, and already a target.</p>
+<p>My mother’s mental illness was a mirror I refused to look into. When
+she cut off her hair with sewing scissors in a fit of rage, jagged
+clumps falling to the linoleum, I didn’t see a woman who was sick. I saw
+a woman who was broken by the world. I promised myself I would never let
+it happen to me.</p>
+<p>I was ready to leave the trailer park behind. I was ready to find
+someone who would tell me I was the sun.</p>
+<p>Instead, I found a Monster.</p>
+<h1 id="part-ii-marrying-the-monster">Part II: Marrying the Monster</h1>
+<p>He was twenty-one, talented, and had a smile that could sell silence
+to a library. To a fifteen-year-old girl desperate for a father figure,
+he was a hero. He was a musician, the lead singer of <em>Southern
+Comfort</em>, and I spent my nights in the front row watching him play
+his black guitar. He had premature gray hair that made him look
+sophisticated, like a man who already knew all the secrets I was just
+starting to guess at.</p>
+<p>I wasn’t walking into an obvious trap; I was following the music. I
+was naive. I was impressed by the cool factor. But the marriage ceremony
+was the last time I felt like a person. The moment we crossed the
+threshold, he laid down the law.</p>
+<p>I was eighteen when we moved to Phoenix, Arizona. We were broke, and
+the Monster was a master of the “hustle.” When he pointed out the ad for
+a nude dancer in the local paper, he didn’t call it stripping. He called
+it an <em>opportunity</em>.</p>
+<p>I walked into the <em>Busybody</em> thinking I was looking for a job.
+I didn’t realize I was looking for a weapon. For a time, the club was
+the only place I was safe. There were bouncers there. At home, there was
+only the Monster.</p>
+<p>His cruelty wasn’t just physical; it was an investment in his own
+domination. I’ll never forget the night I pulled into the driveway five
+minutes past the time he’d allotted for my drive home. He was pacing the
+porch—always a bad sign. He dragged me inside and beat me until I
+couldn’t recognize my own reflection. The very next day, he drove home
+in a Chevy Impala fitted with a custom chain-link steering wheel. The
+cold steel links against his palms were a trophy. I didn’t get an
+apology; I got to watch him drive his new toy.</p>
+<p>The grit of that life was tactile—the cold steel of the chains, the
+copper taste of a split lip. And it was nauseating. He once brought home
+the cutest poodle puppy, only to smash it onto the concrete patio
+because it had an accident on the carpet. The sound of the yelp cut
+short is something that never leaves you. When I ran to the bedroom,
+sobbing, he snatched me by my hair and slammed my face into the corner
+of the dresser.</p>
+<p>If I sanitize that—if I just say he was “controlling”—you’ll ask why
+I stayed. But when you see the smashed puppy and the chain-link wheel,
+you understand the fear. If he could do that to a dog for a stain,
+imagine what he’d do to me for leaving.</p>
+<h3 id="pattern-the-ecology-of-fear">Pattern: The Ecology of Fear</h3>
+<p>In the study of coercive control, violence is rarely a random
+explosion; it is often a calibrated tool used to maintain dominance.
+Perpetrators frequently establish a “climate of fear” through symbolic
+violence—destroying property or harming pets—to demonstrate the
+consequences of non-compliance without always striking the victim
+directly.</p>
+<p>This creates a state of hyper-vigilance in the target. The victim
+learns to read the environment for subtle signals of danger,
+prioritizing the perpetrator’s emotional state above their own safety.
+This adaptation, while essential for immediate survival, often erodes
+the victim’s sense of self and agency over time.</p>
+<p>I started using methamphetamine and cocaine to numb the static. I was
+looking for an exit strategy, but all I had was a trunk full of costumes
+and a heart full of holes.</p>
+<p>I eventually ran. I left him, I left the house, and I left my second
+son behind. I lived in my car for three weeks, a homeless stripper in a
+town that didn’t want to hear my story. I was twenty years old. I had
+survived the Monster. Now, I was ready to learn the business of the
+night from a man who actually knew how to play the game.</p>
+<h1 id="part-iii-the-business-of-pleasure">Part III: The Business of
+Pleasure</h1>
+<p>If the Monster was my education in survival, Jaye was my education in
+economics.</p>
+<p>Jaye was a pimp. He didn’t hide it, and I didn’t judge it. To me, he
+was a protector. He was also a partner in the most disturbing kind of
+domestic boredom. On Tuesday nights, we weren’t running an underworld
+empire; we were playing Scrabble and backgammon on his couch. We went to
+Bingo. That domestic intimacy is how grooming actually works—he wasn’t
+just my boss; he was the guy I shared a home and a game board with. It
+made the exploitation near impossible to untangle.</p>
+<h3 id="pattern-the-normalization-of-exploitation">Pattern: The
+Normalization of Exploitation</h3>
+<p>Grooming dynamics often rely on the distinct integration of
+exploitation into domestic normalcy. By establishing a routine that
+mimics a partnership—sharing meals, playing games, co-habitating—the
+exploiter blurs the lines between “boss” and “partner.”</p>
+<p>This technique creates a cognitive dissonance in the victim, who
+struggles to reconcile the care-taking behavior (protection, housing)
+with the extractive behavior (financial exploitation). In many observed
+dynamics within “the life,” this “domestic mask” is the primary
+mechanism that keeps the victim compliant, as rebellion feels like a
+betrayal of the relationship rather than a rejection of the abuse.</p>
+<p>He taught me the logistics of the escort business—the pagers, the
+hotel rooms, and the most important rule of all: <strong>The
+Upfront.</strong></p>
+<p>“Get the money first,” he’d say. “The moment the transaction starts,
+the power shifts. If you don’t have the cash in your hand, you’re just a
+guest. With the cash, you’re the owner.”</p>
+<p>In the 80s, we were “indestructible.” I was no longer a victim; I was
+a professional. I had rules. I had lines in the sand: 1. Get the money
+first. 2. Never get drugs for a client. 3. Never become a dealer.</p>
+<p>I was a “Madam” in training, learning to detach my value from the
+validation of men. I believed the rules would keep me safe. I believed
+the rules made me different from the girls who got lost.</p>
+<p>But the narrative arc of the life isn’t about the men you date; it’s
+about the rules you eventually break.</p>
+<h1 id="part-iv-the-crack-in-the-foundation">Part IV: The Crack in the
+Foundation</h1>
+<p>The higher you climb, the harder the fall. By twenty-five, I was a
+mother again, this time to Cody. I married Dave—a “good man” who wanted
+a family more than he wanted the nightlife. But you can’t build a normal
+life on a floor made of glass.</p>
+<p>When the marriage failed, I met Henry. Henry was different, or so he
+told me. He was funny, and he famously claimed he didn’t “think with his
+penis.” That was the hook. After the singer beat me and the pimp used
+me, I thought Henry was the safe option. But the “safe option” only led
+to the next broken rule.</p>
+<p>In 1994, with the mortgage due and the sirens of crack cocaine
+getting louder, I broke the second rule. I delivered an eight-ball to a
+client at a cheap motel. That one delivery turned me from an escort to a
+courier. It was the moment I crossed a line I could never un-cross.</p>
+<p>I remember one raid where the police had us outside in handcuffs, the
+red and blue lights strobing against the peeling paint of the motel
+wall. A female officer snapped on her latex gloves to search me. I’d
+shoved the bags of crack into my own body, my heart hammering against my
+ribs like a trapped bird. When her hand stopped, I thought, <em>This is
+it. I’m going to prison.</em></p>
+<p>The air froze. Then she pulled her hand back and said, with a
+dismissive shrug, “It’s just a lint ball from your pajamas.”</p>
+<p>The chaos, the humiliation, and that weird, terrifying luck—that was
+the new normal.</p>
+<p>By late 1994, the crack era had turned the underworld into a ghost
+town. I broke my own rules to pay the mortgage, delivering an eight-ball
+for a man who turned out to be an informant. The headline in the paper
+was the siren song of my new reality: <em>Warrant for Dealing Cocaine
+Within 1000 ft. of a School.</em> Reality hit me like a physical blow. I
+was facing jail. I was losing my house to foreclosure. I was at rock
+bottom, looking up at the people I used to rule.</p>
+<h1 id="part-v-the-final-stand">Part V: The Final Stand</h1>
+<p>Otis was the longest relationship of my life—ten years of
+“on-and-off” that taught me the most expensive lesson: Emotional labor
+is the real cost of survival. But the ultimate test didn’t come from a
+pimp or a cop. It came from a man named John.</p>
+<p>The attack wasn’t a plot point; it was a psychological breakthrough.
+In all the horror movies I’d watched, I’d always been the one judging
+the characters. <em>Don’t run up the stairs. Don’t drop the knife.</em>
+And the biggest rule: <em>No way would someone grab the blade.</em></p>
+<p>But when I was trapped in that car with John, and the knife came out,
+I realized I had to break my own rules to live. I reached out and
+grabbed the sharp end of the knife. I felt the steel bite deep into my
+fingers, the bone resisting the edge. It wasn’t the heroic moment from a
+movie; it was a messy, bloody choice to do the one thing I’d said I’d
+never do.</p>
+<p>John tried to smother me. I felt the texture of his leather gloves
+filling my mouth as I tried to bite through them—the bitter, nauseating
+taste of cured leather, dirt, and sweat. He got me above the eye and
+slashed the corner of my mouth. I could feel the gash, a horrific
+physical sensation that made me feel like my face was hanging open, my
+very self spilling out onto the upholstery.</p>
+<p>“In the murder stories,” I told him, my voice bubbling through the
+blood, “you never drive them somewhere. Because the next stop is the
+end.”</p>
+<h3 id="pattern-the-rupture-of-the-social-contract">Pattern: The Rupture
+of the Social Contract</h3>
+<p>Predatory violence relies on the victim’s adherence to social
+contracts—the innate human tendency to de-escalate, negotiate, and
+comply to avoid conflict. Predators often exploit this hesitation, using
+the victim’s fear of “making a scene” or “being difficult” to maintain
+control during an abduction or assault.</p>
+<p>Survival in these acute moments often requires a psychological
+rupture: the conscious abandonment of social rules in favor of primal
+defense. When the brain accepts that the social contract has already
+been broken by the aggressor, the “freeze” response can sometimes shift
+into a fight response, mobilizing extreme physical resources that are
+otherwise inaccessible.</p>
+<p>I fought him until I was slippery with my own blood. I wasn’t a
+stripper or a madam then. I was a survivor who had outrun a “Monster”
+and wasn’t going to let an “evil liar” like John take my life in the
+dark of a quiet street.</p>
+<p>I survived. John got 65 years. I got the scars to remind me that the
+grit is what makes the power real. The surviving wasn’t in the
+reflection later; it was in the choice to bleed in that split
+second.</p>
+<h1 id="epilogue-madam-of-her-own-life">Epilogue: Madam of Her Own
+Life</h1>
+<p>Being a stripper can be fun. It can be lucrative. It can even be
+empowering. But it is always a choice.</p>
+<p>I spent nine years at the Busybody. I met a lot of nice people. I
+became a truly talented dancer. I don’t regret the stage, and I don’t
+regret the “hustle.” What I regret are the years I spent believing that
+my worth was something that could be settled at the end of a shift.</p>
+<p>I am no longer a stripper. I am no longer a madam. I am an
+entrepreneur of my own legacy. But I am still a woman who knows exactly
+how the world looks at me when the lights are low.</p>
+<p>I wrote this story because “choice” is a fragile thing. I justified a
+decade of prostitution because it got me away from a “Monster.” I
+thought I was making a “good choice” because I was the one holding the
+pager.</p>
+<p>But “better than the worst” is still a trap.</p>
+<p>True power is the ability to define your own value without needing a
+man to sign the check. It’s the ability to look in the mirror—even the
+ones backstage—and see a person who isn’t for sale.</p>
+<p>I still have the scars. The gash above my eye from John’s knife is a
+faint line now, but it’s there every time I wash my face. My fingers
+still feel the phantom cold of that blade when I’m tired. The surviving
+isn’t in the reflection later; it was in the choice to bleed in that
+split second.</p>
+<p>I have pretty nice clients now. But they don’t call me for an escort.
+They call me because I know the economics of desire better than any MBA.
+They call me because I survived the dark and brought the light back with
+me.</p>
+<p>Today, I own my power. I still set the price. And I still know that
+the moment you think you’ve mastered the game, the game has already
+won.</p>
+<p>Keep your eyes on the mirror. The music always stops eventually.</p>
+<p><strong>Lisa English</strong> <em>Author &amp; Strategist</em></p>
+<div class="page-break">
+
+</div>
+<h1 id="about-the-author">
+About the Author
+</h1>
+<br>
+<div class="author-container">
+<p><img src="./assets/aurther.jpg" class="author-image" alt="Lisa English" /></p>
+<div class="author-bio">
+<p><strong>Lisa English</strong> is a storyteller, survivor, and
+entrepreneur. From the neon lights of the club to the boardrooms of
+power, she has lived a life of transformation. “Paid In Full” is the
+raw, unfiltered account of that journey—a testament to resilience and
+the refusal to be defined by one’s past.</p>
+</div>
+</div>
+<p><br></p>
+<p style="text-align: center; font-style: italic; font-size: 10pt;">
+Edited by Cody Rice-Velasquez
+</p>
+<div class="page-break">
+
+</div>
+<section style="margin-top: 30%; text-align: center; padding: 0 2rem;">
+<h1>
+Paid In Full: Pole To Power
+</h1>
+<p style="font-style: italic; text-indent: 0;">
+In the shadows of the “Busybody,” a girl named Lisa disappeared, and a
+woman named “Madam” was born. But even the darkest nights end.
+</p>
+<p style="text-indent: 0;">
+This is not just a memoir; it’s a map out of hell. It’s for anyone who
+has ever sold a piece of themselves to survive, anyone who has looked in
+the mirror and seen a stranger.
+</p>
+<p><br></p>
+<p style="font-weight: bold; text-indent: 0;">
+It’s time to settle the debts.<br>It’s time to be Paid In Full.
+</p>
+</section>
+
+</body>
+</html>

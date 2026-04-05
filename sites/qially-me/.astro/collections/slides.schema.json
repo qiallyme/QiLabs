@@ -1,0 +1,81 @@
+{
+  "$ref": "#/definitions/slides",
+  "definitions": {
+    "slides": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pubDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "theme": {
+          "type": "string",
+          "enum": [
+            "black",
+            "white",
+            "league",
+            "beige",
+            "drdracula",
+            "sky",
+            "night",
+            "serif",
+            "simple",
+            "solarized",
+            "blood",
+            "moon"
+          ],
+          "default": "beige"
+        },
+        "transition": {
+          "type": "string",
+          "default": "slide"
+        },
+        "controls": {
+          "type": "boolean",
+          "default": true
+        },
+        "progress": {
+          "type": "boolean",
+          "default": true
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "pubDate"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

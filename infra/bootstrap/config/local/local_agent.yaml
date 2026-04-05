@@ -1,0 +1,5 @@
+# State for the local execution agent
+agent_id: ""  # Set during enrollment
+admin_endpoint: "" # Set during enrollment
+status: "active"
+log_level: "info"

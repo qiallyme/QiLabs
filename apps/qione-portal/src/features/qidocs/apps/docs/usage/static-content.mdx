@@ -1,0 +1,93 @@
+---
+title: "Static Content"
+description: "Learn how to use static content and custom fonts in your document templates"
+icon: "image"
+---
+
+<Note>
+All static files must be placed in the `/documents/static` directory of your project. This is the required location for serving static assets in your document templates.
+</Note>
+
+## Client-Side Usage
+Inside HTML/React components, static files are served directly from the `/documents/static` directory. Access them using the absolute path:
+
+```tsx
+// Access static content on the client-side
+<img src="/static/logo.png" />
+```
+
+## Server-Side Usage 
+When reading files server-side (like in document templates), use `process.env.DOCUMENTS_STATIC_PATH` to access files in your static directory:
+
+<Warning>
+Server-side files only work in local development and are not supported yet using the API. <br />
+If you'd like to see this feature, please leave a comment on the <b>#feature-requests</b> channel in Slack.
+</Warning>
+
+```tsx
+import fs from 'node:fs'
+import path from 'path'
+
+// Read static content in server-side components
+const content = fs.readFileSync(
+  path.join(process.env.DOCUMENTS_STATIC_PATH ?? '', 'content.md'),
+  'utf-8'
+)
+```
+
+## Example: Local Fonts
+Place your font files anywhere in the `/static` directory and load them using `@font-face`:
+
+```tsx
+import { Document, Head } from "@htmldocs/react"
+
+function MyDocument() {
+  return (
+    <Document>
+      <Head>
+        <style>
+          {`
+            @font-face {
+              font-family: 'CustomFont';
+              src: url('/static/fonts/CustomFont.woff2') format('woff2'),
+                  url('/static/fonts/CustomFont.woff') format('woff');
+              font-weight: normal;
+              font-style: normal;
+            }
+          `}
+        </style>
+      </Head>
+      <div style={{ fontFamily: 'CustomFont' }}>
+        Text using custom font
+      </div>
+    </Document>
+  )
+}
+```
+
+## Example: Loading Markdown Content
+Here's a complete example of loading and rendering markdown content in a document:
+
+```tsx
+import { Document } from "@htmldocs/react"
+import MarkdownIt from 'markdown-it'
+import fs from 'node:fs'
+import path from "path"
+
+const content = fs.readFileSync(
+  path.join(process.env.DOCUMENTS_STATIC_PATH ?? '', 'content.md'),
+  'utf-8'
+)
+
+const md = new MarkdownIt({ html: true })
+
+function MyDocument() {
+  const html = md.render(content)
+  
+  return (
+    <Document>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </Document>
+  )
+}
+```

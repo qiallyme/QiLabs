@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+httpx
+redis
+openai
+boto3
+neo4j
+pydantic
+python-multipart
+PyPDF2

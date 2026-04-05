@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBooks Setup & Cleanup Help | Practical Support</title>
+    <meta name="description" content="Practical QuickBooks setup, cleanup, and ongoing support for freelancers, small businesses, and anyone who needs their books to make sense.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Global Design System -->
+    <link rel="stylesheet" href="../../../assets/css/global_styles.css">
+    
+    <style>
+        :root {
+            --brand-blue: #2563eb;
+            --brand-blue-glow: rgba(37, 99, 235, 0.4);
+            --deep-navy: #0a1a3a;
+            --bg-light: #f0f7ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bubbly-radius: 2.5rem;
+            --shadow-soft: 0 20px 40px -15px rgba(37, 99, 235, 0.1);
+            --shadow-hover: 0 30px 60px -12px rgba(37, 99, 235, 0.25);
+            --electric-glow: 0 0 20px var(--brand-blue-glow);
+            --transition-bubbly: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-light); 
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-blob { 
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(255, 255, 255, 0) 70%); 
+        }
+
+        .section-dark {
+            background-color: var(--deep-navy);
+            color: white;
+            border-radius: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-overlay {
+            position: absolute;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .card-bubbly {
+            background: white;
+            border-radius: var(--bubbly-radius);
+            transition: var(--transition-bubbly);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(59, 130, 246, 0.05);
+        }
+
+        .card-bubbly:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-electric {
+            background-color: var(--brand-blue);
+            color: white;
+            border-radius: 2rem;
+            padding: 1.25rem 2.5rem;
+            font-weight: 800;
+            transition: var(--transition-bubbly);
+            box-shadow: var(--electric-glow);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-electric:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--brand-blue-glow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--brand-blue);
+            border: 2px solid rgba(59, 130, 246, 0.1);
+            border-radius: 2rem;
+            padding: 1.25rem 2.5rem;
+            font-weight: 700;
+            transition: var(--transition-bubbly);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+            border-color: var(--brand-blue);
+        }
+
+        .nav-bubbly {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            border-radius: var(--bubbly-radius);
+            box-shadow: 0 10px 30px rgba(10, 26, 58, 0.05);
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 2rem;
+            transition: var(--transition-bubbly);
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .process-step {
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 2rem;
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand-blue), transparent);
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .process-step::after {
+                display: block;
+            }
+            .process-step:last-child::after {
+                display: none;
+            }
+        }
+
+        input, textarea, select {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-field:focus {
+            outline: none;
+            border-color: var(--brand-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ============================================
+         HEADER / NAVIGATION
+         ============================================ -->
+    <header class="fixed w-full z-50 top-4 px-4 sm:px-6">
+        <nav class="nav-bubbly max-w-7xl mx-auto h-20 px-6 sm:px-8 flex items-center justify-between">
+            <!-- Logo Placeholder -->
+            <div class="flex items-center gap-3">
+                <!-- Replace with actual logo: <img src="../../../assets/images/logo.png" alt="Logo" class="h-10"> -->
+                <div class="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-400/30">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <span class="font-extrabold text-xl tracking-tight text-blue-900">QiAlly<span class="text-blue-500">.</span></span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                <a href="#benefits" class="hover:text-blue-600 transition-colors">Why It Helps</a>
+                <a href="#services" class="hover:text-blue-600 transition-colors">What I Do</a>
+                <a href="#process" class="hover:text-blue-600 transition-colors">How It Works</a>
+                <a href="#contact" class="btn-electric text-sm px-6 py-3">Get Help</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ============================================
+             HERO SECTION
+             ============================================ -->
+        <section class="relative pt-48 pb-24 px-4 sm:px-6 overflow-hidden">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] hero-blob -z-10"></div>
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-8 tracking-tight text-slate-900 leading-[1.1]">
+                    QuickBooks help that<br>
+                    <span class="text-gradient">actually makes sense.</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Practical setup, cleanup, and ongoing support for freelancers, small businesses, and anyone whose books have gotten away from them. No judgment—just straight help.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                    <a href="#contact" class="btn-electric text-lg w-full sm:w-auto px-10 py-5">
+                        Tell me what you need
+                    </a>
+                    <a href="#services" class="btn-outline text-lg w-full sm:w-auto px-10 py-5">
+                        See what I offer
+                    </a>
+                </div>
+                <p class="mt-6 text-sm text-slate-500">
+                    Direct support from a real person. Usually respond within one business day.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================
+             BENEFITS / WHY IT HELPS
+             ============================================ -->
+        <section id="benefits" class="py-20 px-4 sm:px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
+                    <div class="md:col-span-1 flex flex-col justify-center">
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight mb-4">
+                            Why it matters. 💡
+                        </h2>
+                        <p class="text-slate-500 leading-relaxed">
+                            Clean books aren't just for tax season. They help you make better decisions, sleep better at night, and know exactly where you stand.
+                        </p>
+                    </div>
+                    <div class="card-bubbly p-8 sm:p-10">
+                        <div class="w-14 h-14 bg-blue-50 rounded-3xl flex items-center justify-center mb-6 text-2xl">
+                            <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-extrabold text-xl mb-3 text-slate-900">Know Your Numbers</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">See exactly where your money is going. No more guessing at the end of the month.</p>
+                    </div>
+                    <div class="card-bubbly p-8 sm:p-10">
+                        <div class="w-14 h-14 bg-emerald-50 rounded-3xl flex items-center justify-center mb-6 text-2xl">
+                            <svg class="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-extrabold text-xl mb-3 text-slate-900">Tax Time Is Easier</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Hand your CPA clean records and avoid expensive catch-up work.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SERVICES SECTION
+             ============================================ -->
+        <section id="services" class="py-20 px-4 sm:px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">What I do. 📋</h2>
+                    <p class="text-slate-500">Practical help with the parts of QuickBooks that trip people up.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card-bubbly p-8">
+                        <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-5 text-xl">📂</div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Chart of Accounts Setup</h3>
+                        <p class="text-slate-500 text-sm">Clean, logical account structure that actually fits your business—not some generic template.</p>
+                    </div>
+                    <div class="card-bubbly p-8">
+                        <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-5 text-xl">🔗</div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Bank & Credit Card Feeds</h3>
+                        <p class="text-slate-500 text-sm">Get transactions flowing automatically. Set up rules so categorizing isn't a weekly headache.</p>
+                    </div>
+                    <div class="card-bubbly p-8">
+                        <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-5 text-xl">🧾</div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Invoices & Estimates</h3>
+                        <p class="text-slate-500 text-sm">Professional templates that match your brand. Set up products, services, and pricing items.</p>
+                    </div>
+                    <div class="card-bubbly p-8">
+                        <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-5 text-xl">🧹</div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Books Cleanup</h3>
+                        <p class="text-slate-500 text-sm">Missing transactions, duplicate entries, out-of-balance accounts—let's get it sorted.</p>
+                    </div>
+                    <div class="card-bubbly p-8">
+                        <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-5 text-xl">⚙️</div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Workflow & Automation</h3>
+                        <p class="text-slate-500 text-sm">Set up recurring transactions, automated reminders, and workflows that save you time.</p>
+                    </div>
+                    <div class="card-bubbly p-8">
+                        <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-5 text-xl">🎓</div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Training & Walkthrough</h3>
+                        <p class="text-slate-500 text-sm">One-on-one sessions where I show you how to use QuickBooks confidently.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             PROCESS SECTION
+             ============================================ -->
+        <section id="process" class="py-20 px-4 sm:px-6 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">How it works. ⚡</h2>
+                    <p class="text-slate-500">Simple, straightforward process. No complicated onboarding.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-8 sm:gap-6">
+                    <div class="process-step text-center sm:pr-8">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-5 text-white text-xl font-bold">
+                            1
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Tell me what you need</h3>
+                        <p class="text-slate-500 text-sm">Fill out the form below. Describe what's messy, confusing, or broken. I'll get a sense of what we're working with.</p>
+                    </div>
+                    <div class="process-step text-center sm:px-4">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-5 text-white text-xl font-bold">
+                            2
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">I review and set things up</h3>
+                        <p class="text-slate-500 text-sm">I'll dive into your QuickBooks, clean up what's wrong, set up what's missing, and organize things logically.</p>
+                    </div>
+                    <div class="process-step text-center sm:pl-8">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-5 text-white text-xl font-bold">
+                            3
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">We walk through it together</h3>
+                        <p class="text-slate-500 text-sm">I'll show you what I did, explain how it works, and make sure you feel comfortable moving forward.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             ABOUT / PERSONAL SECTION
+             ============================================ -->
+        <section class="py-20 px-4 sm:px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="card-bubbly p-8 sm:p-12 text-center">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-6">A real person, real help. 👋</h2>
+                    <p class="text-slate-500 leading-relaxed mb-6 max-w-2xl mx-auto">
+                        This isn't a faceless platform or a automated tool. It's just me—someone who actually enjoys getting QuickBooks organized for people.
+                    </p>
+                    <p class="text-slate-500 leading-relaxed mb-8 max-w-2xl mx-auto">
+                        I've helped freelancers who hadn't reconciled in months, small businesses with tangled bank feeds, and people who just needed someone to explain things in plain English. No judgment about where your books are now. Just help getting them better.
+                    </p>
+                    <p class="text-slate-600 font-medium">
+                        I answer emails personally. I don't use templates. And I'm happy to just talk through what you need before you commit to anything.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             FAQ SECTION
+             ============================================ -->
+        <section class="py-20 px-4 sm:px-6 bg-white">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-10 text-center">Questions you might have. 💬</h2>
+                
+                <div class="space-y-4">
+                    <div class="card-bubbly p-6">
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">How much does this cost?</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">It depends on what you need. Simple setup starts at a few hundred dollars. Cleanup projects vary based on how much work is involved. I'll give you a clear estimate before we start—no surprises.</p>
+                    </div>
+                    <div class="card-bubbly p-6">
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">How long does it take?</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Straightforward setups usually take 1-2 weeks. Cleanup projects depend on the state of your books. I'll give you a realistic timeline after I see what we're working with.</p>
+                    </div>
+                    <div class="card-bubbly p-6">
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Do you work with my type of business?</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">I've helped freelancers, consultants, service businesses, contractors, and small retail operations. If you're not sure, just reach out and ask.</p>
+                    </div>
+                    <div class="card-bubbly p-6">
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">What if I don't use QuickBooks Online?</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">I work with QuickBooks Online primarily. If you're on Desktop (Pro, Premier, Enterprise), let me know and we can see if it's something I can help with.</p>
+                    </div>
+                    <div class="card-bubbly p-6">
+                        <h3 class="font-bold text-lg mb-2 text-slate-900">Can you do ongoing support?</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Yes. Once your books are set up, we can do monthly check-ins, occasional cleanups, or ad-hoc help when things come up. Whatever keeps your books running smoothly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             CONTACT / CTA SECTION
+             ============================================ -->
+        <section id="contact" class="section-dark py-20 px-4 sm:px-6 mx-4 mb-12">
+            <div class="glow-overlay" style="top: -200px; right: -100px; width: 400px; height: 400px;"></div>
+            <div class="max-w-3xl mx-auto relative z-10">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Let's get your books in order. 📬</h2>
+                    <p class="text-blue-200/70">Fill this out and I'll get back to you within one business day.</p>
+                </div>
+
+                <!--
+                    ============================================================
+                    FORM INTEGRATION NOTES:
+                    ============================================================
+                    - Action: Replace 'action="#" ' with your form handler URL
+                    - Backend options:
+                      * Netlify Forms: add 'netlify' attribute to form
+                      * Formspree: action="https://formspree.io/f/your-id"
+                      * Zapier/Make: Wire to webhook URL
+                      * Custom API: Wire to your endpoint
+                    ============================================================
+                -->
+                <form 
+                    action="#" 
+                    method="POST" 
+                    class="card-bubbly p-6 sm:p-10"
+                    <!-- Uncomment for Netlify: netlify -->
+                >
+                    <div class="grid sm:grid-cols-2 gap-5 mb-5">
+                        <div>
+                            <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Your name</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                required
+                                class="form-field w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900"
+                                placeholder="Jane Smith"
+                            >
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email address</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required
+                                class="form-field w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900"
+                                placeholder="jane@yourbusiness.com"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <label for="business-type" class="block text-sm font-semibold text-slate-700 mb-2">What kind of help do you need?</label>
+                        <select 
+                            id="business-type" 
+                            name="project-type" 
+                            class="form-field w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900"
+                        >
+                            <option value="">Select an option...</option>
+                            <option value="setup">New QuickBooks setup</option>
+                            <option value="cleanup">Books cleanup / catch-up</option>
+                            <option value="bank-feeds">Bank feed / transaction issues</option>
+                            <option value="templates">Invoice / estimate templates</option>
+                            <option value="training">Training / walkthrough</option>
+                            <option value="workflow">Workflow optimization</option>
+                            <option value="other">Something else</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="message" class="block text-sm font-semibold text-slate-700 mb-2">Tell me about your situation</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            rows="5" 
+                            class="form-field w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 resize-none"
+                            placeholder="What's messy, confusing, or broken? What would help you most right now?"
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-electric w-full text-lg py-4">
+                        Send my request
+                    </button>
+
+                    <p class="text-xs text-slate-400 mt-4 text-center">
+                        This starts a conversation, not a commitment. I'll get back to you to discuss what makes sense.
+                    </p>
+                </form>
+
+                <!-- Contact Info Placeholders -->
+                <div class="mt-10 text-center text-blue-200/60 text-sm">
+                    <!-- Email: <a href="mailto:hello@qially.com" class="underline hover:text-white">hello@qially.com</a> -->
+                    <!-- Phone: <a href="tel:+15551234567" class="underline hover:text-white">+1 (555) 123-4567</a> -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="py-10 px-6 text-center border-t border-slate-100">
+        <p class="text-sm text-slate-500">
+            <span class="font-semibold text-slate-700">QiAlly.</span> Practical help for real business needs.
+        </p>
+        <p class="text-xs text-slate-400 mt-2">
+            <!-- <a href="/privacy" class="underline">Privacy</a> · <a href="/terms" class="underline">Terms</a> -->
+        </p>
+    </footer>
+
+</body>
+</html>

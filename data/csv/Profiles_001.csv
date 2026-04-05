@@ -1,0 +1,9 @@
+Record Id,Profile Name,Created By,Modified By,Created Time,Modified Time,Description
+zcrm_6789162000000026011,Administrator,,,,,crm.security.profile.admin.desc
+zcrm_6789162000000026014,Standard,,,,,crm.security.profile.std.desc
+zcrm_6789162000000595623,QiAlly Client Hub,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-05-09 18:45:35,2025-06-02 10:10:55,CLIENT_PORTAL_PROFILE
+zcrm_6789162000001283323,Admins,,,,,PRIVATE PROFILE
+zcrm_6789162000001283325,Managers,,,,,PRIVATE PROFILE
+zcrm_6789162000001283327,Members,,,,,PRIVATE PROFILE
+zcrm_6789162000001283329,Participants,,,,,PRIVATE PROFILE
+zcrm_6789162000001283331,Requesters,,,,,PRIVATE PROFILE

@@ -1,0 +1,38 @@
+{{ template "header.html" . }}
+
+<!-- Email Content -->
+<div class="content">
+  <h1>New Invoice #[Invoice Number] is Ready</h1>
+  <p>Hello [Client Name],</p>
+  <p>A new invoice has been generated for you. Here are the details:</p>
+  <p>
+    <strong>Invoice Number:</strong> [Invoice Number]<br />
+    <strong>Amount Due:</strong> $[Amount]<br />
+    <strong>Due Date:</strong> [Due Date]
+  </p>
+  <p>
+    You can view and pay the invoice securely through your client portal. A PDF
+    copy is also attached to this email for your records.
+  </p>
+  <div class="button-container">
+    <a href="https://portal.qially.com/invoices/[InvoiceID]" class="button"
+      >View & Pay Invoice</a
+    >
+  </div>
+  <p>
+    Thank you for your business. If you have any questions about this invoice,
+    please feel free to contact us.
+  </p>
+</div>
+
+<!-- Signature -->
+<div class="signature">
+  <p>Best regards,</p>
+  <p>
+    <strong>Cody Rice Velasquez</strong><br />
+    Founder & Managing Partner<br />
+    QiAlly LLC
+  </p>
+</div>
+
+{{ template "footer.html" . }}

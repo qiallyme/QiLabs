@@ -1,0 +1,9 @@
+# Metadata invariants
+required_fields:
+  - source_device_id
+  - source_agent_id
+  - ingest_mode
+  - visibility
+visibility_defaults:
+  dropzone: "private"
+  watcher: "internal"

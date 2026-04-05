@@ -1,0 +1,75 @@
+flowchart TD
+    %% === PROJECT GOALS ===
+    %% Ultimate Goal: Refine USBLegalAid UI for professional look
+    %% Current Goal: Standardize repo infrastructure and theme refinement
+
+    %% === START ===
+    %% @project_start [start, closed, 2026-04-04, nam]
+    project_start("Project Start<br/><sub>Initial auditing of USBLegalAidv2<br/>UI to identify high-contrast<br/>hardcoded whites and visual debt</sub>")
+
+    %% @ultimate_goal [end, opened, 2026-04-04, nam]
+    ultimate_goal("Premium Glassmorphic UI<br/><sub>A fully cohesive, professionally<br/>themed workspace with no hardcoded<br/>colors and standard CSS variables</sub>")
+
+    %% === COMPLETED WORK ===
+    %% @dashboard_refactor [ai-task, closed, 2026-04-04, nam]
+    dashboard_refactor("Dashboard Refactor<br/><sub>Replaced hardcoded whitespace and<br/>text colors in DashboardPage with<br/>themed variables for consistency</sub>")
+
+    %% @facts_refactor [ai-task, closed, 2026-04-04, nam]
+    facts_refactor("Facts Page Refactor<br/><sub>Updated fact headers and labels to<br/>use var(--text-main) and removed<br/>standalone #fff values</sub>")
+
+    %% @evidence_refactor [ai-task, closed, 2026-04-04, nam]
+    evidence_refactor("Evidence Page Refactor<br/><sub>Systematic removal of hardcoded whites<br/>in exhibit titles, badges, and<br/>modal headers for softer look</sub>")
+
+    %% @tasks_timeline_refactor [ai-task, closed, 2026-04-04, nam]
+    tasks_timeline_refactor("Tasks & Timeline Updates<br/><sub>Refined Task list items and Timeline<br/>markers to align with the soft<br/>glassmorphic aesthetic</sub>")
+
+    %% @witness_refactor [ai-task, closed, 2026-04-04, nam]
+    witness_refactor("Witnesses Page Refactor<br/><sub>Standardized the witness roster table<br/>and data rows with themed variables<br/>and appropriate background transparency</sub>")
+
+    %% @repo_fix [ai-task, closed, 2026-04-05, nam]
+    repo_fix("Submodule Repair<br/><sub>Restored missing .gitmodules registry<br/>to fix broken gitlinks and resolve<br/>server-side clone/fetch failures</sub>")
+
+    %% === RECENT WORK ===
+    subgraph recent [RECENT]
+        repo_fix
+    end
+
+    %% === FUTURE WORK ===
+    %% @css_cleanup [ai-task, opened, 2026-04-04, nam]
+    css_cleanup("Global CSS Cleanup<br/><sub>Refactoring index.css and App.css to<br/>replace remaining #fff with CSS<br/>variables like var(--text-main)</sub>")
+
+    %% @component_audit [ai-task, opened, 2026-04-04, nam]
+    component_audit("Component Style Audit<br/><sub>Final audit of remaining UI<br/>components (MatterPicker, AuthPage)</sub>")
+
+    %% === CONNECTIONS ===
+    project_start --> dashboard_refactor
+    dashboard_refactor --> facts_refactor
+    facts_refactor --> evidence_refactor
+    evidence_refactor --> tasks_timeline_refactor
+    tasks_timeline_refactor --> witness_refactor
+    witness_refactor --> repo_fix
+    repo_fix -.-> css_cleanup
+    css_cleanup -.-> component_audit
+    component_audit -.-> ultimate_goal
+
+    %% === STYLES ===
+    %% Closed tasks (soft purple)
+    style project_start fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style dashboard_refactor fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style facts_refactor fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style evidence_refactor fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style tasks_timeline_refactor fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style witness_refactor fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style repo_fix fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+
+    %% Recent node (highlighted purple)
+    style repo_fix fill:#2d1f4e,stroke:#c084fc,color:#e9d5ff,stroke-width:2px
+
+    %% Recent subgraph (dashed border)
+    style recent fill:transparent,stroke:#c084fc,color:#c084fc,stroke-width:2px,stroke-dasharray:5 5
+
+    %% Open tasks (soft green)
+    style ultimate_goal fill:#1a1a2e,stroke:#4ade80,color:#86efac,stroke-width:1px
+    style css_cleanup fill:#1a1a2e,stroke:#4ade80,color:#86efac,stroke-width:1px
+    style component_audit fill:#1a1a2e,stroke:#4ade80,color:#86efac,stroke-width:1px
+

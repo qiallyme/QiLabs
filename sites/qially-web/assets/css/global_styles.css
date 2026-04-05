@@ -1,0 +1,92 @@
+/* ClearBooks Global Design System 
+  Aesthetic: Bubbly, Professional, Electric Blue
+*/
+
+:root {
+    /* Colors */
+    --brand-blue: #2563eb;
+    --brand-blue-glow: rgba(37, 99, 235, 0.4);
+    --deep-navy: #0a1a3a;
+    --bg-light: #f0f7ff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    
+    /* Shapes & Shadows */
+    --bubbly-radius: 2.5rem; /* 40px */
+    --shadow-soft: 0 20px 40px -15px rgba(37, 99, 235, 0.1);
+    --shadow-hover: 0 30px 60px -12px rgba(37, 99, 235, 0.25);
+    --electric-glow: 0 0 20px var(--brand-blue-glow);
+    
+    /* Animations */
+    --transition-bubbly: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Base Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+}
+
+/* Bubbly Components */
+.card-bubbly {
+    background: white;
+    border-radius: var(--bubbly-radius);
+    transition: var(--transition-bubbly);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(59, 130, 246, 0.05);
+}
+
+.card-bubbly:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-electric {
+    background-color: var(--brand-blue);
+    color: white;
+    border-radius: 2rem;
+    padding: 1.25rem 2.5rem;
+    font-weight: 800;
+    transition: var(--transition-bubbly);
+    box-shadow: var(--electric-glow);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-electric:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px var(--brand-blue-glow);
+}
+
+.nav-bubbly {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    border-radius: var(--bubbly-radius);
+    box-shadow: 0 10px 30px rgba(10, 26, 58, 0.05);
+}
+
+/* Section Containers */
+.section-dark {
+    background-color: var(--deep-navy);
+    color: white;
+    border-radius: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-overlay {
+    position: absolute;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+/* Typography Utilities */
+.text-gradient {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

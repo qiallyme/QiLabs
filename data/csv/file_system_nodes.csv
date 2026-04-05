@@ -1,0 +1,104 @@
+Path,Name,Description,Parent,Done,Type,Species,Governance_Layer,Notes
+QiOS/,QiOS/,System Root,QiOS/,TRUE,Folder,Root,Layer 0,
+QiOS/_intake/,_intake,Global Ingestion Zone,QiOS/,TRUE,Folder,QiSystem,Layer 7,Hot folder for GINA
+QiOS/_intake/desktop_drops/,desktop_drops,Desktop Input,_intake,TRUE,Folder,QiSystem,Layer 7,
+QiOS/_intake/mobile_uploads/,mobile_uploads,Mobile Input,_intake,TRUE,Folder,QiSystem,Layer 7,
+QiOS/_intake/quarantine/,quarantine,Quarantine,_intake,TRUE,Folder,QiSystem,Layer 7,For files failing Layer 3/4 checks
+QiOS/_intake/web_clippings/,web_clippings,Browser Extension Input,_intake,TRUE,Folder,QiSystem,Layer 7,
+QiOS/.cursorrules,.cursorrules,AI Editor Rules,QiOS/,TRUE,File,QiDarkMatter,Layer 1,Defines AI persona & constraints
+QiOS/.env,.env,Environment Variables,QiOS/,TRUE,File,QiDarkMatter,Layer 1,Protected/Ignored
+QiOS/.git/,.git,Git Metadata,QiOS/,TRUE,Folder,QiDarkMatter,Layer 1,Protected
+QiOS/.gitattributes,.gitattributes,Git Attributes,QiOS/,TRUE,File,QiDarkMatter,Layer 1,Protected
+QiOS/.gitignore,.gitignore,Git Ignore,QiOS/,TRUE,File,QiDarkMatter,Layer 1,Protected
+QiOS/.obsidian/,.obsidian,Obsidian Config,QiOS/,TRUE,Folder,QiDarkMatter,Layer 1,Protected
+QiOS/.trunk/,.trunk,Linter Tooling,QiOS/,TRUE,Folder,QiDarkMatter,Layer 1,
+QiOS/README.md,README.md,Root overview referencing QiEOS Genesis in qivault/kb,QiOS/,FALSE,File,QiDocs,Layer 0,Links to realms/qivault/kb/0.00.00-SYS_qios_genesis.md
+QiOS/apps/,apps,Applications,QiOS/,TRUE,Folder,QiApps,Layer 2,
+QiOS/apps/_lab,_lab,Experimental Apps,apps,TRUE,Folder,QiApps,Layer 2,
+QiOS/apps/Gina/,Gina,Standalone Gina assistant UI,apps,FALSE,Folder,QiApps,Layer 2,Pluggable Gina app shell
+QiOS/apps/QiLauncher/,QiLauncher,Main Control Panel,apps,TRUE,Folder,QiApps,Layer 2,Primary OS shell
+QiOS/apps/QiDocs/,QiDocs,Document/HTML Editor,apps,TRUE,Folder,QiApps,Layer 2,
+QiOS/apps/QiNote/,QiNote,Knowledge Capture Editor,apps,TRUE,Folder,QiApps,Layer 2,
+QiOS/apps/QiStory/,QiStory,Story/Book Engine,apps,TRUE,Folder,QiApps,Layer 2,
+QiOS/components/,components,Design System Root,QiOS/,TRUE,Folder,QiComponents,Layer 2,Monorepo style
+QiOS/components/elements/,elements,Atoms (Basic Units),components,TRUE,Folder,QiComponents,Layer 2,
+QiOS/components/elements/Button/,Button,Button Component,elements,TRUE,Folder,QiComponents,Layer 2,
+QiOS/components/elements/Icon/,Icon,Icon Component,elements,TRUE,Folder,QiComponents,Layer 2,
+QiOS/components/elements/Input/,Input,Input Component,elements,TRUE,Folder,QiComponents,Layer 2,
+QiOS/components/feedback/,feedback,Interaction Feedback,components,TRUE,Folder,QiComponents,Layer 2,
+QiOS/components/feedback/Toast/,Toast,Notifications,feedback,TRUE,Folder,QiComponents,Layer 2,
+QiOS/components/foundation/,foundation,Design Tokens,components,TRUE,Folder,QiComponents,Layer 2,The "Dark Matter" of UI
+QiOS/components/foundation/colors.ts,colors.ts,Color Tokens,foundation,TRUE,File,QiComponents,Layer 2,Defines Glassmorphism/Plasma themes
+QiOS/components/foundation/shadows.ts,shadows.ts,Shadow/Blur Tokens,foundation,TRUE,File,QiComponents,Layer 2,
+QiOS/components/foundation/typography.ts,typography.ts,Font Tokens,foundation,TRUE,File,QiComponents,Layer 2,
+QiOS/components/index.ts,index.ts,Barrel File,components,TRUE,File,QiComponents,Layer 2,Exports all components
+QiOS/components/layouts/,layouts,Organisms (Frames),components,TRUE,Folder,QiComponents,Layer 2,
+QiOS/components/layouts/PageShell/,PageShell,Standard Page Wrapper,layouts,TRUE,Folder,QiComponents,Layer 2,
+QiOS/components/modules/,modules,Molecules (Complex),components,TRUE,Folder,QiComponents,Layer 2,
+QiOS/components/modules/Card/,Card,Glass Container,modules,TRUE,Folder,QiComponents,Layer 2,
+QiOS/components/modules/SearchBar/,SearchBar,Search Interface,modules,TRUE,Folder,QiComponents,Layer 2,
+QiOS/connections/,connections,API Integrations,QiOS/,TRUE,Folder,QiConnections,Layer 1,
+QiOS/connections/secrets.enc,secrets.enc,Encrypted Secrets,connections,TRUE,File,QiConnections,Layer 1,Never store plain text
+QiOS/darkmatter/,darkmatter,System Substrate,QiOS/,TRUE,Folder,QiDarkMatter,Layer 1,
+QiOS/data/,data,System Data Root,QiOS/,TRUE,Folder,QiData,Layer 1,
+QiOS/data/cache/,cache,Temp Cache,data,TRUE,Folder,QiData,Layer 1,
+QiOS/data/compiled/,compiled,Processed context (RAG/UI),data,TRUE,Folder,QiData,Layer 1,
+QiOS/data/migrations/,migrations,DB Migrations,data,TRUE,Folder,QiData,Layer 1,
+QiOS/data/outputs/,outputs,Final User Deliverables (Reports),data,TRUE,Folder,QiData,Layer 1,
+QiOS/data/policies/,policies,Retention Policies,data,TRUE,Folder,QiData,Layer 1,
+QiOS/data/registries/,registries,The Laws (Allowed Tags/Realms),data,TRUE,Folder,QiData,Layer 1,
+QiOS/data/schemas/,schemas,JSON Schemas,data,TRUE,Folder,QiData,Layer 1,Defines Node/FrontMatter structure
+QiOS/data/seeds/,seeds,The Starter Kit (Day 0 Data),data,TRUE,Folder,QiData,Layer 1,
+QiOS/data/sheets/,sheets,CSV/Structured Data,data,TRUE,Folder,QiData,Layer 1,
+QiOS/data/snippets/,snippets,Reusable chunks of text/code/JSON,data,TRUE,Folder,QiData,Layer 6,Used by GINA to generate other files
+QiOS/data/sql/,sql,Raw SQL Queries,data,FALSE,Folder,QiData,Layer 1,Backend query store
+QiOS/data/vector/,vector,Vector Index,data,TRUE,Folder,QiData,Layer 6,ChromaDB/pgvector local mirror
+QiOS/docs/,docs,System Documentation,QiOS/,TRUE,Folder,QiDocs,Layer 2,
+QiOS/env.example,env.example,Env Template,QiOS/,TRUE,File,QiDarkMatter,Layer 1,
+QiOS/logs/,logs,System Logs,QiOS/,TRUE,Folder,QiSystem,Layer 1,Observability
+QiOS/logs/gina/,gina,Worker Logs,logs,TRUE,Folder,QiSystem,Layer 1,
+QiOS/logs/linter/,linter,Validation Logs,logs,TRUE,Folder,QiSystem,Layer 1,
+QiOS/node_modules/,node_modules,JS Dependencies,QiOS/,TRUE,Folder,QiDarkMatter,Layer 1,
+QiOS/project_board_kanban.md,project_board_kanban.md,Kanban,QiOS/,TRUE,File,QiDarkMatter,Layer 1,
+QiOS/projects/,projects,Active Projects,QiOS/,TRUE,Folder,QiProjects,Layer 2,
+QiOS/realms/,realms,Context Universes,QiOS/,TRUE,Folder,QiRealms,Layer 2,
+QiOS/realms/archives/,archives,Cold Storage,realms,TRUE,Folder,QiRealms,Layer 2,
+QiOS/realms/qibusiness/,qibusiness,Business Realm,realms,TRUE,Folder,QiRealms,Layer 2,
+QiOS/realms/qibusiness/assets/,assets,Business Assets,qibusiness,TRUE,Folder,QiAssets,Layer 3,
+QiOS/realms/qiclients/,qiclients,Client Realm,realms,TRUE,Folder,QiRealms,Layer 2,
+QiOS/realms/qiclients/inh/,inh,Example Client (Innovahire),qiclients,TRUE,Folder,QiRealms,Layer 2,
+QiOS/realms/qiops/,qiops,System Operations Realm,realms,TRUE,Folder,QiRealms,Layer 2,For global assets
+QiOS/realms/qiops/assets/,assets,Global Assets Root,qiops,TRUE,Folder,QiAssets,Layer 3,
+QiOS/realms/qiops/assets/fonts/,fonts,Global Fonts,assets,TRUE,Folder,QiAssets,Layer 3,
+QiOS/realms/qiops/assets/icons/,icons,Global Icons,assets,TRUE,Folder,QiAssets,Layer 3,
+QiOS/realms/qiops/assets/templates/,templates,Global File Templates,assets,TRUE,Folder,QiAssets,Layer 3,Docx/PPTX masters
+QiOS/realms/qiops/kb/,kb,System Ops Knowledge Base,qiops,TRUE,Folder,QiDocs,Layer 3,
+QiOS/realms/qiops/kb/error_codes/,error_codes,Error Definitions,kb,TRUE,Folder,QiDocs,Layer 3,
+QiOS/realms/qipersonal/,qipersonal,Personal Realm,realms,TRUE,Folder,QiRealms,Layer 2,
+QiOS/realms/qiplayground/,qiplayground,Sandbox Realm,realms,TRUE,Folder,QiRealms,Layer 2,
+QiOS/realms/qiresearch/,qiresearch,Source Material Realm,realms,TRUE,Folder,QiRealms,Layer 2,
+QiOS/realms/qitemp/,qitemp,Processing Realm,realms,TRUE,Folder,QiRealms,Layer 2,
+QiOS/realms/qivault/,qivault,Knowledge Realm,realms,TRUE,Folder,QiRealms,Layer 2,
+QiOS/realms/qivault/kb/,kb,Knowledge Base Root,qivault,FALSE,Folder,QiDocs,Layer 3,Holds canonical QiEOS Genesis
+QiOS/realms/qivault/kb/0.00.00-SYS_qios_genesis.md,0.00.00-SYS_qios_genesis.md,Genesis Document,kb,TRUE,File,QiDoc,Layer 4,Canonical QiEOS Genesis
+QiOS/rules/,rules,Governance Logic,QiOS/,TRUE,Folder,QiRules,Layer 1,
+QiOS/rules/layer1_darkmatter.yaml,layer1_darkmatter.yaml,Infrastructure Rules,rules,TRUE,File,QiRules,Layer 1,Config file
+QiOS/rules/layer4_naming.yaml,layer4_naming.yaml,Naming Law Config,rules,TRUE,File,QiRules,Layer 1,Regex patterns
+QiOS/rules/layer6_routing.json,layer6_routing.json,Routing Priors,rules,TRUE,File,QiRules,Layer 1,RAG weights
+QiOS/security/,security,Access Control,QiOS/,TRUE,Folder,QiSecurity,Layer 1,
+QiOS/sites/,sites,Web Portals,QiOS/,TRUE,Folder,QiSites,Layer 2,
+QiOS/supabase/,supabase,Supabase backend configuration,QiOS/,TRUE,Folder,QiData,Layer 1,"""God Table"" store"
+QiOS/system_planner.canvas,system_planner.canvas,Visual Planner,QiOS/,FALSE,File,QiDarkMatter,Layer 1,
+QiOS/templates/,templates,Code Scaffolds,QiOS/,TRUE,Folder,QiTemplates,Layer 2,
+QiOS/tests/,tests,Automated Tests,QiOS/,TRUE,Folder,QiDarkMatter,Layer 1,Needed for stability
+QiOS/tests/integration/,integration,Integration Tests,tests,TRUE,Folder,QiDarkMatter,Layer 1,Test Worker interactions
+QiOS/tests/unit/,unit,Unit Tests,tests,TRUE,Folder,QiDarkMatter,Layer 1,Test Logic/Regex
+QiOS/tools/,tools,Utility Scripts,QiOS/,TRUE,Folder,QiDarkMatter,Layer 1,CLI tools
+QiOS/venv/,venv,Python Virtual Env,QiOS/,TRUE,Folder,QiDarkMatter,Layer 1,
+QiOS/workers/,workers,Autonomous Modules,QiOS/,TRUE,Folder,QiWorkers,Layer 1,
+QiOS/workers/gina_ingest/,gina_ingest,Ingestion Worker,workers,TRUE,Folder,QiWorkers,Layer 1,Handles OCR/PDF text
+QiOS/workers/gina_linter/,gina_linter,Linter Worker,workers,TRUE,Folder,QiWorkers,Layer 1,Enforces naming/meta
+QiOS/workers/gina_orchestrator/,gina_orchestrator,Control Plane,workers,TRUE,Folder,QiWorkers,Layer 1,
+QiOS/workers/gina_router/,gina_router,Semantic Router,workers,TRUE,Folder,QiWorkers,Layer 1,Handles embeddings/routing
+QiOS/workers/qibrain_rag/,qibrain_rag,RAG + vector retrieval worker,workers,FALSE,Folder,QiWorkers,Layer 1,QiBrain semantic memory API
+QiOS/workflows/,workflows,Automation Chains,QiOS/,TRUE,Folder,QiWorkflows,Layer 2,

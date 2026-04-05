@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step Flow | Qially Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+
+<main class="page page--flow py-12">
+  <div class="container mx-auto px-6 max-w-2xl">
+    <!-- Progress Indicator -->
+    <div class="flex gap-2 mb-12">
+        <div class="h-1 flex-1 bg-slate-900 rounded"></div>
+        <div class="h-1 flex-1 bg-slate-200 rounded"></div>
+        <div class="h-1 flex-1 bg-slate-200 rounded"></div>
+    </div>
+
+    <header class="mb-10">
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">Step 1: Preparation</h1>
+      <p class="text-gray-600 text-lg">Gather these items before we begin the intake process.</p>
+    </header>
+
+    <div class="space-y-8">
+      <div class="p-6 bg-slate-50 rounded-xl border border-slate-100">
+        <h2 class="text-lg font-bold mb-4">What you'll need:</h2>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0 w-4 h-4 rounded-full border-2 border-slate-300"></span>
+            <span class="text-gray-700">Proof of business registration (LLC or Corp)</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0 w-4 h-4 rounded-full border-2 border-slate-300"></span>
+            <span class="text-gray-700">Last 3 months of bank statements</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0 w-4 h-4 rounded-full border-2 border-slate-300"></span>
+            <span class="text-gray-700">Contact info for primary point of contact</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="space-y-4">
+        <button class="w-full py-4 bg-slate-900 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition active:scale-95">
+          Continue to Step 2
+        </button>
+        <button class="w-full py-4 bg-white border border-slate-200 text-slate-600 font-medium rounded-xl hover:bg-slate-50 transition">
+          Save progress and exit
+        </button>
+      </div>
+    </div>
+
+    <footer class="mt-20 text-center text-sm text-gray-400">
+      <p>Questions? <a href="#" class="underline">Message Support</a></p>
+    </footer>
+  </div>
+</main>
+
+</body>
+</html>

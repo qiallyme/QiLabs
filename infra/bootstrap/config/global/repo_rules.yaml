@@ -1,0 +1,5 @@
+# MonoRepo and Platform policies
+repository_url: "https://github.com/qiallyme/qione_platform"
+branch_policies:
+  require_signed_commits: true
+  enforce_code_owners: true

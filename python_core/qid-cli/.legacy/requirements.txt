@@ -1,0 +1,2 @@
+python qid.py init
+    *Creates `_qid_registry.json` and `_qid_state.json` in the current folder.*

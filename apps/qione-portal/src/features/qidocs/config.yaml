@@ -1,0 +1,12 @@
+site_title: "QiAlly Knowledge Base"
+branding: "QiAlly"
+internal:
+  base_url: "https://kb.qially.com"
+  output_dir: "dist/kb"
+  content_dir: "content/internal"
+  label: "INTERNAL"
+public:
+  base_url: "https://qially.com/help"
+  output_dir: "dist/help"
+  content_dir: "content/public"
+  label: ""

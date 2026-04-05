@@ -1,0 +1,19 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+pydantic==2.5.0
+lancedb==0.3.0
+httpx==0.25.2
+numpy==1.26.2
+pyarrow==14.0.1
+python-dotenv==1.0.0
+
+# Optional extraction dependencies
+pymupdf==1.23.8
+python-docx==1.1.0
+ebooklib==0.18  # For EPUB export fallback (pandoc preferred but optional)
+
+# Future: local model dependencies
+# ollama (if using Ollama)
+# sentence-transformers (for local embeddings)
+

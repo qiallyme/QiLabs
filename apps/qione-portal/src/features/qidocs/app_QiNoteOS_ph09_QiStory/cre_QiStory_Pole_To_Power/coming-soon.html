@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coming Soon | Paid in Full</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-6">
+  <div class="max-w-xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center">
+    <h1 class="text-4xl font-bold mb-4">Coming Soon</h1>
+    <p class="text-slate-300 mb-6">
+      The book is not for sale yet. Drop your email and you’ll get the launch link the moment it’s live.
+    </p>
+
+    <form class="flex flex-col sm:flex-row gap-3" onsubmit="event.preventDefault(); alert('Thanks — you’re on the list.');">
+      <input class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-slate-100"
+             type="email" required placeholder="you@example.com" />
+      <button class="bg-fuchsia-600 hover:bg-fuchsia-700 font-bold rounded-lg px-6 py-3">
+        Notify Me
+      </button>
+    </form>
+
+    <a class="inline-block mt-6 text-fuchsia-400 hover:text-fuchsia-300" href="/#buy">
+      Back to site
+    </a>
+  </div>
+</body>
+</html>

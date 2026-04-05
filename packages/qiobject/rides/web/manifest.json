@@ -1,0 +1,15 @@
+{
+  "name": "Rideshare Battle Boards",
+  "short_name": "BattleBoards",
+  "start_url": "https://lyft.qially.com",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1042/1042339.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

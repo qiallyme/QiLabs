@@ -1,0 +1,6 @@
+Period,Occupancy Summary,Est Daily kWh (Low),Est Daily kWh (High),Est Monthly kWh (Low),Est Monthly kWh (High),EV Monthly kWh (Low),EV Monthly kWh (High)
+Apr–Sep 2023,"Max roommates, high load",50,90,1500,2700,400,800
+Oct 2023–Mar 2024,"Fewer people, still moderate load",35,60,1050,1800,300,540
+Apr–Oct 2024,"Fewer people, some A/C",28,45,840,1350,240,450
+Nov 2024–May 2025,"Downsizing, minimal cooking",18,30,540,900,150,360
+Jun 2025–Present,"Low load, no washer/dryer, minimal A/C",10,18,300,540,534,534

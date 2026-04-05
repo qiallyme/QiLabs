@@ -1,0 +1,4 @@
+# Node-local embedding generation config
+model: "all-MiniLM-L6-v2"
+device: "cpu" # Set to 'cuda' or 'mps' depending on node hardware
+batch_size: 16

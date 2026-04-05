@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Year-End Tax & Accounting Process | QiAlly</title>
+    <meta
+      name="description"
+      content="Understanding QiAlly's year-end tax and accounting process - from engagement to filing and archiving."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+            colors: { "brand-bg": "#f8fafc" },
+          },
+        },
+      };
+    </script>
+    <style>
+      .blob-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(219, 234, 254, 0.4),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(233, 213, 255, 0.4),
+            transparent 25%
+          );
+        filter: blur(40px);
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+      }
+      .phase-section {
+        scroll-margin-top: 6rem;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased relative">
+    <div class="blob-bg"></div>
+
+    <nav
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+      x-data="{ scrolled: false, mobileMenuOpen: false }"
+      @scroll.window="scrolled = (window.pageYOffset > 20)"
+      :class="{ 'bg-white/70 backdrop-blur-md shadow-sm': scrolled, 'bg-transparent': !scrolled }"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex-shrink-0">
+            <a href="/" class="flex items-center gap-2 group">
+              <div
+                class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:scale-105 transition duration-300"
+              >
+                Q
+              </div>
+              <span
+                class="font-serif text-xl font-bold text-slate-800 tracking-tight group-hover:text-blue-600 transition"
+                >QiAlly</span
+              >
+            </a>
+          </div>
+
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a
+                href="/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Home</a
+              >
+              <a
+                href="/pages/services/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Services</a
+              >
+              <a
+                href="/modules/taxes/"
+                class="text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                >Tax & Accounting</a
+              >
+              <a
+                href="/#contact"
+                class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30"
+                >Start Request</a
+              >
+            </div>
+          </div>
+
+          <div class="-mr-2 flex md:hidden">
+            <button
+              type="button"
+              @click="mobileMenuOpen = !mobileMenuOpen"
+              class="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-blue-600 hover:bg-slate-100 focus:outline-none transition"
+            >
+              <span class="sr-only">Open main menu</span>
+              <i class="fa-solid fa-bars text-xl" x-show="!mobileMenuOpen"></i>
+              <i
+                class="fa-solid fa-xmark text-xl"
+                x-show="mobileMenuOpen"
+                x-cloak
+              ></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full"
+        x-show="mobileMenuOpen"
+        x-transition
+        x-cloak
+      >
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+          <a
+            href="/"
+            class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Home</a
+          >
+          <a
+            href="/modules/taxes/"
+            class="text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Tax & Accounting</a
+          >
+          <a
+            href="/#contact"
+            class="text-blue-600 font-semibold block px-3 py-2 rounded-md text-base"
+            >Start Request &rarr;</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <span
+          class="text-blue-600 font-bold tracking-widest text-xs uppercase mb-4 block"
+          >Client Guide</span
+        >
+        <h1 class="text-4xl md:text-5xl font-serif text-slate-900 mb-6">
+          Year-End Tax & Accounting Process
+        </h1>
+        <p class="text-xl text-slate-500 font-light leading-relaxed">
+          A clear, step-by-step guide to how QiAlly handles your year-end tax
+          and accounting work—from engagement to filing.
+        </p>
+      </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 pb-20">
+      <!-- Quick Navigation -->
+      <div class="glass-panel p-6 rounded-2xl mb-12">
+        <h2 class="font-serif text-xl mb-4 text-slate-900">Quick Navigation</h2>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm"
+        >
+          <a
+            href="#00_phase_sign_engagement"
+            class="text-blue-600 hover:underline"
+            >00. Sign Engagement</a
+          >
+          <a
+            href="#01_phase_confirm_cutoff_date_and_access"
+            class="text-blue-600 hover:underline"
+            >01. Confirm Cutoff & Access</a
+          >
+          <a
+            href="#02_phase_review_trial_balance"
+            class="text-blue-600 hover:underline"
+            >02. Trial Balance Review</a
+          >
+          <a
+            href="#03_phase_post_adjusting_entries"
+            class="text-blue-600 hover:underline"
+            >03. Adjusting Entries</a
+          >
+          <a
+            href="#04_phase_prepare_tax_return"
+            class="text-blue-600 hover:underline"
+            >04. Prepare Tax Return</a
+          >
+          <a
+            href="#05_phase_tax_provision_or_tax_estimate"
+            class="text-blue-600 hover:underline"
+            >05. Tax Provision/Estimate</a
+          >
+          <a
+            href="#06_phase_prepare_financial_statements"
+            class="text-blue-600 hover:underline"
+            >06. Financial Statements</a
+          >
+          <a
+            href="#07_phase_client_review_and_approval"
+            class="text-blue-600 hover:underline"
+            >07. Client Approval</a
+          >
+          <a
+            href="#08_phase_file_tax_return"
+            class="text-blue-600 hover:underline"
+            >08. File Return</a
+          >
+          <a
+            href="#09_phase_confirm_acceptance"
+            class="text-blue-600 hover:underline"
+            >09. Confirm Acceptance</a
+          >
+          <a href="#10_phase_lock_books" class="text-blue-600 hover:underline"
+            >10. Lock Books</a
+          >
+          <a
+            href="#11_phase_archive_year_end_package"
+            class="text-blue-600 hover:underline"
+            >11. Archive Year-End</a
+          >
+        </div>
+      </div>
+
+      <!-- Phase 00 -->
+      <section
+        id="00_phase_sign_engagement"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">
+          00. Sign Engagement
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          Before any work begins, you'll sign an engagement letter that
+          authorizes QiAlly Tax & Accounting to perform year-end and tax
+          services on your behalf. This document outlines the scope of work,
+          responsibilities, and fees.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Review the engagement letter carefully</li>
+              <li>Ask questions if anything is unclear</li>
+              <li>Sign and return the letter (digital signature accepted)</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Prepare and send the engagement letter</li>
+              <li>Explain scope and timeline</li>
+              <li>Confirm receipt and store signed copy</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 01 -->
+      <section
+        id="01_phase_confirm_cutoff_date_and_access"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">
+          01. Confirm Cutoff Date & Access
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          We confirm the accounting period to be included (typically through
+          December 31) and ensure QiAlly has full access to your accounting
+          system, bank records, and supporting documents.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>
+                Grant access to accounting software (QuickBooks, Xero, etc.)
+              </li>
+              <li>Provide bank/credit card statements if needed</li>
+              <li>Confirm the year-end date (usually 12/31)</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Verify access to all necessary systems</li>
+              <li>Document the cutoff date</li>
+              <li>Request any missing credentials or documents</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 02 -->
+      <section
+        id="02_phase_review_trial_balance"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">
+          02. Review Trial Balance
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          We review your trial balance for completeness, classification issues,
+          and obvious anomalies before making any adjustments. This is our first
+          diagnostic step.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Respond to questions about unusual transactions</li>
+              <li>Provide context for large or unexpected balances</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Pull and analyze the trial balance</li>
+              <li>Identify classification errors or missing entries</li>
+              <li>Flag items for follow-up or adjustment</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 03 -->
+      <section
+        id="03_phase_post_adjusting_entries"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">
+          03. Post Adjusting Entries
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          We post required adjusting journal entries to correct classification,
+          timing, or omissions. This ensures your books accurately reflect your
+          financial position.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Review and approve proposed adjustments</li>
+              <li>Provide additional documentation if requested</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Prepare adjusting journal entries</li>
+              <li>Post entries to the accounting system</li>
+              <li>Document rationale for each adjustment</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 04 -->
+      <section
+        id="04_phase_prepare_tax_return"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">
+          04. Prepare Tax Return
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          We prepare your current-year tax return based on finalized books and
+          any additional tax documents you've provided (W-2s, 1099s, K-1s,
+          etc.).
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Provide all tax documents (1099s, receipts, etc.)</li>
+              <li>Answer questions about deductions or credits</li>
+              <li>Confirm personal/business information is current</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Prepare federal and state tax returns</li>
+              <li>Calculate tax liability or refund</li>
+              <li>Identify available deductions and credits</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 05 -->
+      <section
+        id="05_phase_tax_provision_or_tax_estimate"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">
+          05. Tax Provision / Estimate
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          We calculate and record the tax provision or estimate tax liability,
+          depending on your entity type. This ensures your financial statements
+          reflect the expected tax obligation.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Review the estimated tax liability</li>
+              <li>Plan for payment if tax is owed</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Calculate tax provision or estimate</li>
+              <li>Record entry in accounting system</li>
+              <li>Explain methodology and assumptions</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 06 -->
+      <section
+        id="06_phase_prepare_financial_statements"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">
+          06. Prepare Financial Statements
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          We prepare final financial statements (Balance Sheet, Income
+          Statement, Cash Flow Statement) based on the adjusted trial balance.
+          These statements give you a clear picture of your financial health.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Review the financial statements</li>
+              <li>Ask questions about any line items</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Generate Balance Sheet and Income Statement</li>
+              <li>Prepare Cash Flow Statement (if applicable)</li>
+              <li>Format statements for clarity and presentation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 07 -->
+      <section
+        id="07_phase_client_review_and_approval"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">
+          07. Client Review & Approval
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          You review the final financial statements and tax return, and provide
+          approval to proceed with filing. This is your opportunity to ask final
+          questions and confirm accuracy.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Review financials and tax return thoroughly</li>
+              <li>Ask questions or request clarifications</li>
+              <li>Provide written approval to file</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Present final package for review</li>
+              <li>Answer questions and make corrections if needed</li>
+              <li>Obtain formal approval before filing</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 08 -->
+      <section
+        id="08_phase_file_tax_return"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">
+          08. File Tax Return
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          We file the approved tax return with the appropriate taxing
+          authorities (IRS, state, local). This step is handled electronically
+          for speed and accuracy.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Wait for confirmation of filing</li>
+              <li>Arrange payment if tax is owed</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>E-file the tax return</li>
+              <li>Submit to federal, state, and local authorities</li>
+              <li>Provide filing confirmation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 09 -->
+      <section
+        id="09_phase_confirm_acceptance"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">
+          09. Confirm Acceptance
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          We confirm acceptance or receipt by taxing authorities and resolve any
+          rejections if needed. This ensures your return has been successfully
+          processed.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Respond to any requests for additional information</li>
+              <li>Provide corrections if return is rejected</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Monitor acceptance status</li>
+              <li>Resolve rejections or errors</li>
+              <li>Notify you once accepted</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 10 -->
+      <section
+        id="10_phase_lock_books"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">10. Lock Books</h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          We lock the accounting period to prevent further changes after filing.
+          This protects the integrity of your filed tax return and financial
+          statements.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Understand that the period is now closed</li>
+              <li>Contact QiAlly if corrections are needed</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Lock the accounting period in your system</li>
+              <li>Document the lock date</li>
+              <li>Maintain ability to unlock if truly necessary</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phase 11 -->
+      <section
+        id="11_phase_archive_year_end_package"
+        class="glass-panel p-8 rounded-2xl mb-8 phase-section"
+      >
+        <h2 class="font-serif text-2xl text-slate-900 mb-4">
+          11. Archive Year-End Package
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+          We archive final financials, filed returns, and supporting documents
+          for recordkeeping. This ensures you have a complete, organized record
+          for future reference or audits.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-user text-blue-500"></i> What You Need to Do
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Store your copy of the year-end package</li>
+              <li>Keep records for at least 7 years</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-semibold text-slate-900 mb-2 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-briefcase text-green-500"></i> What QiAlly
+              Handles
+            </h3>
+            <ul class="text-sm text-slate-600 space-y-1 ml-6 list-disc">
+              <li>Compile complete year-end package</li>
+              <li>Archive in secure, encrypted storage</li>
+              <li>Provide you with a copy for your records</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Common Questions -->
+      <div class="glass-panel p-8 rounded-2xl mt-12">
+        <h2 class="font-serif text-2xl text-slate-900 mb-6">
+          Common Questions
+        </h2>
+        <div class="space-y-6">
+          <div>
+            <h3 class="font-semibold text-slate-900 mb-2">
+              How long does the entire process take?
+            </h3>
+            <p class="text-sm text-slate-600">
+              Typically 2-6 weeks, depending on the complexity of your books and
+              how quickly you can provide requested information.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-900 mb-2">
+              What if I find an error after filing?
+            </h3>
+            <p class="text-sm text-slate-600">
+              We can file an amended return if necessary. Contact us immediately
+              if you discover an error.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-900 mb-2">
+              Do I need to be involved in every phase?
+            </h3>
+            <p class="text-sm text-slate-600">
+              We handle most of the technical work, but your input is critical
+              during access setup, review, and approval phases.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-900 mb-2">
+              What happens if my return is rejected?
+            </h3>
+            <p class="text-sm text-slate-600">
+              We'll diagnose the issue, make corrections, and refile at no
+              additional charge (assuming the rejection wasn't due to incorrect
+              information you provided).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-slate-900 text-white p-8 rounded-2xl mt-12 text-center">
+        <h2 class="font-serif text-2xl mb-4">Ready to Get Started?</h2>
+        <p class="text-slate-400 mb-6">
+          Let's make this year-end smooth and stress-free.
+        </p>
+        <a
+          href="/#contact"
+          class="inline-block bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-lg font-medium transition shadow-lg"
+          >Start Your Request</a
+        >
+      </div>
+    </main>
+
+    <footer class="bg-slate-50 border-t border-slate-200 pt-12 pb-8 mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <a href="/" class="flex items-center gap-2 mb-4">
+              <div
+                class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-bold text-lg"
+              >
+                Q
+              </div>
+              <span class="font-serif text-xl font-bold text-slate-800"
+                >QiAlly</span
+              >
+            </a>
+            <p class="text-slate-500 text-sm">
+              Corporate-grade precision. Personal delivery.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-serif font-semibold text-slate-900 mb-4">
+              Quick Links
+            </h3>
+            <ul class="space-y-2 text-sm text-slate-500">
+              <li>
+                <a href="/modules/taxes/" class="hover:text-blue-600 transition"
+                  >Tax & Accounting</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/pages/services/"
+                  class="hover:text-blue-600 transition"
+                  >All Services</a
+                >
+              </li>
+              <li>
+                <a href="/#contact" class="hover:text-blue-600 transition"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-serif font-semibold text-slate-900 mb-4">
+              Contact
+            </h3>
+            <ul class="space-y-2 text-sm text-slate-500">
+              <li>
+                <a
+                  href="mailto:cody@qially.com"
+                  class="hover:text-blue-600 transition"
+                  >cody@qially.com</a
+                >
+              </li>
+              <li>
+                <a
+                  href="tel:+13176433489"
+                  class="hover:text-blue-600 transition"
+                  >+1 (317) 643-3489</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="pt-8 border-t border-slate-200 text-center text-xs text-slate-400"
+        >
+          © 2026 QiAlly LLC. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

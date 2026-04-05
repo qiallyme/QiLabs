@@ -1,0 +1,28 @@
+{{ template "header.html" . }}
+
+<!-- Email Content -->
+<div class="content">
+  <h1>Confirm Your Email Change</h1>
+  <p>Hello,</p>
+  <p>
+    This is a confirmation that you've requested a change to the email address
+    for your QiAlly account.
+  </p>
+  <div class="button-container">
+    <a href="{{ .ConfirmationURL }}" class="button"
+      >Confirm New Email Address</a
+    >
+  </div>
+  <p>
+    If you did not make this change, please contact our support team immediately
+    to secure your account.
+  </p>
+</div>
+
+<!-- Signature -->
+<div class="signature">
+  <p>Best regards,</p>
+  <p><strong>The QiAlly Team</strong></p>
+</div>
+
+{{ template "footer.html" . }}

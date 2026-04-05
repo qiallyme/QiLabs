@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Tax Return is Accepted!</title>
+    <style>
+        /* Base resets for email/web */
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        body { margin: 0; padding: 0; background-color: #F4F5F7; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+        /* Main Container */
+        .wrapper { width: 100%; background-color: #F4F5F7; padding: 40px 10px; box-sizing: border-box; }
+        .email-container { max-width: 600px; margin: 0 auto; background-color: #FFFFFF; border-radius: 32px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.08); position: relative; }
+
+        /* Bubbly Header */
+        .header {
+            background-color: #00D632; /* Cash App Green */
+            background-image: linear-gradient(135deg, #00D632 0%, #00FFAA 100%);
+            padding: 60px 30px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Floating Noodles & Shapes (SVGs) */
+        .shape { position: absolute; z-index: 1; }
+        .noodle-1 { top: -10px; left: -20px; width: 140px; transform: rotate(15deg); }
+        .noodle-2 { bottom: 20px; right: -30px; width: 160px; transform: rotate(-10deg); }
+        .pill-shape { top: 40px; right: 20px; width: 60px; }
+        .star-shape { bottom: 40px; left: 30px; width: 40px; }
+
+        .header-content { position: relative; z-index: 2; }
+        .header h1 { margin: 0; color: #111111; font-size: 42px; font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
+        .header p { margin: 15px 0 0; color: #111111; font-size: 20px; font-weight: 500; }
+
+        /* Body Content */
+        .content-body {
+            background-color: #FFFFFF;
+            padding: 40px 30px;
+            border-radius: 32px 32px 0 0;
+            margin-top: -30px; /* Pulls content up over the header */
+            position: relative;
+            z-index: 3;
+        }
+
+        .greeting { font-size: 22px; font-weight: 700; color: #111111; margin-top: 0; }
+        .text { font-size: 16px; line-height: 1.6; color: #4B5563; margin-bottom: 24px; }
+        .text strong { color: #111111; }
+
+        /* Next Steps Box */
+        .action-box {
+            background-color: #F8FAFC;
+            border: 2px solid #E2E8F0;
+            border-radius: 20px;
+            padding: 24px;
+            margin: 30px 0;
+        }
+        .action-box h3 { margin: 0 0 12px; font-size: 18px; color: #111111; }
+        .action-list { margin: 0; padding-left: 20px; color: #4B5563; font-size: 15px; line-height: 1.6; }
+        .action-list li { margin-bottom: 8px; }
+
+        /* Safety Net Section */
+        .safety-net {
+            background-color: #111111;
+            color: #FFFFFF;
+            border-radius: 24px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        .safety-net h2 { margin: 0 0 15px; font-size: 24px; color: #00FFAA; letter-spacing: -0.5px; }
+        .safety-net p { color: #A1A1AA; font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+
+        /* Service Pills */
+        .service-pill {
+            display: inline-block;
+            background-color: #27272A;
+            color: #FFFFFF;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 8px 10px 0;
+            border: 1px solid #3F3F46;
+        }
+
+        /* Footer */
+        .footer { text-align: center; padding: 40px 30px; color: #9CA3AF; font-size: 14px; }
+
+        /* Mobile adjustments */
+        @media only screen and (max-width: 480px) {
+            .header { padding: 50px 20px 70px; }
+            .header h1 { font-size: 36px; }
+            .content-body { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="email-container">
+
+        <!-- Bubbly Header -->
+        <div class="header">
+            <!-- Noodle 1 (Top Left) -->
+            <svg class="shape noodle-1" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M-10,50 C40,10 60,90 110,50 C160,10 190,70 220,40" stroke="#009924" stroke-width="24" stroke-linecap="round"/>
+            </svg>
+
+            <!-- Noodle 2 (Bottom Right) -->
+            <svg class="shape noodle-2" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,80 C50,120 80,20 130,60 C180,100 210,30 230,70" stroke="#00FF7F" stroke-width="20" stroke-linecap="round"/>
+            </svg>
+
+            <!-- Pill Shape -->
+            <svg class="shape pill-shape" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="50" rx="25" fill="#009924" opacity="0.6"/>
+            </svg>
+
+            <!-- Star Shape -->
+            <svg class="shape star-shape" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25 0L30.5 16.5H48L34 27L39.5 43.5L25 33L10.5 43.5L16 27L2 16.5H19.5L25 0Z" fill="#00FF7F"/>
+            </svg>
+
+            <div class="header-content">
+                <h1>¡VICTORIA! 🎉</h1>
+                <p>Your tax return is officially accepted.</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-body">
+            <h2 class="greeting">¡Hola [Client Name]!</h2>
+
+            <p class="text">Take a deep breath and do a little victory dance. ¡Tu declaración de impuestos de [Year] ha sido oficialmente aceptada por el IRS!</p>
+
+            <p class="text"><strong>¿Qué significa esto?</strong> It means the heavy lifting is done. We’ve crossed the finish line, y hemos terminado con tu preparación de impuestos por esta temporada.</p>
+
+            <div class="action-box">
+                <h3>👇 Tu próximo paso / Choose your path:</h3>
+                <ul class="action-list">
+                    <li><strong>¿Esperas un reembolso (Refund)?</strong> The waiting game begins! You can track its status 24/7 using the IRS "Where's My Refund?" tool online.</li>
+                    <li><strong>¿Debes al IRS (Balance Due)?</strong> Ensure your payment is submitted by <strong>[Deadline Date]</strong> para evitar multas (penalties). Let me know if you need the payment link again.</li>
+                </ul>
+            </div>
+
+            <!-- Upsell / Safety Net -->
+            <div class="safety-net">
+                <h2>The "Por Si Acaso" Safety Net</h2>
+                <p>Usually, this is where we part ways until next year. Pero si el IRS o el estado decide enviarte una carta confusa por correo... <strong>don't panic (¡tranquilo/a!).</strong></p>
+
+                <p>Even though our filing engagement is closed, I offer <strong>Post-Filing Support Services</strong> para ayudarte con cualquier problema:</p>
+
+                <div>
+                    <span class="service-pill">✉️ Notice Resolution (Cartas)</span>
+                    <span class="service-pill">🛡️ Audit Defense (Auditorías)</span>
+                    <span class="service-pill">💳 Payment Plans (Planes de Pago)</span>
+                </div>
+
+                <p style="margin-top: 20px; font-size: 14px; border-top: 1px solid #3F3F46; padding-top: 15px;">
+                    If you receive <em>anything</em> in the mail, just snap a picture of it and send it my way. Lo revisamos y we’ll figure out the next steps together.
+                </p>
+            </div>
+
+            <p class="text" style="margin-top: 30px;">
+                Thank you so much for trusting me con tus impuestos este año. Fue un placer trabajar contigo. Enjoy the rest of your year!
+            </p>
+
+            <p class="text">
+                Un abrazo / Best,<br>
+                <strong>[Your Name]</strong><br>
+                [Your Title/Company]
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            &copy; 2024 [Your Company Name]. Todos los derechos reservados.<br>
+            [Your Address / Contact Info]
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

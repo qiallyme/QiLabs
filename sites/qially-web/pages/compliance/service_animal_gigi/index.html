@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GIGI | Psychiatric Service Dog Portal</title>
+    <style>
+      :root {
+        --primary: #1e3a8a;
+        --secondary: #3b82f6;
+        --accent: #eff6ff;
+        --bg: #f8fafc;
+        --text: #0f172a;
+        --glass: rgba(255, 255, 255, 0.8);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          system-ui,
+          sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      header h1 {
+        font-size: 3.5rem;
+        margin: 0;
+        letter-spacing: -1px;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      header p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        margin-top: 1rem;
+        animation: fadeIn 1s ease-out;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: -3rem auto 4rem;
+        padding: 0 1rem;
+        position: relative;
+        z-index: 10;
+      }
+
+      .hero-img {
+        width: 100%;
+        max-width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 8px solid white;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        margin: 0 auto 2rem;
+        display: block;
+        background-color: #ddd;
+      }
+
+      .card {
+        background: var(--glass);
+        backdrop-filter: blur(10px);
+        border-radius: 1.5rem;
+        padding: 2.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        animation: fadeIn 1.2s ease-out;
+      }
+
+      h2 {
+        color: var(--primary);
+        font-size: 1.75rem;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 0.5rem;
+        margin-top: 0;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .badge {
+        display: inline-block;
+        background: var(--accent);
+        color: var(--primary);
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid #e2e8f0;
+        transition: transform 0.2s;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .legal-box {
+        background: #1e293b;
+        color: #cbd5e1;
+        padding: 2rem;
+        border-radius: 1rem;
+        margin-top: 2rem;
+      }
+
+      .legal-box h3 {
+        color: white;
+        margin-top: 0;
+      }
+
+      .btn {
+        display: inline-block;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        transition: background 0.2s;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn:hover {
+        background: var(--secondary);
+      }
+
+      .verification {
+        background: #fff;
+        border-left: 5px solid var(--secondary);
+        padding: 1.5rem;
+        margin: 1rem 0;
+        border-radius: 0 1rem 1rem 0;
+      }
+
+      footer {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: #64748b;
+        font-size: 0.875rem;
+      }
+
+      .progress-bar {
+        height: 12px;
+        background: #e2e8f0;
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 1rem 0;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--secondary);
+        width: 45%; /* Manual Adjustment */
+        transition: width 1s ease-in-out;
+      }
+    </style>
+    <style>
+      /* ... (previous styles) ... */
+
+      .hero-wrapper {
+        position: relative;
+        width: 280px;
+        height: 280px;
+        margin: 0 auto 3rem;
+        z-index: 10;
+      }
+
+      .hero-circle {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        /* 3D sphere effect background */
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.9),
+          rgba(239, 246, 255, 1)
+        );
+        border: 8px solid white;
+        box-shadow:
+          0 20px 40px -5px rgba(0, 0, 0, 0.2),
+          inset 0 -20px 30px rgba(30, 58, 138, 0.1);
+      }
+
+      .hero-img-3d {
+        position: relative;
+        width: 100%; /* Match circle width exactly so curves align */
+        display: block;
+        margin: -20% auto 0; /* Pull up to pop top, keeping centered */
+
+        /* The "Portal" Clip: Flat top (pop-out), Rounded bottom (contained) */
+        border-radius: 0 0 50% 50%;
+
+        /* Smooth feathering at the very bottom edge to blend if needed */
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          black 90%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+
+        filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.2));
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 2;
+      }
+
+      .hero-wrapper:hover .hero-img-3d {
+        transform: scale(1.05) translateY(-5px);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>GIGI</h1>
+      <p>Certified Psychiatric Service Dog in Training</p>
+    </header>
+
+    <div class="container">
+      <div class="hero-wrapper">
+        <div class="hero-circle"></div>
+        <img
+          src="./assets/gigi_service_dog_hero.png"
+          alt="Gigi Service Dog"
+          class="hero-img-3d"
+        />
+      </div>
+
+      <div class="card">
+        <span class="badge">Official Verification</span>
+        <h2>Public Access Quick-Reference</h2>
+        <p>
+          Under the ADA, business owners may ask two questions. Here are Gigi's
+          verified responses:
+        </p>
+
+        <div class="verification">
+          <strong
+            >1. Is the dog a service animal required because of a
+            disability?</strong
+          ><br />
+          <em>Response: "Yes."</em>
+        </div>
+
+        <div class="verification">
+          <strong
+            >2. What work or task has the dog been trained to perform?</strong
+          ><br />
+          <em
+            >Response: "She is trained to alert to medical episodes and provide
+            deep pressure therapy."</em
+          >
+        </div>
+
+        <p style="font-size: 0.85rem; color: #64748b; margin-top: 1rem">
+          *Note: Handler is not required to disclose specific diagnosis or
+          demonstrate tasks.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Training Progress</h2>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 100%"></div>
+        </div>
+        <p>
+          <strong>Current Phase:</strong> GRADUATED - Ongoing Reinforcement &
+          Hardening
+        </p>
+
+        <div class="grid">
+          <div class="stat-card">
+            <strong>Markers & Basics</strong>
+            <p>Status: Complete ✅</p>
+          </div>
+          <div class="stat-card">
+            <strong>Foundation Skills</strong>
+            <p>Status: Complete ✅</p>
+          </div>
+          <div class="stat-card">
+            <strong>Medical Alerts</strong>
+            <p>Status: Complete ✅</p>
+          </div>
+          <div class="stat-card">
+            <strong>Mitigation (DPT)</strong>
+            <p>Status: Complete ✅</p>
+          </div>
+        </div>
+
+        <div
+          style="
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 1rem;
+          "
+        >
+          <h3 style="color: var(--primary); font-size: 1.25rem">
+            Ongoing Reinforcement & Hardening
+          </h3>
+          <p style="font-size: 0.9rem">
+            Gigi has completed all primary modules with Zaitullah Khebarkhil.
+            The following hardening drills are practiced weekly:
+          </p>
+          <ul style="font-size: 0.9rem; color: var(--text)">
+            <li>
+              <strong>Public Access Proofing:</strong> High-distraction exposure
+              (malls/food courts) to ensure "invisible dog" focus.
+            </li>
+            <li>
+              <strong>Extended DPT:</strong> Increasing pressure duration (10+
+              mins) to simulate full episode management.
+            </li>
+            <li>
+              <strong>Emergency Off-Leash Recall:</strong> Immediate return
+              drill in enclosed safe environments.
+            </li>
+            <li>
+              <strong>Handler-Down Simulation:</strong> Alerting and staying
+              close during simulated incapacitation.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Core Specialized Tasks</h2>
+        <ul>
+          <li>
+            <strong>Medical Alert (Nudge):</strong> Snaps handler out of
+            pre-panic states (bouncing leg/face rubbing).
+          </li>
+          <li>
+            <strong>Deep Pressure Therapy (DPT):</strong> Lowers heart rate and
+            regulates breathing during active episodes.
+          </li>
+          <li>
+            <strong>Blocking:</strong> Creates physical space in crowded
+            environments to prevent sensory overload.
+          </li>
+          <li>
+            <strong>Grounding:</strong> Physical stimulation (Visit/Touch) to
+            break dissociative states.
+          </li>
+        </ul>
+      </div>
+
+      <div class="legal-box">
+        <h3>Jurisdictional Protections</h3>
+        <p><strong>Handler:</strong> Cody Rice-Velasquez</p>
+        <p>
+          <strong>Status:</strong> Supported by a documented history of
+          treatment for qualifying disabilities from multiple physicians and
+          psychiatrists.
+        </p>
+        <p>
+          <strong>ADA (Public Access):</strong> Protected under Federal law for
+          all public accommodations including restaurants, stores, and aircraft.
+        </p>
+        <p>
+          <strong>FHA (Housing):</strong> Exempt from all "no-pet" policies, pet
+          deposits, and breed restrictions. Protected as medical equipment.
+        </p>
+        <div style="margin-top: 1.5rem">
+          <a
+            href="Gigi_Documentation_Pack_Print.html"
+            class="btn"
+            target="_blank"
+            >View Docs (Print to PDF)</a
+          >
+          <a
+            href="Gigi_Certification_Statement.html"
+            class="btn"
+            style="background: transparent; border: 1px solid white"
+            target="_blank"
+            >Certification (Print to PDF)</a
+          >
+          <a
+            href="Gigi_Services_Dog_Training_Manual_Print.html"
+            class="btn"
+            style="background: transparent; border: 1px solid white"
+            target="_blank"
+            >View Manual (Print to PDF)</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 | Dedicated to the Safety & Support of Handler & Gigi</p>
+      <p style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.7">
+        This portal is maintained as part of the CASE_FCFCU Litigation & Civil
+        Rights Record.
+      </p>
+      <!-- Discreet Nav Trigger -->
+      <button
+        id="secret-nav-trigger"
+        style="
+          background: none;
+          border: none;
+          color: var(--text);
+          opacity: 0.1;
+          font-size: 1.5rem;
+          cursor: pointer;
+          padding: 0.5rem;
+          transition: opacity 0.3s;
+        "
+        title="Site Navigation"
+      >
+        &bull;
+      </button>
+    </footer>
+
+    <!-- Hidden Navigation Overlay -->
+    <div
+      id="secret-nav-overlay"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 9999;
+        overflow-y: auto;
+        padding: 2rem;
+        box-sizing: border-box;
+      "
+    >
+      <button
+        id="secret-nav-close"
+        style="
+          position: absolute;
+          top: 2rem;
+          right: 2rem;
+          background: none;
+          border: none;
+          color: white;
+          font-size: 2rem;
+          cursor: pointer;
+        "
+      >
+        &times;
+      </button>
+      <div style="max-width: 800px; margin: 4rem auto; color: white">
+        <h2
+          style="
+            color: var(--secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+          "
+        >
+          Site Navigation
+        </h2>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+          "
+        >
+          <div>
+            <h3 style="color: var(--accent); margin-bottom: 1rem">Core</h3>
+            <ul style="list-style: none; padding: 0; margin: 0">
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >Home</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/compliance/service_animal_gigi/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >Gigi Portal</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 style="color: var(--accent); margin-bottom: 1rem">Business</h3>
+            <ul style="list-style: none; padding: 0; margin: 0">
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/business_tools/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >Tools</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/budgets/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >Budgets</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/services/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >Services</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 style="color: var(--accent); margin-bottom: 1rem">
+              Legal & Compliance
+            </h3>
+            <ul style="list-style: none; padding: 0; margin: 0">
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/compliance/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >Compliance Hub</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/letters/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >Letters</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/msa/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >MSA</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/privacy/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >Privacy</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/terms/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >Terms</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 style="color: var(--accent); margin-bottom: 1rem">Creative</h3>
+            <ul style="list-style: none; padding: 0; margin: 0">
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/showcases/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >Showcases</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/portfolio/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >Portfolio</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="/pages/ecard/"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                  "
+                  >E-Card</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Secret Nav Logic
+      const trigger = document.getElementById("secret-nav-trigger");
+      const overlay = document.getElementById("secret-nav-overlay");
+      const close = document.getElementById("secret-nav-close");
+
+      trigger.addEventListener("click", () => {
+        overlay.style.display = "block";
+        document.body.style.overflow = "hidden"; // Prevent background scrolling
+      });
+
+      close.addEventListener("click", () => {
+        overlay.style.display = "none";
+        document.body.style.overflow = "";
+      });
+
+      // Close on clicking outside the content (optional, but nice)
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+          overlay.style.display = "none";
+          document.body.style.overflow = "";
+        }
+      });
+
+      // Hover effect for the trigger to make it slightly more visible when interacting
+      trigger.addEventListener(
+        "mouseenter",
+        () => (trigger.style.opacity = "1"),
+      );
+      trigger.addEventListener(
+        "mouseleave",
+        () => (trigger.style.opacity = "0.1"),
+      );
+    </script>
+  </body>
+</html>

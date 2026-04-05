@@ -1,0 +1,64 @@
+# Local environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# OS specific files
+.DS_Store
+Thumbs.db
+.directory
+
+# Data - Ignore runtime document data, but keep folder structure
+data/00_INBOX/*
+!data/00_INBOX/.gitkeep
+data/01_STAGED/*
+!data/01_STAGED/.gitkeep
+data/10_REVIEW/*
+!data/10_REVIEW/.gitkeep
+data/20_QUARANTINE/*
+!data/20_QUARANTINE/.gitkeep
+data/30_EXPORTS/*
+!data/30_EXPORTS/.gitkeep
+
+# Live manifests are non-authoritative for repo version control
+data/90_MANIFESTS/*.csv
+data/90_MANIFESTS/*.jsonl
+# Also ignore handoff logs
+data/90_MANIFESTS/handoff_log.csv
+!data/90_MANIFESTS/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary scratch
+dev/scratch/*
+!dev/scratch/.gitkeep

@@ -1,0 +1,6 @@
+# Naming rules for ingested files
+prefix_format: "Q{hex:6}"
+domain_normalization:
+  lowercase: true
+  strip_spaces: true
+file_naming_pattern: "{domain}_{name}_{prefix}.{ext}"

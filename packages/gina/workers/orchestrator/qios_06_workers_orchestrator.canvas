@@ -1,0 +1,20 @@
+{
+	"nodes":[
+		{"id":"724d76ee9f32b109","x":-320,"y":-320,"width":700,"height":440,"color":"5","type":"group","label":"Workers"},
+		{"id":"9e5c6ed7be493000","x":-300,"y":-210,"width":250,"height":60,"type":"text","text":"Semantic Search Workers"},
+		{"id":"1112ba9f5db5a843","x":-300,"y":-40,"width":250,"height":60,"type":"text","text":"Stream/Voice Workers"},
+		{"id":"0c23c61ddacd20fc","x":-300,"y":40,"width":250,"height":60,"type":"text","text":"Secret Workers"},
+		{"id":"7591a77e6f76a462","x":-300,"y":-300,"width":250,"height":60,"type":"text","text":"Add Workers for SupaBase"},
+		{"id":"126d1203f00a57a6","x":-740,"y":-190,"width":240,"height":180,"type":"file","file":"rules/qios_05_Cursor_and_naming.canvas"},
+		{"id":"d9d39fe2d861c2f7","x":-300,"y":-130,"width":250,"height":60,"type":"text","text":"Storage Workers"},
+		{"id":"eaab35ae7dfa5123","x":-20,"y":-300,"width":365,"height":400,"type":"text","text":"1. Navigate to orchestrator directory\ncd C:\\QiOS_v1\\workers\\orchestrator\n2. Verify Cloudflare account\nnpx wrangler whoami\nShould show: qios_gina account\n3. Set Supabase secrets\nnpx wrangler secret put SUPABASE_URL\n# Paste your Supabase project URL when prompted\nnpx wrangler secret put SUPABASE_SERVICE_ROLE_KEY\n# Paste your Supabase service_role key when prompted\n4. Deploy the worker\nnpx wrangler deploy\n5. Test endpoints\nAfter deployment, test the status endpoint:\n# Get your worker URL from the deploy output, then:\ncurl https://gina-orchestrator.YOUR_SUBDOMAIN.workers.dev/orchestrator/status\nOr visit in browser:\n- https://gina-orchestrator.YOUR_SUBDOMAIN.workers.dev/orchestrator/status\n6. Verify in Cloudflare Dashboard\n- Go to Workers & Pages → gina-orchestrator\n- Check logs and metrics\n---\nFixed: Durable Object export\nIssue: OrchestratorState wasn't exported from the entrypoint.\nFix: Added export in worker_orchestrator.ts:\nimport { OrchestratorState } from \"./OrchestratorState\";\nexport { OrchestratorState };\nDeploy again; it should work now."}
+	],
+	"edges":[
+		{"id":"b07a6428b93c483e","fromNode":"126d1203f00a57a6","fromSide":"right","toNode":"724d76ee9f32b109","toSide":"left","color":"6"},
+		{"id":"ae12cff90ba1e4ff","fromNode":"724d76ee9f32b109","fromSide":"left","toNode":"9e5c6ed7be493000","toSide":"left","color":"6"},
+		{"id":"b28117b00190052d","fromNode":"724d76ee9f32b109","fromSide":"left","toNode":"d9d39fe2d861c2f7","toSide":"left","color":"6"},
+		{"id":"d11ca1a72045e6c3","fromNode":"724d76ee9f32b109","fromSide":"left","toNode":"1112ba9f5db5a843","toSide":"left","color":"6"},
+		{"id":"2a2c28ddea2dcee5","fromNode":"724d76ee9f32b109","fromSide":"left","toNode":"0c23c61ddacd20fc","toSide":"left","color":"6"},
+		{"id":"1954ac5a750c53c7","fromNode":"724d76ee9f32b109","fromSide":"left","toNode":"7591a77e6f76a462","toSide":"left","color":"6"}
+	]
+}

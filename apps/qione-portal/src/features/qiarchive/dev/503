@@ -1,0 +1,154 @@
+Yes — that’s a real issue, and you’re right to stop here.
+
+If the intended contract is:
+
+drop file → assign QDOC → rename canonically → upload → move
+
+then the local file in Drive should also be renamed.
+
+Right now your system is doing:
+
+drop file → assign QDOC → upload with renamed title in Paperless → move original filename in Drive
+
+That means the local archive and Paperless are drifting, which is bad.
+
+Why this matters
+
+If Drive keeps:
+
+invoice_march.pdf
+
+but Paperless shows:
+
+QDOC-2026-000021__invoice_march.pdf
+
+then you lose:
+	•	one source of truth for filename identity
+	•	easy cross-reference
+	•	predictable archive naming
+	•	dedupe/debug clarity
+
+That defeats half the point of QiArchive.
+
+What should happen
+
+The pipeline should rename the file before or during move into its final folder.
+
+So if inbox gets:
+
+invoice_march.pdf
+
+and assigned ID is:
+
+QDOC-2026-000021
+
+then the file moved to archive should become something like:
+
+QDOC-2026-000021__invoice_march.pdf
+
+or whatever your exact naming contract is.
+
+Likely cause
+
+Your pipeline is probably:
+	•	generating the canonical name
+	•	using that only for Paperless metadata/upload
+	•	but routing the physical file with the original basename
+
+So the bug is probably in:
+	•	pipeline.py
+	•	file_router.py
+
+Not in Paperless.
+
+Correct flow
+
+It should be:
+	1.	detect file
+	2.	hash file
+	3.	allocate QDOC
+	4.	build canonical filename
+	5.	upload to Paperless
+	6.	move local file using canonical filename
+	7.	log final canonical path
+
+Decision you need to lock
+
+You need one official naming format for local Drive.
+
+Probably one of these:
+
+Option A
+
+QDOC-2026-000021__invoice_march.pdf
+
+Option B
+
+QDOC-2026-000021 - invoice_march.pdf
+
+Option C
+
+QDOC-2026-000021__invoice_march__undated.pdf
+
+You need the same format:
+	•	in Drive
+	•	in logs
+	•	in manifest
+	•	ideally in Paperless title or original filename handling
+
+My vote: use the double underscore version because it’s machine-clean.
+
+What to tell the IDE
+
+Paste this:
+
+We found a pipeline inconsistency.
+
+Problem:
+The local agent is assigning a QDOC ID and Paperless is receiving the ID-prefixed name, but the physical file moved in Google Drive keeps its original filename.
+
+That is wrong.
+The local archive must also use the canonical QiArchive filename.
+
+Fix the pipeline so that after QDOC assignment, the file is physically renamed before or during move into its final destination folder.
+
+Requirements:
+1. Define a single canonical local filename format and use it everywhere.
+   Preferred format:
+   QDOC-YYYY-NNNNNN__slugified_original_filename.ext
+
+2. Update the pipeline so the moved local file uses the canonical filename, not the original filename.
+
+3. Ensure the following all agree:
+   - local Drive filename
+   - manifest record
+   - log output
+   - Paperless upload metadata/title where applicable
+
+4. Add logging that clearly shows:
+   - original filename
+   - assigned QDOC ID
+   - canonical filename
+   - final destination path
+
+5. Do not only rename in Paperless.
+   The physical file in Drive must also be renamed.
+
+6. Return:
+   - which file(s) were updated
+   - the exact canonical naming rule now in use
+   - one example before/after path
+
+My read
+
+This is not a small cosmetic thing.
+This is a contract breach in the pipeline.
+
+You were right to catch it now, because if you let this keep running you’ll end up with:
+	•	Drive using one naming system
+	•	Paperless using another
+	•	manifests trying to reconcile both
+
+That turns into garbage fast.
+
+So yes: the agent should absolutely be renaming the local file too.

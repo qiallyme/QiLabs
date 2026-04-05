@@ -1,0 +1,4 @@
+# Baseline device restrictions
+enforce_heartbeats: true
+heartbeat_interval_seconds: 60
+auto_update: false

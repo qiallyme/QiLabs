@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+psycopg2-binary
+python-dotenv
+supabase
+openai>=1.0.0
+watchdog>=3.0.0
+pyyaml>=6.0.0

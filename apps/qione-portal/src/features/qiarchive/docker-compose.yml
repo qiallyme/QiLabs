@@ -1,0 +1,35 @@
+services:
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: paperless
+    restart: always
+    depends_on:
+      - db
+      - broker
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/paperless/data:/usr/src/paperless/data
+      - ./data/paperless/media:/usr/src/paperless/media
+      - ./data/paperless/consume:/usr/src/paperless/consume
+      - ./data/30_EXPORTS:/usr/src/paperless/export
+    env_file:
+      - .env
+      - ./config/paperless.env
+    environment:
+      - PAPERLESS_REDIS=redis://broker:6379
+      - PAPERLESS_DBHOST=db
+
+  db:
+    image: postgres:15
+    restart: always
+    volumes:
+      - ./data/paperless/pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=paperless
+      - POSTGRES_USER=paperless
+      - POSTGRES_PASSWORD=paperless
+
+  broker:
+    image: redis:7
+    restart: always

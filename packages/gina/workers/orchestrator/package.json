@@ -1,0 +1,18 @@
+{
+  "name": "gina-orchestrator",
+  "version": "0.1.0",
+  "description": "GINA Orchestrator Worker - Single control plane for all QiOS workers",
+  "main": "worker_orchestrator.ts",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.84.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231121.0",
+    "typescript": "^5.3.0",
+    "wrangler": "^4.50.0"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "lina-lumara-ai",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "react-force-graph-2d": "^1.25.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.70",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.8"
+  }
+}

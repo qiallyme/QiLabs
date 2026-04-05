@@ -1,0 +1,128 @@
+﻿Category,Feature,"BASIC
+ ($99)","TAX+ 
+($199)",GROWTH ($399),UNLIMITED ($999),Limits,Overage Fee,Order
+BOOKS,Monthly Bookkeeping,1,1,1,UNLIMITED,N/A,,100
+BOOKS,Transaction Categorization (Monthly),1,1,1,UNLIMITED,200/300/500/Unltd,_($* 0.49_),101
+BOOKS,Reconciliation of Accounts (Bank/Credit),1,1,1,UNLIMITED,3/7/10/Unltd,_($* 15.00_),102
+BOOKS,Profit & Loss Statements,1,1,1,UNLIMITED,Monthly,_($* 5.00_),103
+BOOKS,Balance Sheet,1,1,1,UNLIMITED,Monthly,_($* 5.00_),104
+BOOKS,Year-End Tax Summary,1,1,1,UNLIMITED,Yearly,_($* 50.00_),105
+BOOKS,Receipt Management & Matching,ADD-ON,1,1,UNLIMITED,50/150/500/Unltd,_($* 0.49_),106
+BOOKS,Quarterly Financial Review,ADD-ON,1,1,UNLIMITED,,_($* 50.00_),107
+SITE,Website Edits,ADD-ON,ADD-ON,1,UNLIMITED,Up to 1 hr,$30 per 30 min,132
+SITE,Website Maintenance,ADD-ON,ADD-ON,1,UNLIMITED,See WebCare plans,,133
+SITE,SEO Checks,ADD-ON,ADD-ON,1,UNLIMITED,Monthly for Growth+,,134
+SITE,SEO Research,ADD-ON,ADD-ON,1,UNLIMITED,,Included Growth+,135
+SITE,Branding Adjustments,ADD-ON,ADD-ON,1,UNLIMITED,,$20–50 per revision,136
+SITE,Analytics Monitoring,ADD-ON,ADD-ON,1,UNLIMITED,,Included Growth+,137
+SITE,Landing Page Updates,ADD-ON,ADD-ON,1,UNLIMITED,Up to 2/month,$30/extra,138
+OPS,Monthly Strategy Session,ADD-ON,ADD-ON,1,UNLIMITED,1 included in Growth+; monthly in Unlimited,$40 extra,143
+OPS,Operations Workflow Mapping,ADD-ON,ADD-ON,1,UNLIMITED,,Billable for Basic/TAX+,144
+OPS,Process Optimization,ADD-ON,ADD-ON,1,UNLIMITED,,,145
+OPS,Quarterly Business Health Review,ADD-ON,ADD-ON,1,UNLIMITED,,,146
+OPS,Vendor/Software Recommendations,ADD-ON,ADD-ON,1,UNLIMITED,,,147
+OPS,Admin/Backoffice Systems Support,ADD-ON,ADD-ON,1,UNLIMITED,,,148
+OPS,Expense Controls & Budgeting,ADD-ON,ADD-ON,1,UNLIMITED,,,149
+OPS,Payroll Guidance,ADD-ON,ADD-ON,1,UNLIMITED,,Not payroll processing,150
+OPS,General Business Advisory,ADD-ON,ADD-ON,1,UNLIMITED,,Included in Growth+,151
+OPS,Operations Planning,ADD-ON,ADD-ON,1,UNLIMITED,,,152
+OPS,Financial Coaching,ADD-ON,ADD-ON,1,UNLIMITED,,$40 extra for Basic/TAX+,153
+OPS,Recruiting Workflow Setup,ADD-ON,ADD-ON,1,UNLIMITED,,Custom,154
+OPS,Vendor Sourcing,ADD-ON,ADD-ON,1,UNLIMITED,,,155
+OPS,Custom Agreements Drafting,ADD-ON,ADD-ON,1,UNLIMITED,,$75 per contract,156
+SITE,Website Rebuild,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$499–1499 one-time,161
+SITE,Cloudflare Optimization,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,Usually $99–299 one-time,162
+OPS,Weekly Strategy Calls,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,Unlimited,,166
+IMMIGRATION,Support Letters (I-864 etc.),ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,Add-on for other tiers,167
+IMMIGRATION,Case Strategy Sessions,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,Weekly in Unlimited,Monthly retainer otherwise,168
+IMMIGRATION,Support Letter: I-864 Affidavit,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,Available as add-on,$75 each,169
+IMMIGRATION,Support Letter: Employment Verification,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$49 each,170
+IMMIGRATION,Support Letter: Relationship/Intent,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$49 each,171
+IMMIGRATION,FOIA Requests (DHS/USCIS),ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$99 each for other tiers,172
+IMMIGRATION,Case Timeline Creation,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$75_),173
+IMMIGRATION,Affidavit Drafting (3rd Party),ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$99 each,174
+IMMIGRATION,Translations (English/Pashto/Spanish),ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$15/page,175,
+IMMIGRATION,I-589 Asylum Prep,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,Unlimited tier only,$399–899 project fee,176,
+IMMIGRATION,I-130 Family Petition Prep,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$349 add-on,177,
+IMMIGRATION,I-765 Work Permit Prep,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$125 add-on,178,
+IMMIGRATION,I-485 Adjustment Prep,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$499 add-on,179,
+IMMIGRATION,I-360 SIV Prep,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$799 project,180,
+IMMIGRATION,DS-260 Immigrant Visa Prep,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$249_),181,
+IMMIGRATION,Notarized Statements,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$10–25,182,
+IMMIGRATION,Case Check-Ins,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,Weekly,$40 extra for other tiers,183,
+IMMIGRATION,Attorney Referral Coordination,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,Included,184,
+IMMIGRATION,Evidence Formatting & Organization,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,Photos/chats/receipts; add-on for other tiers,Project-based fee otherwise,185,
+IMMIGRATION,Form Drafting (I-589 I-130 etc.),ADD-ON,ADD-ON,ADD-ON,UNLIMITED,Unlimited Tier only,$399–899 project fee,186,
+CONSULTING,Minimum Meeting Fee ($40),ADD-ON,ADD-ON,ADD-ON,UNLIMITED,Per-use outside Unlimited,Per use,187,
+CONSULTING,Rush Request (<48h),ADD-ON,ADD-ON,ADD-ON,UNLIMITED,$49 flat,,188,
+CONSULTING,Project-Based Consulting,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,,189,
+CONSULTING,Emergency Sessions (<24 hrs),ADD-ON,ADD-ON,ADD-ON,UNLIMITED,$49 rush,,190,
+CONSULTING,Mediation Between Partners,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$99–199,191,
+CONSULTING,Document Prep,ADD-ON,1,1,UNLIMITED,Up to 10 docs,$5/doc extra,200,
+TAX,TAX200,ADD-ON,1,1,UNLIMITED,,,200,
+TAX,Simple 1040 Personal Taxes,ADD-ON,1,1,UNLIMITED,0/1/1/Unltd,149,201,
+TAX,Schedule C Small Business,ADD-ON,1,1,UNLIMITED,0/1/2/Unltd,$249_),202,
+TAX,Schedule A/B/SE,ADD-ON,1,1,UNLIMITED,Up to 1 included,$35 each,203,
+TAX,One Business Filing,ADD-ON,ADD-ON,1,UNLIMITED,Sole Prop / LLC,$150/additional,204,
+TAX,Multi-State Filing,ADD-ON,ADD-ON,1,UNLIMITED,Up to 2 states,$50 each,205,
+TAX,Depreciation Schedules,ADD-ON,ADD-ON,1,UNLIMITED,Up to 5 items,$10 each,206,
+TAX,Tax Amendments,ADD-ON,ADD-ON,1,UNLIMITED,1 included in Growth+,$99 each,207,
+TAX,IRS Letters Support,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$49 each outside Unlimited,208,
+TAX,Audit Support,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,Project-based fee otherwise,209,
+PORTAL,Client Portal Access,1,1,1,UNLIMITED,,,300,
+DOCS,Document Prep (10 included),1,1,1,UNLIMITED,After 10,$5/doc,300,
+PORTAL,File Uploads & Storage,1,1,1,UNLIMITED,Limits defined,$5/extra GB,301,
+DOCS,Letter Writing (Simple),1,1,1,UNLIMITED,Up to 3/mo,$10 each,301,
+PORTAL,Document Storage (GB Limit),1,1,1,UNLIMITED,5GB included,$5/GB,302,
+DOCS,Spreadsheets (Basic),ADD-ON,1,1,UNLIMITED,,$25–75,302,
+PORTAL,Secure File Uploads,1,1,1,UNLIMITED,,,303,
+DOCS,PDF Drafting,ADD-ON,1,1,UNLIMITED,Branding included,$10–20,303,
+PORTAL,Client Knowledge Base,1,1,1,UNLIMITED,,Setup time billed,304,
+DOCS,Letter Writing (Professional),ADD-ON,1,1,UNLIMITED,,$25 each,304,
+PORTAL,AI Assistant Basic,ADD-ON,1,1,UNLIMITED,,Usage-based,305,
+DOCS,Spreadsheets (Advanced),ADD-ON,ADD-ON,1,UNLIMITED,,$99–299,305,
+PORTAL,AI Assistant,ADD-ON,1,1,UNLIMITED,,Usage-based if high,306,
+DOCS,Legal-Style Formatting,ADD-ON,ADD-ON,1,UNLIMITED,,$25–50,306,
+PORTAL,Custom Forms (Zoho/Cloudflare),ADD-ON,ADD-ON,1,UNLIMITED,,$49/form,307,
+DOCS,Print Package Prep,ADD-ON,ADD-ON,1,UNLIMITED,,$49–99,307,
+PORTAL,Automated Ticketing,ADD-ON,ADD-ON,1,UNLIMITED,,,308,
+DOCS,Translation Formatting,ADD-ON,ADD-ON,1,UNLIMITED,,Included Unlimited only,308,
+PORTAL,Custom Client Folder Build,ADD-ON,ADD-ON,1,UNLIMITED,,$49_),309,
+DOCS,Grant/Proposal Assistance,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,Custom,309,
+PORTAL,AI Assistant Customization,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$99 setup,310,
+PORTAL,Task/Ticket Automation,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,$49/task,311,
+PORTAL,Private Client Dashboards,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,,Custom quote,312,
+AI,AI and Automation,ADD-ON,ADD-ON,1,UNLIMITED,,,500,
+AI,Portal Customization,ADD-ON,ADD-ON,1,UNLIMITED,1–5 hrs typical,$69/hr,501,
+AI,Standard Automation Rate ($69/hr),ADD-ON,ADD-ON,1,UNLIMITED,1-hour minimum,$69/hr,502,
+AI,AI Assistant Customization,ADD-ON,ADD-ON,1,UNLIMITED,1–3 hrs typical,$69/hr,503,
+AI,Automation Debugging / Fixes,ADD-ON,ADD-ON,1,UNLIMITED,1 hour minimum,$69/hr,504,
+AI,API Integrations ($69/hr),ADD-ON,ADD-ON,ADD-ON,UNLIMITED,4–10 hrs typical,$69/hr,505,
+AI,Zapier / Zoho Flow Setup,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,1–3 hrs typical,$69/hr,506,
+AI,Cloudflare Worker Development,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,3–12 hrs typical,$69/hr,507,
+AI,Supabase Configuration / RLS Policies,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,2–6 hrs typical,$69/hr,508,
+AI,System Setup / Migration,ADD-ON,ADD-ON,ADD-ON,UNLIMITED,8–20 hrs typical,$69/hr,509,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,

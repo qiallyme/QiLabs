@@ -1,0 +1,34 @@
+Record Id,S.NO,QuotedItems Owner.id,Created By.id,Modified By.id,Created Time,Modified Time,Last Activity Time,Layout.id,Parent.id,Currency,Exchange Rate,Product Name.id,Description,Quantity,Price Book.id,List Price,Amount,Discount,Total After Discount,Tax,Total
+zcrm_6789162000001749403,1,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-02 18:47:01,2025-06-02 18:47:01,,zcrm_6789162000000233418,zcrm_6789162000001749402,USD,1.000000000,zcrm_6789162000001630169,,4.0,,39.0,156,0.0,156,0.0,156
+zcrm_6789162000001991446,1,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-14 03:33:49,2025-06-14 03:33:49,,zcrm_6789162000000233418,zcrm_6789162000001991445,USD,1.000000000,zcrm_6789162000001630169,,1.0,,149.0,149,0.0,149,0.0,149
+zcrm_6789162000002176032,1,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-24 04:48:40,2025-06-24 04:48:40,,zcrm_6789162000000233418,zcrm_6789162000002176031,USD,1.000000000,zcrm_6789162000002176001,The primary deliverable is a formal Tax Compliance Letter affirming that no wages have been paid under the business.,1.0,,120.0,120,0.0,120,0.0,120
+zcrm_6789162000002176033,2,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-24 04:48:40,2025-06-24 04:48:40,,zcrm_6789162000000233418,zcrm_6789162000002176031,USD,1.000000000,zcrm_6789162000002176011,,1.0,,150.0,150,0.0,150,0.0,150
+zcrm_6789162000002176034,3,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-24 04:48:40,2025-06-24 04:48:40,,zcrm_6789162000000233418,zcrm_6789162000002176031,USD,1.000000000,zcrm_6789162000002176021,,8.0,,20.0,160,0.0,160,0.0,160
+zcrm_6789162000002314185,1,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-27 13:14:37,2025-07-09 14:52:49,2025-07-09 14:52:49,zcrm_6789162000000233418,zcrm_6789162000002314184,USD,1.000000000,zcrm_6789162000002314174,"Description of Services Included:
+
+This engagement covers a full review and, if necessary, amendment of the 2023 federal tax return (Form 1040X), which was not included in the original agreement. The goal is to correct errors or omissions in the initial filing and potentially secure a refund for the client.
+
+Included tasks:
+
+Review the originally filed 2023 Form 1040 and attached Schedule C.
+
+Identify adjustments or missing items affecting the outcome of the return.
+
+Cross-reference with 2022 data to ensure proper depreciation and carryovers.
+
+Update the books to reflect accurate values for 2024 tax preparation.
+
+Support 2024 filings required for Worker’s Compensation Certificate and RRMC application (quoted separately).
+
+Important Note on Fees:
+
+The estimate/review is free and does not incur a charge unless a corrected 1040X is filed or provided to the client for filing.
+
+If the amended return is filed through our office or delivered to the client for submission, the total service fee will be $499.00.
+
+Payment Terms:
+Payment may be made at a later date, but service is being initiated immediately due to urgency. Work will proceed in good faith to meet filing deadlines and support upcoming compliance tasks.",1.0,,799.0,799,99.0,700,0.0,700
+zcrm_6789162000002667039,1,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-07-11 19:15:32,2025-07-11 19:15:32,,zcrm_6789162000000233418,zcrm_6789162000002667038,USD,1.000000000,zcrm_6789162000002321233,"""Enhance your legal processes with DocEZ Notary services—affordable, efficient, and designed for seamless document management.""",1.0,,10.0,10,0.0,10,0.0,10
+zcrm_6789162000002667040,2,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-07-11 19:15:32,2025-07-11 19:15:32,,zcrm_6789162000000233418,zcrm_6789162000002667038,USD,1.000000000,zcrm_6789162000002321247,Enhance your printing and scanning needs with DocEZ's custom cuts—precision service designed for quality and professional results.,1.0,,39.0,39,0.0,39,0.0,39
+zcrm_6789162000002667041,3,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-07-11 19:15:32,2025-07-11 19:15:32,,zcrm_6789162000000233418,zcrm_6789162000002667038,USD,1.000000000,zcrm_6789162000002321228,"""Prepare legal documents effortlessly with DocEZ—your trusted partner for efficient, compliant, and cost-effective legal solutions.""",1.0,,49.0,49,0.0,49,0.0,49
+zcrm_6789162000002667042,4,zcrm_6789162000000560001,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-07-11 19:15:32,2025-07-11 19:15:32,,zcrm_6789162000000233418,zcrm_6789162000002667038,USD,1.000000000,zcrm_6789162000001630169,,2.0,,39.0,78,0.0,78,0.0,78

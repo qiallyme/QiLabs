@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>QiAlly – Engagement Letter</title>
+
+    <!-- Shared Dependencies & Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #003580;
+        --secondary: #f0f4f8;
+        --text: #1a1a1a;
+        --accent: #006ce4;
+        --border: #d1d5db;
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(255, 255, 255, 0.6);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          blinkmacsystemfont,
+          "Segoe UI",
+          roboto,
+          oxygen,
+          ubuntu,
+          cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+        color: var(--text);
+        margin: 0;
+        background-color: #fff;
+        background-image: radial-gradient(
+          var(--border) 0.5px,
+          transparent 0.5px
+        );
+        background-size: 24px 24px;
+        min-height: 100vh;
+        padding: 40px 20px;
+      }
+
+      .blob-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(221, 214, 254, 0.4),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(237, 233, 254, 0.4),
+            transparent 25%
+          );
+        filter: blur(40px);
+      }
+
+      .wrap {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      /* Glass Cards */
+      .card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 32px;
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 24px;
+      }
+
+      .brand h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        color: var(--primary);
+        margin: 0 0 8px 0;
+      }
+
+      .brand .sub {
+        color: #555;
+        font-size: 1rem;
+        line-height: 1.5;
+        max-width: 700px;
+      }
+
+      .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 99px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        font-size: 0.95rem;
+      }
+
+      .btn.primary {
+        background: var(--primary);
+        color: white;
+        box-shadow: 0 4px 12px rgba(0, 53, 128, 0.15);
+      }
+
+      .btn.primary:hover {
+        background: var(--accent);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(0, 53, 128, 0.25);
+      }
+
+      .btn.ghost {
+        background: transparent;
+        color: #64748b;
+        font-size: 0.9rem;
+        padding: 12px 16px;
+      }
+
+      .btn.ghost:hover {
+        color: var(--primary);
+        background: rgba(0, 0, 0, 0.03);
+      }
+
+      /* Pills */
+      .pill {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #64748b;
+        background: #f1f5f9;
+        padding: 4px 12px;
+        border-radius: 99px;
+        margin-top: 12px;
+        margin-right: 6px;
+      }
+
+      /* Grid for Info Cards */
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .small-card h2 {
+        font-size: 1.1rem;
+        color: var(--primary);
+        margin: 0 0 12px 0;
+      }
+
+      .klist {
+        margin: 0;
+        padding-left: 20px;
+        color: #475569;
+      }
+      .klist li {
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      details {
+        margin-top: 12px;
+        font-size: 0.85rem;
+        color: #64748b;
+        cursor: pointer;
+      }
+      summary {
+        font-weight: 600;
+      }
+
+      /* The Document */
+      .doc {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+
+      .doc-head {
+        background: #f8fafc;
+        padding: 24px 32px;
+        border-bottom: 1px solid var(--border);
+      }
+      .doc-head h3 {
+        margin: 0;
+        color: var(--text);
+        font-size: 1.1rem;
+      }
+      .doc-head p {
+        margin: 4px 0 0;
+        color: #64748b;
+        font-size: 0.85rem;
+      }
+
+      .doc-body {
+        padding: 32px;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: #334155;
+      }
+
+      .doc-body h4 {
+        color: var(--primary);
+        font-size: 1rem;
+        margin: 24px 0 12px 0;
+        font-weight: 700;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 8px;
+      }
+
+      .doc-body h4:first-child {
+        margin-top: 0;
+      }
+
+      .doc-body p {
+        margin-bottom: 16px;
+      }
+
+      .doc-link {
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .highlight-box {
+        background: #eff6ff;
+        border-left: 4px solid var(--accent);
+        padding: 16px;
+        border-radius: 4px;
+        margin: 20px 0;
+        font-size: 0.9rem;
+        color: #1e3a8a;
+      }
+
+      .sig-box {
+        background: #f8fafc;
+        border-top: 1px solid var(--border);
+        padding: 24px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blob-bg"></div>
+
+    <div class="wrap">
+      <!-- Header Section -->
+      <div class="card">
+        <div class="header-row">
+          <div class="brand">
+            <h1>QiAlly – Engagement Letter</h1>
+            <div class="sub">
+              Please review the engagement terms below. When you’re ready, click
+              <b>Sign Electronically</b> to complete limits and authorization.
+            </div>
+            <div>
+              <span class="pill">Standard Engagement</span>
+              <span class="pill">Electronic Records</span>
+              <span class="pill">Secure Signing</span>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+              align-items: center;
+            "
+          >
+            <img
+              src="./SignForm_URL_QR.png"
+              alt="Scan to Sign"
+              style="
+                width: 120px;
+                height: 120px;
+                border-radius: 12px;
+                border: 1px solid #e2e8f0;
+                padding: 4px;
+                background: white;
+              "
+            />
+            <a
+              href="https://sign.zoho.com/zsfl/NuMp4iHnPjpKCJZK2PrG?i=9102"
+              target="_blank"
+              class="btn primary"
+            >
+              Sign Electronically <i class="fa fa-arrow-right"></i>
+            </a>
+            <button onclick="window.print()" class="btn ghost">
+              Print / Save PDF
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Grid -->
+      <div class="grid">
+        <div class="card small-card">
+          <h2>What you’re agreeing to</h2>
+          <ul class="klist">
+            <li>
+              <b>Scope:</b> We perform only the services strictly agreed upon.
+            </li>
+            <li>
+              <b>Responsibility:</b> You provide accurate info; we prepare/file.
+            </li>
+            <li>
+              <b>Fees:</b> Based on scope/time. Invoiced upon performance.
+            </li>
+            <li><b>Policies:</b> You agree to our MSA and Privacy Policy.</li>
+          </ul>
+          <details>
+            <summary>Read more</summary>
+            <div style="margin-top: 8px">
+              Outcomes depend on agencies and your cooperation. We do not audit
+              your info unless engaged to do so.
+            </div>
+          </details>
+        </div>
+
+        <div class="card small-card">
+          <h2>Next Steps</h2>
+          <ol class="klist">
+            <li>Review the document below.</li>
+            <li>Click "Sign Electronically" to finalize.</li>
+            <li>You'll receive a PDF copy instantly.</li>
+            <li>Work begins upon signature + payment.</li>
+          </ol>
+          <details>
+            <summary>Need changes?</summary>
+            <div style="margin-top: 8px">
+              Do not sign yet. Contact us to request an addendum if your
+              situation has unique complexity.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Document Preview -->
+      <div class="doc">
+        <div class="doc-head">
+          <h3>Engagement Letter & Scope of Services (Preview)</h3>
+          <p>
+            This is a readable preview. The legal agreement is finalized via the
+            electronic link above.
+          </p>
+        </div>
+
+        <div class="doc-body">
+          <h4>1. Parties</h4>
+          <p>
+            This Engagement Letter (“Agreement”) confirms the terms under which
+            QiAlly (“we,” “us,” “our”) will provide professional services to the
+            Client (“you,” “your”).
+          </p>
+          <p class="highlight-box">
+            This Engagement Letter incorporates by reference the QiAlly
+            <b>Master Service Agreement (MSA)</b> and
+            <b>Terms of Service</b> available at
+            <a
+              href="https://qially.com/pages/msa/"
+              target="_blank"
+              class="doc-link"
+              >https://qially.com/pages/msa/</a
+            >, and the <b>Privacy Policy</b> available at
+            <a
+              href="https://qially.com/pages/privacy/"
+              target="_blank"
+              class="doc-link"
+              >https://qially.com/pages/privacy/</a
+            >. By signing this Engagement Letter electronically, Client
+            acknowledges that they have read, understand, and agree to the terms
+            contained in those policies and that those documents are part of the
+            overall agreement between the parties.
+          </p>
+
+          <h4>2. Scope of Services</h4>
+          <p>
+            QiAlly will provide professional services as agreed between the
+            parties, which may include accounting, bookkeeping support, tax
+            preparation support, compliance support, advisory, documentation, or
+            administrative services. Services are limited strictly to those
+            expressly agreed.
+          </p>
+
+          <h4>3. Client Responsibilities</h4>
+          <p>
+            Client is responsible for providing complete and accurate
+            information, timely delivery of requested records, and reviewing all
+            deliverables for accuracy before any filing or submission. QiAlly
+            relies on Client-provided information and does not audit or verify
+            it unless expressly agreed in writing.
+          </p>
+
+          <h4>4. Fees and Payment</h4>
+          <p>
+            Fees are based on the scope, complexity, and time required. Payment
+            terms will be communicated separately or at the time of service.
+            Services may be paused for non-payment. Fees are earned upon
+            performance, not upon outcome.
+          </p>
+
+          <h4>5. Deadlines</h4>
+          <p>
+            QiAlly will make reasonable efforts to meet deadlines provided
+            Client supplies required information on time. Delays caused by
+            incomplete or late information are not the responsibility of QiAlly.
+          </p>
+
+          <h4>6. Confidentiality and Electronic Communication</h4>
+          <p>
+            QiAlly maintains reasonable confidentiality practices. Client
+            acknowledges electronic communication risks and consents to
+            reasonable electronic methods (email, portals, e-signature).
+          </p>
+          <p>
+            Client understands and agrees that the handling, storage, and
+            processing of personal information will be governed by the QiAlly
+            <b>Privacy Policy</b>, as amended from time to time, available at
+            <a
+              href="https://qially.com/pages/privacy/"
+              target="_blank"
+              class="doc-link"
+              >https://qially.com/pages/privacy/</a
+            >, and that QiAlly may use third-party services in compliance with
+            that policy.
+          </p>
+
+          <h4>7. No Guarantee of Outcome</h4>
+          <p>
+            No outcomes are guaranteed. Acceptance or results depend on
+            agencies, facts, and Client cooperation.
+          </p>
+
+          <h4>8. Limitation of Liability</h4>
+          <p>
+            To the fullest extent permitted by law, QiAlly’s liability is
+            limited to the fees paid for the specific services giving rise to
+            the claim. QiAlly is not liable for indirect or consequential
+            damages.
+          </p>
+
+          <h4>9. Termination</h4>
+          <p>
+            Either party may terminate with written notice. Fees for services
+            performed remain due.
+          </p>
+
+          <h4>10. Agreement References & Entire Agreement</h4>
+          <p>
+            This Agreement represents the entire understanding between the
+            parties and may be amended only in writing. Electronic signatures
+            are legally binding.
+          </p>
+          <p class="highlight-box">
+            <b>Agreement References:</b><br />
+            Client acknowledges that this Engagement Letter is subject to and
+            supplemented by the terms of the QiAlly
+            <b>Master Service Agreement (MSA) / Terms of Service</b> available
+            at
+            <a
+              href="https://qially.com/pages/msa/"
+              target="_blank"
+              class="doc-link"
+              >https://qially.com/pages/msa/</a
+            >
+            and the <b>Privacy Policy</b> available at
+            <a
+              href="https://qially.com/pages/privacy/"
+              target="_blank"
+              class="doc-link"
+              >https://qially.com/pages/privacy/</a
+            >. These documents are integral parts of the engagement and Client’s
+            consent to them is a condition of the services provided hereunder.
+          </p>
+        </div>
+
+        <div class="sig-box">
+          <div style="font-size: 0.9rem; color: #64748b">
+            Ready to proceed? The final step is to sign the official copy.
+          </div>
+          <a
+            href="https://sign.zoho.com/zsfl/NuMp4iHnPjpKCJZK2PrG?i=9102"
+            target="_blank"
+            class="btn primary"
+          >
+            Open Signing Interface &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

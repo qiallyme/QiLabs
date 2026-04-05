@@ -1,0 +1,61 @@
+########################
+# OS / Editor
+########################
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+########################
+# Secrets
+########################
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+
+########################
+# Node / Web
+########################
+node_modules/
+dist/
+build/
+.next/
+out/
+.cache/
+coverage/
+*.tsbuildinfo
+
+########################
+# Python
+########################
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+########################
+# Logs / Temp
+########################
+logs/
+*.log
+tmp/
+temp/
+*.tmp
+
+########################
+# Optional "junk zones"
+########################
+.lfs/
+.archive/
+.legacy/
+.trash/
+.trunk/
+
+########################
+# KEEP PDFs (explicitly allowed)
+########################
+!*.pdf

@@ -1,0 +1,19 @@
+{
+	"nodes":[
+		{"id":"c131c9bce2ecf15e","type":"group","x":-640,"y":-340,"width":460,"height":300,"color":"3","label":"ReadMe"},
+		{"id":"e09b80c4f85271c0","type":"file","file":"templates/docs/readme_template.md.md","x":-580,"y":-220,"width":340,"height":60,"color":"3"},
+		{"id":"78b00735800a3188","type":"file","file":"workers/linter/readme_generator.py.md","x":-580,"y":-300,"width":340,"height":60,"color":"3"},
+		{"id":"93152c981be7cbd9","type":"file","file":"data/sheets/readme_registry_v1.yaml.md","x":-580,"y":-140,"width":340,"height":50,"color":"3"},
+		{"id":"5dc9efc9d2c0dcc0","x":-100,"y":-276,"width":200,"height":172,"type":"file","file":"rules/qios_05_Cursor_and_naming.canvas"},
+		{"id":"77ac59f1ea204730","x":-610,"y":-620,"width":400,"height":186,"type":"file","file":"data/qios_03_directory_tree.canvas"}
+	],
+	"edges":[
+		{"id":"8e98ac73a60ca682","fromNode":"c131c9bce2ecf15e","fromSide":"left","toNode":"e09b80c4f85271c0","toSide":"left","color":"3"},
+		{"id":"846534aea089b26d","fromNode":"c131c9bce2ecf15e","fromSide":"left","toNode":"93152c981be7cbd9","toSide":"left","color":"3"},
+		{"id":"0d8039f2a4bb071a","fromNode":"c131c9bce2ecf15e","fromSide":"left","toNode":"78b00735800a3188","toSide":"left","color":"3"},
+		{"id":"a1887abd4bb4696e","fromNode":"c131c9bce2ecf15e","fromSide":"left","toNode":"78b00735800a3188","toSide":"left","color":"3"},
+		{"id":"eb1dc588aa76a0b0","fromNode":"c131c9bce2ecf15e","fromSide":"left","toNode":"e09b80c4f85271c0","toSide":"left","color":"3"},
+		{"id":"3cacb12aadfb0be5","fromNode":"77ac59f1ea204730","fromSide":"bottom","toNode":"c131c9bce2ecf15e","toSide":"top"},
+		{"id":"2206ba562e02ced7","fromNode":"c131c9bce2ecf15e","fromSide":"right","toNode":"5dc9efc9d2c0dcc0","toSide":"left"}
+	]
+}

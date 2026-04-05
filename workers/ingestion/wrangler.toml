@@ -1,0 +1,16 @@
+name = "gina-ingestion"
+main = "worker_ingestion.ts"
+compatibility_date = "2024-11-23"
+
+[vars]
+WORKER_ID = "ingestion"
+
+[triggers]
+crons = ["*/2 * * * *"]  # every 2 minutes
+
+# Bind Supabase environment secrets
+# DO NOT hardcode keys directly here
+# You will bind them using wrangler secret:
+# npx wrangler secret put SUPABASE_URL
+# npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+

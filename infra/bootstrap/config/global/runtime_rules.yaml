@@ -1,0 +1,6 @@
+# Global rules for execution constraints
+max_chunk_size: 1024
+concurrency:
+  max_threads: 4
+  max_memory_mb: 2048
+timeout_seconds: 300

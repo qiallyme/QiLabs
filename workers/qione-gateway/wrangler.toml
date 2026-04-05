@@ -1,0 +1,9 @@
+name = "qione-gateway"
+main = "src/index.ts"
+compatibility_date = "2024-02-08"
+
+# Vars need to be set via `wrangler secret put` for production
+[vars]
+# SUPABASE_URL = "https://jneuyvckqeymsrqmrobh.supabase.co"
+# SUPABASE_SERVICE_ROLE_KEY = "..."
+# ALLOWED_ORIGIN = "http://localhost:5173" # Change in prod to portal origin

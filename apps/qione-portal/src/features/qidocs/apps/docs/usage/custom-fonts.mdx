@@ -1,0 +1,64 @@
+---
+title: "Custom Fonts"
+icon: "font"
+---
+
+## Using Google Fonts
+
+To use [Google Fonts](https://fonts.google.com/) in your documents, import them in your document's `<Head>` component:
+
+```tsx
+import { Document, Head } from "@htmldocs/react"
+
+function MyDocument() {
+  return (
+    <Document>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <div style={{ fontFamily: 'Inter, sans-serif' }}>
+        Text using Google Font (Inter)
+      </div>
+    </Document>
+  )
+}
+```
+
+## Using Local Fonts
+
+For local fonts, place your font files in the `/documents/static` directory and use `@font-face` to define them:
+
+<Note>
+All font files must be placed in the `/documents/static` directory of your project. This is the required location for serving static assets in your document templates.
+</Note>
+
+```tsx
+import { Document, Head } from "@htmldocs/react"
+
+function MyDocument() {
+  return (
+    <Document>
+      <Head>
+        <style>
+          {`
+            @font-face {
+              font-family: 'CustomFont';
+              src: url('/static/fonts/CustomFont.woff2') format('woff2'),
+                   url('/static/fonts/CustomFont.woff') format('woff');
+              font-weight: normal;
+              font-style: normal;
+              font-display: swap;
+            }
+          `}
+        </style>
+      </Head>
+      <div style={{ fontFamily: 'CustomFont' }}>
+        Text using local custom font
+      </div>
+    </Document>
+  )
+}
+```

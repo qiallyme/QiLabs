@@ -1,0 +1,14 @@
+﻿MiniAppTemplate/
+├─ miniapp.json
+├─ app.py
+├─ requirements.txt
+├─ .gitignore
+├─ README.md
+├─ run.bat
+├─ scripts/
+│  ├─ venv_setup.ps1
+│  └─ package.ps1
+└─ src/
+   └─ miniapp/
+      ├─ __init__.py
+      └─ logic.py

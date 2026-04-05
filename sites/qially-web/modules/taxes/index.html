@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tax & Accounting | QiAlly</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+            colors: { "brand-bg": "#f8fafc" },
+          },
+        },
+      };
+    </script>
+    <style>
+      .blob-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(219, 234, 254, 0.4),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(233, 213, 255, 0.4),
+            transparent 25%
+          );
+        filter: blur(40px);
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased relative">
+    <div class="blob-bg"></div>
+
+    <nav
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+      x-data="{ scrolled: false, mobileMenuOpen: false }"
+      @scroll.window="scrolled = (window.pageYOffset > 20)"
+      :class="{ 'bg-white/70 backdrop-blur-md shadow-sm': scrolled, 'bg-transparent': !scrolled }"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <a href="/" class="flex items-center gap-2 group">
+              <div
+                class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:scale-105 transition duration-300"
+              >
+                Q
+              </div>
+              <span
+                class="font-serif text-xl font-bold text-slate-800 tracking-tight group-hover:text-blue-600 transition"
+                >QiAlly</span
+              >
+            </a>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a
+                href="/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Home</a
+              >
+              <a
+                href="/pages/services/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Services</a
+              >
+              <a
+                href="/pages/business_tools/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Tools</a
+              >
+              <a
+                href="/pages/resources/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Resources</a
+              >
+              <a
+                href="/pages/portfolio/"
+                class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Portfolio</a
+              >
+              <a
+                href="/#contact"
+                class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30"
+              >
+                Start Request
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="-mr-2 flex md:hidden">
+            <button
+              type="button"
+              @click="mobileMenuOpen = !mobileMenuOpen"
+              class="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-blue-600 hover:bg-slate-100 focus:outline-none transition"
+            >
+              <span class="sr-only">Open main menu</span>
+              <i class="fa-solid fa-bars text-xl" x-show="!mobileMenuOpen"></i>
+              <i
+                class="fa-solid fa-xmark text-xl"
+                x-show="mobileMenuOpen"
+                x-cloak
+              ></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        class="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full"
+        x-show="mobileMenuOpen"
+        x-transition:enter="transition ease-out duration-100"
+        x-transition:enter-start="opacity-0 -translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-75"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-2"
+        x-cloak
+      >
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+          <a
+            href="/"
+            class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Home</a
+          >
+          <a
+            href="/pages/services/"
+            class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Services</a
+          >
+          <a
+            href="/pages/business_tools/"
+            class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Tools</a
+          >
+          <a
+            href="/pages/resources/"
+            class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Resources</a
+          >
+          <a
+            href="/pages/portfolio/"
+            class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Portfolio</a
+          >
+          <a
+            href="/#contact"
+            class="text-blue-600 font-semibold block px-3 py-2 rounded-md text-base"
+            >Start Request &rarr;</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <header class="pt-12 pb-20 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <span
+          class="text-blue-600 font-bold tracking-widest text-xs uppercase mb-4 block"
+          >Division Focus</span
+        >
+        <h1 class="text-4xl md:text-5xl font-serif text-slate-900 mb-6">
+          Tax & Accounting
+        </h1>
+        <p class="text-xl text-slate-500 font-light leading-relaxed">
+          Bringing clarity to chaos. We resolve tax issues, clean up books, and
+          build sustainable financial systems.
+        </p>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2 space-y-8">
+          <div class="glass-panel p-8 rounded-2xl">
+            <h3 class="font-serif text-2xl mb-6">Core Capabilities</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-check text-blue-500 mt-1"></i>
+                <div>
+                  <strong class="block text-slate-900">Tax Resolution</strong>
+                  <span class="text-slate-500 text-sm"
+                    >Navigating IRS/State issues, filing back taxes, and
+                    negotiating settlements (OIC, IA).</span
+                  >
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-check text-blue-500 mt-1"></i>
+                <div>
+                  <strong class="block text-slate-900"
+                    >Accounting Cleanup</strong
+                  >
+                  <span class="text-slate-500 text-sm"
+                    >Reorganizing messy books to provide clear, accurate
+                    financial statements.</span
+                  >
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-check text-blue-500 mt-1"></i>
+                <div>
+                  <strong class="block text-slate-900"
+                    >Bookkeeping & Systems</strong
+                  >
+                  <span class="text-slate-500 text-sm"
+                    >Ongoing monthly managed services and implementing automated
+                    accounting stacks.</span
+                  >
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-check text-blue-500 mt-1"></i>
+                <div>
+                  <strong class="block text-slate-900"
+                    >Individual Services</strong
+                  >
+                  <span class="text-slate-500 text-sm"
+                    >Personal tax preparation, immigration support, and document
+                    assistance.</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="glass-panel p-8 rounded-2xl">
+            <h3 class="font-serif text-2xl mb-4">Our Approach</h3>
+            <p class="text-slate-600 leading-relaxed">
+              We don't just file forms; we solve problems. Whether you're years
+              behind on taxes or drowning in receipts, we apply a systematic,
+              calm approach to get you compliant and confident.
+            </p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-1">
+          <div class="bg-slate-900 text-white p-8 rounded-2xl sticky top-8">
+            <h3 class="font-serif text-xl mb-4">Needs attention?</h3>
+            <p class="text-slate-400 text-sm mb-6">
+              Start with a free review of your situation.
+            </p>
+            <a
+              href="/#contact"
+              class="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-lg font-medium transition"
+              >Start Request</a
+            >
+
+            <div class="mt-8 pt-8 border-t border-slate-700">
+              <p class="text-xs text-slate-500 uppercase tracking-wider mb-2">
+                Direct Contact
+              </p>
+              <a
+                href="mailto:cody@qially.com"
+                class="text-white hover:text-blue-400 transition"
+                >cody@qially.com</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-slate-50 border-t border-slate-200 pt-16 pb-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"
+        >
+          <!-- Brand -->
+          <div class="col-span-1 lg:col-span-1">
+            <a href="/" class="flex items-center gap-2 mb-6">
+              <div
+                class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-bold text-lg"
+              >
+                Q
+              </div>
+              <span class="font-serif text-xl font-bold text-slate-800"
+                >QiAlly</span
+              >
+            </a>
+            <p class="text-slate-500 text-sm leading-relaxed mb-6">
+              Solo-practitioner consulting across tax resolution, accounting
+              cleanup, and systems/AI.
+              <br /><br />Corporate-grade precision. Personal delivery.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="https://twitter.com/qiallyme"
+                class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"
+                aria-label="Twitter"
+              >
+                <i class="fa-brands fa-twitter"></i>
+              </a>
+              <a
+                href="https://linkedin.com/company/qially"
+                class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-700 hover:text-white transition"
+                aria-label="LinkedIn"
+              >
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div>
+            <h3 class="font-serif font-semibold text-slate-900 mb-6">
+              Services
+            </h3>
+            <ul class="space-y-3 text-sm text-slate-500">
+              <li>
+                <a href="/modules/taxes/" class="hover:text-blue-600 transition"
+                  >Tax & Accounting</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/modules/taxes/individual/"
+                  class="hover:text-blue-600 transition"
+                  >Individual Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/modules/hr-ops/"
+                  class="hover:text-blue-600 transition"
+                  >HR & Ops</a
+                >
+              </li>
+              <li>
+                <a href="/modules/it-ai/" class="hover:text-blue-600 transition"
+                  >IT & AI Consulting</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Resources -->
+          <div>
+            <h3 class="font-serif font-semibold text-slate-900 mb-6">
+              Resources
+            </h3>
+            <ul class="space-y-3 text-sm text-slate-500">
+              <li>
+                <a
+                  href="/pages/business_tools/"
+                  class="hover:text-blue-600 transition"
+                  >Business Tools</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/pages/resources/"
+                  class="hover:text-blue-600 transition"
+                  >Resource Center</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/pages/portfolio/"
+                  class="hover:text-blue-600 transition"
+                  >Portfolio</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/pages/showcases/videos.html"
+                  class="hover:text-blue-600 transition"
+                  >Video Library</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/pages/compliance/"
+                  class="hover:text-blue-600 transition"
+                  >Compliance Hub</a
+                >
+              </li>
+              <li>
+                <a href="/sitemap.xml" class="hover:text-blue-600 transition"
+                  >Sitemap (XML)</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <h3 class="font-serif font-semibold text-slate-900 mb-6">
+              Contact
+            </h3>
+            <ul class="space-y-3 text-sm text-slate-500">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-envelope mt-1 text-blue-500"></i>
+                <a
+                  href="mailto:cody@qially.com"
+                  class="hover:text-blue-600 transition"
+                  >cody@qially.com</a
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-phone mt-1 text-blue-500"></i>
+                <a
+                  href="tel:+13176433489"
+                  class="hover:text-blue-600 transition"
+                  >+1 (317) 643-3489</a
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-location-dot mt-1 text-blue-500"></i>
+                <span>Indianapolis, IN<br />Serving Clients Virtually</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p class="text-xs text-slate-400">
+            © 2026 QiAlly LLC. All rights reserved.
+          </p>
+          <div class="flex gap-6 text-xs text-slate-400">
+            <a href="/privacy.html" class="hover:text-slate-600 transition"
+              >Privacy Policy</a
+            >
+            <a href="/pages/msa/" class="hover:text-slate-600 transition"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ElevenLabs ConvAI Widget -->
+    <elevenlabs-convai
+      agent-id="agent_5601kb789hcyfrw928kr2a0ged3z"
+    ></elevenlabs-convai>
+    <script
+      src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+      async
+      type="text/javascript"
+    ></script>
+  </body>
+</html>

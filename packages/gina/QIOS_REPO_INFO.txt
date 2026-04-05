@@ -1,0 +1,6 @@
+Repo: C:\QiOS_v1\projects\ideas_Lumara\Lina-Lumara-ai
+Branch: main
+HEAD: e40389cf66546ea0887b17b8222d3c769371c58e initial
+Remotes:
+origin	https://github.com/qiallyme/Lina-Lumara-ai.git (fetch)
+origin	https://github.com/qiallyme/Lina-Lumara-ai.git (push)

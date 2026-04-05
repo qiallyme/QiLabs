@@ -1,0 +1,15 @@
+name = "qially-tax-intake"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Environment Variables
+# Ideally, set secrets via `wrangler secret put <KEY>`
+# But you can put non-sensitive defaults here.
+[vars]
+ZEPTOMAIL_FROM_EMAIL = "support@qially.com"
+ZEPTOMAIL_FROM_NAME = "Qially Tax Team"
+BUSINESS_OWNER_EMAIL = "admin@qially.com"
+
+# The following should be set as secrets using `wrangler secret put`
+# - TURNSTILE_SECRET_KEY
+# - ZEPTOMAIL_API_KEY

@@ -1,0 +1,68 @@
+flowchart TD
+    %% === PROJECT GOALS ===
+    %% Ultimate Goal: USBLegalAid v2 — Full-Stack Web Legal Workspace
+    %% Current Goal: Feature Expansion & Trial Readiness
+
+    %% === START ===
+    %% @project_start [start, closed, 2026-04-03, Antigravity]
+    project_start("Project Start<br/><sub>Transitioned from v1 to v2 architecture<br/>using local workspace folders<br/>and SQLite manifest system</sub>")
+
+    %% @ultimate_goal [end, opened, 2026-04-03, Antigravity]
+    ultimate_goal("Case Workspace Web<br/><sub>A fully operational cloud-hosted<br/>legal analyst with multi-user auth<br/>and secure file vaults</sub>")
+
+    %% === COMPLETED WORK ===
+    %% @api_worker_deployment [ai-task, closed, 2026-04-03, Antigravity]
+    api_worker_deployment("API Worker Deployed<br/><sub>Migrated FastAPI logic to Cloudflare<br/>Workers (Hono), deployed to edge,<br/>and securely configured secrets</sub>")
+
+    %% @supabase_schema_applied [ai-task, closed, 2026-04-03, Antigravity]
+    supabase_schema_applied("Schema Live on Supabase<br/><sub>Applied full 34-table schema to live<br/>PostgreSQL project, enabled RLS,<br/>and generated frontend types</sub>")
+
+    %% @local_ai_integration [ai-task, closed, 2026-04-04, Antigravity]
+    local_ai_integration("Local AI Integration<br/><sub>Configured Cloudflare Tunnel to<br/>route Case Agent requests to local<br/>Ollama (Llama3) instance</sub>")
+
+    %% @file_upload_fix [ai-task, closed, 2026-04-04, Antigravity]
+    file_upload_fix("File Upload Engine<br/><sub>Implemented multipart/form-data<br/>handler for document uploads to<br/>Supabase Storage via Worker</sub>")
+
+    %% @data_entry_refactor [ai-task, closed, 2026-04-04, Antigravity]
+    data_entry_refactor("Data Module Refactor<br/><sub>Comprehensive UI update for Facts,<br/>Tasks, Timeline, Evidence and<br/>Witnesses with 20+ new fields</sub>")
+
+    %% @dashboard_redesign [ai-task, closed, 2026-04-04, Antigravity]
+    dashboard_redesign("Premium Dashboard<br/><sub>Implemented centered glass UI,<br/>Case Info metadata card, and<br/>party contact information cards</sub>")
+
+    %% === FUTURE WORK ===
+    %% @trial_prep_suite [ai-task, opened, 2026-04-04, Antigravity]
+    trial_prep_suite("Trial Prep Suite<br/><sub>Implement persistent storage for<br/>jury selection, statements, and<br/>legal theory analysis</sub>")
+
+    %% === CONNECTIONS ===
+    project_start --> api_worker_deployment
+    project_start --> supabase_schema_applied
+    api_worker_deployment --> local_ai_integration
+    api_worker_deployment --> file_upload_fix
+    file_upload_fix --> data_entry_refactor
+    data_entry_refactor --> dashboard_redesign
+    dashboard_redesign --> trial_prep_suite
+    trial_prep_suite -.-> ultimate_goal
+
+    %% === RECENT WORK HIGHLIGHT ===
+    subgraph recent [RECENT]
+        dashboard_redesign
+    end
+
+    %% === STYLES ===
+    %% Closed tasks (soft purple)
+    style project_start fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style api_worker_deployment fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style supabase_schema_applied fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style local_ai_integration fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style file_upload_fix fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style data_entry_refactor fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+
+    %% Recent node (highlighted purple)
+    style dashboard_redesign fill:#2d1f4e,stroke:#c084fc,color:#e9d5ff,stroke-width:2px
+
+    %% Recent subgraph (dashed border)
+    style recent fill:transparent,stroke:#c084fc,color:#c084fc,stroke-width:2px,stroke-dasharray:5 5
+
+    %% Open tasks (soft green)
+    style ultimate_goal fill:#1a1a2e,stroke:#4ade80,color:#86efac,stroke-width:1px
+    style trial_prep_suite fill:#1a1a2e,stroke:#4ade80,color:#86efac,stroke-width:1px

@@ -1,0 +1,2 @@
+Currency Id,Name,ISO Code,Symbol,Is Home Currency,Is Active,Prefix Symbol,Decimal Seperator,Decimals,Exchange Rate,Created By Id,Modified By Id,Created Time,Modified Time
+zcrm_6789162000000595601,US Dollar - USD,USD,$,true,true,true,|,2,1.000000000,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-05-10 03:20:17,2025-05-10 03:20:17

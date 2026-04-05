@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QiAlly | Orchestrating Chaos into Clarity</title>
+  <meta name="description"
+    content="Tax resolution, accounting cleanup, and systems/AI consulting delivered with corporate-grade precision." />
+  <link rel="canonical" href="https://qially.com/" />
+
+  <link rel="icon" type="image/png" href="/assets/imgs/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/imgs/favicon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then((reg) => console.log("SW registered"))
+          .catch((err) => console.log("SW registration failed", err));
+      });
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            serif: ["Playfair Display", "serif"],
+          },
+          colors: {
+            "brand-bg": "#f8fafc",
+            "glass-border": "rgba(255, 255, 255, 0.5)",
+            "glass-bg": "rgba(255, 255, 255, 0.7)",
+            "brand-green": "#1AB16D",
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    .blob-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 15% 50%,
+          rgba(219, 234, 254, 0.5),
+          transparent 25%),
+        radial-gradient(circle at 85% 30%,
+          rgba(233, 213, 255, 0.5),
+          transparent 25%);
+      filter: blur(40px);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.65);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
+  <div class="blob-bg"></div>
+
+  <div id="nav-placeholder"></div>
+
+  <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-slate-900 mb-6 leading-tight">
+        <span data-i18n="hero.prefix">Orchestrating </span><span class="italic text-slate-400"
+          data-i18n="hero.chaos">chaos</span>
+        <br />
+        <span data-i18n="hero.connector">into</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"
+          data-i18n="hero.clarity">clarity.</span>
+      </h1>
+      <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-500 font-light">
+        <span class="font-semibold text-brand-green block mb-2">
+          <i class="fa-solid fa-star text-sm mr-1"></i>
+          <span data-i18n="hero.badge">Now accepting 2025 Tax Clients</span>
+        </span>
+        <span data-i18n="hero.subtitle">
+          Tax resolution, accounting cleanup, and structured systems for
+          individuals and small businesses.
+        </span>
+      </p>
+      <div class="mt-10 flex justify-center gap-4 flex-wrap">
+        <a href="/services/tax-preparation/intake/"
+          class="px-8 py-3 rounded-full bg-brand-green text-white font-medium hover:bg-emerald-600 transition shadow-lg ring-4 ring-brand-green/20"
+          data-i18n="hero.cta.start">
+          Start 2025 Tax Return
+        </a>
+        <a href="/modules/taxes/tax-prep-2025/next-steps/index.html"
+          class="px-8 py-3 rounded-full bg-slate-900 text-slate-50 font-medium hover:bg-slate-800 transition shadow-md"
+          data-i18n="hero.cta.checklist">
+          View Checklists
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Tax & Accounting (Highlighted) -->
+        <div
+          class="course-card group glass-card p-8 rounded-2xl hover:shadow-xl transition cursor-pointer ring-1 ring-brand-green/30 relative overflow-hidden"
+          onclick="
+              window.location.href = '/modules/taxes/tax-prep-2025/index.html'
+            ">
+          <div class="absolute top-0 right-0 bg-brand-green text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+            2025 SEASON
+          </div>
+          <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 text-brand-green">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+          </div>
+          <h3 class="text-xl font-serif font-medium mb-3" data-i18n="services.tax.title">
+            Tax & Accounting
+          </h3>
+          <p class="text-slate-500 text-sm mb-4" data-i18n="services.tax.desc">
+            Individual and Business tax preparation, resolution, and cleanup.
+          </p>
+          <div class="flex gap-2">
+            <span class="text-brand-green text-sm font-semibold" data-i18n="services.tax.link">Start Return
+              &rarr;</span>
+            <a href="/modules/taxes/tax-prep-2025/next-steps/index.html"
+              class="text-slate-400 text-sm hover:text-brand-green ml-auto z-10 relative"
+              data-i18n="services.tax.checklist">Checklists</a>
+          </div>
+        </div>
+
+        <!-- HR & Ops -->
+        <div class="group glass-card p-8 rounded-2xl hover:shadow-xl transition cursor-pointer"
+          onclick="window.location.href = '/modules/hr-ops/'">
+          <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-6 text-blue-600">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <h3 class="text-xl font-serif font-medium mb-3" data-i18n="services.hr.title">
+            HR & Ops
+          </h3>
+          <p class="text-slate-500 text-sm mb-4" data-i18n="services.hr.desc">
+            Talent acquisition, compliance, and systems that scale.
+          </p>
+          <span class="text-blue-600 text-sm font-semibold" data-i18n="services.hr.link">View Services &rarr;</span>
+        </div>
+
+        <!-- IT & AI -->
+        <div class="group glass-card p-8 rounded-2xl hover:shadow-xl transition cursor-pointer"
+          onclick="window.location.href = '/modules/it-ai/'">
+          <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center mb-6 text-violet-600">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <h3 class="text-xl font-serif font-medium mb-3" data-i18n="services.it.title">
+            IT & AI
+          </h3>
+          <p class="text-slate-500 text-sm mb-4" data-i18n="services.it.desc">
+            Automation and AI integrations that reduce busywork.
+          </p>
+          <span class="text-violet-600 text-sm font-semibold" data-i18n="services.it.link">View Services &rarr;</span>
+        </div>
+
+        <!-- Estate Planning -->
+        <div
+          class="group glass-card p-8 rounded-2xl hover:shadow-xl transition cursor-pointer border-t-4 border-brand-green"
+          onclick="window.location.href = '/pages/estate-planning/'">
+          <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 text-brand-green">
+            <i class="fa-solid fa-shield-heart"></i>
+          </div>
+          <h3 class="text-xl font-serif font-medium mb-3">
+            Estate Planning
+          </h3>
+          <p class="text-slate-500 text-sm mb-4">
+            Secure your legacy with our end-of-life planning templates and documents.
+          </p>
+          <span class="text-brand-green text-sm font-semibold">View Resources &rarr;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="py-20 bg-white border-y border-slate-100">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+      <div class="w-full md:w-1/3">
+        <img src="/assets/imgs/profile.jpg" alt="Cody Rice Velasquez"
+          class="rounded-xl shadow-lg grayscale hover:grayscale-0 transition duration-500" />
+      </div>
+      <div class="w-full md:w-2/3">
+        <h2 class="text-3xl font-serif text-slate-900 mb-6" data-i18n="portfolio.title">
+          Systems Whisperer.
+        </h2>
+        <p class="text-slate-600 mb-6 leading-relaxed" data-i18n="portfolio.desc">
+          Corporate-grade precision with personal delivery. I operate as a
+          solo-practitioner, meaning you get direct access, rapid turnaround,
+          and an expert who actually knows your name.
+        </p>
+        <div class="flex gap-4">
+          <a href="/portfolio/"
+            class="px-6 py-3 rounded-full bg-slate-900 text-white font-medium hover:bg-slate-700 transition"
+            data-i18n="portfolio.cta.view">
+            View Portfolio
+          </a>
+          <a href="/assets/files/resume.pdf" class="text-blue-600 font-medium border-b border-blue-600 pb-0.5"
+            target="_blank">
+            <span data-i18n="portfolio.cta.cv">Download CV</span>
+            <i class="fa-solid fa-download text-sm ml-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/main.js"></script>
+  <div id="secret-nav-overlay" class="hidden"></div>
+  <elevenlabs-convai agent-id="agent_5601kb789hcyfrw928kr2a0ged3z">
+  </elevenlabs-convai>
+  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript">
+  </script>
+</body>
+
+</html>

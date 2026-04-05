@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resumen Fiscal 2025 - Wiletvaldo Calderon Ramirez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f3f4f6;
+      }
+
+      .card-hover {
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 0.8s ease-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .bg-gradient-header {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      }
+    </style>
+  </head>
+  <body class="text-gray-800">
+    <header class="bg-gradient-header text-white py-8 shadow-lg">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-3xl font-bold mb-2">Resumen de Impuestos 2025</h1>
+        <p class="text-lg opacity-90">Cliente: Wiletvaldo Calderon Ramirez</p>
+        <p class="text-sm opacity-75 mt-1">
+          Preparado por: Cody Rice-Velasquez | QIALLY LLC
+        </p>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 space-y-8 max-w-4xl">
+      <section
+        class="bg-white rounded-xl shadow-md p-6 border-l-8 border-green-500 animate-fade-in"
+      >
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div class="md:w-2/3">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">
+              <i
+                class="fa-solid fa-wand-magic-sparkles text-yellow-500 mr-2"
+              ></i>
+              El Valor de Nuestra Experiencia
+            </h2>
+            <p class="text-gray-600 mb-4">
+              Basado en sus números iniciales, su reembolso total estimado era
+              <strong>menos de $2,000</strong>. Sin embargo, aplicamos
+              estrategias avanzadas, específicamente la
+              <span class="text-blue-600 font-semibold"
+                >reconstrucción de millaje comercial (15,558 millas)</span
+              >
+              y la optimización del Anexo C 1515.
+            </p>
+            <p class="text-gray-600">
+              Esto generó una pérdida comercial legítima que redujo su ingreso
+              imponible, maximizando sus créditos y duplicando su reembolso.
+            </p>
+          </div>
+          <div
+            class="md:w-1/3 text-center bg-green-50 p-4 rounded-lg border border-green-200"
+          >
+            <p class="text-sm text-gray-500 uppercase font-bold">
+              Nuevo Reembolso Total
+            </p>
+            <p class="text-4xl font-extrabold text-green-600 my-2">$7,168</p>
+            <span
+              class="inline-block bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full"
+              >Optimizado</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div
+          class="bg-white p-6 rounded-xl shadow card-hover border-t-4 border-blue-600 text-center"
+        >
+          <div class="text-gray-500 font-medium mb-2">Reembolso Federal</div>
+          <div class="text-3xl font-bold text-gray-800">$5,790</div>
+          <div class="text-xs text-green-500 mt-2">
+            <i class="fa-solid fa-check"></i> Depósito Directo
+          </div>
+        </div>
+        <div
+          class="bg-white p-6 rounded-xl shadow card-hover border-t-4 border-yellow-500 text-center"
+        >
+          <div class="text-gray-500 font-medium mb-2">
+            Reembolso Estatal (IN)
+          </div>
+          <div class="text-3xl font-bold text-gray-800">$1,378</div>
+          <div class="text-xs text-green-500 mt-2">
+            <i class="fa-solid fa-check"></i> Depósito Directo
+          </div>
+        </div>
+        <div
+          class="bg-gray-800 p-6 rounded-xl shadow card-hover border-t-4 border-green-500 text-center text-white"
+        >
+          <div class="text-gray-400 font-medium mb-2">Total en su Bolsillo</div>
+          <div class="text-4xl font-bold text-green-400">$7,168</div>
+          <div class="text-xs text-gray-400 mt-2">Año Fiscal 2025</div>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow p-6">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">
+          Comparación: Año Pasado vs. Este Año
+        </h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="text-gray-500 text-sm border-b">
+                <th class="py-2">Concepto</th>
+                <th class="py-2">2024 (Año Pasado)</th>
+                <th class="py-2 font-bold text-blue-900">2025 (Este Año)</th>
+                <th class="py-2">Notas</th>
+              </tr>
+            </thead>
+            <tbody class="text-sm">
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 font-medium">Ingresos W-2</td>
+                <td class="py-3">$27,035 1732</td>
+                <td class="py-3 font-bold">$45,046 156</td>
+                <td class="py-3 text-gray-500 text-xs">
+                  Aumento significativo de ingresos
+                </td>
+              </tr>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 font-medium">Pérdida de Negocio (Sch C)</td>
+                <td class="py-3 text-red-500">-$4,455 1811</td>
+                <td class="py-3 text-red-500 font-bold">-$7,737 241</td>
+                <td class="py-3 text-gray-500 text-xs">
+                  Mayor deducción por millaje
+                </td>
+              </tr>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 font-medium">Ingreso Ajustado (AGI)</td>
+                <td class="py-3">$22,580</td>
+                <td class="py-3 font-bold">$37,309</td>
+                <td class="py-3 text-gray-500 text-xs">Base para créditos</td>
+              </tr>
+              <tr class="bg-green-50">
+                <td class="py-3 font-bold text-gray-800">Reembolso Total</td>
+                <td class="py-3 text-gray-600">$7,274</td>
+                <td class="py-3 font-bold text-green-700 text-lg">$7,168</td>
+                <td class="py-3 text-gray-500 text-xs">
+                  Excelente resultado considerando ingresos más altos
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in">
+        <!-- Audio Deep Dive Card -->
+        <div
+          class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500 card-hover"
+        >
+          <div class="flex items-center mb-4">
+            <div class="bg-purple-100 text-purple-600 p-3 rounded-full mr-4">
+              <i class="fa-solid fa-circle-play text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-800">Análisis Profundo</h3>
+              <p
+                class="text-xs text-purple-600 font-semibold uppercase tracking-wider"
+              >
+                Audio IA Intuitivo
+              </p>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+            Hemos preparado un resumen detallado en audio que explica los puntos
+            clave de su declaración, las optimizaciones realizadas y qué esperar
+            en los próximos pasos.
+          </p>
+          <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+            <audio controls class="w-full custom-audio">
+              <source src="review_audio.m4a" type="audio/mp4" />
+              Su navegador no soporta el elemento de audio.
+            </audio>
+          </div>
+        </div>
+
+        <!-- Infographic Card -->
+        <div
+          class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500 card-hover"
+        >
+          <div class="flex items-center mb-4">
+            <div class="bg-blue-100 text-blue-600 p-3 rounded-full mr-4">
+              <i class="fa-solid fa-chart-column text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-800">Resumen Visual</h3>
+              <p
+                class="text-xs text-blue-600 font-semibold uppercase tracking-wider"
+              >
+                Infografía 2025
+              </p>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+            Haga clic en la imagen a continuación para ver el detalle visual de
+            cómo se distribuyeron sus ingresos y deducciones este año.
+          </p>
+          <div
+            class="relative group cursor-pointer overflow-hidden rounded-xl border border-gray-200"
+            onclick="window.open('infographic.png', '_blank')"
+          >
+            <img
+              src="infographic.png"
+              alt="Infografía Fiscal"
+              class="w-full h-32 object-cover object-top filter transition-all duration-500 group-hover:scale-110 group-hover:brightness-75"
+            />
+            <div
+              class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+              <span
+                class="bg-white/90 text-blue-600 px-4 py-2 rounded-full text-sm font-bold shadow-lg"
+              >
+                <i class="fa-solid fa-expand mr-2"></i>Ver Completo
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <section
+          class="bg-white rounded-xl shadow p-6 border-l-4 border-indigo-500"
+        >
+          <h3 class="text-lg font-bold text-gray-800 flex items-center mb-3">
+            <span
+              class="bg-indigo-100 text-indigo-600 rounded-full w-8 h-8 flex items-center justify-center mr-2"
+              >1</span
+            >
+            Firma de Documentos
+          </h3>
+          <p class="text-gray-600 text-sm mb-4">
+            Recibirá un correo electrónico de <strong>Zoho Sign</strong>. Es
+            necesario firmar electrónicamente para que podamos enviar su
+            declaración al IRS hoy mismo.
+          </p>
+          <button
+            class="w-full bg-gray-100 text-gray-500 font-bold py-2 px-4 rounded cursor-not-allowed"
+          >
+            <i class="fa-regular fa-envelope"></i> Revise su Correo
+          </button>
+        </section>
+
+        <section
+          class="bg-white rounded-xl shadow p-6 border-l-4 border-green-500"
+        >
+          <h3 class="text-lg font-bold text-gray-800 flex items-center mb-3">
+            <span
+              class="bg-green-100 text-green-600 rounded-full w-8 h-8 flex items-center justify-center mr-2"
+              >2</span
+            >
+            Factura y Pago
+          </h3>
+
+          <div class="bg-gray-50 rounded-lg p-4 mb-5 border border-gray-200">
+            <div class="flex justify-between items-center mb-3 border-b pb-2">
+              <span class="text-xs font-bold text-gray-500"
+                >FACTURA #000021-019 3727</span
+              >
+              <span class="text-xs text-gray-400">17 Feb 2026</span>
+            </div>
+            <table class="w-full text-sm">
+              <tr class="border-b border-gray-100">
+                <td class="py-1 text-gray-600">TaxEZ B. (Cabeza de Familia)</td>
+                <td class="py-1 text-right font-medium">$169.00</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-1 text-gray-600">
+                  Complemento (Anexos Negocio/Estatal)
+                </td>
+                <td class="py-1 text-right font-medium">$69.00</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-1 text-gray-600">Servicio Prioritario (Rush)</td>
+                <td class="py-1 text-right font-medium">$49.00</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-1 text-gray-500">Subtotal</td>
+                <td class="py-1 text-right text-gray-500">$287.00</td>
+              </tr>
+              <tr class="text-green-600">
+                <td class="py-1">Descuento</td>
+                <td class="py-1 text-right">-$47.00</td>
+              </tr>
+              <tr class="font-bold text-lg pt-2">
+                <td class="py-2 text-gray-800">Total a Pagar</td>
+                <td class="py-2 text-right text-gray-800">$240.00</td>
+              </tr>
+            </table>
+          </div>
+
+          <div
+            class="bg-yellow-50 border border-yellow-200 rounded p-3 mb-4 text-sm text-yellow-800"
+          >
+            <i class="fa-solid fa-triangle-exclamation mr-1"></i>
+            <strong>Importante:</strong> Por favor envíe
+            <strong>$1.00</strong> primero para confirmar antes de enviar el
+            pago total.
+          </div>
+
+          <div class="space-y-3">
+            <div
+              class="flex items-center justify-between p-3 bg-gray-50 rounded border hover:bg-gray-100 cursor-pointer"
+              onclick="copyToClipboard('3172054383')"
+            >
+              <div class="flex items-center">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Zelle_logo.svg/512px-Zelle_logo.svg.png"
+                  alt="Zelle"
+                  class="h-6 mr-3"
+                />
+                <div>
+                  <p class="font-bold text-sm">317-205-4383 3733</p>
+                  <p class="text-xs text-gray-500">Cody Rice-Velasquez</p>
+                </div>
+              </div>
+              <i class="fa-regular fa-copy text-gray-400"></i>
+            </div>
+
+            <div
+              class="flex items-center justify-between p-3 bg-gray-50 rounded border hover:bg-gray-100 cursor-pointer"
+              onclick="copyToClipboard('$srv1ne')"
+            >
+              <div class="flex items-center">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Cash_App_Logo.svg/512px-Cash_App_Logo.svg.png"
+                  alt="Cash App"
+                  class="h-8 mr-3"
+                />
+                <div>
+                  <p class="font-bold text-sm">$srv1ne 3734</p>
+                  <p class="text-xs text-gray-500">Cash App ID</p>
+                </div>
+              </div>
+              <i class="fa-regular fa-copy text-gray-400"></i>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 py-6 mt-8 text-center text-sm">
+      <p>QIALLY LLC | Empower. Innovate. Grow.</p>
+      <p class="mt-2">Gracias por confiar en nosotros.</p>
+    </footer>
+
+    <script>
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert("Copiado al portapapeles: " + text);
+        });
+      }
+    </script>
+  </body>
+</html>

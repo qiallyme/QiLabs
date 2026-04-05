@@ -1,0 +1,9 @@
+# Default policies for watch paths
+polling_interval_seconds: 5
+settle_time_seconds: 10
+allowed_extensions:
+  - .pdf
+  - .png
+  - .jpg
+  - .docx
+  - .txt

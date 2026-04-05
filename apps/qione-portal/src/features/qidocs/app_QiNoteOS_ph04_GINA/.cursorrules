@@ -1,0 +1,634 @@
+# =============================================================================
+# QiOS Cursor Rules
+# Based on: 0.00.00-qios_genesis.md
+# =============================================================================
+# These rules enforce the QiOS architecture, governance, and philosophy.
+# Violations trigger GINA's intervention.
+
+# =============================================================================
+# CORE PHILOSOPHY (The Trinity)
+# =============================================================================
+
+## 1. Governance Over Chaos
+- Everything must follow explicit rules: structure, naming, metadata, routing, security
+- No randomness. No drift. No exceptions without explicit rule override.
+- All changes must respect the Seven Layers of Governance (0-7)
+- Rules are defined in `rules/qios_rules_v1_1.yaml` and enforced by linter
+
+## 2. Semantics Over Storage
+- QiOS understands files, not just stores them
+- All files must have front matter with semantic metadata
+- Use `context`, `keywords`, `tags`, `sensitivity`, `classification` for routing
+- GINA uses embeddings + RAG for intelligent placement
+- Never create files without semantic context
+
+## 3. Automation Over Effort
+- Prefer self-healing, normalization, and automated routing
+- Manual sorting is obsolete
+- Workers handle ingestion, normalization, routing, vectorization, linting
+- Human corrections feed back into system intelligence
+- Never hardcode paths or manual interventions
+
+# =============================================================================
+# NON-NEGOTIABLE PROJECT LAWS
+# =============================================================================
+# Based on: rules/qios_cursor_prompts/project_prompt.md.md
+
+## A) Identity vs Meaning
+- **Filename = identity** (slug.ext, optional qidecimal_slug.ext)
+- **Metadata/front matter = meaning**
+- **Vector embeddings = memory**
+- **Never put dates or meaning into filenames**
+- Filenames are stable identifiers, not semantic descriptors
+
+## B) IDs
+- **QID**: Opaque unique ID, global monotonic sequence, immutable forever
+  - Never encode meaning in QID
+  - Never change an existing QID
+  - QID is permanent and immutable
+- **QiDecimal**: Semantic address for sorting and categorization
+  - Format: `##.##.##-TYPE`
+  - Never auto-renumber existing values
+  - Only propose new slots when creating new content
+  - QiDecimal is semantic, not sequential
+
+## C) Markdown + Docs
+- **One H1 per file** matching front matter title
+- **Body uses H2+ only** (never H1 in body content)
+- Follow formatting and atomicity protocols
+- Every folder gets a README describing purpose + governance link
+- Atomicity: one primary concept per doc (split instead of bloating)
+
+## D) Governance Pipeline
+- All automation/routing/linting follows 7 layers in order (0-7)
+- Do not create logic that skips or reorders layers
+- Layer order is: Root Integrity → Dark Matter → Realm Schema → File Identity → Naming → Metadata → Semantic Routing → Self-Healing
+
+## E) Realms + Assets
+- **Realms = ownership/context universes** (Personal, Business, Clients, Vault, Playground, Research, Temp, Archives, etc.)
+- **Assets are format buckets inside realms** (images, video, audio, design, exports)
+- Route by meaning first, format second
+- Realm decides ownership/context, asset type decides format
+
+## F) Registries as Source of Truth
+- If adding/altering any rule/folder/realm/property/table/enumeration, **update the corresponding YAML/CSV/SQL registry in the same PR**
+- Registries compile the canonical directory tree
+- No manual trees that drift
+- Registries are authoritative:
+  - `rules/qios_rules_v1_1.yaml` + `data/sheets/qios_rules_v1_1.csv`
+  - `rules/realms_registry.yaml` + `data/sheets/realms_registry.csv`
+  - `rules/folder_registry.yaml`
+  - `data/sheets/front_matter_schema_v1.csv`
+  - `data/schemas/qios_brain_db_v1.sql`
+  - `data/seeds/supabase_seed_*.sql`
+
+## G) Safety
+- Prefer non-destructive operations (quarantine, alias, lineage) over delete
+- If unsure, log and quarantine
+- Never delete without explicit confirmation
+- Preserve lineage and relationships
+
+# =============================================================================
+# QIOS ONTOLOGY (System Species)
+# =============================================================================
+# These are first-class citizens. Enforce strict boundaries.
+
+## QiApps (`apps/`)
+- UI-driven applications and experiences
+- Astro/Vite/React apps, client portals, internal dashboards
+- Each app in its own slug folder: `apps/{slug}/`
+- Must have `_readme.md` per DOC.010 rule
+
+## QiWorkers (`workers/`)
+- Autonomous modules: ingestion, normalization, routing, vectorization, linting, dedupe
+- One worker per folder: `workers/{worker_name}/`
+- Config stored in `data/policies/` when needed
+- Must follow Layer 1 (Dark Matter Physics) and Layer 6 (Semantic Routing)
+
+## QiComponents (`components/`)
+- Reusable UI + logic elements shared by QiApps
+- Atomic and versioned
+- No apps, workers, or raw files here
+
+## QiWorkflows (`workflows/`)
+- Automation chains orchestrating processes
+- Coordinate workers and apps
+
+## QiData (`data/`)
+- Schemas, vector indexes, sheets, caches, policies, tables
+- Structure: `schemas/`, `migrations/`, `policies/`, `sheets/`, `vector/`, `cache/`
+- Never mix data with code
+
+## QiRealms (`realms/`)
+- Meaning universes answering "who/what universe does this belong to?"
+- NOT file-type based. Realm = ownership/context
+- Pre-allowed by registry: `data/sheets/realms_registry.csv`
+- Structure: `realms/{realm_slug}/kb/`, `realms/{realm_slug}/data/`, `realms/{realm_slug}/assets/`
+- Assets live INSIDE realms (images, videos, audio, design files)
+- Must have `_readme.md` per DOC.020 rule
+
+## QiRules (`rules/`)
+- Governance logic defining system behavior
+- YAML format: `rules/qios_rules_v1_1.yaml`
+- CSV registry: `data/sheets/qios_rules_v1_1.csv`
+- SQL seeds: `data/seeds/supabase_seed_rules.sql`
+
+## QiSecurity (`security/`)
+- Roles, permissions, access layers
+- Sensitivity: public|internal|confidential|restricted|secret
+- Classification: personal_health|personal_finance|legal|immigration|client_confidential|business_internal|marketing_public|system_darkmatter|other
+
+## QiConnections (`connections/`)
+- External integrations, secrets, references
+- API keys, tokens, credentials (use env vars, never hardcode)
+
+## QiSites (`sites/`)
+- KB sites, portals, documentation surfaces
+
+## QiDocs (`docs/`)
+- Architecture docs, SOPs, diagrams, schemas
+
+## QiDarkMatter (`darkmatter/`)
+- System substrate and infrastructure
+- Protected by Layer 1 (Dark Matter Physics)
+
+## QiTemplates (`templates/`)
+- Reusable scaffolds
+- Must have `_readme.md` per DOC.010 rule
+
+## QiProjects (`projects/`)
+- Structured deliverables
+
+# =============================================================================
+# SEVEN LAYERS OF GOVERNANCE
+# =============================================================================
+# Rules apply in strict layered order. Never skip layers.
+
+## Layer 0 — Root Integrity
+- Required roots must exist: apps, workers, components, workflows, data, realms, rules, security, connections, sites, docs, darkmatter, templates, projects
+- Forbidden roots are quarantined
+- Rule: ROT.010, ROT.020
+- **Note**: Observability rules (OBS.010, OBS.020) are in Layer 1 (Dark Matter) as infrastructure protection, not Layer 0
+
+## Layer 1 — Dark Matter Physics
+- Protects system substrate (darkmatter/, workers/, rules/)
+- Rule: DM.010
+
+## Layer 2 — Realm Schema
+- Validates realm folder structures
+- Ensures realms match registry: `data/sheets/realms_registry.csv`
+- Rule: RLM.010, RLM.020, RLM.030, RLM.040, RLM.050
+
+## Layer 3 — File Identity
+- Validates file legitimacy (type, MIME, placement)
+- Assets must be in realm assets/ folders
+- Docs must be in appropriate realm kb/ folders
+
+## Layer 4 — Naming (QiOS Naming Law v1.0)
+- Format: `{slug}.{ext}` OR `{qidecimal}_{slug}.{ext}`
+- Slug: lowercase_underscored only
+- NO dates in filenames (strip old date prefixes)
+- Enforce identity, not meaning
+- Stabilize references
+- Rule: NAM.010, NAM.020, NAM.030
+
+## Layer 5 — Metadata
+- ALL files must have front matter (YAML front matter)
+- Required fields: title, slug, realm, type, node, created, updated
+- Optional but recommended: qi_decimal, qid, keywords, tags, context, aliases, version, status, system, naming_strategy, sort, related, parents, children, siblings, references, graph_weight, orbit, entangled, summary, sensitivity, classification
+- Schema: `data/sheets/front_matter_schema_v1.csv`
+- Timestamps must be valid ISO 8601
+- QiDecimal integrity: `##.##.##-TYPE` format
+- Backlink preservation in related/parents/children/siblings arrays
+
+## Layer 6 — Semantic Routing
+- Uses embeddings + RAG to place files in correct realms
+- GINA uses context, keywords, tags, sensitivity, classification
+- Never manually route; let GINA decide
+
+## Layer 7 — Self-Healing
+- Dedupe: detect and merge duplicates
+- Versioning: track changes
+- Quarantine: move invalid files to archives
+
+# =============================================================================
+# FRONT MATTER SCHEMA
+# =============================================================================
+# Reference: data/sheets/front_matter_schema_v1.csv
+
+## Required Fields
+- `title`: string (human-readable)
+- `slug`: string (lowercase_underscored, unique)
+- `realm`: string (QiPersonal|QiBusiness|QiClients|QiVault|QiPlayground|QiResearch|QiTemp|Archives|QiPublish|QiLegal)
+- `type`: string (doc|asset|schema|workflow|worker|rule|site|project)
+- `node`: string (concept|file|asset|rule|task|entity)
+- `created`: datetime (ISO 8601)
+- `updated`: datetime (ISO 8601)
+
+## Optional but Recommended
+- `realm_slug`: string (specific instance: inh, punchpro, qios, genesis)
+- `qi_decimal`: string (##.##.##-TYPE format)
+- `qid`: string (permanent immutable node ID)
+- `keywords`: array[string] (search descriptors)
+- `tags`: array[string] (organizational tags)
+- `context`: string (semantic context for routing/RAG)
+- `aliases`: array[string] (alternative names)
+- `version`: string (semver: 0.0.0)
+- `status`: string (draft|active|canonical|archived)
+- `system`: string (qinote|qios|qiclient|qipersonal|realm-local)
+- `naming_strategy`: string (slug_only|qidecimal_slug)
+- `sort`: number (manual sorting override)
+- `related`: array[string] (QIDs of related nodes - soft semantic edges, non-hierarchical)
+- `parents`: array[string] (parent node QIDs - hard structural edges, tree-ish)
+- `children`: array[string] (child node QIDs - hard structural edges, tree-ish)
+- `siblings`: array[string] (peer node QIDs - derived field, auto-populated: nodes sharing a parent. Humans should not edit siblings directly)
+- `references`: array[string] (external citations/URLs/IDs, not graph edges - maps to DB `references_arr`)
+- `graph_weight`: number (1-10, importance in QiGraph)
+- `orbit`: string (core|inner|mid|outer)
+- `entangled`: array[string] (intrinsically linked nodes)
+- `summary`: string (auto-generated semantic summary)
+- `sensitivity`: string (public|internal|confidential|restricted|secret)
+- `classification`: string (personal_health|personal_finance|legal|immigration|client_confidential|business_internal|marketing_public|system_darkmatter|other)
+
+## Front Matter Mapping
+- Front matter `references` → Database `references_arr` (column renamed to avoid SQL keyword conflict)
+
+# =============================================================================
+# NAMING CONVENTIONS
+# =============================================================================
+
+## Files (Identity, Not Meaning)
+- Format: `{slug}.{ext}` OR `{qidecimal}_{slug}.{ext}`
+- Slug: lowercase_underscored only (no spaces, no camelCase, no kebab-case)
+- **CRITICAL**: Filenames are identity, not meaning. Never encode semantic information in filenames.
+- **NO DATES IN FILENAMES** - dates belong in front matter `created`/`updated` fields
+- Examples:
+  - `qios_genesis.md` ✅
+  - `0.00.00-qios_genesis.md` ✅
+  - `qios-genesis.md` ❌ (kebab-case)
+  - `qiosGenesis.md` ❌ (camelCase)
+  - `2024-01-15-qios_genesis.md` ❌ (date prefix - STRICTLY FORBIDDEN)
+  - `genesis_document.md` ✅ (identity)
+  - `genesis_document_v2.md` ❌ (version in filename - use front matter `version` field)
+
+## Folders
+- Use lowercase_underscored: `qipersonal/`, `qiclients/`, `inh/`
+- Realm roots: match registry exactly
+- Asset folders: `images/`, `videos/`, `audio/`, `documents/`, `reports/`, `branding/`
+
+## Variables/Functions
+- TypeScript: use camelCase for variables/functions
+- Constants: UPPER_SNAKE_CASE
+- Types/Interfaces: PascalCase
+- Files: lowercase_underscored (matches QiOS naming law)
+
+# =============================================================================
+# DATABASE SCHEMA
+# =============================================================================
+# Reference: data/schemas/qios_brain_db_v1.sql
+
+## Key Tables
+- `public.node`: Core node table (matches front matter canon)
+- `public.realm`: Realm registry
+- `public.rule`: Governance rules
+- `public.semantic_profile`: Vector embeddings and semantic data
+- `public.routing_prior`: Routing confidence and feedback
+
+## Important Notes
+- `references` column is `references_arr` in DB (front matter still uses `references`)
+- Use text[] for arrays, jsonb for complex objects
+- Timestamps: timestamptz (always timezone-aware)
+- UUIDs: use gen_random_uuid() for primary keys
+- QID: text unique (permanent immutable node ID)
+
+# =============================================================================
+# TYPESCRIPT & CODE STANDARDS
+# =============================================================================
+
+## TypeScript
+- Strict mode: always enabled
+- No `any` types (use `unknown` if needed, then narrow)
+- No silent errors: explicit error handling
+- No guessing schema: validate all inputs
+- Infer QiDecimal context where possible
+
+## Code Quality
+- Clarity > cleverness
+- Explicit over implicit
+- Fail fast with clear error messages
+- Type-safe: leverage TypeScript's type system
+- No magic strings: use constants/enums
+
+## Error Handling
+- Never swallow errors silently
+- Always log errors with context
+- Use Result types or throw explicit errors
+- Validate inputs at boundaries
+
+## Cloudflare Workers
+- Protect Worker contracts (request/response types)
+- Use environment variables for secrets
+- Never hardcode API keys or tokens
+- Handle edge cases (timeouts, rate limits)
+
+## Supabase
+- Use generated TypeScript types from schema
+- Protect query types (no `any` in queries)
+- Use RLS policies for security
+- Validate all inputs before database operations
+
+## Frontend Components
+- Protect component boundaries (props types)
+- Use strict TypeScript
+- Validate props at component level
+- No prop drilling of untyped data
+
+# =============================================================================
+# FILE STRUCTURE
+# =============================================================================
+
+## Canonical Roots (must exist)
+```
+QiOS/
+  apps/
+  workers/
+  components/
+  workflows/
+  data/
+    schemas/
+    migrations/
+    policies/
+    sheets/
+    vector/
+    cache/
+  realms/
+  rules/
+  security/
+  connections/
+  sites/
+  docs/
+  darkmatter/
+  templates/
+  projects/
+```
+
+## Realm Structure
+```
+realms/
+  {realm_slug}/
+    kb/              # Knowledge base (docs)
+    data/            # Structured data
+    assets/          # Media files
+      images/
+      videos/
+      audio/
+      documents/
+      reports/
+      branding/
+    .meta/           # Metadata (optional)
+    .archive/        # Archived files (optional)
+```
+
+## README Requirements
+- Every canonical root folder must contain `_readme.md` (DOC.010)
+- Every realm root must contain `_readme.md` (DOC.020)
+- READMEs generated from: `data/sheets/readme_registry_v1.yaml`
+- Generator: `workers/linter/readme_generator.py`
+
+# =============================================================================
+# ENVIRONMENT VARIABLES
+# =============================================================================
+# Reference: env.example
+
+## Never Hardcode
+- API keys, tokens, secrets → use env vars
+- Database passwords → use env vars
+- Service URLs → use env vars
+- Configuration → use env vars or config files
+
+## Services
+- Supabase: URL, keys, project ID/ref, DB credentials
+- Cloudflare: API token, account/zone IDs, Workers config
+- OpenAI: API key, model configs
+- Gemini: API key, model settings
+- Twilio: Account SID, auth token, phone number
+- Zoho MCP: Client ID/secret, tokens, org ID
+- Database: Postgres connection strings
+
+# =============================================================================
+# GINA: The Neural Core
+# =============================================================================
+# GINA = Generative Intelligence Neural Archivist
+
+## GINA Responsibilities
+- Ingestion: extract text, OCR, parse
+- Semantic extraction: understand meaning
+- Chunking: split for embeddings
+- Embedding: vectorize content
+- Context building: build semantic profile
+- Normalization: standardize metadata
+- Metadata injection: add front matter
+- Routing: place files in correct realms
+- Dedupe: detect duplicates
+- Linter execution: enforce rules
+- Feedback learning: learn from corrections
+
+## GINA Principles
+- GINA is the brain, QiOS is the body, vector index is the memory
+- GINA uses retrieval-augmented governance (RAG)
+- Human corrections update RoutingPrior and improve intelligence
+- Never bypass GINA; trust the automation
+
+# =============================================================================
+# RULES & REGISTRIES
+# =============================================================================
+
+## Rules
+- YAML: `rules/qios_rules_v1_1.yaml`
+- CSV: `data/sheets/qios_rules_v1_1.csv`
+- SQL Seed: `data/seeds/supabase_seed_rules.sql`
+- Rules have: rule_id, layer, priority, rule_type, scope_realm, scope_path, conditions, action, action_params, confidence_required, enabled, notes_human
+
+## Registries
+- Realms: `data/sheets/realms_registry.csv` + `rules/realms_registry.yaml`
+- Front Matter Schema: `data/sheets/front_matter_schema_v1.csv`
+- Sensitivity Classification: `data/sheets/sensitivity_classification_registry.csv`
+- README Registry: `data/sheets/readme_registry_v1.yaml`
+- Folder Registry: `rules/folder_registry.yaml`
+
+## Rule Enforcement
+- Rules are enforced by linter workers
+- Violations trigger GINA intervention
+- Rules apply in layer order (0-7)
+- Never skip layers
+
+# =============================================================================
+# ASSETS
+# =============================================================================
+
+## Asset Types
+- Images: .png .jpg .jpeg .webp .gif .svg .heic
+- Video: .mp4 .mov .mkv .webm .avi
+- Audio: .mp3 .wav .m4a .ogg .flac
+- Design: .fig .psd .ai .sketch
+- Slides/Visual: .pptx .key .pdf (when used as media/branding)
+- Exports: .html .json .csv (when rendered outputs, not canonical schemas)
+
+## Asset Placement
+- Assets live INSIDE realms (context depends on ownership)
+- Structure: `realms/{realm_slug}/assets/{type}/{category}/`
+- Examples:
+  - Brand logo → `realms/qibusiness/assets/images/branding/`
+  - Client photos → `realms/qiclients/{slug}/assets/images/`
+  - Video renders → `realms/qibusiness/assets/videos/ads/`
+
+## Asset vs Doc
+- Assets: NOT primarily knowledge text (media, design, exports)
+- Docs: Primarily knowledge text (markdown, text, specs)
+- Realm decides ownership, asset type decides format
+
+# =============================================================================
+# THE QIOS CONTRACT
+# =============================================================================
+# Everything in QiOS must obey:
+
+1. **Structure**: Canonical folder structure, realm organization
+2. **Identity**: QID, slug, qi_decimal, naming law
+3. **Meaning**: Front matter, semantic metadata, context
+4. **Metadata**: Complete front matter, timestamps, versioning
+5. **Routing**: Semantic routing by GINA, not manual placement
+6. **Versioning**: Semantic versioning, status tracking
+7. **Governance**: Seven layers of rules, no exceptions
+8. **Memory**: Vector index, semantic profiles, lifelong memory
+9. **Learning**: Feedback loops, human corrections improve system
+
+## Violations
+- Any violation triggers GINA's intervention
+- Linter will quarantine invalid files
+- Rules will auto-correct when possible
+- Human review required for ambiguous cases
+
+# =============================================================================
+# ARCHITECTURAL INTEGRITY
+# =============================================================================
+
+## Maintain Consistency
+- Across QiAlly/QiSuite/QiNote/QiPortals
+- Follow QiOS ontology strictly
+- Respect layer boundaries
+- No shortcuts that bypass governance
+
+## Prefer Small, Safe Fixes
+- Over giant refactors (unless explicitly asked)
+- Incremental changes with validation
+- Test each layer independently
+- Never break existing contracts
+
+## Protect Boundaries
+- Cloudflare Worker contracts (request/response types)
+- Supabase query types (no `any`)
+- Frontend component boundaries (props types)
+- Database schema (migrations, not direct changes)
+
+## Never Touch
+- Environment variables (unless explicitly asked)
+- Deployment configs (unless explicitly asked)
+- Production data (never)
+- Core governance rules (without approval)
+
+# =============================================================================
+# WHEN MAKING CHANGES
+# =============================================================================
+
+## Always
+1. Check if change violates any layer (0-7)
+2. Verify front matter schema compliance
+3. Ensure naming follows QiOS Naming Law
+4. Validate against rules registry
+5. Check realm registry for realm changes
+6. Update related registries if needed
+7. Run linter to verify compliance
+
+## Never
+1. Skip governance layers
+2. Create files without front matter
+3. Use dates in filenames
+4. Hardcode paths or secrets
+5. Bypass GINA routing
+6. Mix ontology boundaries (apps vs workers vs components)
+7. Create files outside canonical structure
+
+# =============================================================================
+# DOCUMENTATION
+# =============================================================================
+
+## Genesis Document
+- Reference: `0.00.00-qios_genesis.md`
+- This is Day Zero, the Big Bang
+- All architecture flows from this document
+
+## READMEs
+- Every root folder has `_readme.md`
+- Every realm has `_readme.md`
+- Generated from registry: `data/sheets/readme_registry_v1.yaml`
+- Define purpose, what belongs, what doesn't, examples
+
+## Code Comments
+- Explain WHY, not WHAT
+- Document architectural decisions
+- Note rule references (e.g., "per Layer 4 Naming Law")
+- Reference QiOS ontology when relevant
+
+# =============================================================================
+# CANONICAL SOURCES (Do Not Contradict)
+# =============================================================================
+# Reference these documents for authoritative guidance:
+
+## Primary Sources
+- **QiOS Genesis**: `0.00.00-qios_genesis.md` (Day Zero Constitution)
+- **EOS Protocols** (when available):
+  - QID spec: `0.00.01.15_qid.md`
+  - QiDecimal spec: `0.00.01.01_qidecimal.md`
+  - Formatting standards: `0.00.01.05_formatting.md`
+  - Atomicity rule: `0.00.01.07_atomicity.md`
+  - Realms/Taxonomy: `0.00.03.01_realms.md`, `0.00.03.00_taxonomy.md`, `0.00.03.03_tag_taxonomy.md`
+
+## Registries (Source of Truth)
+- **YAML Rules**: `rules/qios_rules_v1_1.yaml`, `rules/realms_registry.yaml`, `rules/folder_registry.yaml`
+- **CSV Registries**: `data/sheets/front_matter_schema_v1.csv`, `data/sheets/qios_rules_v1_1.csv`, `data/sheets/realms_registry.csv`, `data/sheets/sensitivity_classification_registry.csv`
+- **SQL Schema + Seeds**: `data/schemas/qios_brain_db_v1.sql`, `data/seeds/supabase_seed_realms.sql`, `data/seeds/supabase_seed_rules.sql`
+
+## Cursor Prompts
+- **Project Prompt**: `rules/qios_cursor_prompts/project_prompt.md.md` (always-on rules)
+- **User Prompt**: `rules/qios_cursor_prompts/user_prompt.md.md` (task-specific template)
+
+# =============================================================================
+# TASK EXECUTION REQUIREMENTS
+# =============================================================================
+
+## When Making Changes
+1. **Canon Check**: Verify changes align with Genesis + EOS protocols
+2. **Registry Updates**: If adding/altering rules/props/tables/folders, update matching registry files in same change
+3. **Layer Compliance**: Ensure changes respect 7-layer governance order
+4. **Non-Destructive**: Prefer quarantine over delete, preserve lineage
+
+## Output Requirements
+- Produce changes consistent with canon above
+- Include a short "Canon Check" section explaining alignment to Genesis + specific EOS rules
+- Explicitly cite which canon rules you are adhering to
+- If requirement is unclear, infer from Genesis/registries first
+- If still ambiguous, choose safer, more conservative interpretation (no destructive actions)
+
+# =============================================================================
+# FINAL REMINDERS
+# =============================================================================
+
+- QiOS is a **cognitive operating system**, not a file system
+- Governance Over Chaos, Semantics Over Storage, Automation Over Effort
+- GINA is the brain, trust the automation
+- Every file must have semantic meaning
+- Rules are enforced, not suggestions
+- Structure, Identity, Meaning, Metadata, Routing, Versioning, Governance, Memory, Learning
+- **Identity vs Meaning**: Filenames = identity, Metadata = meaning, Embeddings = memory
+- **This is Day Zero. Build the lifetime brain.**
+

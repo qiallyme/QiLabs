@@ -1,0 +1,378 @@
+# Changelog
+
+All notable changes to Atrium will be documented in this file.
+
+## [1.3.3] — 2026-03-21
+
+### Added
+
+- **Comments** — Reply to project updates and tasks from the dashboard or portal.
+- **Client updates** — Clients can now post updates from the portal.
+- **Tags & Labels** — Create org-wide labels in System Settings and assign them to projects, tasks, files, and clients. Filter projects by label on the projects list page. Colored badges display throughout the dashboard.
+- **In-app notifications** — Real-time notification bell in the dashboard and portal with unread count, mark-as-read, and mark-all-read.
+- **Push notifications** — Browser push notifications for project updates, task assignments, and comments via Web Push (VAPID). Service worker included.
+- **CSV data export** — Download projects, invoices, people, and tasks as CSV files from their respective pages.
+
+### Security
+
+- **kysely** override `0.28.11` → `0.28.14` — fixes two SQL injection vulnerabilities (CVE-2026-32763, CVE-2026-33468)
+- **fast-xml-parser** override `5.4.1` → `5.5.7+` — fixes XML entity expansion (CVE-2026-33036) and input validation (CVE-2026-33349)
+
+### Upgrade Notes
+
+New database tables: `comment`, `label`, `project_label`, `task_label`, `file_label`, `member_label`, `notification`, `push_subscription`. New relation columns on `project`, `task`, `file`, and `member`. Docker handles this automatically via `prisma db push` in the entrypoint; bare-metal deployments must run `bun run db:push` after updating.
+
+## [1.3.2] — 2026-03-21
+
+### Added
+
+#### Mobile-Responsive UI
+- **Collapsible sidebar** — Slide-out hamburger menu on mobile with backdrop, auto-close on navigation
+- **Adaptive project detail** — Collapsible `<details>` card for project metadata on mobile so tabs are immediately accessible
+- **Responsive layouts** — Padding, tab bars, and flex layouts adapt across all dashboard and portal views
+- **Responsive button labels** — "Upload Invoice" shortens to "Upload" on small screens
+
+#### Testing
+- Mobile navigation e2e tests (hamburger visibility, drawer open/close, route-change auto-close, desktop sidebar)
+
+### Fixed
+- Email errors in password reset and verification now propagate to the user instead of being silently swallowed
+- Removed PII (email addresses) from error logs in onboarding controller
+- Signup error logging now captures only `message` and `code` instead of full error object
+
+### Security
+- Next.js updated to 15.5.14 (patches CVE HTTP request smuggling + disk cache exhaustion)
+
+## [1.3.1] — 2026-03-18
+
+### Breaking Changes
+
+- **Documents start as drafts** — Uploaded documents are no longer immediately visible to clients. Admins must click "Send to Client" (or use "Upload & Send") to make them visible. Existing pending documents are unaffected.
+- **New version resets responses** — When an admin uploads a new version of a sent/signed document, all client responses and signatures are cleared and the document returns to "pending" for re-review. This enables scope change tracking but means clients must re-sign.
+- **Unified upload flow** — The separate "Upload File" button is removed. All uploads go through the document modal (title, type, optional signature/approval). For quick file shares, use type "Other" and hit "Upload & Send".
+
+### Added
+
+#### Document Lifecycle
+- **Draft status** — Documents start as drafts, invisible to clients until explicitly sent
+- **Send workflow** — `Send to Client` transitions draft → pending and notifies clients via email
+- **Void documents** — Cancel sent documents with optional reason; clients see read-only "Voided" badge
+- **Audit trail** — Every document action (created, sent, viewed, signed, voided, expired) logged with timestamp, user, IP, and user agent. Viewable from the dashboard
+
+#### E-Signature Enhancements
+- **Field types** — Signature, date (auto-fill), initials, text input, and select (radio options) fields
+- **Signing order** — Sequential signing enforcement; locked fields show "Waiting..." until prior signers complete
+- **Signer assignment** — Assign specific fields to specific project clients
+- **Admin signing** — Admins/owners can sign documents directly from the dashboard
+- **Type-to-sign default** — Signature pad now defaults to type mode (draw still available)
+
+#### Expiration & Reminders
+- **Document expiration** — Set expiry (7/14/30/60/90 days) when sending; auto-expired by hourly cron
+- **Automatic reminders** — Email reminders to unresponsive clients at configurable intervals (1-7 days)
+
+#### Direct Signing Links
+- **Access tokens** — Generate secure signing links for clients (SHA-256 hashed, time-limited)
+- **Public signing page** — `/portal/sign/[token]` renders signing UI without portal login
+- **Token revocation** — Admins can revoke individual signing links
+- **Token cleanup** — Daily cron deletes expired tokens older than 30 days
+
+#### Completion Certificate
+- **PDF certificate** — Auto-generated completion certificate with document info, signer table, and full audit trail
+- **Download** from both dashboard and portal when document is fully signed
+
+#### Client Choices
+- **Question with options** — Attach a question with radio button choices to any document; client must select one
+
+#### UI Improvements
+- **Unified Files tab** — Documents and files merged into single "Files" tab with one Upload button
+- **Simplified upload modal** — Progressive disclosure: title + type + file upfront, signature checkbox for PDFs, advanced options collapsed
+- **Upload & Send** — Primary CTA sends immediately; Save Draft for preparation
+- **Auto-populate title** from filename on file selection
+- **Three-tier action bar** — Primary action (solid button), secondary actions (icon group), destructive actions (right-aligned, danger on hover)
+- **Continuous PDF scroll** — All pages render in a scrollable view with lazy loading via IntersectionObserver
+- **Voided/expired states** in portal — Read-only badges, no action buttons
+
+#### Document Versioning
+- **Version history** — Upload new file versions to any document (draft or sent). Previous versions preserved with uploader name and timestamp
+- **Restore versions** — Restore any previous version with one click; creates a new version entry for traceability
+- **Scope change tracking** — Uploading a new version on a sent document resets to "pending" so clients re-review the changes
+- **Version badge** — Documents with multiple versions show a "v2", "v3" etc. badge
+
+#### Direct Signing Links
+- **Generate signing links** — Create secure, time-limited signing URLs for specific clients from the dashboard
+- **Manage links** — View active links, copy URLs, and revoke links per document
+- **Token security** — SHA-256 hashed tokens, rate-limited public endpoints, auto-cleanup of expired tokens
+
+#### Email Templates
+- `DocumentReminderEmail` — Reminder for unresponsive clients with optional expiry date
+- `DocumentSigningTurnEmail` — "Your turn to sign" notification for sequential signing
+
+#### Testing
+- 82 unit tests for `DocumentsService` covering all business logic paths
+- 13 new E2E API tests (send, void, audit trail, field locking, token generation, expiry validation)
+
+### Fixed
+- Certificate page overflow — audit trail now properly spans multiple pages
+- Token endpoint response filtered — no internal IDs exposed to unauthenticated users
+- Signature fields locked on sent documents — prevents editing after clients have signed
+- `requiresSignature` enforced as PDF-only on the API
+- Send blocked for signature documents with zero fields placed
+- `expiresInDays` validated on send endpoint (1-365 range)
+- Signing audit events logged synchronously for compliance
+- Notification type safety — removed unsafe `as any` cast
+- `fetchSigningInfo` stale closure fixed in signing viewer
+
+### Upgrade Notes
+
+Schema changes require `bun run db:push`. **Data migration needed**: run `bun run packages/database/scripts/migrate-document-sent-at.ts` to backfill `sentAt` on existing pending documents. New tables: `document_audit_event`, `document_access_token`. New columns on `document` and `signature_field` models.
+
+## [1.3.0] — 2026-03-17
+
+### Added
+
+- **Documents** — Upload quotes, contracts, and NDAs to projects. Clients review inline and accept/decline with optional reason. Admin sees status, decline reason, and can reset to re-request.
+- **Decision tasks** — New task type where clients vote on options. Vote counts hidden until all clients have voted.
+- **Activity feed** — Document responses and decision votes appear in the project updates timeline.
+- **Email notifications** — Clients notified on document uploads, invoice uploads, and decision results. Admins notified on client responses.
+- **Invoice uploads** — Upload PDF/image invoices as an alternative to itemized invoices.
+- **Payment settings** — Configure payment instructions and method (bank transfer, PayPal, Stripe, other) with encrypted storage.
+- **Portal UX** — Pending actions banner, badge counts on Files tab, confirmation dialog on accept/decline, inline document viewer modal.
+- **Responsive layout** — Dashboard and portal stack vertically on small screens; tabs scroll, forms wrap.
+- Configurable rate limiting via `THROTTLE_LIMIT` and `SIGNUP_THROTTLE_LIMIT` env vars.
+
+### Fixed
+
+- Portal invoice pagination now filters server-side by project (was client-side, broke page counts)
+- Activity logging errors now logged instead of silently swallowed
+- Tracker script injection hardened: `NEXT_PUBLIC_TRACKERS` validated against attribute whitelist
+- React hydration mismatch (#418) suppressed on root elements
+
+### Upgrade Notes
+
+Additive schema changes only (new tables + nullable columns). No data migration needed. Docker entrypoint handles it automatically; manual deployments run `bun run db:push`.
+
+## [1.2.1] — 2026-03-12
+
+### Added
+- Default Atrium logo on landing page and sidebar (falls back when no custom branding is set)
+- "Hide logo" toggle in branding settings for orgs without a company logo
+- Sidebar and portal header automatically reflect branding changes after save (no refresh needed)
+
+### Fixed
+- README image paths not rendering on GitHub (`public/` → `./public/`)
+
+## [1.2.0] — 2026-03-11
+
+### Added
+
+#### Account Deletion
+- Owners can delete their account and cascade-delete their organization (projects, files, invoices, clients)
+- Password re-authentication required before deletion
+- Type-to-confirm dialog requiring `DELETE <org name>`
+- `GET /api/account/deletion-info` preflight endpoint returns org ownership context
+- Clients (non-owners) can delete their own account from portal settings
+- E2E tests for deletion flow, credential invalidation, and non-owner visibility
+
+#### Supabase Row Level Security
+- `enable-rls.sql` enables RLS on all 21 tables and revokes `anon`/`authenticated` access
+- `bun run db:rls` command to apply manually
+- Docker entrypoints apply RLS automatically when `SUPABASE=true`
+- Safe for plain Postgres — gated behind env var, skipped by default
+
+#### Docker
+- Built-in PostgreSQL 16 bundled in the unified Docker image — no separate database container needed
+- `USE_BUILT_IN_DB` toggle: set to `false` with a `DATABASE_URL` to use an external database
+- Graceful shutdown of built-in PostgreSQL on container stop
+- Docker Hub overview with quick start, Compose examples, and env var reference
+- `scripts/update-dockerhub-readme.sh` to push Docker Hub description from `docker/DOCKERHUB.md`
+- Docker deployment documentation (`docs/docker.md`)
+
+#### Unraid
+- Unraid Community Applications template with single-container setup
+- Template repo at `Vibra-Labs/unraid-templates` linked as git submodule
+- PR submitted to `selfhosters/unRAID-CA-templates` for CA listing
+
+#### Invitations
+- Accept-invite auto-login when a user signs up with an already-existing account
+- Accept-invite sets active organization before redirect
+
+#### UX
+- Portal `/portal` redirects to `/portal/projects`
+- Danger zone section visible to all dashboard users (owners and non-owners)
+
+### Security
+- Comprehensive security audit with findings documented in `SECURITY_AUDIT.md`
+- DTO validation added for project and task inputs (`@IsDateString`, `@MaxLength`)
+- Path traversal protection in local file storage (reject `..` in keys)
+- Branding logo upload restricted to image MIME types
+- Update attachment size validated against system settings before storage
+- Caddyfile hardened with `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy` headers
+- PostgreSQL port no longer exposed to host in production `docker-compose.yml`
+- Generic password verification error message to prevent user enumeration
+- `DELETED_USER_SENTINEL` constant in shared package for anonymized user references
+
+### Changed
+- Deploy workflow now only pushes to Docker Hub (removed Google Cloud Run and Firebase Hosting steps)
+- Shared `setActiveOrgAndRedirect` helper replaces duplicated org-switch-and-redirect logic
+- Organization deletion now purges file blobs from storage provider (not just DB records)
+
+### Fixed
+- Dockerfile missing `ca-certificates` package broke PostgreSQL apt repo setup
+
+## [1.1.0] — 2026-03-09
+
+### Added
+
+#### Billing & Subscriptions
+- Stripe integration with test/live mode toggle via `STRIPE_MODE`
+- Subscription plans (Free, Pro, Lifetime) with DB-seeded configuration
+- Checkout flow via Stripe Checkout Sessions
+- Stripe Customer Portal for managing payment methods
+- Webhook handler for checkout, subscription updates, invoice events
+- Usage meters (projects, storage, team members, clients) on billing page
+- Plan limit enforcement via `PlanGuard` and `@PlanLimit()` decorator
+- Lifetime plan with seat cap tracking
+- Lazy free plan initialization for orgs created before billing was enabled
+
+#### Performance
+- In-memory session cache (30s TTL) — reduces DB round trips from 8+ to 2 per page load
+- Auth routes bypass and invalidate cache to prevent stale org context
+
+### Fixed
+
+- Auth controller uses `BETTER_AUTH_URL` for request origin instead of `WEB_URL`
+- Session cache invalidation on auth mutations prevents 401 "Organization context required" errors
+- Invoice update/delete mutations now scope Prisma queries to `organizationId` (prevents potential cross-org TOCTOU race)
+- Browser autofill no longer overrides dark mode input backgrounds
+- Sign-in button shows spinner during login
+
+### Security
+
+- Removed scripts containing hardcoded credentials
+- Sanitized infrastructure docs (removed project IDs and service refs)
+- GitHub Actions deploy workflow uses variables instead of hardcoded URLs
+- Added `.firebase/`, `.firebaserc`, `firebase.json`, `*.pem`, `*.key` to `.gitignore`
+
+### Database
+
+- New models: `SubscriptionPlan`, `Subscription`
+- Subscription linked to Organization (1:1) with Stripe customer/subscription IDs
+- Plan features stored as string array, limits as integers (-1 = unlimited)
+
+## [1.0.2] — 2026-03-02
+
+### Security
+- Fix IDOR in invoice creation and project client assignment
+- Remove SVG uploads, sanitize Content-Disposition headers
+- Add access control to update attachment and file list endpoints
+
+### Fixed
+- Invoice status transition validation, PDF page breaks, dueDate clearing
+- Linkify regex `/g` flag bug, SMTP cache scoping and TTL eviction
+- Notification emails now receive organizationId for SMTP routing
+
+### Changed
+- Deduplicate `assertProjectAccess`, `contentDisposition`, and `linkify` into shared helpers
+- Replace all `any` types with proper type definitions
+
+## [1.0.1] — 1.0.1
+
+### Added
+
+#### Tasks
+- Create, reorder, and track tasks per project
+- Inline task creation with due date picker in dashboard
+- Clients see read-only task lists in the portal
+- Client notification emails on task creation
+
+#### Invoicing
+- Full invoice lifecycle with auto-numbered invoices (INV-0001)
+- Line items with quantity, unit price, and calculated totals
+- Status workflow: draft → sent → paid / overdue
+- Invoice stats dashboard (total, outstanding, paid amounts)
+- Client-facing invoice list and detail views in portal
+- Client notification emails when invoices are sent
+
+#### Internal Notes
+- Team-only notes on projects (create, list, delete)
+- Collapsible "Internal Notes (Team Only)" section in project detail
+- Fully isolated from client portal
+
+#### Client Profiles
+- Self-service profile editing (company, phone, address, website, description)
+- Admin profile viewing in client list
+- Profile form in portal settings
+
+#### Email Verification
+- Verification email sent on signup via Better Auth
+- `/verify-email` page with verified/unverified states
+- Non-blocking dashboard banner with "Resend verification email" button
+- Email verification is optional — self-hosted users without email can still log in
+
+#### Notifications
+- Email notifications for project updates (sent to all assigned clients)
+- Email notifications for new tasks
+- Email notifications when invoices are marked as sent
+- Fire-and-forget delivery — notification failures never block API responses
+- Parallel email delivery via `Promise.allSettled`
+
+#### System Settings
+- `SystemSettings` Prisma model with per-organization config
+- Admin settings UI at `/dashboard/settings/system`
+- Email provider configuration (Resend or SMTP) from the UI
+- Sensitive fields encrypted at rest (AES-256-GCM with HKDF-derived key)
+- Dynamic file upload size limits (configurable per org, 1-500 MB)
+- "Send Test Email" button to verify email config
+- DB settings with env-var fallbacks: `DB setting → env var → default`
+
+#### Setup Wizard
+- 5-step first-run wizard at `/setup` for new organizations:
+  1. Organization profile (name, logo, colors)
+  2. Email configuration (None / Resend / SMTP with test send)
+  3. Create first project
+  4. Invite first client
+  5. Completion summary
+- Automatic redirect from dashboard for owners who haven't completed setup
+- Steps 2-4 are skippable
+
+#### Security
+- CSRF protection via double-submit cookie pattern
+- Auth secret validation — refuses to start in production with default secret
+- File download authorization — members must be assigned to the project
+- CSRF guard skips unauthenticated requests (no session = no CSRF risk)
+- CSRF token auto-retry on first mutating request from the frontend
+
+### Fixed
+
+- Invitation email grammar: "You have been invited you" → "You have been invited"
+- Welcome email template wired up (was dead code)
+- Invoice number race condition — serializable transaction with P2002 retry
+- `@IsEmail()` validator no longer rejects `null` when clearing email settings
+- File size validation returns HTTP 413 (`PayloadTooLargeException`) instead of 400
+- Invoice stats computed via DB aggregation instead of loading all records into memory
+- Welcome email failures now logged instead of silently swallowed
+- SMTP transporter cached and reused instead of created per email
+- Multer hard limit lowered from 500 MB to 200 MB
+- `sanitizeFilename` deduplicated into shared utility
+- Update attachments now appear in Files tab immediately (file list refreshes after posting/deleting updates)
+
+### Changed
+
+- Signup redirects to `/setup` wizard instead of directly to `/dashboard`
+- Invoice numbers use 4-digit padding (INV-0001 instead of INV-001)
+- Encryption key derived via HKDF instead of using auth secret directly
+- Frontend settings page uses boolean flags instead of fragile mask string comparison
+
+### Database
+
+- New models: `Task`, `Invoice`, `InvoiceLineItem`, `ProjectNote`, `ClientProfile`, `SystemSettings`
+- New relations on `Project`: `tasks`, `invoices`, `notes`
+- Added `setupCompleted` field to `Organization` model
+- Added indexes on `Member` table (`organizationId`, `userId`)
+
+### Tests
+
+- 165 unit tests across 16 test files (0 failures)
+- New test suites: settings service, settings DTO, invoices service, notifications service, mail service, setup controller, sanitize utility
+- Updated: CSRF guard (19 tests), files service (13 tests)
+- E2E tests for all new features: tasks, invoicing, notes, client profiles, email verification, notifications, system settings, setup wizard, portal isolation

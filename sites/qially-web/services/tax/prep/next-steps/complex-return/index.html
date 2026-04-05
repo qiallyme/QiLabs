@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2025 Tax Checklist — Complex Return | QiAlly</title>
+    <meta
+      name="description"
+      content="Tax document checklist for Complex returns (multi-state, rental, investments). Lista de documentos para declaraciones complejas."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+              lato: ["Lato", "sans-serif"],
+            },
+            colors: {
+              "brand-bg": "#f8fafc",
+              "brand-green": "#1AB16D",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .blob-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(26, 177, 109, 0.1),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(219, 234, 254, 0.4),
+            transparent 25%
+          );
+        filter: blur(40px);
+      }
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+        .print-only {
+          display: block !important;
+        }
+        body {
+          background: white;
+          color: black;
+        }
+        .glass-panel {
+          box-shadow: none;
+          border: 1px solid #ccc;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased relative font-sans">
+    <div class="blob-bg no-print"></div>
+
+    <!-- Nav -->
+    <nav
+      class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 no-print"
+    >
+      <div
+        class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between"
+      >
+        <a
+          href="./index.html"
+          class="text-slate-500 hover:text-brand-green flex items-center gap-2 text-sm font-medium transition-colors"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Back to Options
+          <span class="text-slate-400">/ Regresar</span>
+        </a>
+        <div class="flex gap-3">
+          <button
+            onclick="window.print()"
+            class="text-slate-600 hover:text-brand-green px-3 py-2 rounded-md transition-colors"
+            title="Print Checklist"
+          >
+            <i class="fa-solid fa-print text-xl"></i>
+          </button>
+          <a
+            href="https://us.bigin.online/org886848419/bookings/tax-prep-2025"
+            target="_blank"
+            class="bg-slate-800 text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-slate-700 transition"
+          >
+            Book Call
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 py-12">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <div
+          class="w-16 h-16 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center text-3xl mx-auto mb-6"
+        >
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-serif text-slate-900 mb-2">
+          Complex Return Checklist
+        </h1>
+        <p class="text-xl text-slate-500 italic font-serif">
+          Declaración Compleja
+        </p>
+        <p class="mt-4 text-slate-600 max-w-lg mx-auto">
+          For multi-state filing, rental properties, investments, or IRS issues.
+          <br />
+          <span class="text-slate-500 text-sm"
+            >Múltiples estados, rentas, inversiones o problemas con el
+            IRS.</span
+          >
+        </p>
+      </div>
+
+      <!-- Checklist -->
+      <div
+        class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 mb-10 shadow-sm print:shadow-none print:border-slate-300"
+      >
+        <h2
+          class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2 border-b border-slate-100 pb-3"
+        >
+          <span class="w-2 h-8 bg-brand-green rounded-full"></span>
+          Core Documents
+          <span class="text-slate-400 font-normal text-base ml-auto"
+            >Requerido</span
+          >
+        </h2>
+
+        <ul class="space-y-4 mb-8">
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Photo ID & SSN Cards</span
+              >
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Prior Year Return / Declaración 2023</span
+              >
+              <span class="text-sm text-slate-500"
+                >Essential for tracking depreciation and loss carryovers.</span
+              >
+            </div>
+          </li>
+        </ul>
+
+        <h2
+          class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2 border-b border-slate-100 pb-3"
+        >
+          <span class="w-2 h-8 bg-orange-400 rounded-full"></span>
+          Complexity Items
+          <span class="text-slate-400 font-normal text-base ml-auto"
+            >Detalles</span
+          >
+        </h2>
+
+        <ul class="space-y-4 mb-8">
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Multi-State Residency / Múltiples Estados</span
+              >
+              <span class="text-sm text-slate-500"
+                >Dates you lived/worked in each state during 2024.</span
+              >
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Rental Properties / Rentas</span
+              >
+              <span class="text-sm text-slate-500"
+                >Income received and expense breakdown (repairs, insurance,
+                taxes) per property.</span
+              >
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Investments / Inversiones</span
+              >
+              <span class="text-sm text-slate-500"
+                >1099-B forms for stocks and detailed crypto reports
+                (gain/loss).</span
+              >
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >IRS Notices / Cartas del IRS</span
+              >
+              <span class="text-sm text-slate-500"
+                >Any recent letters (CP2000, etc.) from IRS or State.</span
+              >
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-regular fa-square text-slate-400 mt-1"></i>
+            <div>
+              <span class="font-semibold block text-slate-800"
+                >Prior Year Gaps</span
+              >
+              <span class="text-sm text-slate-500"
+                >Explanation if you missed filing any previous years.</span
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Action Buttons -->
+      <div
+        class="flex flex-col sm:flex-row gap-4 justify-center mb-16 no-print"
+      >
+        <a
+          href="https://forms.zohopublic.com/QiAlly/form/QiAllyTaxOrganizerDocumentUploadDetails/formperma/xajlmT1OnZoKAcRfuVSAyB_6HYjXbdOIPKXkun7HxPQ?taxorganizer=Complex%20Return"
+          class="bg-brand-green text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-emerald-600 transition flex items-center justify-center gap-3 w-full sm:w-auto"
+        >
+          <i class="fa-solid fa-upload"></i> Upload & Start Organizer
+        </a>
+      </div>
+
+      <!-- FAQs -->
+      <div class="mt-12 mb-16 print:hidden">
+        <h3 class="font-serif text-2xl text-slate-900 mb-6 text-center">
+          Common Questions / Preguntas Frecuentes
+        </h3>
+        <div class="space-y-4">
+          <details
+            class="group bg-white/60 p-4 rounded-xl border border-slate-200 open:bg-white open:shadow-lg transition"
+          >
+            <summary
+              class="font-semibold text-slate-800 cursor-pointer list-none flex justify-between items-center"
+            >
+              <span
+                >What counts as a "complex" return? / ¿Qué se considera
+                "complejo"?</span
+              >
+              <span class="transition group-open:rotate-180"
+                ><i class="fa-solid fa-chevron-down text-slate-400"></i
+              ></span>
+            </summary>
+            <div
+              class="text-sm text-slate-600 mt-3 pl-2 border-l-2 border-brand-green"
+            >
+              Multiple state filings, rental properties, stock sales
+              (crypto/stocks), or foreign income. <br />
+              Declaraciones de múltiples estados, propiedades de renta, venta de
+              acciones (cripto) o ingresos extranjeros.
+            </div>
+          </details>
+          <details
+            class="group bg-white/60 p-4 rounded-xl border border-slate-200 open:bg-white open:shadow-lg transition"
+          >
+            <summary
+              class="font-semibold text-slate-800 cursor-pointer list-none flex justify-between items-center"
+            >
+              <span
+                >Do you handle IRS letters? / ¿Resuelven cartas del IRS?</span
+              >
+              <span class="transition group-open:rotate-180"
+                ><i class="fa-solid fa-chevron-down text-slate-400"></i
+              ></span>
+            </summary>
+            <div
+              class="text-sm text-slate-600 mt-3 pl-2 border-l-2 border-brand-green"
+            >
+              Yes. Please upload the full letter (all pages) so we can assess
+              the situation immediately. <br />
+              Sí. Por favor cargue la carta completa (todas las páginas) para
+              poder evaluar la situación inmediatamente.
+            </div>
+          </details>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8 mt-12 no-print">
+      <div class="text-center text-slate-500 text-sm">
+        <p>&copy; 2025 QiAlly Tax Services.</p>
+      </div>
+    </footer>
+  </body>
+</html>

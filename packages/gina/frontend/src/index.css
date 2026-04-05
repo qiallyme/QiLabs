@@ -1,0 +1,4 @@
+:root{color-scheme:light;}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top left,#fff6ec 0,transparent 55%),radial-gradient(circle at top right,#ffeef0 0,transparent 55%),#f7f5f3;color:#111827;}
+a{color:inherit;}

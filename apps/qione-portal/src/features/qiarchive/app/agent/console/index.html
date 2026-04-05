@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QiArchive Agent (Local Engine)</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            padding: 2rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 1.5rem;
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #22c55e;
+        }
+
+        h1 {
+            margin: 0 0 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        p {
+            color: #94a3b8;
+            font-size: 0.9375rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #6366f1;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #475569;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="status-pill">
+            <div class="dot"></div>
+            Engine Active
+        </div>
+        <h1>QiArchive Local Agent</h1>
+        <p>This is the local processing engine. It is currently watching your folder and syncing metrics to the cloud.
+        </p>
+
+        <a href="https://qiarchive-production.up.railway.app/" class="btn">Open Mobile Dashboard (PWA)</a>
+
+        <div class="footer">
+            Watching: <span id="watch-folder">Loading...</span><br>
+            Machine: <span id="machine-name">Loading...</span>
+        </div>
+    </div>
+
+    <script>
+        async function updateStatus() {
+            try {
+                const res = await fetch('/api/service/status');
+                const data = await res.json();
+                document.getElementById('watch-folder').textContent = data.config.inbox || 'Unknown';
+                document.getElementById('machine-name').textContent = data.machine_name || 'Unknown';
+            } catch (e) { }
+        }
+        updateStatus();
+        setInterval(updateStatus, 5000);
+    </script>
+</body>
+
+</html>

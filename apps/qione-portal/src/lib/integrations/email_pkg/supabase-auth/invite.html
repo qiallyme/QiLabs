@@ -1,0 +1,26 @@
+{{ template "header.html" . }}
+
+<!-- Email Content -->
+<div class="content">
+  <h1>You've Been Invited to Join QiAlly</h1>
+  <p>Hello,</p>
+  <p>
+    You have been invited to collaborate on the QiAlly Client Portal. To get
+    started, click the button below to create your account and join the
+    workspace.
+  </p>
+  <div class="button-container">
+    <a href="{{ .ConfirmationURL }}" class="button">Accept Invitation</a>
+  </div>
+  <p>
+    This invitation will expire in 7 days. We look forward to working with you!
+  </p>
+</div>
+
+<!-- Signature -->
+<div class="signature">
+  <p>Best regards,</p>
+  <p><strong>The QiAlly Team</strong></p>
+</div>
+
+{{ template "footer.html" . }}

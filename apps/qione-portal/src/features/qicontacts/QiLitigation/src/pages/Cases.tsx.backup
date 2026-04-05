@@ -1,0 +1,182 @@
+import React, { useEffect, useState } from 'react';
+import {
+  Box,
+  Typography,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Chip,
+  IconButton,
+  TextField,
+  InputAdornment,
+} from '@mui/material';
+import { Add, Search, Visibility, Edit } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { api } from '../utils/api';
+
+interface Case {
+  caseId: string;
+  caseNumber: string;
+  title: string;
+  status: string;
+  priority: string;
+  clientName: string;
+  assignedAttorney: string;
+  practiceArea: string;
+  dateOpened: string;
+}
+
+const Cases: React.FC = () => {
+  const navigate = useNavigate();
+  const [cases, setCases] = useState<Case[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    fetchCases();
+  }, []);
+
+  const fetchCases = async () => {
+    try {
+      const data = await api.get('/cases');
+      if (data.success) {
+        setCases(data.data);
+      }
+    } catch (error) {
+      console.error('Error fetching cases:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'ACTIVE': return 'success';
+      case 'PENDING': return 'warning';
+      case 'DISCOVERY': return 'info';
+      case 'CLOSED': return 'default';
+      default: return 'default';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'HIGH': return 'error';
+      case 'MEDIUM': return 'warning';
+      case 'LOW': return 'info';
+      default: return 'default';
+    }
+  };
+
+  const filteredCases = cases.filter(case_ =>
+    case_.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    case_.caseNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    case_.clientName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <Box>
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+        <Typography variant="h4">Cases</Typography>
+        <Button
+          variant="contained"
+          startIcon={<Add />}
+          onClick={() => navigate('/cases/new')}
+        >
+          New Case
+        </Button>
+      </Box>
+
+      <Paper sx={{ mb: 2, p: 2 }}>
+        <TextField
+          fullWidth
+          placeholder="Search cases..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Paper>
+
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Case Number</TableCell>
+              <TableCell>Title</TableCell>
+              <TableCell>Client</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Priority</TableCell>
+              <TableCell>Practice Area</TableCell>
+              <TableCell>Opened</TableCell>
+              <TableCell align="right">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {loading ? (
+              <TableRow>
+                <TableCell colSpan={8} align="center">Loading...</TableCell>
+              </TableRow>
+            ) : filteredCases.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={8} align="center">No cases found</TableCell>
+              </TableRow>
+            ) : (
+              filteredCases.map((case_) => (
+                <TableRow key={case_.caseId} hover>
+                  <TableCell>{case_.caseNumber}</TableCell>
+                  <TableCell>
+                    <Typography variant="body2" fontWeight="medium">
+                      {case_.title}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>{case_.clientName}</TableCell>
+                  <TableCell>
+                    <Chip
+                      label={case_.status}
+                      size="small"
+                      color={getStatusColor(case_.status) as any}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Chip
+                      label={case_.priority}
+                      size="small"
+                      color={getPriorityColor(case_.priority) as any}
+                      variant="outlined"
+                    />
+                  </TableCell>
+                  <TableCell>{case_.practiceArea}</TableCell>
+                  <TableCell>{new Date(case_.dateOpened).toLocaleDateString()}</TableCell>
+                  <TableCell align="right">
+                    <IconButton
+                      size="small"
+                      onClick={() => navigate(`/cases/${case_.caseId}`)}
+                    >
+                      <Visibility />
+                    </IconButton>
+                    <IconButton size="small">
+                      <Edit />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+  );
+};
+
+export default Cases;

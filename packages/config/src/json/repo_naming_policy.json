@@ -1,0 +1,45 @@
+{
+  "version": "2026-03-20",
+  "scope": "scripts",
+  "principles": {
+    "files": [
+      "lowercase only",
+      "prefer underscores over hyphens",
+      "no spaces",
+      "short but descriptive",
+      "use prefix_subject naming where practical"
+    ],
+    "folders": [
+      "lowercase only",
+      "short category names",
+      "no spaces",
+      "underscores allowed but avoid unless needed"
+    ],
+    "scripts": [
+      "one script = one home",
+      "group prefix should match folder purpose",
+      "avoid generic names like base.py, utils.py, runner.py unless scoped by prefix",
+      "use stable prefixes for discoverability"
+    ]
+  },
+  "prefixes": {
+    "ai": ["ai", "agent", "memory", "prompt", "rag"],
+    "automate": ["health", "job", "log", "move", "run", "sched"],
+    "core": ["auth", "core", "module"],
+    "deploy": ["deploy", "sync", "worker"],
+    "index": ["index", "dir", "reg"],
+    "ingest": ["audio", "file", "inbox", "video"],
+    "process": ["clean", "convert", "norm", "pdf", "valid"],
+    "services": ["calendar", "crm", "mail", "sms", "vault", "web"],
+    "tools": ["debug", "frontmatter", "map", "search"],
+    "tests": ["test"]
+  },
+  "exceptions": [
+    "__init__.py",
+    "README.md",
+    "USAGE.md",
+    "mapping.json",
+    "windows_task_scheduler.xml",
+    "git_manifest.json"
+  ]
+}

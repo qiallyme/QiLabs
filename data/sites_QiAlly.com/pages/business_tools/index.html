@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Business Tools & Resources | Qially</title>
+    <style>
+      :root {
+        --primary-color: #4f46e5; /* Qially Purple/Blue */
+        --primary-hover: #4338ca;
+        --text-dark: #111827;
+        --text-gray: #6b7280;
+        --bg-light: #f9fafb;
+        --white: #ffffff;
+        --border-radius: 12px;
+        --transition: all 0.3s ease;
+        --shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-hover:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        background-color: var(--white);
+      }
+
+      /* --- Typography --- */
+      h1,
+      h2,
+      h3 {
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-size: 3rem;
+        letter-spacing: -0.02em;
+      }
+      h2 {
+        font-size: 2.25rem;
+        letter-spacing: -0.01em;
+      }
+      h3 {
+        font-size: 1.25rem;
+      }
+      p {
+        color: var(--text-gray);
+        margin-bottom: 1.5rem;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* --- Layout --- */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .section-spacer {
+        padding: 80px 0;
+      }
+
+      /* --- Header / Nav (Simplified) --- */
+      header {
+        border-bottom: 1px solid #e5e7eb;
+        padding: 20px 0;
+        background: var(--white);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .nav-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: var(--transition);
+      }
+      .btn:hover {
+        background-color: var(--primary-hover);
+      }
+      .btn-outline {
+        background-color: transparent;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+      }
+      .btn-outline:hover {
+        background-color: #eff6ff;
+      }
+
+      /* --- Hero Section --- */
+      .hero {
+        background-color: #f3f4f6; /* Light gray background */
+        display: flex;
+        align-items: center;
+        min-height: 60vh;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+      }
+      .hero-content {
+        padding-right: 20px;
+      }
+      .hero-image img {
+        width: 100%;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+      }
+
+      /* --- Tools Cards Section --- */
+      .tools-section {
+        background-color: var(--white);
+      }
+      .section-header {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 60px auto;
+      }
+
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .tool-card {
+        background: var(--white);
+        border: 1px solid #e5e7eb;
+        border-radius: var(--border-radius);
+        padding: 30px;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .tool-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--primary-color);
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .badge.payroll {
+        background-color: #d1fae5;
+        color: #065f46;
+      }
+      .badge.inventory {
+        background-color: #dbeafe;
+        color: #1e40af;
+      }
+      .badge.funding {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+
+      .card-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 20px;
+        background-color: #f3f4f6;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .card-icon img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+      }
+
+      .tool-link {
+        margin-top: auto;
+        color: var(--primary-color);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .tool-link:hover {
+        text-decoration: underline;
+      }
+
+      /* --- Downloadable Templates Section --- */
+      .templates-section {
+        background-color: #eff6ff; /* Soft Blue bg */
+      }
+
+      .template-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .template-item {
+        text-align: center;
+        background: var(--white);
+        padding: 30px 20px;
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+      }
+      .template-item:hover {
+        box-shadow: var(--shadow);
+      }
+      .template-img {
+        height: 64px;
+        width: 64px;
+        margin: 0 auto 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .template-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      /* --- FAQ Section --- */
+      .faq-section {
+        background-color: var(--white);
+      }
+      .accordion-item {
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .accordion-btn {
+        width: 100%;
+        text-align: left;
+        background: none;
+        border: none;
+        padding: 24px 0;
+        font-size: 1.1rem;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--text-dark);
+      }
+      .accordion-btn:hover {
+        color: var(--primary-color);
+      }
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+      .accordion-content p {
+        padding-bottom: 24px;
+      }
+      .icon-plus {
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+
+      /* --- Footer --- */
+      footer {
+        background-color: #111827;
+        color: #9ca3af;
+        padding: 60px 0 20px 0;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+      .footer-col h4 {
+        color: var(--white);
+        margin-bottom: 20px;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col li {
+        margin-bottom: 10px;
+      }
+      .footer-col a:hover {
+        color: var(--white);
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-image {
+          order: -1;
+        }
+      }
+    </style>
+
+    <!-- Shared Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-flex">
+        <div class="logo">Qially</div>
+        <nav
+          class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+          x-data="{ scrolled: false, mobileMenuOpen: false }"
+          @scroll.window="scrolled = (window.pageYOffset > 20)"
+          :class="{ 'bg-white/70 backdrop-blur-md shadow-sm': scrolled, 'bg-transparent': !scrolled }"
+        >
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+              <!-- Logo -->
+              <div class="flex-shrink-0">
+                <a href="/" class="flex items-center gap-2 group">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:scale-105 transition duration-300"
+                  >
+                    Q
+                  </div>
+                  <span
+                    class="font-serif text-xl font-bold text-slate-800 tracking-tight group-hover:text-blue-600 transition"
+                    >QiAlly</span
+                  >
+                </a>
+              </div>
+
+              <!-- Desktop Menu -->
+              <div class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-8">
+                  <a
+                    href="/"
+                    class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                    >Home</a
+                  >
+                  <a
+                    href="/pages/services/"
+                    class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                    >Services</a
+                  >
+                  <a
+                    href="/pages/business_tools/"
+                    class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                    >Tools</a
+                  >
+                  <a
+                    href="/pages/resources/"
+                    class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                    >Resources</a
+                  >
+                  <a
+                    href="/pages/portfolio/"
+                    class="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                    >Portfolio</a
+                  >
+                  <a
+                    href="/#contact"
+                    class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30"
+                  >
+                    Start Request
+                  </a>
+                </div>
+              </div>
+
+              <!-- Mobile menu button -->
+              <div class="-mr-2 flex md:hidden">
+                <button
+                  type="button"
+                  @click="mobileMenuOpen = !mobileMenuOpen"
+                  class="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-blue-600 hover:bg-slate-100 focus:outline-none transition"
+                >
+                  <span class="sr-only">Open main menu</span>
+                  <i
+                    class="fa-solid fa-bars text-xl"
+                    x-show="!mobileMenuOpen"
+                  ></i>
+                  <i
+                    class="fa-solid fa-xmark text-xl"
+                    x-show="mobileMenuOpen"
+                    x-cloak
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu -->
+          <div
+            class="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full"
+            x-show="mobileMenuOpen"
+            x-transition:enter="transition ease-out duration-100"
+            x-transition:enter-start="opacity-0 -translate-y-2"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-75"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-2"
+            x-cloak
+          >
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+              <a
+                href="/"
+                class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                >Home</a
+              >
+              <a
+                href="/pages/services/"
+                class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                >Services</a
+              >
+              <a
+                href="/pages/business_tools/"
+                class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                >Tools</a
+              >
+              <a
+                href="/pages/resources/"
+                class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                >Resources</a
+              >
+              <a
+                href="/pages/portfolio/"
+                class="text-slate-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                >Portfolio</a
+              >
+              <a
+                href="/#contact"
+                class="text-blue-600 font-semibold block px-3 py-2 rounded-md text-base"
+                >Start Request &rarr;</a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="section-spacer hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1>Free Business Tools & Templates</h1>
+          <p>
+            Use our free accounting calculators and downloadable templates to
+            help speed up and simplify your business workflows.
+          </p>
+
+          <br /><br />
+          <a href="#calculators" class="btn">View Calculators</a>
+          <a href="#templates" class="btn btn-outline" style="margin-left: 10px"
+            >View Templates</a
+          >
+        </div>
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80"
+            alt="Financial data analytics on a screen"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="calculators" class="section-spacer tools-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Calculators for your business</h2>
+          <p>Interactive tools to help you crunch the numbers.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="tool-card">
+            <span class="badge payroll">Payroll</span>
+            <div class="card-icon">
+              <img
+                src="/assets/imgs/business_tools/payroll.svg"
+                alt="Payroll Icon"
+              />
+            </div>
+            <h3>Paycheck Calculator</h3>
+            <p>
+              Accurately estimate pay for all your employees, whether you need
+              to calculate hourly wages or salary pay.
+            </p>
+
+            <a href="#paycheck-calculator" class="tool-link"
+              >Use Calculator →</a
+            >
+          </div>
+
+          <div class="tool-card">
+            <span class="badge inventory">Inventory</span>
+            <div class="card-icon">
+              <img
+                src="/assets/imgs/business_tools/inventory.svg"
+                alt="Inventory Icon"
+              />
+            </div>
+            <h3>Inventory Turnover</h3>
+            <p>
+              Stay on top of your inventory and better understand your
+              business’s efficiency and flow.
+            </p>
+            <a href="#inventory-turnover" class="tool-link">Use Calculator →</a>
+          </div>
+
+          <div class="tool-card">
+            <span class="badge funding">Funding</span>
+            <div class="card-icon">
+              <img
+                src="/assets/imgs/business_tools/funding.svg"
+                alt="Funding Icon"
+              />
+            </div>
+            <h3>Equity Investment</h3>
+            <p>
+              Find out how much investment capital you should accept and how
+              much equity you should give up.
+            </p>
+            <a href="#equity-investment" class="tool-link">Use Calculator →</a>
+          </div>
+
+          <div class="tool-card">
+            <span class="badge inventory">Inventory</span>
+            <div class="card-icon">
+              <img src="/assets/imgs/business_tools/sku.svg" alt="SKU Icon" />
+            </div>
+            <h3>SKU Generator</h3>
+            <p>
+              Use the SKU generator to quickly create stock keeping units to
+              better organize and track inventory.
+            </p>
+            <a href="#sku-generator" class="tool-link">Generate SKUs →</a>
+          </div>
+
+          <div class="tool-card">
+            <span class="badge payroll">Payroll</span>
+            <div class="card-icon">
+              <img
+                src="/assets/imgs/business_tools/invoice.svg"
+                alt="Invoice Icon"
+              />
+            </div>
+            <h3>Invoice Generator</h3>
+            <p>
+              Create professional invoices you can download, print, and send to
+              your clients instantly.
+            </p>
+            <a href="#invoice-generator" class="tool-link">Create Invoice →</a>
+          </div>
+
+          <div class="tool-card">
+            <span class="badge funding">Finance</span>
+            <div class="card-icon">
+              <img
+                src="/assets/imgs/business_tools/capital.svg"
+                alt="Capital Icon"
+              />
+            </div>
+            <h3>Working Capital</h3>
+            <p>
+              Manage your cash flow by allowing you to quickly calculate the
+              working capital of your business.
+            </p>
+            <a href="#working-capital" class="tool-link">Calculate Capital →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="templates" class="section-spacer templates-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Downloadable Templates</h2>
+          <p>Save time with pre-formatted Excel and PDF templates.</p>
+        </div>
+
+        <div class="template-grid">
+          <div class="template-item">
+            <div class="template-img">
+              <img
+                src="/assets/imgs/business_tools/checklist.svg"
+                alt="Tax Prep Checklist"
+              />
+            </div>
+            <h3>Tax Prep Checklist</h3>
+            <p>Everything you need to gather to file your taxes.</p>
+            <a
+              href="/assets/files/tax-prep-checklist.pdf"
+              class="btn-outline"
+              style="border: none"
+              >Download PDF ↓</a
+            >
+          </div>
+
+          <div class="template-item">
+            <div class="template-img">
+              <img
+                src="/assets/imgs/business_tools/balance_sheet.svg"
+                alt="Balance Sheet"
+              />
+            </div>
+            <h3>Balance Sheet</h3>
+            <p>Simplify your accounting using this Excel template.</p>
+
+            <a
+              href="/assets/files/balance-sheet-template.xlsx"
+              class="btn-outline"
+              style="border: none"
+              >Download Excel ↓</a
+            >
+          </div>
+
+          <div class="template-item">
+            <div class="template-img">
+              <img
+                src="/assets/imgs/business_tools/income.svg"
+                alt="Income Statement"
+              />
+            </div>
+            <h3>Income Statement</h3>
+            <p>See your business’s financial performance at a glance.</p>
+            <a
+              href="/assets/files/income-statement-template.xlsx"
+              class="btn-outline"
+              style="border: none"
+              >Download Excel ↓</a
+            >
+          </div>
+
+          <div class="template-item">
+            <div class="template-img">
+              <img
+                src="/assets/imgs/business_tools/calendar.svg"
+                alt="Payroll Calendar"
+              />
+            </div>
+            <h3>Payroll Calendar</h3>
+            <p>Download weekly, biweekly, and monthly calendar templates.</p>
+            <a
+              href="/assets/files/payroll-calendar-2026.pdf"
+              class="btn-outline"
+              style="border: none"
+              >Download PDF ↓</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-spacer faq-section">
+      <div class="container" style="max-width: 800px">
+        <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-btn">
+              What is a business tool? <span class="icon-plus">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Business tools are any type of system, application, or solution
+                that helps a business perform better. Small business tools make
+                running a business much easier, they’re designed to be fast and
+                easy to use.
+              </p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-btn">
+              What are accounting tools? <span class="icon-plus">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Accounting tools for small businesses are digital solutions
+                which help businesses keep track of finances. Online accounting
+                tools make it easy to determine and track of overhead costs,
+                cash flow, income and expenses.
+              </p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-btn">
+              Can an Excel file be imported to Qially?
+              <span class="icon-plus">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Yes, Qially supports importing bank transactions, customers,
+                suppliers, chart of accounts, products and services, invoices,
+                bills, and journal entries.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="section-spacer"
+      style="
+        background-color: var(--primary-color);
+        color: white;
+        text-align: center;
+      "
+    >
+      <div class="container">
+        <h2>Let’s build your business together</h2>
+        <br />
+        <a
+          href="#"
+          class="btn"
+          style="background-color: white; color: var(--primary-color)"
+          >Get a 30-day Free Trial</a
+        >
+      </div>
+    </section>
+
+    <footer class="bg-slate-50 border-t border-slate-200 pt-16 pb-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"
+        >
+          <!-- Brand -->
+          <div class="col-span-1 lg:col-span-1">
+            <a href="/" class="flex items-center gap-2 mb-6">
+              <div
+                class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-bold text-lg"
+              >
+                Q
+              </div>
+              <span class="font-serif text-xl font-bold text-slate-800"
+                >QiAlly</span
+              >
+            </a>
+            <p class="text-slate-500 text-sm leading-relaxed mb-6">
+              Solo-practitioner consulting across tax resolution, accounting
+              cleanup, and systems/AI.
+              <br /><br />Corporate-grade precision. Personal delivery.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="https://twitter.com/qiallyme"
+                class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"
+                aria-label="Twitter"
+              >
+                <i class="fa-brands fa-twitter"></i>
+              </a>
+              <a
+                href="https://linkedin.com/company/qially"
+                class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-700 hover:text-white transition"
+                aria-label="LinkedIn"
+              >
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div>
+            <h3 class="font-serif font-semibold text-slate-900 mb-6">
+              Services
+            </h3>
+            <ul class="space-y-3 text-sm text-slate-500">
+              <li>
+                <a href="/modules/taxes/" class="hover:text-blue-600 transition"
+                  >Tax & Accounting</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/modules/taxes/individual/"
+                  class="hover:text-blue-600 transition"
+                  >Individual Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/modules/hr-ops/"
+                  class="hover:text-blue-600 transition"
+                  >HR & Ops</a
+                >
+              </li>
+              <li>
+                <a href="/modules/it-ai/" class="hover:text-blue-600 transition"
+                  >IT & AI Consulting</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Resources -->
+          <div>
+            <h3 class="font-serif font-semibold text-slate-900 mb-6">
+              Resources
+            </h3>
+            <ul class="space-y-3 text-sm text-slate-500">
+              <li>
+                <a
+                  href="/pages/business_tools/"
+                  class="hover:text-blue-600 transition"
+                  >Business Tools</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/pages/resources/"
+                  class="hover:text-blue-600 transition"
+                  >Resource Center</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/pages/portfolio/"
+                  class="hover:text-blue-600 transition"
+                  >Portfolio</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/pages/showcases/videos.html"
+                  class="hover:text-blue-600 transition"
+                  >Video Library</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/pages/compliance/"
+                  class="hover:text-blue-600 transition"
+                  >Compliance Hub</a
+                >
+              </li>
+              <li>
+                <a href="/sitemap.xml" class="hover:text-blue-600 transition"
+                  >Sitemap (XML)</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <h3 class="font-serif font-semibold text-slate-900 mb-6">
+              Contact
+            </h3>
+            <ul class="space-y-3 text-sm text-slate-500">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-envelope mt-1 text-blue-500"></i>
+                <a
+                  href="mailto:cody@qially.com"
+                  class="hover:text-blue-600 transition"
+                  >cody@qially.com</a
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-phone mt-1 text-blue-500"></i>
+                <a
+                  href="tel:+13176433489"
+                  class="hover:text-blue-600 transition"
+                  >+1 (317) 643-3489</a
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-location-dot mt-1 text-blue-500"></i>
+                <span>Indianapolis, IN<br />Serving Clients Virtually</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p class="text-xs text-slate-400">
+            © 2026 QiAlly LLC. All rights reserved.
+          </p>
+          <div class="flex gap-6 text-xs text-slate-400">
+            <a href="/privacy.html" class="hover:text-slate-600 transition"
+              >Privacy Policy</a
+            >
+            <a href="/pages/msa/" class="hover:text-slate-600 transition"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Simple script for the accordion functionality
+      const acc = document.getElementsByClassName("accordion-btn");
+      for (let i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          const panel = this.nextElementSibling;
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+            this.querySelector(".icon-plus").textContent = "+";
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+            this.querySelector(".icon-plus").textContent = "-";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

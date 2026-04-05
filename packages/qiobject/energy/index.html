@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Energy Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <script>
+      // localStorage-based data storage (no backend required)
+      const STORAGE_KEYS = {
+        appliances: 'energyTracker_appliances',
+        bills: 'energyTracker_bills',
+        rate: 'energyTrackerRate'
+      };
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #e0e7ff;
+        }
+        .neon-card {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                        0 0 20px rgba(59, 130, 246, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .neon-card:hover {
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                        0 0 30px rgba(59, 130, 246, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5),
+                        0 0 40px rgba(59, 130, 246, 0.3),
+                        0 0 60px rgba(59, 130, 246, 0.1);
+        }
+        .spinner {
+            border: 4px solid rgba(59, 130, 246, 0.2);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #3b82f6;
+            animation: spin 1s ease infinite;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.8); }
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3),
+                        0 0 15px rgba(59, 130, 246, 0.5);
+        }
+        .form-input {
+            width: 100%;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: rgba(15, 23, 42, 0.6);
+            color: #e0e7ff;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        .form-input:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            background: rgba(15, 23, 42, 0.8);
+        }
+        .form-input::placeholder {
+            color: rgba(224, 231, 255, 0.4);
+        }
+        .form-textarea {
+            width: 100%;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: rgba(15, 23, 42, 0.6);
+            color: #e0e7ff;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            min-height: 2.5rem;
+            transition: all 0.2s ease;
+        }
+        .form-textarea:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            background: rgba(15, 23, 42, 0.8);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            border: 1px solid transparent;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4),
+                        0 0 10px rgba(59, 130, 246, 0.2);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6),
+                        0 0 20px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: rgba(30, 41, 59, 0.8);
+            color: #e0e7ff;
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .btn-secondary:hover {
+            background: rgba(30, 41, 59, 1);
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transform: translateY(-1px);
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+        }
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn-sm {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.75rem;
+        }
+        .table-cell {
+            padding: 0.75rem 1rem;
+            white-space: nowrap;
+            font-size: 0.875rem;
+            color: #e0e7ff;
+        }
+        .table-dark {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .table-dark thead {
+            background: rgba(30, 41, 59, 0.8);
+            border-bottom: 2px solid rgba(59, 130, 246, 0.4);
+        }
+        .table-dark thead th {
+            color: #93c5fd;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .table-dark tbody tr {
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.2s ease;
+        }
+        .table-dark tbody tr:hover {
+            background: rgba(59, 130, 246, 0.1);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+        }
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 9999px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .chip-positive {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+        }
+        .chip-negative {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                        0 0 20px rgba(59, 130, 246, 0.15);
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+                        0 0 30px rgba(59, 130, 246, 0.3);
+            transform: translateY(-4px);
+        }
+        .stat-label {
+            color: #93c5fd;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        .stat-value {
+            color: #e0e7ff;
+            font-size: 2rem;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        .stat-value-green {
+            color: #4ade80;
+            text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+        }
+        h1, h2, h3 {
+            color: #e0e7ff;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        .text-gray-500, .text-gray-600 {
+            color: #94a3b8 !important;
+        }
+        .text-gray-700 {
+            color: #cbd5e1 !important;
+        }
+        .text-gray-900 {
+            color: #e0e7ff !important;
+        }
+    </style>
+</head>
+<body class="h-full p-4 sm:p-8">
+    <div id="app" class="max-w-7xl mx-auto space-y-8">
+
+        <!-- Header -->
+        <header class="mb-8 neon-card">
+            <h1 class="text-4xl font-bold tracking-tight mb-2 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                ⚡ Home Energy Tracker
+            </h1>
+            <p class="mt-2 text-lg text-blue-200">
+                Log your appliances, estimate usage, and compare it against your real AES bills to spot discrepancies.
+            </p>
+        </header>
+
+        <!-- Summary Cards -->
+        <section>
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-6">
+              <div class="stat-card">
+                  <div class="stat-label">Total Monthly Usage (Estimate)</div>
+                  <div id="total-monthly-kwh" class="stat-value">
+                      0.00 kWh
+                  </div>
+              </div>
+              <div class="stat-card">
+                  <div class="stat-label">Est. Monthly Cost</div>
+                  <div id="total-monthly-cost" class="stat-value stat-value-green">
+                      $0.00
+                  </div>
+              </div>
+              <div class="stat-card">
+                  <div class="stat-label">Your Rate (per kWh)</div>
+                  <div class="mt-1 flex items-baseline gap-1">
+                      <span class="stat-value">$</span>
+                      <input type="number" id="electric-rate" value="0.12" step="0.01" min="0" class="stat-value bg-transparent border-0 p-0 w-32 focus:ring-0 focus:outline-none">
+                  </div>
+              </div>
+              <div class="stat-card">
+                  <div class="stat-label">Latest Bill vs Estimate</div>
+                  <div id="latest-bill-summary" class="mt-2 text-sm text-blue-200">
+                      No bills yet.
+                  </div>
+              </div>
+          </div>
+        </section>
+
+        <!-- AES Breakdown Section (NEW) -->
+        <section class="mt-6 neon-card">
+          <h2 class="text-2xl font-semibold mb-3 text-blue-300">
+            ⚡ AES Assessment Breakdown
+          </h2>
+          <p class="text-sm text-blue-200 mb-4">
+            Using your current estimated monthly kWh, here's how AES says it's likely split.
+          </p>
+          <div id="aes-breakdown" class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+            <!-- JS will fill this in -->
+          </div>
+        </section>
+
+        <!-- Appliances Calculator Section -->
+        <section class="space-y-6">
+          <div class="neon-card">
+            <h2 class="text-2xl font-semibold mb-2 text-blue-300">⚡ Appliance-Based Usage Estimate</h2>
+            <p class="text-sm text-blue-200">Adjust wattage & hours to match how you actually live.</p>
+          </div>
+
+          <!-- Add Appliance Form -->
+          <div class="neon-card mb-6">
+              <div class="px-4 py-5 sm:p-6">
+                  <h3 class="text-lg font-medium leading-6 text-blue-300 mb-4">Add a New Appliance</h3>
+                  <form id="add-appliance-form" class="mt-5 grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+                      <div class="sm:col-span-2">
+                          <label for="name" class="block text-sm font-medium text-blue-200 mb-1">Appliance Name</label>
+                          <input type="text" id="name" class="form-input mt-1" required>
+                      </div>
+                      <div class="sm:col-span-2">
+                          <label for="room" class="block text-sm font-medium text-blue-200 mb-1">Room / Location</label>
+                          <input type="text" id="room" class="form-input mt-1">
+                      </div>
+                      <div class="sm:col-span-1">
+                          <label for="wattage" class="block text-sm font-medium text-blue-200 mb-1">Wattage (W)</label>
+                          <input type="number" id="wattage" class="form-input mt-1" min="0" required>
+                      </div>
+                      <div class="sm:col-span-1">
+                          <label for="hours" class="block text-sm font-medium text-blue-200 mb-1">Hours / Day</label>
+                          <input type="number" id="hours" class="form-input mt-1" step="0.1" min="0" max="24" required>
+                      </div>
+                      <div class="sm:col-span-6 flex justify-end gap-2">
+                          <button type="submit" class="btn btn-primary">
+                              Add Appliance
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+
+          <!-- Appliance Table -->
+          <div class="neon-card overflow-hidden">
+              <div class="overflow-x-auto">
+                  <table class="min-w-full table-dark rounded-lg">
+                      <thead>
+                          <tr>
+                              <th scope="col" class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Appliance</th>
+                              <th scope="col" class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Room</th>
+                              <th scope="col" class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Wattage</th>
+                              <th scope="col" class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Hours/Day</th>
+                              <th scope="col" class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Daily kWh</th>
+                              <th scope="col" class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Monthly kWh</th>
+                              <th scope="col" class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Est. Monthly Cost</th>
+                              <th scope="col" class="relative px-4 py-3">
+                                  <span class="sr-only">Delete</span>
+                              </th>
+                          </tr>
+                      </thead>
+                      <tbody id="appliance-table-body">
+                          <tr>
+                              <td colspan="8" class="text-center p-8 text-blue-200">
+                                  No appliances added yet. Use the form above to get started.
+                              </td>
+                          </tr>
+                      </tbody>
+                      <tfoot class="border-t-2 border-blue-500/40">
+                          <tr>
+                              <th scope="row" colspan="4" class="px-4 py-3 text-right text-sm font-medium uppercase text-blue-300">Totals</th>
+                              <td id="total-daily-kwh-cell" class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-blue-200">0.00</td>
+                              <td id="total-monthly-kwh-cell" class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-blue-200">0.00</td>
+                              <td id="total-monthly-cost-cell" class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-green-400">$0.00</td>
+                              <td></td>
+                          </tr>
+                      </tfoot>
+                  </table>
+              </div>
+          </div>
+        </section>
+
+        <!-- Bills Comparison Section -->
+        <section class="space-y-6">
+          <div class="neon-card">
+            <h2 class="text-2xl font-semibold mb-2 text-blue-300">⚡ Bill Comparison</h2>
+            <p class="text-sm text-blue-200">Enter your actual AES bills and compare them to your appliance-based estimate.</p>
+          </div>
+
+          <!-- Add Bill Form -->
+          <div class="neon-card mb-6">
+              <div class="px-4 py-5 sm:p-6 space-y-4">
+                  <h3 class="text-lg font-medium leading-6 text-blue-300 mb-4">Add a Bill</h3>
+                  <form id="add-bill-form" class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+                      <!-- Period Info -->
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Period Start</label>
+                          <input type="date" id="bill-period-start" class="form-input mt-1" required>
+                      </div>
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Period End</label>
+                          <input type="date" id="bill-period-end" class="form-input mt-1" required>
+                      </div>
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Period Days</label>
+                          <input type="number" step="1" min="0" id="bill-period-days" class="form-input mt-1">
+                      </div>
+
+                      <!-- Usage -->
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Billed kWh</label>
+                          <input type="number" step="0.01" min="0" id="bill-billed-kwh" class="form-input mt-1" required>
+                      </div>
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Avg Daily kWh</label>
+                          <input type="number" step="0.01" min="0" id="bill-avg-daily-kwh" class="form-input mt-1">
+                      </div>
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Estimated kWh</label>
+                          <input type="number" step="0.01" min="0" id="bill-estimated-kwh" class="form-input mt-1">
+                      </div>
+
+                      <!-- Charges Breakdown -->
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Services Billed ($)</label>
+                          <input type="number" step="0.01" min="0" id="bill-services-billed" class="form-input mt-1" required>
+                      </div>
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Taxes ($)</label>
+                          <input type="number" step="0.01" min="0" id="bill-taxes" class="form-input mt-1">
+                      </div>
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Late Fee ($)</label>
+                          <input type="number" step="0.01" min="0" id="bill-late-fee" class="form-input mt-1" value="0">
+                      </div>
+
+                      <!-- Additional Fees -->
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Disconnect Fee ($)</label>
+                          <input type="number" step="0.01" min="0" id="bill-disconnect-fee" class="form-input mt-1" value="0">
+                      </div>
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Returned Payment Fee ($)</label>
+                          <input type="number" step="0.01" min="0" id="bill-returned-payment-fee" class="form-input mt-1" value="0">
+                      </div>
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Other Charges ($)</label>
+                          <input type="number" step="0.01" min="0" id="bill-other-charges" class="form-input mt-1" value="0">
+                      </div>
+
+                      <!-- Totals -->
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Total Billed ($)</label>
+                          <input type="number" step="0.01" min="0" id="bill-total-billed" class="form-input mt-1" required>
+                      </div>
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Payments ($)</label>
+                          <input type="number" step="0.01" min="0" id="bill-payments" class="form-input mt-1" value="0">
+                      </div>
+                      <div class="sm:col-span-2">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Estimated Amount ($)</label>
+                          <input type="number" step="0.01" min="0" id="bill-estimated-amount" class="form-input mt-1">
+                      </div>
+
+                      <!-- Notes -->
+                      <div class="sm:col-span-6">
+                          <label class="block text-sm font-medium text-blue-200 mb-1">Notes</label>
+                          <textarea id="bill-notes" class="form-textarea mt-1" placeholder="Taxes, fees, special events, EV trips, extreme weather, etc."></textarea>
+                      </div>
+
+                      <div class="sm:col-span-6 flex justify-between items-center pt-2">
+                          <button type="button" id="bill-use-current-estimate" class="btn btn-secondary">
+                              Use current estimate for this period
+                          </button>
+                          <button type="button" id="bill-calculate-total" class="btn btn-secondary">
+                              Calculate Total
+                          </button>
+                          <button type="submit" class="btn btn-primary">
+                              Add Bill
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+
+          <!-- Bills Table -->
+          <div class="neon-card overflow-hidden">
+              <div class="overflow-x-auto">
+                  <table class="min-w-full table-dark rounded-lg">
+                      <thead>
+                          <tr>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider sticky left-0 z-10" style="background: rgba(30, 41, 59, 0.95);">Period</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Days</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">kWh</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Avg/Day</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Services</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Taxes</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Late</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Disconnect</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Returned</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Other</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Total</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Payments</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Balance</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Est. kWh</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Est. $</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Δ kWh</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Δ $</th>
+                              <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">Notes</th>
+                              <th class="relative px-2 py-3">
+                                  <span class="sr-only">Delete</span>
+                              </th>
+                          </tr>
+                      </thead>
+                      <tbody id="bill-table-body">
+                          <tr>
+                              <td colspan="19" class="text-center p-8 text-blue-200">
+                                  No bills added yet. Add a bill above and compare against your estimates.
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+        </section>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const AES_BREAKDOWN = {
+          ev_pct: 41,
+          heating_pct: 22,
+          water_heating_pct: 14,
+          electronics_pct: 12,
+          appliances_pct: 5,
+          cooling_pct: 2,
+          lighting_pct: 2,
+          other_pct: 2
+        };
+
+        const app = {
+          // DOM Elements for appliances
+          form: document.getElementById('add-appliance-form'),
+          tableBody: document.getElementById('appliance-table-body'),
+          rateInput: document.getElementById('electric-rate'),
+          totalMonthlyKwhCard: document.getElementById('total-monthly-kwh'),
+          totalMonthlyCostCard: document.getElementById('total-monthly-cost'),
+          totalDailyKwhCell: document.getElementById('total-daily-kwh-cell'),
+          totalMonthlyKwhCell: document.getElementById('total-monthly-kwh-cell'),
+          totalMonthlyCostCell: document.getElementById('total-monthly-cost-cell'),
+          latestBillSummary: document.getElementById('latest-bill-summary'),
+
+          // Form Inputs for appliances
+          nameInput: document.getElementById('name'),
+          roomInput: document.getElementById('room'),
+          wattageInput: document.getElementById('wattage'),
+          hoursInput: document.getElementById('hours'),
+
+          // Bill elements
+          billForm: document.getElementById('add-bill-form'),
+          billTableBody: document.getElementById('bill-table-body'),
+          billPeriodStartInput: document.getElementById('bill-period-start'),
+          billPeriodEndInput: document.getElementById('bill-period-end'),
+          billPeriodDaysInput: document.getElementById('bill-period-days'),
+          billBilledKwhInput: document.getElementById('bill-billed-kwh'),
+          billAvgDailyKwhInput: document.getElementById('bill-avg-daily-kwh'),
+          billServicesBilledInput: document.getElementById('bill-services-billed'),
+          billTaxesInput: document.getElementById('bill-taxes'),
+          billLateFeeInput: document.getElementById('bill-late-fee'),
+          billDisconnectFeeInput: document.getElementById('bill-disconnect-fee'),
+          billReturnedPaymentFeeInput: document.getElementById('bill-returned-payment-fee'),
+          billOtherChargesInput: document.getElementById('bill-other-charges'),
+          billTotalBilledInput: document.getElementById('bill-total-billed'),
+          billPaymentsInput: document.getElementById('bill-payments'),
+          billEstimatedKwhInput: document.getElementById('bill-estimated-kwh'),
+          billEstimatedAmountInput: document.getElementById('bill-estimated-amount'),
+          billNotesInput: document.getElementById('bill-notes'),
+          billUseCurrentEstimateBtn: document.getElementById('bill-use-current-estimate'),
+          billCalculateTotalBtn: document.getElementById('bill-calculate-total'),
+
+          // State
+          appliances: [],
+          bills: [],
+          electricRate: 0.12,
+          isLoadingAppliances: false,
+          isLoadingBills: false,
+          lastTotals: { dailyKwh: 0, monthlyKwh: 0, monthlyCost: 0 },
+
+          init() {
+            this.electricRate = parseFloat(this.rateInput.value || '0.12');
+            const storedRate = localStorage.getItem(STORAGE_KEYS.rate);
+            if (storedRate) {
+              this.electricRate = parseFloat(storedRate);
+              this.rateInput.value = this.electricRate.toFixed(2);
+            }
+
+            this.loadAppliancesFromDatabase();
+            this.loadBillsFromDatabase();
+            this.renderTable();
+            this.calculateTotals();
+            this.renderBillsTable();
+            this.updateLatestBillSummary();
+
+            // Appliance events
+            this.form.addEventListener('submit', (e) => this.addAppliance(e));
+            this.rateInput.addEventListener('change', (e) => this.updateRate(e));
+            this.tableBody.addEventListener('click', (e) => this.handleTableClick(e));
+            this.tableBody.addEventListener('change', (e) => this.handleTableChange(e));
+
+            // Bill events
+            this.billForm.addEventListener('submit', (e) => this.addBill(e));
+            this.billTableBody.addEventListener('click', (e) => this.handleBillTableClick(e));
+            this.billTableBody.addEventListener('change', (e) => this.handleBillTableChange(e));
+            this.billUseCurrentEstimateBtn.addEventListener('click', () => this.fillEstimateFromCurrent());
+            this.billCalculateTotalBtn.addEventListener('click', () => this.calculateBillTotal());
+
+            // Auto-calculate total when charge fields change
+            [this.billServicesBilledInput, this.billTaxesInput, this.billLateFeeInput,
+             this.billDisconnectFeeInput, this.billReturnedPaymentFeeInput, this.billOtherChargesInput]
+              .forEach(input => {
+                if (input) {
+                  input.addEventListener('input', () => this.calculateBillTotal());
+                }
+              });
+          },
+
+          // --- Appliances: localStorage Methods ---
+
+          loadAppliancesFromDatabase() {
+            this.isLoadingAppliances = true;
+            try {
+              const stored = localStorage.getItem(STORAGE_KEYS.appliances);
+              if (stored) {
+                this.appliances = JSON.parse(stored);
+              } else {
+                // Seed with default appliances on first run
+                const seed = [
+                  { id: this.generateId(), name: "Refrigerator", room: "Kitchen", wattage: 200, hours: 8, created_at: new Date().toISOString() },
+                  { id: this.generateId(), name: "HVAC (Heating)", room: "Whole House", wattage: 5000, hours: 3, created_at: new Date().toISOString() },
+                  { id: this.generateId(), name: "Water Heater", room: "Utility", wattage: 4500, hours: 1, created_at: new Date().toISOString() },
+                  { id: this.generateId(), name: "Computer", room: "Office", wattage: 300, hours: 5, created_at: new Date().toISOString() },
+                  { id: this.generateId(), name: "Tesla Charging", room: "Parking", wattage: 6000, hours: 4.5, created_at: new Date().toISOString() }
+                ];
+                this.appliances = seed;
+                this.saveAppliances();
+              }
+            } catch (error) {
+              console.error('Error loading appliances:', error);
+              this.appliances = [];
+            } finally {
+              this.isLoadingAppliances = false;
+            }
+          },
+
+          saveAppliances() {
+            try {
+              localStorage.setItem(STORAGE_KEYS.appliances, JSON.stringify(this.appliances));
+            } catch (error) {
+              console.error('Error saving appliances:', error);
+              alert('Could not save appliances. Your browser may be blocking localStorage.');
+            }
+          },
+
+          addAppliance(e) {
+            e.preventDefault();
+
+            const newAppliance = {
+              id: this.generateId(),
+              name: this.nameInput.value.trim(),
+              room: this.roomInput.value.trim() || 'N/A',
+              wattage: parseFloat(this.wattageInput.value),
+              hours: parseFloat(this.hoursInput.value),
+              created_at: new Date().toISOString()
+            };
+
+            if (!newAppliance.name || isNaN(newAppliance.wattage) || isNaN(newAppliance.hours)) {
+              alert('Please fill in all required fields.');
+              return;
+            }
+
+            this.appliances.push(newAppliance);
+            this.saveAppliances();
+            this.form.reset();
+            this.nameInput.focus();
+
+            this.rerender();
+          },
+
+          deleteAppliance(id) {
+            if (!confirm('Delete this appliance?')) return;
+            
+            this.appliances = this.appliances.filter(a => a.id !== id);
+            this.saveAppliances();
+            this.rerender();
+          },
+
+          updateAppliance(id, field, value) {
+            const appliance = this.appliances.find(a => a.id === id);
+            if (!appliance) return;
+
+            let parsedValue = value;
+            if (field === 'wattage' || field === 'hours') {
+              parsedValue = parseFloat(value) || 0;
+            } else if (field === 'name' || field === 'room') {
+              parsedValue = value.trim();
+            }
+
+            appliance[field] = parsedValue;
+            this.saveAppliances();
+            this.rerender();
+          },
+
+          updateRate(e) {
+            this.electricRate = parseFloat(e.target.value || '0') || 0;
+            localStorage.setItem(STORAGE_KEYS.rate, this.electricRate.toString());
+            this.calculateTotals();
+            this.renderBillsTable();
+            this.updateLatestBillSummary();
+          },
+
+          // --- Appliances: Calculations ---
+
+          calculateTotals() {
+            let totalDailyKwh = 0;
+
+            this.appliances.forEach(appliance => {
+              totalDailyKwh += (appliance.wattage * appliance.hours) / 1000;
+            });
+
+            const totalMonthlyKwh = totalDailyKwh * 30;
+            const totalMonthlyCost = totalMonthlyKwh * this.electricRate;
+
+            this.lastTotals = {
+              dailyKwh: totalDailyKwh,
+              monthlyKwh: totalMonthlyKwh,
+              monthlyCost: totalMonthlyCost
+            };
+
+            this.totalMonthlyKwhCard.textContent = totalMonthlyKwh.toFixed(2) + ' kWh';
+            this.totalMonthlyCostCard.textContent = '$' + totalMonthlyCost.toFixed(2);
+
+            this.totalDailyKwhCell.textContent = totalDailyKwh.toFixed(2);
+            this.totalMonthlyKwhCell.textContent = totalMonthlyKwh.toFixed(2);
+            this.totalMonthlyCostCell.textContent = '$' + totalMonthlyCost.toFixed(2);
+
+            // AES breakdown
+            this.renderAESBreakdown(totalMonthlyKwh);
+          },
+
+          renderAESBreakdown(totalMonthlyKwh) {
+            const container = document.getElementById('aes-breakdown');
+            if (!container) return;
+
+            if (!totalMonthlyKwh || totalMonthlyKwh <= 0) {
+              container.innerHTML = `
+                <div class="text-blue-200 col-span-4">
+                  No estimate yet. Add appliances or adjust hours to see AES-style breakdown.
+                </div>`;
+              return;
+            }
+
+            const cats = [
+              ["EV Charging", AES_BREAKDOWN.ev_pct],
+              ["Heating", AES_BREAKDOWN.heating_pct],
+              ["Water Heating", AES_BREAKDOWN.water_heating_pct],
+              ["Electronics", AES_BREAKDOWN.electronics_pct],
+              ["Appliances", AES_BREAKDOWN.appliances_pct],
+              ["Cooling", AES_BREAKDOWN.cooling_pct],
+              ["Lighting", AES_BREAKDOWN.lighting_pct],
+              ["Other", AES_BREAKDOWN.other_pct],
+            ];
+
+            const cards = cats.map(([label, pct]) => {
+              const kwh = totalMonthlyKwh * (pct / 100);
+              return `
+                <div class="stat-card p-4">
+                  <div class="text-xs uppercase text-blue-300 mb-1">${label}</div>
+                  <div class="mt-1 font-semibold text-blue-100 text-lg">${kwh.toFixed(0)} kWh / mo</div>
+                  <div class="text-xs text-blue-400 mt-1">${pct}% of total</div>
+                </div>
+              `;
+            }).join("");
+
+            container.innerHTML = cards;
+          },
+
+          rerender() {
+            this.renderTable();
+            this.calculateTotals();
+            this.renderBillsTable();
+            this.updateLatestBillSummary();
+          },
+
+          // --- Appliances: Rendering ---
+
+          renderTable() {
+            if (this.isLoadingAppliances) {
+              this.tableBody.innerHTML = `
+                <tr>
+                  <td colspan="8" class="text-center p-8 text-blue-200">
+                    Loading appliances...
+                  </td>
+                </tr>`;
+              return;
+            }
+
+            if (!this.appliances || this.appliances.length === 0) {
+              this.tableBody.innerHTML = `
+                <tr>
+                  <td colspan="8" class="text-center p-8 text-blue-200">
+                    No appliances added yet. Use the form above to get started.
+                  </td>
+                </tr>`;
+              return;
+            }
+
+            this.tableBody.innerHTML = this.appliances.map(appliance => {
+              const dailyKwh = (appliance.wattage * appliance.hours) / 1000;
+              const monthlyKwh = dailyKwh * 30;
+              const monthlyCost = monthlyKwh * this.electricRate;
+
+              return `
+                <tr data-id="${appliance.id}">
+                  <td class="table-cell font-medium">
+                    <input type="text" value="${this.escapeHTML(appliance.name)}" data-field="name" class="form-input p-1 w-full">
+                  </td>
+                  <td class="table-cell">
+                    <input type="text" value="${this.escapeHTML(appliance.room || '')}" data-field="room" class="form-input p-1 w-full">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" value="${appliance.wattage}" data-field="wattage" class="form-input p-1 w-24" min="0">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" value="${appliance.hours}" data-field="hours" class="form-input p-1 w-20" step="0.1" min="0" max="24">
+                  </td>
+                  <td class="table-cell text-blue-200">${dailyKwh.toFixed(2)}</td>
+                  <td class="table-cell text-blue-200">${monthlyKwh.toFixed(2)}</td>
+                  <td class="table-cell font-medium text-green-400">$${monthlyCost.toFixed(2)}</td>
+                  <td class="table-cell text-right">
+                    <button class="btn btn-danger btn-sm delete-btn" data-id="${appliance.id}">
+                      &times;
+                    </button>
+                  </td>
+                </tr>
+              `;
+            }).join('');
+          },
+
+          handleTableClick(e) {
+            if (e.target.classList.contains('delete-btn')) {
+              const id = e.target.dataset.id;
+              if (id) {
+                this.deleteAppliance(id);
+              }
+            }
+          },
+
+          handleTableChange(e) {
+            const field = e.target.dataset.field;
+            if (!field) return;
+            const row = e.target.closest('tr');
+            if (!row) return;
+            const id = row.dataset.id;
+            const value = e.target.value;
+            this.updateAppliance(id, field, value);
+          },
+
+          // --- Bills: localStorage Methods ---
+
+          loadBillsFromDatabase() {
+            this.isLoadingBills = true;
+            try {
+              const stored = localStorage.getItem(STORAGE_KEYS.bills);
+              if (stored) {
+                this.bills = JSON.parse(stored);
+                // Sort by period_start descending (newest first)
+                this.bills.sort((a, b) => new Date(b.period_start) - new Date(a.period_start));
+              } else {
+                this.bills = [];
+              }
+            } catch (error) {
+              console.error('Error loading bills:', error);
+              this.bills = [];
+            } finally {
+              this.isLoadingBills = false;
+            }
+          },
+
+          saveBills() {
+            try {
+              localStorage.setItem(STORAGE_KEYS.bills, JSON.stringify(this.bills));
+            } catch (error) {
+              console.error('Error saving bills:', error);
+              alert('Could not save bills. Your browser may be blocking localStorage.');
+            }
+          },
+
+          calculateBillTotal() {
+            const services = parseFloat(this.billServicesBilledInput.value) || 0;
+            const taxes = parseFloat(this.billTaxesInput.value) || 0;
+            const lateFee = parseFloat(this.billLateFeeInput.value) || 0;
+            const disconnectFee = parseFloat(this.billDisconnectFeeInput.value) || 0;
+            const returnedPaymentFee = parseFloat(this.billReturnedPaymentFeeInput.value) || 0;
+            const otherCharges = parseFloat(this.billOtherChargesInput.value) || 0;
+
+            const total = services + taxes + lateFee + disconnectFee + returnedPaymentFee + otherCharges;
+            this.billTotalBilledInput.value = total.toFixed(2);
+          },
+
+          addBill(e) {
+            e.preventDefault();
+
+            const bill = {
+              id: this.generateId(),
+              period_start: this.billPeriodStartInput.value,
+              period_end: this.billPeriodEndInput.value,
+              period_days: this.billPeriodDaysInput.value ? parseInt(this.billPeriodDaysInput.value) : null,
+              billed_kwh: parseFloat(this.billBilledKwhInput.value) || 0,
+              avg_daily_kwh: this.billAvgDailyKwhInput.value ? parseFloat(this.billAvgDailyKwhInput.value) : null,
+              services_billed: parseFloat(this.billServicesBilledInput.value) || 0,
+              taxes: this.billTaxesInput.value ? parseFloat(this.billTaxesInput.value) : null,
+              late_fee: parseFloat(this.billLateFeeInput.value) || 0,
+              disconnect_fee: parseFloat(this.billDisconnectFeeInput.value) || 0,
+              returned_payment_fee: parseFloat(this.billReturnedPaymentFeeInput.value) || 0,
+              other_charges: parseFloat(this.billOtherChargesInput.value) || 0,
+              total_billed: parseFloat(this.billTotalBilledInput.value) || 0,
+              payments: parseFloat(this.billPaymentsInput.value) || 0,
+              estimated_kwh: this.billEstimatedKwhInput.value ? parseFloat(this.billEstimatedKwhInput.value) : null,
+              estimated_amount: this.billEstimatedAmountInput.value ? parseFloat(this.billEstimatedAmountInput.value) : null,
+              notes: this.billNotesInput.value.trim() || null,
+              created_at: new Date().toISOString()
+            };
+
+            if (!bill.period_start || !bill.period_end || !bill.billed_kwh || !bill.total_billed) {
+              alert('Please fill in all required fields (Period Start, Period End, Billed kWh, Total Billed).');
+              return;
+            }
+
+            // Calculate running balance (previous balance + total_billed - payments)
+            const previousBalance = this.bills.length > 0 ? (this.bills[0].running_balance || 0) : 0;
+            bill.running_balance = previousBalance + bill.total_billed - bill.payments;
+
+            this.bills.unshift(bill); // latest on top
+            this.recalculateRunningBalances();
+            this.saveBills();
+            this.billForm.reset();
+            this.renderBillsTable();
+            this.updateLatestBillSummary();
+          },
+
+          deleteBill(id) {
+            if (!confirm('Delete this bill?')) return;
+
+            this.bills = this.bills.filter(b => b.id !== id);
+            this.recalculateRunningBalances();
+            this.saveBills();
+            this.renderBillsTable();
+            this.updateLatestBillSummary();
+          },
+
+          recalculateRunningBalances() {
+            // Sort bills by period_start descending (newest first)
+            const sorted = [...this.bills].sort((a, b) =>
+              new Date(b.period_start) - new Date(a.period_start)
+            );
+
+            let balance = 0;
+            sorted.forEach(bill => {
+              balance = balance + (bill.total_billed || 0) - (bill.payments || 0);
+              bill.running_balance = balance;
+            });
+
+            // Update bills array
+            this.bills = sorted;
+            this.saveBills();
+          },
+
+          updateBill(id, field, value) {
+            const bill = this.bills.find(b => b.id === id);
+            if (!bill) return;
+
+            let parsedValue = value;
+            const numericFields = [
+              'billed_kwh', 'avg_daily_kwh', 'services_billed', 'taxes', 'late_fee',
+              'disconnect_fee', 'returned_payment_fee', 'other_charges', 'total_billed',
+              'payments', 'running_balance', 'estimated_kwh', 'estimated_amount',
+              'period_days'
+            ];
+
+            if (numericFields.includes(field)) {
+              parsedValue = value ? parseFloat(value) : (field === 'period_days' ? null : 0);
+            } else if (field === 'notes') {
+              parsedValue = value.trim() || null;
+            }
+
+            // If total_billed, payments, or any charge field changes, recalculate running balances
+            if (['total_billed', 'payments', 'services_billed', 'taxes', 'late_fee',
+                 'disconnect_fee', 'returned_payment_fee', 'other_charges'].includes(field)) {
+              // Recalculate total if a charge field changed
+              if (['services_billed', 'taxes', 'late_fee', 'disconnect_fee',
+                   'returned_payment_fee', 'other_charges'].includes(field)) {
+                // Use updated value for the field being changed, existing values for others
+                const services = field === 'services_billed' ? parsedValue : (bill.services_billed || 0);
+                const taxes = field === 'taxes' ? parsedValue : (bill.taxes || 0);
+                const lateFee = field === 'late_fee' ? parsedValue : (bill.late_fee || 0);
+                const disconnectFee = field === 'disconnect_fee' ? parsedValue : (bill.disconnect_fee || 0);
+                const returnedPaymentFee = field === 'returned_payment_fee' ? parsedValue : (bill.returned_payment_fee || 0);
+                const otherCharges = field === 'other_charges' ? parsedValue : (bill.other_charges || 0);
+
+                bill.total_billed = services + taxes + lateFee + disconnectFee +
+                                    returnedPaymentFee + otherCharges;
+              } else {
+                bill[field] = parsedValue;
+              }
+            } else {
+              bill[field] = parsedValue;
+            }
+
+            // Recalculate all running balances if total_billed or payments changed
+            if (['total_billed', 'payments'].includes(field)) {
+              this.recalculateRunningBalances();
+            } else {
+              this.saveBills();
+            }
+
+            this.renderBillsTable();
+            this.updateLatestBillSummary();
+          },
+
+          // --- Bills: Helpers ---
+
+          fillEstimateFromCurrent() {
+            const { monthlyKwh, monthlyCost } = this.lastTotals;
+            if (!monthlyKwh) {
+              alert('No appliance estimate yet. Add or adjust appliances first.');
+              return;
+            }
+            this.billEstimatedKwhInput.value = monthlyKwh.toFixed(2);
+            this.billEstimatedAmountInput.value = monthlyCost.toFixed(2);
+          },
+
+          updateLatestBillSummary() {
+            if (!this.bills || this.bills.length === 0) {
+              this.latestBillSummary.textContent = 'No bills yet. Add a bill to see how it compares to your estimates.';
+              return;
+            }
+
+            const latest = this.bills[0];
+            const billedKwh = latest.billed_kwh ?? 0;
+            const estKwh = latest.estimated_kwh ?? null;
+            const totalBilled = latest.total_billed ?? latest.billed_amount ?? 0;
+            const estAmt = latest.estimated_amount ?? null;
+            const runningBalance = latest.running_balance ?? 0;
+
+            let summary = '';
+            const periodStr = `${new Date(latest.period_start).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${new Date(latest.period_end).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
+            
+            if (estKwh !== null && billedKwh > 0) {
+              const diffKwh = estKwh - billedKwh;
+              const diffPct = (diffKwh / billedKwh) * 100;
+              const overUnder = diffPct > 0 ? 'over' : 'under';
+              const absPct = Math.abs(diffPct);
+              
+              summary = `${periodStr}: You used ${billedKwh.toFixed(0)} kWh, which is ${absPct.toFixed(1)}% ${overUnder} your estimate of ${estKwh.toFixed(0)} kWh.`;
+              
+              if (estAmt !== null) {
+                const diffAmt = estAmt - totalBilled;
+                summary += ` Cost: $${totalBilled.toFixed(2)} actual vs $${estAmt.toFixed(2)} estimated.`;
+              }
+            } else {
+              summary = `${periodStr}: ${billedKwh.toFixed(0)} kWh billed • $${totalBilled.toFixed(2)} total`;
+              if (estKwh === null) {
+                summary += ' • No estimate set for this period.';
+              }
+            }
+
+            if (runningBalance !== 0) {
+              summary += ` Balance: $${runningBalance.toFixed(2)}`;
+            }
+
+            this.latestBillSummary.textContent = summary;
+          },
+
+          // --- Bills: Rendering ---
+
+          renderBillsTable() {
+            if (this.isLoadingBills) {
+              this.billTableBody.innerHTML = `
+                <tr>
+                  <td colspan="19" class="text-center p-8 text-blue-200">
+                    Loading bills...
+                  </td>
+                </tr>`;
+              return;
+            }
+
+            if (!this.bills || this.bills.length === 0) {
+              this.billTableBody.innerHTML = `
+                <tr>
+                  <td colspan="19" class="text-center p-8 text-blue-200">
+                    No bills added yet. Add a bill above and compare against your estimates.
+                  </td>
+                </tr>`;
+              return;
+            }
+
+            this.billTableBody.innerHTML = this.bills.map(bill => {
+              const billedKwh = bill.billed_kwh ?? 0;
+              const estKwh = bill.estimated_kwh;
+              const totalBilled = bill.total_billed ?? bill.billed_amount ?? 0;
+              const estAmt = bill.estimated_amount;
+
+              const diffKwh = (estKwh != null) ? (estKwh - billedKwh) : null;
+              const diffAmt = (estAmt != null) ? (estAmt - totalBilled) : null;
+
+              const diffKwhChip = diffKwh == null ? '' :
+                `<span class="chip ${diffKwh >= 0 ? 'chip-positive' : 'chip-negative'}">
+                    ${diffKwh >= 0 ? '+' : ''}${diffKwh.toFixed(1)}
+                 </span>`;
+
+              const diffAmtChip = diffAmt == null ? '' :
+                `<span class="chip ${diffAmt >= 0 ? 'chip-positive' : 'chip-negative'}">
+                    ${diffAmt >= 0 ? '+' : ''}$${diffAmt.toFixed(2)}
+                 </span>`;
+
+              return `
+                <tr data-id="${bill.id}">
+                  <td class="table-cell sticky left-0 z-10 border-r border-blue-500/30" style="background: rgba(15, 23, 42, 0.95);">
+                    <div class="text-xs font-medium text-blue-200 whitespace-nowrap">
+                      ${new Date(bill.period_start).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${new Date(bill.period_end).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </div>
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="1" min="0" value="${bill.period_days ?? ''}" data-bill-field="period_days" class="form-input p-1 w-16 text-xs">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="0.01" min="0" value="${billedKwh}" data-bill-field="billed_kwh" class="form-input p-1 w-20 text-xs">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="0.01" min="0" value="${bill.avg_daily_kwh ?? ''}" data-bill-field="avg_daily_kwh" class="form-input p-1 w-20 text-xs">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="0.01" min="0" value="${bill.services_billed ?? ''}" data-bill-field="services_billed" class="form-input p-1 w-20 text-xs">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="0.01" min="0" value="${bill.taxes ?? ''}" data-bill-field="taxes" class="form-input p-1 w-20 text-xs">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="0.01" min="0" value="${bill.late_fee ?? 0}" data-bill-field="late_fee" class="form-input p-1 w-20 text-xs">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="0.01" min="0" value="${bill.disconnect_fee ?? 0}" data-bill-field="disconnect_fee" class="form-input p-1 w-20 text-xs">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="0.01" min="0" value="${bill.returned_payment_fee ?? 0}" data-bill-field="returned_payment_fee" class="form-input p-1 w-20 text-xs">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="0.01" min="0" value="${bill.other_charges ?? 0}" data-bill-field="other_charges" class="form-input p-1 w-20 text-xs">
+                  </td>
+                  <td class="table-cell font-semibold">
+                    <input type="number" step="0.01" min="0" value="${totalBilled}" data-bill-field="total_billed" class="form-input p-1 w-20 text-xs font-semibold">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="0.01" min="0" value="${bill.payments ?? 0}" data-bill-field="payments" class="form-input p-1 w-20 text-xs">
+                  </td>
+                  <td class="table-cell font-semibold ${(bill.running_balance ?? 0) > 0 ? 'text-red-600' : 'text-green-600'}">
+                    $${(bill.running_balance ?? 0).toFixed(2)}
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="0.01" min="0" value="${estKwh != null ? estKwh : ''}" data-bill-field="estimated_kwh" class="form-input p-1 w-20 text-xs">
+                  </td>
+                  <td class="table-cell">
+                    <input type="number" step="0.01" min="0" value="${estAmt != null ? estAmt : ''}" data-bill-field="estimated_amount" class="form-input p-1 w-20 text-xs">
+                  </td>
+                  <td class="table-cell">
+                    ${diffKwhChip}
+                  </td>
+                  <td class="table-cell">
+                    ${diffAmtChip}
+                  </td>
+                  <td class="table-cell">
+                    <textarea data-bill-field="notes" class="form-textarea p-1 w-32 text-xs" rows="2">${bill.notes ? this.escapeHTML(bill.notes) : ''}</textarea>
+                  </td>
+                  <td class="table-cell text-right">
+                    <button class="btn btn-danger btn-sm delete-bill-btn" data-id="${bill.id}">
+                      &times;
+                    </button>
+                  </td>
+                </tr>
+              `;
+            }).join('');
+          },
+
+          handleBillTableClick(e) {
+            if (e.target.classList.contains('delete-bill-btn')) {
+              const id = e.target.dataset.id;
+              if (id) {
+                this.deleteBill(id);
+              }
+            }
+          },
+
+          handleBillTableChange(e) {
+            const field = e.target.dataset.billField;
+            if (!field) return;
+            const row = e.target.closest('tr');
+            if (!row) return;
+            const id = row.dataset.id;
+            const value = e.target.value;
+            this.updateBill(id, field, value);
+          },
+
+          // --- Utilities ---
+          escapeHTML(str) {
+            return (str || '').toString()
+              .replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+              .replace(/'/g, '&#39;');
+          },
+
+          generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+          }
+        };
+        app.init();
+        window.app = app;
+      });
+    </script>
+
+</body>
+</html>

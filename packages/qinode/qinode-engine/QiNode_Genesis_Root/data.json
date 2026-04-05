@@ -1,0 +1,12 @@
+{
+  "dna": {
+    "uuid": "00000000-0000-4000-a000-000000000001",
+    "canonical_name": "GENESIS_ROOT",
+    "is_authority": true
+  },
+  "integrity": {
+    "asset_manifest": {
+      "logo.svg": "internal_morphology"
+    }
+  }
+}

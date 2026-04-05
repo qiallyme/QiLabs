@@ -1,0 +1,193 @@
+@charset "utf-8";
+
+/// BULMA CUSTOMIZATION
+// There are three ways to use/customize Bulma:
+
+// METHOD 1: Use standard Bulma, but add back dark mode without customization
+//@use 'bulma/sass';
+
+// METHOD 2: Customize using bulma-no-dark-mode
+// To customize, replace the line "@use 'bulma/versions/bulma-no-dark-mode';" located below
+// with the following, uncommenting and modifying variables as needed:
+
+//@use 'bulma/versions/bulma-no-dark-mode' with (
+  // Colors
+  // $turquoise: hsl(171, 100%, 41%),   // Primary color
+  // $cyan: hsl(204, 86%, 53%),         // Info color
+  // $green: hsl(141, 71%, 48%),        // Success color
+  // $yellow: hsl(48, 100%, 67%),       // Warning color
+  // $red: hsl(348, 100%, 61%),         // Danger color
+  // $blue: hsl(217, 71%, 53%),         // Link color
+
+  // Typography
+  // $family-sans-serif: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif,
+  // $family-monospace: monospace,
+  // $size-1: 3rem,
+  // $size-2: 2.5rem,
+  // $size-3: 2rem,
+  // $size-4: 1.5rem,
+  // $size-5: 1.25rem,
+  // $size-6: 1rem
+//);
+
+// METHOD 3: Customize standard Bulma with dark mode
+// To enable dark mode with customization, use:
+//@use 'bulma/sass' with ( ... );  // Use the same variable format as above
+
+// For all available variables, see:
+// https://bulma.io/documentation/customize/variables/
+
+@use 'bulma/versions/bulma-no-dark-mode';
+
+// HEADING STYLES
+// These extend Bulma's title classes to regular h1-h6 tags
+// You can customize individual heading styles here if needed
+h1 {
+  @extend .title;
+  @extend .is-1;
+}
+h2 {
+  @extend .title;
+  @extend .is-2;
+}
+h3 {
+  @extend .title;
+  @extend .is-3;
+}
+h4 {
+  @extend .title;
+  @extend .is-4;
+}
+h5 {
+  @extend .title;
+  @extend .is-5;
+}
+h6 {
+  @extend .title;
+  @extend .is-6;
+}
+
+:root {
+  // Your custom CSS variables
+  --bulma-body-font-size: 1.2em;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(
+    --family-primary,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    'Helvetica',
+    'Arial',
+    sans-serif
+  );
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--family-primary, inherit);
+}
+
+// Overrides for the Apostrophe Admin UI
+body {
+  & [data-apos-refreshable] .navbar.is-fixed-top {
+    top: 112px;
+  }
+
+  &[data-apos-generated].has-navbar-fixed-top .main-content {
+    padding-top: 118px;
+  }
+
+
+  &.has-navbar-fixed-top .apos-admin-bar-spacer {
+    height: 0 !important;
+  }
+
+  &:not(.has-navbar-fixed-top) .navbar {
+    margin-bottom: 0;
+  }
+}
+
+.apos-area-widget-controls.apos-area-widget-controls--modify,
+.apos-area-widget-controls.apos-area-widget-controls {
+  z-index: 100 !important;
+}
+
+.apos-rich-text-editor__editor {
+  margin-left: 20px;
+}
+
+// helper for has-backround-transparent
+.has-background-transparent {
+  background-color: transparent;
+}
+
+body [data-apos-area] [data-apos-area] {
+  margin: 0 0 1.5rem 0;
+}
+
+.rich-text-widget {
+  *:not(:last-child) {
+    margin-bottom: 0.75rem
+  }
+}
+
+.rich-text-widget,
+.ProseMirror {
+  ul {
+    list-style-type: disc;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  ul, ol {
+    margin-bottom: 1em;
+  }
+  ul ul, ol ul {
+    list-style-type: circle;
+    margin-left: 1em;
+  }
+  ol ol, ul ol {
+    list-style-type: lower-latin;
+    margin-left: 1em;
+  }
+}
+
+ol.apos-area-widget__breadcrumbs {
+  list-style-type: none !important;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* Image Widget */
+.img-widget {
+  margin: 0;
+}
+.img-widget img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: var(--aspect-ratio, auto);
+}
+
+.layout-widget {
+  margin: 20px 20px 0 20px;
+}

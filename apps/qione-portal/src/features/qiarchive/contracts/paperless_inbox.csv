@@ -1,0 +1,240 @@
+type,name,match,matching_algorithm,color,path
+tag,Taxes,tax|irs|1040|1099|w-2|refund|department of revenue,1,#ef4444,
+tag,Insurance,policy|premium|coverage|deductible|claim,1,#3b82f6,
+tag,Banking,bank|checking|savings|deposit|withdrawal|statement,1,#10b981,
+tag,Credit Cards,visa|mastercard|amex|american express|capital one|discover,1,#f59e0b,
+tag,Utilities,electric|gas|water|sewer|internet|phone bill|utility,1,#6366f1,
+tag,Housing,lease|rent|landlord|tenant|apartment|housing|property management,1,#8b5cf6,
+tag,Medical,medical|doctor|hospital|clinic|health|patient|treatment|rx|prescription,1,#06b6d4,
+tag,Legal,legal|court|attorney|lawyer|judgment|case|summons|notice of hearing,1,#dc2626,
+tag,Auto,vehicle|car|auto|registration|bmv|license plate|insurance card,1,#0ea5e9,
+tag,Identity,id card|social security|passport|birth certificate|driver license,1,#64748b,
+tag,Employment,payroll|employer|employee|pay stub|timesheet|benefits,1,#84cc16,
+tag,Benefits,medicaid|medicare|ssa|social security|snap|benefits|coverage,1,#14b8a6,
+tag,Business,llc|ein|secretary of state|business license|operating agreement,1,#f97316,
+tag,Accounting,quickbooks|invoice|receipt|expense|profit and loss|balance sheet,1,#eab308,
+tag,Receipts,receipt|order confirmation|purchase|transaction,1,#facc15,
+tag,Statements,statement|account statement|monthly statement,1,#22c55e,
+tag,Government,city of|county of|state of|federal|government|agency,1,#94a3b8,
+tag,Education,school|college|university|student|transcript|tuition,1,#a855f7,
+tag,Home,repair|maintenance|warranty|appliance|homeowner,1,#0f766e,
+tag,Case Master,financial center|fcfcu|foreclosure|surplus|writ|marion county,1,#b91c1c,
+tag,QiAlly,qially|qisuite|qiarchive|qinote|qiportals|qially llc,1,#7c3aed,
+correspondent,IRS,irs|internal revenue service,1,,
+correspondent,Indiana Department of Revenue,indiana department of revenue|dor,1,,
+correspondent,Social Security Administration,social security administration|ssa,1,,
+correspondent,State Farm,state farm,1,,
+correspondent,American Express,american express|amex,1,,
+correspondent,Capital One,capital one,1,,
+correspondent,Discover,discover,1,,
+correspondent,Citizens Energy,citizens energy,1,,
+correspondent,AT&T,at&t|att,1,,
+correspondent,CenterPoint Energy,centerpoint,1,,
+correspondent,Financial Center First Credit Union,financial center|financial center first|fcfcu,1,,
+correspondent,Marion County Court,marion county|superior court|court clerk,1,,
+correspondent,Grandview Towers,grandview towers,1,,
+correspondent,Aspen Companies,aspen companies,1,,
+correspondent,Medicaid,medicaid,1,,
+correspondent,Medicare,medicare,1,,
+correspondent,Indiana BMV,bmv|bureau of motor vehicles,1,,
+correspondent,Google,google,1,,
+correspondent,Zoho,zoho,1,,
+correspondent,Supabase,supabase,1,,
+correspondent,Cloudflare,cloudflare,1,,
+correspondent,Railway,railway,1,,
+document_type,Tax Return,1040|tax return|form 1040,1,,
+document_type,Tax Form,1099|w-2|w2|schedule c|schedule e,1,,
+document_type,Insurance Policy,policy|declarations|coverage summary,1,,
+document_type,Insurance Bill,premium notice|insurance bill|premium due,1,,
+document_type,Bank Statement,bank statement|checking statement|savings statement,1,,
+document_type,Credit Card Statement,credit card statement|payment due|minimum payment,1,,
+document_type,Utility Bill,electric bill|water bill|gas bill|internet bill|phone bill,1,,
+document_type,Lease,lease agreement|rental agreement,1,,
+document_type,Rent Notice,rent|late fee|notice to vacate,1,,
+document_type,Medical Record,visit summary|medical record|after visit summary|clinical note,1,,
+document_type,Medical Bill,amount due|patient balance|medical bill,1,,
+document_type,Prescription,prescription|rx|pharmacy,1,,
+document_type,Legal Filing,complaint|motion|order|judgment|summons|notice of hearing,1,,
+document_type,Court Notice,court date|hearing|appearance|clerk notice,1,,
+document_type,ID Document,driver license|passport|birth certificate|social security card,1,,
+document_type,Employment Record,pay stub|payroll|employment verification|offer letter,1,,
+document_type,Benefits Notice,eligibility|benefits notice|renewal|coverage notice,1,,
+document_type,Invoice,invoice|amount due|bill to,1,,
+document_type,Receipt,receipt|order receipt|payment receipt,1,,
+document_type,Contract,agreement|contract|terms and conditions,1,,
+document_type,Business Filing,articles of organization|ein letter|annual report,1,,
+document_type,General Statement,statement|account summary,1,,
+storage_path,Taxes,Taxes/{created_year}/{title},1,,taxes
+storage_path,Insurance,Insurance/{created_year}/{title},1,,insurance
+storage_path,Banking,Banking/{created_year}/{title},1,,banking
+storage_path,Credit Cards,Credit_Cards/{created_year}/{title},1,,credit_cards
+storage_path,Utilities,Utilities/{created_year}/{title},1,,utilities
+storage_path,Housing,Housing/{created_year}/{title},1,,housing
+storage_path,Medical Records,Medical/{created_year}/{title},1,,medical
+storage_path,Legal,Legal/{created_year}/{title},1,,legal
+storage_path,Auto,Auto/{created_year}/{title},1,,auto
+storage_path,Identity,Identity/{created_year}/{title},1,,identity
+storage_path,Employment,Employment/{created_year}/{title},1,,employment
+storage_path,Benefits,Benefits/{created_year}/{title},1,,benefits
+storage_path,Business,Business/{created_year}/{title},1,,business
+storage_path,Receipts,Receipts/{created_year}/{title},1,,receipts
+storage_path,Case Master,Case_Master/{created_year}/{title},1,,case_master
+storage_path,QiAlly,QiAlly/{created_year}/{title},1,,qially
+tag,Loans,loan|lender|principal|interest|amortization|payment schedule,1,#f87171,
+tag,Investments,investment|portfolio|dividend|brokerage|stock|bond,1,#60a5fa,
+tag,Retirement,401k|ira|retirement plan|pension,1,#34d399,
+tag,Taxes Property,property tax|assessor|tax assessment,1,#fbbf24,
+tag,Property Ownership,deed|title|ownership|property record,1,#a78bfa,
+tag,Mortgage,mortgage|escrow|mortgage statement|loan servicing,1,#fb923c,
+tag,Home Insurance,homeowner insurance|dwelling coverage|property insurance,1,#38bdf8,
+tag,Vehicle Ownership,title transfer|vehicle title|registration renewal,1,#4ade80,
+tag,Vehicle Maintenance,oil change|service record|repair invoice|auto repair,1,#22d3ee,
+tag,Technology Accounts,account security|login alert|account activity,1,#818cf8,
+tag,Security Alerts,security notice|suspicious activity|verification code,1,#ef4444,
+tag,Subscriptions,subscription|renewal notice|membership renewal,1,#facc15,
+tag,Licenses Permits,license|permit|registration certificate,1,#c084fc,
+tag,Warranties,warranty|service warranty|coverage period,1,#0ea5e9,
+tag,Shipping Deliveries,tracking number|shipment|delivery notice|package delivered,1,#f97316,
+tag,Travel,flight|hotel|reservation|itinerary|booking confirmation,1,#06b6d4,
+tag,Memberships,membership card|member number|association membership,1,#14b8a6,
+tag,Donations,charitable donation|donation receipt|nonprofit receipt,1,#22c55e,
+tag,Government Notices,official notice|administrative notice|compliance notice,1,#e11d48,
+tag,Emergency Preparedness,evacuation|emergency notice|preparedness guide,1,#b91c1c,
+correspondent,Fidelity,fidelity investments|fidelity brokerage,1,,
+correspondent,Vanguard,vanguard group|vanguard investments,1,,
+correspondent,Charles Schwab,charles schwab|schwab brokerage,1,,
+correspondent,Rocket Mortgage,rocket mortgage|quicken loans,1,,
+correspondent,Wells Fargo,wells fargo bank,1,,
+correspondent,Chase Bank,jpmorgan chase|chase bank,1,,
+correspondent,PNC Bank,pnc bank,1,,
+correspondent,US Bank,u.s. bank|us bank,1,,
+correspondent,Progressive Insurance,progressive insurance,1,,
+correspondent,Geico,geico insurance,1,,
+correspondent,Allstate,allstate insurance,1,,
+correspondent,Toyota Finance,toyota financial services,1,,
+correspondent,Honda Financial,honda financial services,1,,
+correspondent,Amazon,amazon.com,1,,
+correspondent,PayPal,paypal,1,,
+correspondent,Stripe,stripe payments,1,,
+correspondent,GitHub,github notifications|github security,1,,
+correspondent,Microsoft,microsoft account|microsoft billing,1,,
+correspondent,Apple,apple id|apple billing|itunes receipt,1,,
+correspondent,UPS,ups shipment|ups delivery,1,,
+correspondent,FedEx,fedex tracking|fedex delivery,1,,
+document_type,Loan Agreement,loan agreement|loan contract,1,,
+document_type,Loan Statement,loan statement|payment history|loan balance,1,,
+document_type,Investment Statement,portfolio statement|investment account summary,1,,
+document_type,Dividend Notice,dividend statement|dividend payment,1,,
+document_type,Retirement Statement,401k statement|retirement account summary,1,,
+document_type,Mortgage Statement,mortgage statement|loan servicing statement,1,,
+document_type,Property Tax Notice,property tax statement|assessment notice,1,,
+document_type,Deed,property deed|title deed,1,,
+document_type,Vehicle Registration,vehicle registration|registration certificate,1,,
+document_type,Vehicle Service Record,service invoice|repair record|maintenance record,1,,
+document_type,Security Alert,security alert|account verification|login alert,1,,
+document_type,Subscription Invoice,subscription renewal|membership invoice,1,,
+document_type,License Certificate,license certificate|permit certificate,1,,
+document_type,Warranty Document,warranty certificate|coverage document,1,,
+document_type,Shipping Confirmation,shipment confirmation|tracking receipt,1,,
+document_type,Travel Confirmation,travel itinerary|booking confirmation,1,,
+document_type,Donation Receipt,charitable receipt|donation acknowledgment,1,,
+document_type,Membership Record,membership agreement|membership certificate,1,,
+document_type,Government Notice,official notice|compliance notice,1,,
+storage_path,Loans,Loans/{created_year}/{title},1,,loans
+storage_path,Investments,Investments/{created_year}/{title},1,,investments
+storage_path,Retirement,Retirement/{created_year}/{title},1,,retirement
+storage_path,Property_Tax,Property_Tax/{created_year}/{title},1,,property_tax
+storage_path,Property_Ownership,Property_Ownership/{created_year}/{title},1,,property
+storage_path,Mortgage,Mortgage/{created_year}/{title},1,,mortgage
+storage_path,Vehicle_Records,Vehicle/{created_year}/{title},1,,vehicle
+storage_path,Technology_Accounts,Technology/{created_year}/{title},1,,technology
+storage_path,Security,Security/{created_year}/{title},1,,security
+storage_path,Subscriptions,Subscriptions/{created_year}/{title},1,,subscriptions
+storage_path,Licenses_Permits,Licenses/{created_year}/{title},1,,licenses
+storage_path,Warranties,Warranties/{created_year}/{title},1,,warranties
+storage_path,Shipping,Shipping/{created_year}/{title},1,,shipping
+storage_path,Travel,Travel/{created_year}/{title},1,,travel
+storage_path,Memberships,Memberships/{created_year}/{title},1,,memberships
+storage_path,Donations,Donations/{created_year}/{title},1,,donations
+storage_path,Government_Notices,Government_Notices/{created_year}/{title},1,,gov_notices
+storage_path,Emergency,Emergency/{created_year}/{title},1,,emergency
+tag,Email Notices,email notice|message notification|mail notice,1,#fca5a5,
+tag,Newsletters,newsletter|monthly update|bulletin,1,#fcd34d,
+tag,Community,community notice|neighborhood notice|community board,1,#93c5fd,
+tag,Volunteer,volunteer hours|volunteer record|service hours,1,#86efac,
+tag,Public Transportation,bus pass|transit card|transit authority|ticket validation,1,#67e8f9,
+tag,Library,library card|library notice|book return notice,1,#a5b4fc,
+tag,Childcare,childcare invoice|daycare notice|childcare agreement,1,#f9a8d4,
+tag,School Activities,activity form|school permission|field trip form,1,#c4b5fd,
+tag,Scholarships,scholarship award|scholarship application|grant award,1,#d9f99d,
+tag,Research,research report|study document|analysis report,1,#7dd3fc,
+tag,Surveys,customer survey|feedback request|survey response,1,#fda4af,
+tag,Marketing Promotions,promo code|special offer|limited time offer,1,#fbbf24,
+tag,Event Tickets,event ticket|admission ticket|entry pass,1,#fde68a,
+tag,Event Registrations,event registration|conference registration,1,#fdba74,
+tag,Conference Materials,conference agenda|session schedule|speaker notes,1,#fed7aa,
+tag,Meeting Minutes,meeting minutes|board minutes|committee minutes,1,#bbf7d0,
+tag,Project Documents,project plan|project summary|milestone report,1,#a7f3d0,
+tag,Technical Documentation,technical manual|api documentation|system guide,1,#bfdbfe,
+tag,User Manuals,user manual|instruction guide|product manual,1,#e0e7ff,
+tag,Internal Memos,internal memo|staff memo|organizational memo,1,#ddd6fe,
+correspondent,City Hall,city hall|municipal office,1,,
+correspondent,Public Library,public library,1,,
+correspondent,Transit Authority,transit authority|public transit,1,,
+correspondent,School District,school district|district office,1,,
+correspondent,University Admissions,university admissions|admissions office,1,,
+correspondent,Daycare Center,daycare center|childcare center,1,,
+correspondent,Community Association,community association|hoa office,1,,
+correspondent,Nonprofit Organization,nonprofit organization|charity office,1,,
+correspondent,Volunteer Coordinator,volunteer coordinator,1,,
+correspondent,Conference Organizer,conference organizer|event host,1,,
+correspondent,Research Institute,research institute|research center,1,,
+correspondent,Survey Platform,survey platform|survey provider,1,,
+correspondent,Marketing Agency,marketing agency|promo service,1,,
+correspondent,Ticketing Service,ticketing service|ticket provider,1,,
+correspondent,Event Platform,event platform|event registration,1,,
+correspondent,Documentation Team,documentation team|tech docs group,1,,
+correspondent,Project Management Office,project management office|pmo,1,,
+correspondent,Internal Communications,internal communications|staff communications,1,,
+correspondent,Neighborhood Council,neighborhood council,1,,
+correspondent,Regional Transit Office,regional transit office,1,,
+document_type,Email Notification,email notification|system email notice,1,,
+document_type,Newsletter Edition,newsletter edition|bulletin issue,1,,
+document_type,Community Bulletin,community bulletin|neighborhood notice,1,,
+document_type,Volunteer Record,volunteer record|service hours report,1,,
+document_type,Transit Pass,transit pass|bus ticket|train ticket,1,,
+document_type,Library Notice,library notice|book return notice,1,,
+document_type,Childcare Invoice,childcare invoice|daycare billing,1,,
+document_type,School Permission Form,permission slip|field trip permission,1,,
+document_type,Scholarship Award Letter,scholarship award letter|grant approval,1,,
+document_type,Research Paper,research paper|study report|analysis paper,1,,
+document_type,Survey Result,survey result|survey report,1,,
+document_type,Promotion Notice,promotion notice|special offer notice,1,,
+document_type,Event Ticket,event admission ticket|entry pass,1,,
+document_type,Event Registration,event registration confirmation,1,,
+document_type,Conference Agenda,conference agenda|session schedule,1,,
+document_type,Meeting Minutes,committee minutes|meeting minutes,1,,
+document_type,Project Plan,project plan|milestone outline,1,,
+document_type,Technical Manual,technical manual|api guide|system manual,1,,
+document_type,User Guide,user guide|instruction booklet,1,,
+document_type,Internal Memo,staff memo|internal notice,1,,
+storage_path,Email_Notices,Email_Notices/{created_year}/{title},1,,email_notices
+storage_path,Newsletters,Newsletters/{created_year}/{title},1,,newsletters
+storage_path,Community,Community/{created_year}/{title},1,,community
+storage_path,Volunteer,Volunteer/{created_year}/{title},1,,volunteer
+storage_path,Transit,Transit/{created_year}/{title},1,,transit
+storage_path,Library,Library/{created_year}/{title},1,,library
+storage_path,Childcare,Childcare/{created_year}/{title},1,,childcare
+storage_path,School_Activities,School_Activities/{created_year}/{title},1,,school_activities
+storage_path,Scholarships,Scholarships/{created_year}/{title},1,,scholarships
+storage_path,Research,Research/{created_year}/{title},1,,research
+storage_path,Surveys,Surveys/{created_year}/{title},1,,surveys
+storage_path,Promotions,Promotions/{created_year}/{title},1,,promotions
+storage_path,Events,Events/{created_year}/{title},1,,events
+storage_path,Conferences,Conferences/{created_year}/{title},1,,conferences
+storage_path,Meetings,Meetings/{created_year}/{title},1,,meetings
+storage_path,Projects,Projects/{created_year}/{title},1,,projects
+storage_path,Technical_Docs,Technical_Docs/{created_year}/{title},1,,technical_docs
+storage_path,User_Guides,User_Guides/{created_year}/{title},1,,user_guides
+storage_path,Memos,Memos/{created_year}/{title},1,,memos
+storage_path,Neighborhood,Neighborhood/{created_year}/{title},1,,neighborhood

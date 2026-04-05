@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-01-02T09:37:29-05:00",
+  "module_folder": "qid1500001_how_to_use_qinoteos",
+  "module_id": "qid1500001",
+  "root_id": "qid1500001_0",
+  "slug": "how_to_use_qinoteos",
+  "title": "How to Use QiNoteOS",
+  "type": "howto",
+  "status": "invalid",
+  "validation": {
+    "ok": false,
+    "message": "ERRORS:\n  - Missing required dir: index\n  - Missing required file: content.md\nError: Module validation failed."
+  },
+  "entrypoints": {
+    "readme": "README.md",
+    "content": "content.md",
+    "versions": "versions/log.md"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "kind": "markdown"
+    },
+    {
+      "path": "versions/log.md",
+      "kind": "markdown"
+    },
+    {
+      "path": "content/content.md",
+      "kind": "markdown"
+    }
+  ],
+  "vector_ready": true
+}

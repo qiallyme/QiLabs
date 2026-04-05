@@ -1,0 +1,49 @@
+{
+  "next_root_seq": 1,
+  "root_digits": 7,
+  "default_band": "ORG",
+  "bands": {
+    "SYSTEM": [
+      1,
+      99999
+    ],
+    "PERSONAL": [
+      100000,
+      199999
+    ],
+    "ORG": [
+      200000,
+      399999
+    ],
+    "CLIENT": [
+      400000,
+      899999
+    ],
+    "KNOWLEDGE": [
+      900000,
+      1199999
+    ],
+    "ASSETS": [
+      1200000,
+      1499999
+    ],
+    "PRODUCT": [
+      1500000,
+      1799999
+    ],
+    "RESERVED": [
+      1800000,
+      1999999
+    ]
+  },
+  "next_seq": {
+    "SYSTEM": 1,
+    "PERSONAL": 100000,
+    "ORG": 200000,
+    "CLIENT": 400003,
+    "KNOWLEDGE": 900000,
+    "ASSETS": 1200000,
+    "PRODUCT": 1500001,
+    "RESERVED": 1800000
+  }
+}

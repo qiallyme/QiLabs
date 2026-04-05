@@ -1,0 +1,94 @@
+{
+    "tags": [
+        {
+            "name": "QiArchive",
+            "color": "#6366f1",
+            "matching_algorithm": 1,
+            "match": "qiarchive"
+        },
+        {
+            "name": "Inbox",
+            "color": "#f59e0b",
+            "is_inbox_tag": true
+        },
+        {
+            "name": "Review Needed",
+            "color": "#ef4444"
+        },
+        {
+            "name": "Processed",
+            "color": "#22c55e"
+        },
+        {
+            "name": "Automated",
+            "color": "#94a3b8"
+        }
+    ],
+    "correspondents": [
+        {
+            "name": "Qi Labs",
+            "matching_algorithm": 1,
+            "match": "qi labs"
+        },
+        {
+            "name": "Amazon",
+            "matching_algorithm": 1,
+            "match": "amazon"
+        },
+        {
+            "name": "Google",
+            "matching_algorithm": 1,
+            "match": "google"
+        },
+        {
+            "name": "Microsoft",
+            "matching_algorithm": 1,
+            "match": "microsoft"
+        }
+    ],
+    "document_types": [
+        {
+            "name": "Invoice",
+            "matching_algorithm": 1,
+            "match": "invoice"
+        },
+        {
+            "name": "Receipt",
+            "matching_algorithm": 1,
+            "match": "receipt"
+        },
+        {
+            "name": "Contract",
+            "matching_algorithm": 1,
+            "match": "contract"
+        },
+        {
+            "name": "Identity",
+            "matching_algorithm": 1,
+            "match": "passport|identity|license"
+        },
+        {
+            "name": "Correspondence",
+            "matching_algorithm": 0
+        }
+    ],
+    "storage_paths": [
+        {
+            "name": "Invoices",
+            "path": "Documents/Invoices/{correspondent}/{created_year}/{created_month}",
+            "matching_algorithm": 1,
+            "match": "invoice"
+        },
+        {
+            "name": "Receipts",
+            "path": "Documents/Receipts/{created_year}/{created_month}",
+            "matching_algorithm": 1,
+            "match": "receipt"
+        },
+        {
+            "name": "General",
+            "path": "Documents/Archive/{correspondent}/{created_year}",
+            "matching_algorithm": 0
+        }
+    ]
+}

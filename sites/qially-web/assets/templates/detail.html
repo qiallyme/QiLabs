@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Detail | Qially Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .page--detail .hero { padding: 5rem 0; border-bottom: 1px solid #e5e7eb; }
+        .eyebrow { text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: #6b7280; font-size: 0.875rem; margin-bottom: 1rem; }
+        .lede { font-size: 1.25rem; color: #4b5563; max-width: 600px; margin-bottom: 2rem; line-height: 1.6; }
+        .content { padding: 4rem 0; }
+        .content h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #111827; }
+        .content p { color: #374151; line-height: 1.7; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+<main class="page page--detail">
+  <!-- Hero Section -->
+  <section class="hero bg-slate-50">
+    <div class="container mx-auto px-6">
+      <p class="eyebrow">Category</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-slate-900">Service Page Title</h1>
+      <p class="lede">A short, plain-English summary explaining exactly what this service is and why it matters.</p>
+      <div class="cta-row flex gap-4">
+        <a class="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition shadow-sm" href="/contact/">Get Started</a>
+        <a class="px-6 py-3 border border-slate-300 text-slate-700 font-medium rounded-lg hover:bg-white transition" href="/services/">Back to Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="content">
+    <div class="container mx-auto px-6 max-w-3xl">
+      <h2>What this is</h2>
+      <p>This is where you explain the core value proposition. Keep sentences short. Use active verbs. Avoid jargon that makes the user feel like they need a dictionary to hire you.</p>
+
+      <h2>Who it’s for</h2>
+      <p>Identify the ideal client profile here. If this is for mid-sized tech companies, say that. If it's for solopreneurs, say that. Clarity beats broadness every single time.</p>
+
+      <div class="bg-blue-50 p-8 rounded-2xl my-8 border border-blue-100">
+        <h2 class="mt-0! text-blue-900">How it works</h2>
+        <p class="text-blue-800">Briefly outline the mechanism or process. A simple 1-2-3 list works best to reduce cognitive load.</p>
+      </div>
+
+      <h2>Next step</h2>
+      <p>Tell them exactly what to do. No ambiguity. Click the button below, fill out the form, and we'll handle the rest.</p>
+      
+      <div class="mt-12 pt-8 border-t border-gray-100">
+        <a href="/contact/" class="text-lg font-semibold text-slate-900 underline underline-offset-4 hover:text-blue-600 transition">Ready to begin? Contact us &rarr;</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

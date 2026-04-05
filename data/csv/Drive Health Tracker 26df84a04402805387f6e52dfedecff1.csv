@@ -1,0 +1,15 @@
+﻿Drive Name,Unusual Noises,Disk,Drive Type,Yr,GB,Health Status,Use Case,Reallocated Sectors (1),Seek Errors,read Error Rate,Cache,RPM,Notes,Outcome
+QiEos — Q:,Yes,0,Volume,2017,432.319939136505,Critical,App-Dev,,,,,,,Recycle
+Qi-Vector — V:,Yes,0,Volume,2017,434.927642345429,Critical,VectorStorage,,,,,,,Recycle
+Qi-Vector (V:)/QiEos,Yes,0,HDD,2017,931.513389587402,Critical,light storage.,140,253,14,32,"5,200","sounded like a v8 trying to get out of a hole. ",Recycle
+Qi-Kb -- K:,No,1,Volume,2017,572.763383388519,Healthy,Knowledgebase,,,,,,,
+Qi-Dev — D:,No,1,Volume,2017,295.229256153107,Healthy,Development,,,,,,,
+Qi-Kb — K:,No,1,HDD,2017,931.513389587402,Healthy,General-purpose storage,,,,,,,
+Qi-Stream — S:,No,2,Volume,2017,1184.80995297432,Healthy,Video Files,,,,,,,
+Qi-GDrive — G:,No,2,Volume,2017,550.244003534317,Healthy,Streaming,,,,,,,
+Seagate ST2000DM008-2FR102,No,2,HDD,2017,1863.01668548584,Healthy,General-purpose storage,,0,0,,"7,200",,
+EFI System Partition,No,3,Recovery,2020,0.000931322575,Healthy,EFI,,,,,,,
+Recovery Small,No,3,Recovery,2020,0.046566128731,Healthy,recovery,,,,,,,
+Recovery,No,3,Recovery,2020,0.076275318861,Healthy,recovery,,,,,,,
+Qi-OS — C:,No,3,Volume,2020,442.428514361382,Healthy,os,,,,,,,
+NVME SSD 512GB,No,3,SSD,2020,476.939781188965,Healthy,os,,,,,,,

@@ -1,0 +1,10 @@
+﻿Name,Blueprint JSON,Flow Chart Image,IT Integrations Junction Table Database,Notifications Database Page,Parent item,Primary Tool,Related App,Scenario URL,Status,Sub-item,Trigger Type,Triggers Detail Database
+Screenshots to Life Feed,blueprint_(3).json,Screenshots_to_Life_Feed.jpg,,,,,Life Feed Automation System,https://us2.make.com/322600/scenarios/1637561/,Done,,File Modified,New File Modified On Drive (New%20File%20Modified%20On%20Drive%201e1f84a0440280f38fabf0b7fa7c60cd.csv)
+Send new email summaries to Google Sheets with ChatGPT,blueprint_(4).json,NewEmail_to_Feed.jpg,,,,,Life Feed Automation System,https://us2.make.com/322600/scenarios/1647753/edit,Done,,New Email,New Email In Inbox - crice4485 (New%20Email%20In%20Inbox%20-%20crice4485%201e1f84a0440280d7b355c7baa5547fa8.csv)
+Create Google Calendar events from Notion,blueprint_(7).json,Notion_Event_Calendar.jpg,,,,,Life Feed Automation System,https://us2.make.com/322600/scenarios/1647885/edit,Done,,New Notion Event,New Event in Notion Event OS (New%20Event%20in%20Notion%20Event%20OS%201e1f84a0440280ab8f3dcffc99c3ffa2.csv)
+Send new email summaries to Notion Feed with ChatGPT,blueprint_(8).json,Email_to_Notion_Feed.jpg,,,,,Life Feed Automation System,https://us2.make.com/322600/scenarios/1647753/edit,Done,,New Email,New Email In Inbox - crice4485 (New%20Email%20In%20Inbox%20-%20crice4485%201e1f84a0440280d7b355c7baa5547fa8.csv)
+Ai Daily Worksummary,,,,,,,Life Feed Automation System,,Not started,,Scheduled,
+Life Feed Folder & Script Flow,,,,,,,Life Feed Automation System,,In progress,,New File,
+Life Feed → Notion DB Map,,,,,,,Life Feed Automation System,,In progress,,New File,
+Life Feed → Image Deduplication + Stitch Logic,,,,,,,Life Feed Automation System,,In progress,,New File,
+Zoho CRM to Quickbooks,blueprint_(1).json,Screenshot_1-6-2025_02334_us2.make.com.jpeg,,,,,Life Feed Automation System,https://us2.make.com/322600/scenarios/2005266/edit,Done,,New File,Zoho CRM Custom Invoice is Created (Zoho%20CRM%20Custom%20Invoice%20is%20Created%20205f84a0440280a09d69d4e97fb62387.csv)

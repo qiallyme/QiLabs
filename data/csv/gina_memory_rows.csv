@@ -1,0 +1,50 @@
+id,user_id,role,content,app_context,tab_context,created_at
+0b514a25-291b-4b48-ad24-72547ab45d2a,cody,user,I need to get a task list togethert.,home,,2025-11-16 08:32:02.234585+00
+1d18216c-373f-4c51-a4d7-8984fecd7fef,cody,user,hi,home,,2025-11-16 08:31:50.207583+00
+38c2dc66-d6d1-479a-ae91-44ff788b6e8c,cody,user,"help me track errors, so i just tried to add a job and received an error well the whole app is jus stubs still.",settings,,2025-11-16 09:20:07.803606+00
+4f735eff-eb31-4e22-89be-00d1919aec89,cody,user,I need to get a task list togethert.,home,,2025-11-16 08:32:02.234728+00
+5fa932b0-110a-4155-a1b7-50bf23ad32a1,cody,user,so i have cursor building out qinote,home,,2025-11-16 09:06:00.853287+00
+71742583-975c-4202-b089-71d4ea94f9cd,cody,user,[Error: Voice transcription is not yet connected. Please type your message instead.],home,,2025-11-16 09:29:59.521162+00
+7937e2ee-3e88-430b-8fb0-ee01bec04705,cody,user,"help me track errors, so i just tried to add a job and received an error well the whole app is jus stubs still.",settings,,2025-11-16 09:20:07.819107+00
+7ab14ee7-9b86-4690-9853-843cd8549e94,cody,assistant,Absolutely! Let’s get that task list sorted out. What do you need to include?,home,,2025-11-16 08:32:02.252567+00
+7be0a650-9586-47e6-926e-cb8611396ad8,cody,user,im not really sure.,home,,2025-11-16 08:32:21.78261+00
+8aaf2e24-b874-4a0a-b84e-20dd2d318c2a,cody,user,[Error: Voice transcription is not yet connected. Please type your message instead.],home,,2025-11-16 09:29:59.5313+00
+96544d76-830d-40ba-8d72-0569df990b46,cody,assistant,"No problem! Let’s break it down. What are the main areas you need to focus on? Work, personal, errands? Just throw some ideas at me, and I’ll help you organize them into a solid list!",home,,2025-11-16 08:32:21.769811+00
+987fa130-0eb4-4bbd-849f-b94b022c4a41,cody,user,go to the store.,settings,,2025-11-16 09:20:09.743286+00
+a30023fc-07a6-4df5-807c-dae700d764f7,cody,user,so i have cursor building out qinote,home,,2025-11-16 09:06:00.860237+00
+a9ef6d2b-f85c-466e-8db9-5f23b4f5bc39,cody,assistant,"Hey, Cody! Ready to tackle the day? What’s on your mind?",home,,2025-11-16 08:31:50.206758+00
+abb8b308-96fc-4e73-8a5a-f0769b6c5583,cody,assistant,"Alright, let's keep it simple and efficient. Here’s a quick way to track those errors:
+
+1. **Create an Error Log**: Use a spreadsheet or a simple document to log errors as they come up. 
+   - Date/Time
+   - Error Message
+   - Steps to Reproduce
+   - Severity (Low, Medium, High)
+   - Status (Open, In Progress, Resolved)
+
+2. **Start Logging**: Since you just encountered an error while adding a job, log that right away. 
+
+3. **Prioritize**: Once you have a few errors, prioritize them based on severity and frequency. 
+
+4. **Regular Review**: Set a reminder to review this log weekly to see if any patterns emerge or if certain issues need immediate attention.
+
+5. **Feedback Loop**: Share any significant errors with your team (if applicable) to get input or solutions.
+
+Want to start filling out the first entry together? Or do you have a specific error message you want to jot down?",settings,,2025-11-16 09:20:07.822885+00
+b9ca1c3b-4ab7-45b6-9cde-3db6f495f70c,cody,user,im not really sure.,home,,2025-11-16 08:32:21.749508+00
+bebd5561-6bda-4edc-b603-b066bb670e96,cody,assistant,"Looks like you're hitting that error while trying to use voice transcription! Let’s log that one:
+
+- **Date/Time**: [Insert date/time here]
+- **Error Message**: ""Voice transcription is not yet connected. Please type your message instead.""
+- **Steps to Reproduce**: Attempt to use voice transcription feature.
+- **Severity**: Medium (since it affects usability).
+- **Status**: Open.
+
+Got that logged? If you want to brainstorm fixes for it or if there's another error to add, just say the word!",home,,2025-11-16 09:29:59.517666+00
+c43dc241-fd1a-4b8a-9630-a9ffe02110ea,cody,assistant,"Got it! Building out Qinode, gotcha. What specifically do you need help with? Do you have a plan or some tasks lined up, or are you looking for brainstorming ideas? Let's get you organized!",home,,2025-11-16 09:06:00.853435+00
+c94712c3-bde1-47d5-ba0b-71e7d669b699,cody,assistant,"Well, Cody, I know you’re a busy person working on building out Qinode and tackling the challenges that come with it. You’re dealing with errors and stubs right now, so it’s clear you’re in the thick of development. You’re also focused and want to keep things organized. 
+
+I’m here to help you stay on track, keep your tasks clear, and make sure you don’t get overwhelmed. If there's anything specific you'd like me to remember or focus on, just let me know!",home,,2025-11-16 09:28:26.646176+00
+e997493e-e2a5-40c2-b592-40da4d5c7786,cody,user,"so gina, tell me what do you know about me?",home,,2025-11-16 09:28:26.659373+00
+eb4a02b6-f608-46ae-bc2a-f54321eabcd3,cody,user,"so gina, tell me what do you know about me?",home,,2025-11-16 09:28:26.647459+00
+ec2dbe7d-5779-409c-9422-5aea7a2786e7,cody,user,hi,home,,2025-11-16 08:31:50.206828+00

@@ -137,3 +137,111 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+**/build/
+develop-eggs/
+**/dist/
+downloads/
+eggs/
+.eggs/
+# lib/  <-- Removed to avoid ignoring src/lib
+# lib64/ <-- Removed to avoid ignoring src/lib64
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+
+# Environments
+.env
+.venv
+env/
+venv/
+rag_env/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# VS Code / IDEs
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+
+# Windows
+Thumbs.db
+Desktop.ini
+$*
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# Monorepo / Nested patterns
+**/node_modules/
+**/__pycache__/
+**/build/
+**/dist/
+**/.next/
+**/out/
+**/.nuxt/
+**/.svelte-kit/
+**/.docusaurus/
+**/.serverless/
+**/.fusebox/
+**/.dynamodb/
+**/.firebase/
+**/.serverless/
+**/.cache/
+**/*.exe
+**/*.bin
+**/*.pyd
+**/*.spec
+**/*.log
+
+
+# Content and Experiments
+/content/*
+!/content/README.md
+/experiments/*
+!/experiments/README.md
+/_App_Experiments/*/content/*
+/_App_Experiments/*/experiments/*
+
+#local Storage
+**/*.db
+**/*.sqlite
+**/*.sqlite3
+**/*.vec
+*.index
+*.bin

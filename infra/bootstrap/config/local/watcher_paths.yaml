@@ -1,0 +1,5 @@
+# Local active folder watch assignments (provisioned by Fleet Admin)
+assignments:
+  - id: "assign_1234"
+    path: "%QILABS_HOME%/QiData/inbox"
+    mode: "move"

@@ -1,0 +1,28 @@
+Old Account #,Old Account Name,Old Type,New Account #,New Account Name,New Category Group,Notes / Merge Logic
+ASOFI7940-2024,SoFi Checking (2024),Bank,1000,Unified Cash & Checking,Asset,"Merge all bank accounts (SoFi, Chase, CashApp)"
+ASOFI7940-6973,SoFi Savings (6973),Bank,1005,Unified Savings / Reserve,Asset,All savings merged
+1300,Accounts Receivable (A/R),A/R,1100,Accounts Receivable,Asset,Business receivables
+1200,Inventory Asset,Other Current Asset,1200,Inventory,Asset,Keep for COGS tracking
+P121/P122,Personal Vehicles (Tesla),Other Current Asset,1250,Vehicles,Asset,Combine both Teslas
+2111.JP4139,Chase Credit Card 4139,Credit Card,2100,Business Credit Cards,Liability,Merge all business CCs
+2111.ML7626,Mission Lane Cody,Credit Card,2200,Personal Credit Cards,Liability,Merge personal cards
+P221,Bridgecrest (Tesla Loan),Liability,2300,Auto Loans,Liability,Personal vehicle financing
+P211,Home Mortgage,Liability,2400,Mortgage Payable,Liability,Personal mortgage
+X620,Owner’s Investment,Equity,3100,Owner Capital,Equity,Business equity capital
+B400–B490,All SchC Income accounts,Income,4000,Business Income (Schedule C),Income,Merge all business income
+P410,PersIncome:Wages,Income,4400,Personal Income – Wages,Income,Personal salary/wages
+B501,SchC Expenses:Advertising,Expense,5100,Advertising & Marketing,Business Expense,Merge marketing/ads
+B510–B517,Auto Expenses,Expense,5200,Auto & Truck Expense,Business Expense,"Merge fuel, insurance, repairs"
+B525,SchC Expenses:LegalProfessional,Expense,5400,Legal & Professional Fees,Business Expense,"Attorney, CPA, Consulting"
+B530,SchC Expenses:OfficeExpense,Expense,5500,Office & Supplies,Business Expense,"Supplies, software, admin"
+B555,SchC Expenses:TaxesLicenses,Expense,5600,Taxes & Licenses,Business Expense,"Business license, permits"
+B560–B563,"Travel, Lodging, Meals",Expense,5700,Travel & Meals,Business Expense,Deductible 50% meals
+B570,Utilities,Expense,5800,Utilities,Business Expense,Business phone/internet
+B540,Other Misc,Expense,5900,Miscellaneous Business,Business Expense,Small uncategorized costs
+P540–P547,Personal Home Expenses,Expense,6000,Personal Housing & Utilities,Personal Expense,"Mortgage, HOA, Insurance, Utilities"
+P520–P522,Food & Dining,Expense,6100,Personal Food & Dining,Personal Expense,Merge groceries & dining out
+P530–P532,Health & Medical,Expense,6200,Personal Health,Personal Expense,"Insurance, medical costs"
+P550,Self Care,Expense,6300,Personal Self Care,Personal Expense,"Clothing, grooming"
+P555,Subscriptions,Expense,6400,Personal Subscriptions,Personal Expense,"Streaming, apps, memberships"
+P560,Transportation,Expense,6500,Personal Transportation,Personal Expense,"Gas, repairs, etc."
+B999,Uncategorized Expense,Expense,9999,Suspense / Review Later,Review,Clean and reassign

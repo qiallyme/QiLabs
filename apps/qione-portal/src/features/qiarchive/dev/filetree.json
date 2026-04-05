@@ -1,0 +1,844 @@
+{
+    "name": "QiArchive",
+    "path": "c:\\QiLabs\\QiArchive",
+    "type": "directory",
+    "children": [
+        {
+            "name": "app",
+            "type": "folder",
+            "children": [
+                {
+                    "name": "agent",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "_assets",
+                            "type": "folder",
+                            "children": [
+                                {
+                                    "name": "_generated_icons",
+                                    "type": "folder",
+                                    "children": [
+                                        {
+                                            "name": "index.html",
+                                            "type": "file"
+                                        },
+                                        {
+                                            "name": "qid_128.png",
+                                            "type": "file"
+                                        },
+                                        {
+                                            "name": "qid_16.png",
+                                            "type": "file"
+                                        },
+                                        {
+                                            "name": "qid_24.png",
+                                            "type": "file"
+                                        },
+                                        {
+                                            "name": "qid_256.png",
+                                            "type": "file"
+                                        },
+                                        {
+                                            "name": "qid_32.png",
+                                            "type": "file"
+                                        },
+                                        {
+                                            "name": "qid_48.png",
+                                            "type": "file"
+                                        },
+                                        {
+                                            "name": "qid_64.png",
+                                            "type": "file"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "index.html",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "make_ico.py",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid-3d.jpg",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid-barcode.jpg",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid-complex.jpg",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid-complex.mp4",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid-gradient.jpg",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid-inverted.svg",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid-led.jpg",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid-qr-code.jpg",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid.ico",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid.ico.txt",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid.jpg",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid.png",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid.svg",
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "_backups",
+                            "type": "folder",
+                            "children": [
+                                {
+                                    "name": "daily",
+                                    "type": "folder",
+                                    "children": [
+                                        {
+                                            "name": "index.html",
+                                            "type": "file"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "rolling",
+                                    "type": "folder",
+                                    "children": [
+                                        {
+                                            "name": "index.html",
+                                            "type": "file"
+                                        },
+                                        {
+                                            "name": "registry.prev.json",
+                                            "type": "file"
+                                        },
+                                        {
+                                            "name": "state.prev.json",
+                                            "type": "file"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "index.html",
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "_logs",
+                            "type": "folder",
+                            "children": [
+                                {
+                                    "name": "index.html",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid_activity.jsonl",
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "_wal",
+                            "type": "folder",
+                            "children": [
+                                {
+                                    "name": "index.html",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid_wal.jsonl",
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "desktop",
+                            "type": "folder",
+                            "children": [
+                                {
+                                    "name": "create_shortcut.ps1",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "create_shortcut.vbs",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "index.html",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid_launcher.bat",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "qid_ui.bat",
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "docs",
+                            "type": "folder",
+                            "children": [
+                                {
+                                    "name": "DEV_DOC.md",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "gid_rules.md",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "index.html",
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        {
+                            "name": ".gitignore",
+                            "type": "file"
+                        },
+                        {
+                            "name": "LICENSE",
+                            "type": "file"
+                        },
+                        {
+                            "name": "README.md",
+                            "type": "file"
+                        },
+                        {
+                            "name": "_qid_registry.json",
+                            "type": "file"
+                        },
+                        {
+                            "name": "_qid_state.json",
+                            "type": "file"
+                        },
+                        {
+                            "name": "build_windows.ps1",
+                            "type": "file"
+                        },
+                        {
+                            "name": "doc_ids.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "file_router.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "hasher.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "paperless_upload.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "pyproject.toml",
+                            "type": "file"
+                        },
+                        {
+                            "name": "qid.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "requirements.txt",
+                            "type": "file"
+                        },
+                        {
+                            "name": "smoke_test.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "watcher.py",
+                            "type": "file"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "apps",
+            "type": "folder",
+            "children": [
+                {
+                    "name": "api",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "app",
+                            "type": "folder",
+                            "children": [
+                                {
+                                    "name": "__init__.py",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "config.py",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "db.py",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "main.py",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "models.py",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "routes.py",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "schemas.py",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "services.py",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "statuses.py",
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        {
+                            "name": ".env.example",
+                            "type": "file"
+                        },
+                        {
+                            "name": "README.md",
+                            "type": "file"
+                        },
+                        {
+                            "name": "requirements.txt",
+                            "type": "file"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "config",
+            "type": "folder",
+            "children": [
+                {
+                    "name": "correspondents_seed.yaml",
+                    "type": "file"
+                },
+                {
+                    "name": "document_types_seed.yaml",
+                    "type": "file"
+                },
+                {
+                    "name": "paperless.env",
+                    "type": "file"
+                },
+                {
+                    "name": "tags_seed.yaml",
+                    "type": "file"
+                }
+            ]
+        },
+        {
+            "name": "contracts",
+            "type": "folder",
+            "children": [
+                {
+                    "name": "agent_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "classification.md",
+                    "type": "file"
+                },
+                {
+                    "name": "duplicate_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "folder_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "handoff_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "ingest_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "integration_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "manifest_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "metadata_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "naming_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "operations_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "review_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "status_contract.md",
+                    "type": "file"
+                },
+                {
+                    "name": "storage_contract.md",
+                    "type": "file"
+                }
+            ]
+        },
+        {
+            "name": "data",
+            "type": "folder",
+            "children": [
+                {
+                    "name": "10_ARCHIVE_UPLOADED",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "duplicate_test.pdf",
+                            "type": "file"
+                        },
+                        {
+                            "name": "smoke_test_doc.pdf",
+                            "type": "file"
+                        },
+                        {
+                            "name": "test_normal.pdf",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "20_DUPLICATES",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "test_duplicate.pdf",
+                            "type": "file"
+                        },
+                        {
+                            "name": "third_test.pdf",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "30_REVIEW",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "bad_upload.pdf",
+                            "type": "file"
+                        },
+                        {
+                            "name": "bad_upload_test.pdf",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "90_MANIFESTS",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": ".gitkeep",
+                            "type": "file"
+                        },
+                        {
+                            "name": "dedupe_report.csv",
+                            "type": "file"
+                        },
+                        {
+                            "name": "document_manifest.csv",
+                            "type": "file"
+                        },
+                        {
+                            "name": "document_manifest.jsonl",
+                            "type": "file"
+                        },
+                        {
+                            "name": "rename_map.csv",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "paperless",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "consume",
+                            "type": "folder",
+                            "children": [
+                                {
+                                    "name": "QDOC-2026-000001__alpha__undated.pdf",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "QDOC-2026-000002__bravo__undated.pdf",
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "data",
+                            "type": "folder"
+                        },
+                        {
+                            "name": "media",
+                            "type": "folder"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "deploy",
+            "type": "folder",
+            "children": [
+                {
+                    "name": "console",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "main.py",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "engine",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "Dockerfile",
+                            "type": "file"
+                        },
+                        {
+                            "name": "main.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "requirements.txt",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "paperless",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": ".dockerignore",
+                            "type": "file"
+                        },
+                        {
+                            "name": "Dockerfile",
+                            "type": "file"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "dev",
+            "type": "folder",
+            "children": [
+                {
+                    "name": "decisions",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": ".gitkeep",
+                            "type": "file"
+                        },
+                        {
+                            "name": "0001-identity-first-pipeline.md",
+                            "type": "file"
+                        },
+                        {
+                            "name": "0002-cloud-paperless-drive-intake.md",
+                            "type": "file"
+                        },
+                        {
+                            "name": "0003-pivot-to-cloud-orchestrator.md",
+                            "type": "file"
+                        },
+                        {
+                            "name": "0004-qid-becomes-qiarchive-agent-core.md",
+                            "type": "file"
+                        },
+                        {
+                            "name": "2026-03-06_v1_ingest_reality_check.md",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "ide_state",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": ".gitkeep",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "notes",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": ".gitkeep",
+                            "type": "file"
+                        },
+                        {
+                            "name": "implementation_v1.md",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "prompts",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": ".gitkeep",
+                            "type": "file"
+                        },
+                        {
+                            "name": "ingest_v2_ideas.md",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "README.md",
+                    "type": "file"
+                },
+                {
+                    "name": "chatbotes.txt",
+                    "type": "file"
+                },
+                {
+                    "name": "session_summary.md",
+                    "type": "file"
+                }
+            ]
+        },
+        {
+            "name": "docs",
+            "type": "folder",
+            "children": [
+                {
+                    "name": "architecture.md",
+                    "type": "file"
+                },
+                {
+                    "name": "google_drive_integration.md",
+                    "type": "file"
+                },
+                {
+                    "name": "local_agent.md",
+                    "type": "file"
+                },
+                {
+                    "name": "paperless_integration.md",
+                    "type": "file"
+                },
+                {
+                    "name": "railway_deployment.md",
+                    "type": "file"
+                },
+                {
+                    "name": "railway_qiarchive_api.md",
+                    "type": "file"
+                },
+                {
+                    "name": "setup.md",
+                    "type": "file"
+                },
+                {
+                    "name": "status_model.md",
+                    "type": "file"
+                },
+                {
+                    "name": "workflow.md",
+                    "type": "file"
+                }
+            ]
+        },
+        {
+            "name": "schemas",
+            "type": "folder",
+            "children": [
+                {
+                    "name": "sql",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "init_ledger.sql",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "document_manifest.schema.json",
+                    "type": "file"
+                },
+                {
+                    "name": "document_record.example.json",
+                    "type": "file"
+                }
+            ]
+        },
+        {
+            "name": "scripts",
+            "type": "folder",
+            "children": [
+                {
+                    "name": "ingest",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "main.py",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "ops",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "handoff_to_paperless.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "push_to_paperless_railway.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "queue_report.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "seed_metadata.py",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "utils",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "file_utils.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "hash_utils.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "id_utils.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "manifest_utils.py",
+                            "type": "file"
+                        },
+                        {
+                            "name": "slug_utils.py",
+                            "type": "file"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": ".env.example",
+            "type": "file"
+        },
+        {
+            "name": ".gitignore",
+            "type": "file"
+        },
+        {
+            "name": "LICENSE",
+            "type": "file"
+        },
+        {
+            "name": "Makefile",
+            "type": "file"
+        },
+        {
+            "name": "README.md",
+            "type": "file"
+        },
+        {
+            "name": "docker-compose.yml",
+            "type": "file"
+        }
+    ],
+    "metadata": {
+        "generated": "2026-03-06T20:52:03.437Z",
+        "generator": "FileTree Pro Extension",
+        "version": "0.2.0",
+        "showIcons": false,
+        "maxDepth": 10
+    }
+}

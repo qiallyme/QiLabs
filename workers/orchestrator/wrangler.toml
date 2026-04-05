@@ -1,0 +1,25 @@
+name = "gina-orchestrator"
+main = "worker_orchestrator.ts"
+compatibility_date = "2024-11-23"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+QIOS_ROOT_PATH = "QiOS_v1"
+HEARTBEAT_TTL_SECONDS = "60"
+
+# Bind Supabase environment secrets
+# DO NOT hardcode keys directly here
+# You will bind them using wrangler secret:
+# npx wrangler secret put SUPABASE_URL
+# npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+
+# Optional: Durable Object for future concurrency control
+[durable_objects]
+bindings = [
+  { name = "ORCH_STATE", class_name = "OrchestratorState" }
+]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["OrchestratorState"]
+

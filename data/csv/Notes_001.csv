@@ -1,0 +1,131 @@
+Record Id,Note Owner.id,Note Title,Note Content,Parent.id,Parent Id.Module,Created By.id,Modified By.id,Created Time,Modified Time,Associated_Id,Record Status
+zcrm_6789162000001063001,zcrm_6789162000000560001,Zoho SalesIQ chat with QiAlly,"Visit ID : 1 Question : Hi, I have a question.",zcrm_6789162000001240334,Potentials,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-05-17 14:46:06,2025-05-17 14:46:06,,Available
+zcrm_6789162000001240323,zcrm_6789162000000560001,,junk lead,zcrm_6789162000001066001,Tasks,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-05-21 01:28:39,2025-05-21 01:28:39,,Available
+zcrm_6789162000001328153,zcrm_6789162000000560001,,"Old Address
+701 E 21st St Apt 20
+46202",zcrm_6789162000001316243,Contacts,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-05-23 12:58:18,2025-05-23 12:58:18,,Available
+zcrm_6789162000001906017,zcrm_6789162000000560001,,"Support Log
+WhatsApp Transfer
+Date: 2025-06-08
+Time: ~11:00–13:00
+Technician: [Your Name/Initials]
+Log ID: WHT-20250608-ZK
+Client: Zai Khebarkhil
+Old Number: 463-------
+New Number: 317366----
+Tasks Completed:
+- Backed up WhatsApp data from old device
+- Installed WhatsApp & Duo app on new device
+- Restored chat history and media
+- Provided user training on WhatsApp Duo features
+Issues Encountered:
+- Client unfamiliar with WhatsApp Duo
+- Minor delay in data syncing (Google Drive latency)
+Action Items:
+- Monitor functionality for 48 hours
+- Schedule follow-up within 3–7 days
+- Ensure auto-backups are enabled on new device
+Time Tracking:
+Backup: 1.0 hr ($39.00)
+Setup: 0.5 hr ($19.50)
+Training: 0.5 hr ($19.50)
+Total: 2.0 hrs – $78.00
+Tags:
+#whatsapp #support #zai #duo #migration #backup #training
+Status: Completed
+Client Verified: Yes
+--- End of Log ---",zcrm_6789162000001906001,Potentials,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-08 17:24:32,2025-06-08 17:24:32,,Available
+zcrm_6789162000001906083,zcrm_6789162000000560001,,$41 in cash to go towards the insurance.,zcrm_6789162000001316243,Contacts,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-08 17:28:34,2025-06-08 17:28:34,,Available
+zcrm_6789162000001991354,zcrm_6789162000000560001,Social Security Office Information,"Physical Address:	RM 685
+575 N PENNSYLVANIA ST
+INDIANAPOLIS, IN 46204
+Phone:	1-800-772-1213
+TTY:	1-800-325-0778
+Fax:	1-833-902-2666
+Hours:	
+Monday	9:00 AM - 4:00 PM
+Tuesday	9:00 AM - 4:00 PM
+Wednesday	9:00 AM - 4:00 PM
+Thursday	9:00 AM - 4:00 PM
+Friday	9:00 AM - 4:00 PM
+Saturday	Closed
+Sunday	Closed",zcrm_6789162000001999001,Potentials,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-14 01:22:14,2025-06-14 01:22:14,,Available
+zcrm_6789162000001991380,zcrm_6789162000000560001,Online Social Security Number Application,"Review and Edit
+Please review the answers you provided. If you need to make any changes, please select ""Edit"" to return to that part of the application and make the correction.
+Age
+Edit
+You must be 18 or older to fill out this application. Are you 18 or older?:Yes
+U.S. Mailing Address
+Edit
+Do you have a U.S. mailing address?:Yes
+Social Security Number
+Edit
+Does the person who the application is for already have a Social Security Number (SSN)?:No
+Citizenship Status
+Edit
+Is the individual for whom you are applying a U.S. citizen?:No
+Applying For
+Edit
+Who are you applying for?:Yourself
+Date of Birth
+Edit
+What is your date of birth?:February 13, 2006
+Place of Birth
+Edit
+Where is your place of birth?:Sangrur Punjab, India
+Name
+Edit
+How should your name appear on the card?:DILSHANT SINGH
+Is the name you entered your full birth name?:Yes
+Have you ever used any other names not listed above?:No
+Sex
+Edit
+What is your sex?:Male
+Parent's Name
+Edit
+What is your parent/mother's birth name?:KARAMJIT KAUR
+What is your parent/father's name?:RANDHIR SINGH
+U.S. Mailing Address and Phone Number
+Edit
+What is your mailing address?:
+Street Address:8449 Welder Pl
+City/Town:INDIANAPOLIS
+State:Indiana
+ZIP Code:46237
+What is your daytime phone number?:(209) 612-3425
+Race and Ethnicity
+Edit
+Are you Hispanic or Latino? (Select one):No
+What is your race? (Select one or more): Asian
+Documentation
+Edit
+Evidence Documentation For You: I-766 Employment Authorization Document (EAD) Card",zcrm_6789162000001999001,Potentials,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-14 03:27:28,2025-06-14 03:27:28,,Available
+zcrm_6789162000001991385,zcrm_6789162000000560001,Online Social Security Number Application,"Next Steps
+The original card request is not complete. In order for the card to be processed:
+    1. Gather the documentation you selected to provide as evidence to the local Social Security office or card center.
+    2. You must visit your local Social Security office or card center with your documentation within 45 calendar days.
+I acknowledge that I have read the 'Next Steps' and understand that I must visit my local SSA office within 45 calendar days to complete the application process.
+Electronic Signature
+Please read and accept the following statement to finish the application.
+I understand and agree that my application will be signed electronically, which is the legal equivalent of my handwritten signature, when I select the SUBMIT APPLICATION PACKAGE below. I also understand that my electronic signature means that I intend to apply for an original SSN card and have provided the Social Security Administration with accurate information.
+I declare under penalty of perjury that I have examined all the information on this application and it is true and correct to the best of my knowledge. I understand that anyone who knowingly gives a false or misleading statement about a material fact in this electronic application, or causes someone else to do so, commits a crime and may be sent to prison or may face other penalties, or both.",zcrm_6789162000001999001,Potentials,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-14 03:27:47,2025-06-14 03:27:47,,Available
+zcrm_6789162000001991390,zcrm_6789162000000560001,Online Social Security Number Application,"OSSNAP 06/14/2025
+You successfully submitted your application! The Online Control Number for your application is O25165433997. Please write this number down or print this screen for your records.
+Important: Your social security card request is not complete until you show the document(s) below at a local Social Security office or card center. You must show your documents within 45 calendar days or you will need to submit a new application. You can save time by using the ""Schedule an Appointment"" button below. You will be required to log in or create a login.gov account to take advantage of our new online appointment system.
+    • I-766 Employment Authorization Document (EAD) Card
+
+PREPARE FOR YOUR APPOINTMENT
+    • Please gather the documents before you visit and bring them with you. We can't complete your application without them.
+    • We can complete your in-office interview quickly because you submitted your application online today.
+    • Please follow directions for check-in when you arrive.
+    • Masks are only required in the office when COVID-19 community levels are high.
+    • Signage will tell you if masks are required. We will provide a mask if you do not have one. Consider physically distancing and avoid crowding if COVID-19 community levels are medium or high.
+    • If you require help, you may bring someone to assist you with your appointment.
+        ◦ If you are applying for an original social security card for an individual age 12 or over, both you and the person to whom the SSN is for must appear for the mandatory in-person interview.
+    • If you have questions before you visit, please call your local Social Security office or card center or our National 800 Number at 1-800-772-1213.
+Will Social Security contact me about my application?
+We will use the address below you provided if we need to contact you regarding your application. Don't wait to hear from Social Security before scheduling an appointment to show your documents.
+8449 Welder Pl
+INDIANAPOLIS, Indiana, 46237",zcrm_6789162000001999001,Potentials,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-14 03:28:09,2025-06-14 03:28:09,,Available
+zcrm_6789162000001991612,zcrm_6789162000000560001,,There is not need to schedule the client can just walk in according to the site info.,zcrm_6789162000002001001,Tasks,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-06-15 14:41:39,2025-06-15 14:41:39,,Available
+zcrm_6789162000003150056,zcrm_6789162000000560001,SMS (short and clear),"<b>Hi Sukhchian — quick update:</b> I’m ready to send your SSA appointment prep packet. Please complete <b>Invoice [#____] ($[amount])</b> today to confirm. Once paid, I’ll send the step-by-step checklist immediately.<br>If payment isn’t received by <b>6:00 PM ET today (Wed, Aug 13)</b>, you’ll need to <b>reschedule</b> the appointment.<br>Pay here: <b>[payment link]</b><br>Need the link again? Reply “RESEND.”",zcrm_6789162000003147003,Potentials,zcrm_6789162000000560001,zcrm_6789162000000560001,2025-08-13 18:26:58,2025-08-13 18:26:58,,Available

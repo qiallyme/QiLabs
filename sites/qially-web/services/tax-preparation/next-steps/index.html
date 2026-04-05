@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2025 Tax Intake — Next Steps / Próximos Pasos | QiAlly</title>
+    <meta
+      name="description"
+      content="Choose your tax checklist and next steps for the 2025 filing season."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+              lato: ["Lato", "sans-serif"],
+            },
+            colors: {
+              "brand-bg": "#f8fafc",
+              "brand-green": "#1AB16D",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .blob-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(26, 177, 109, 0.15),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(219, 234, 254, 0.4),
+            transparent 25%
+          );
+        filter: blur(40px);
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.85);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.05),
+          0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.6);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        transition:
+          transform 0.2s ease-in-out,
+          box-shadow 0.2s ease-in-out,
+          background 0.2s ease-in-out;
+      }
+      .glass-card:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        background: rgba(255, 255, 255, 0.9);
+        border-color: #1ab16d;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased relative font-sans">
+    <div class="blob-bg"></div>
+
+    <nav
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white/70 backdrop-blur-md shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex-shrink-0">
+            <a href="/" class="flex items-center gap-2 group">
+              <div
+                class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-green to-emerald-600 flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:scale-105 transition duration-300"
+              >
+                Q
+              </div>
+              <span
+                class="font-serif text-xl font-bold text-slate-800 tracking-tight group-hover:text-brand-green transition"
+                >QiAlly</span
+              >
+            </a>
+          </div>
+
+          <div>
+            <a
+              href="https://us.bigin.online/org886848419/bookings/tax-prep-2025"
+              class="bg-brand-green text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-emerald-600 transition shadow-lg hover:shadow-emerald-500/30 flex items-center gap-2"
+            >
+              <i class="fa-regular fa-calendar-check"></i>
+              <span class="hidden sm:inline">Book Review Call</span>
+              <span class="sm:hidden">Book Call</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6 text-center">
+      <div class="max-w-3xl mx-auto">
+        <span
+          class="text-brand-green font-bold tracking-widest text-xs uppercase mb-4 block"
+          >Next Steps / Próximos Pasos</span
+        >
+        <h1 class="text-4xl md:text-5xl font-serif text-slate-900 mb-6">
+          Choose Your Path <br />
+          <span class="text-slate-500 italic block mt-2 text-3xl md:text-4xl"
+            >Elige Tu Camino</span
+          >
+        </h1>
+        <p class="text-lg text-slate-600 font-light leading-relaxed mb-8">
+          Select the option that best describes your tax situation to generate
+          your personalized document checklist.
+          <br />
+          <span class="text-slate-500 text-base"
+            >Selecciona la opción que mejor describa tu situación fiscal para
+            ver tu lista de documentos.</span
+          >
+        </p>
+      </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 pb-20">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Simply W-2 -->
+        <a
+          href="./simple-w2.html"
+          class="glass-card p-6 rounded-2xl group block cursor-pointer"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-green group-hover:text-white transition-colors"
+          >
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <h3
+            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-green transition-colors"
+          >
+            Simple W-2
+          </h3>
+          <p class="text-sm text-slate-500 mb-3 italic">Sencillo W-2</p>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            For employees with W-2 income only. Standard deductions.
+            <br /><span class="text-slate-500 text-xs mt-1 block"
+              >Para empleados solo con ingresos W-2. Deducciones estándar.</span
+            >
+          </p>
+        </a>
+
+        <!-- Head of Household -->
+        <a
+          href="./head-of-household.html"
+          class="glass-card p-6 rounded-2xl group block cursor-pointer"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-pink-50 text-pink-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-green group-hover:text-white transition-colors"
+          >
+            <i class="fa-solid fa-house-chimney-user"></i>
+          </div>
+          <h3
+            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-green transition-colors"
+          >
+            Head of Household
+          </h3>
+          <p class="text-sm text-slate-500 mb-3 italic">Cabeza de Familia</p>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Single filers with dependents supporting >50% of household.
+            <br /><span class="text-slate-500 text-xs mt-1 block"
+              >Solteros con dependientes que pagan >50% del hogar.</span
+            >
+          </p>
+        </a>
+
+        <!-- Self-Employed -->
+        <a
+          href="./self-employed.html"
+          class="glass-card p-6 rounded-2xl group block cursor-pointer ring-2 ring-brand-green ring-opacity-20 bg-white/80"
+        >
+          <div
+            class="absolute top-4 right-4 text-xs font-bold bg-brand-green/10 text-brand-green px-2 py-1 rounded-full uppercase tracking-wide"
+          >
+            Popular
+          </div>
+          <div
+            class="w-12 h-12 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-green group-hover:text-white transition-colors"
+          >
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <h3
+            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-green transition-colors"
+          >
+            Self-Employed
+          </h3>
+          <p class="text-sm text-slate-500 mb-3 italic">
+            Trabajador Propio / 1099
+          </p>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            For contractors, gig workers (Uber/DoorDash), and freelancers.
+            <br /><span class="text-slate-500 text-xs mt-1 block"
+              >Para contratistas, trabajadores de gig apps y freelancers.</span
+            >
+          </p>
+        </a>
+
+        <!-- Complex Return -->
+        <a
+          href="./complex.html"
+          class="glass-card p-6 rounded-2xl group block cursor-pointer"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-green group-hover:text-white transition-colors"
+          >
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <h3
+            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-green transition-colors"
+          >
+            Complex Return
+          </h3>
+          <p class="text-sm text-slate-500 mb-3 italic">Declaración Compleja</p>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Multi-state filing, rental properties, crypto/investments, or IRS
+            letters.
+            <br /><span class="text-slate-500 text-xs mt-1 block"
+              >Múltiples estados, propiedades de renta, cripto/inversiones o
+              cartas del IRS.</span
+            >
+          </p>
+        </a>
+
+        <!-- ITIN New/Renewal -->
+        <a
+          href="./itin.html"
+          class="glass-card p-6 rounded-2xl group block cursor-pointer"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-green group-hover:text-white transition-colors"
+          >
+            <i class="fa-solid fa-id-card"></i>
+          </div>
+          <h3
+            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-green transition-colors"
+          >
+            ITIN Services
+          </h3>
+          <p class="text-sm text-slate-500 mb-3 italic">
+            Nuevo ITIN o Renovación
+          </p>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Applying for a new ITIN or renewing an existing one.
+            <br /><span class="text-slate-500 text-xs mt-1 block"
+              >Solicitud de nuevo ITIN o renovación de uno existente.</span
+            >
+          </p>
+        </a>
+
+        <!-- Business Return -->
+        <a
+          href="./business.html"
+          class="glass-card p-6 rounded-2xl group block cursor-pointer md:col-span-2 lg:col-span-2"
+        >
+          <div
+            class="flex flex-col md:flex-row items-start md:items-center gap-4"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-xl group-hover:bg-brand-green group-hover:text-white transition-colors"
+            >
+              <i class="fa-solid fa-building"></i>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-slate-900 mb-1 group-hover:text-brand-green transition-colors"
+              >
+                Business Return
+              </h3>
+              <p class="text-sm text-slate-500 mb-2 italic">
+                Declaración de Negocio (LLC, S-Corp, Partnership)
+              </p>
+              <p class="text-sm text-slate-600 leading-relaxed max-w-lg">
+                For formal business entities requiring separate filing.
+                <br /><span class="text-slate-500 text-xs mt-1 block"
+                  >Para entidades comerciales formales que requieren una
+                  declaración separada.</span
+                >
+              </p>
+            </div>
+            <div class="ml-auto">
+              <span
+                class="text-brand-green group-hover:translate-x-1 transition-transform inline-block"
+              >
+                <i class="fa-solid fa-arrow-right"></i>
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-slate-500 text-sm">
+          Not sure?
+          <a
+            href="./self-employed.html"
+            class="text-brand-green font-semibold hover:underline"
+            >Start with Self-Employed</a
+          >
+          or book a review call.
+          <br />
+          ¿No estás seguro?
+          <a
+            href="./self-employed.html"
+            class="text-brand-green font-semibold hover:underline"
+            >Comienza con Trabajador Propio</a
+          >
+          o agenda una llamada.
+        </p>
+      </div>
+    </main>
+
+    <footer class="bg-white/80 border-t border-slate-200 py-12">
+      <div class="max-w-7xl mx-auto px-6 text-center text-slate-500 text-sm">
+        <p>&copy; 2025 QiAlly. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

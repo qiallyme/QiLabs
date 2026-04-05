@@ -1,0 +1,5 @@
+﻿Name,Description,Last Reviewed,Linked Dashboards,QiCore.db,Status,Type,uuid
+Project Management Hub,"Central database for tracking all company projects, tasks, and resources.","September 20, 2025","Project Overview, Resource Allocation",,Active,Hub DB,REG-277f84a0440280d98fedfb4e6c9afeb9
+Employee Directory,Master database containing all employee information and organizational structure.,"September 22, 2025","Team Structure, Department Overview",,Active,Core DB,REG-277f84a0440280f39b04dd09ff63e1ae
+Knowledge Base,"Collection of company procedures, guides, and documentation for training and reference.","September 18, 2025",Learning Resources Dashboard,,Paused,Hub DB,REG-277f84a0440280b78cf8d7a687abe7c5
+Job_Hunter_Pro,,,,,,,REG-29cf84a0440280748a69dd4adde9e9aa

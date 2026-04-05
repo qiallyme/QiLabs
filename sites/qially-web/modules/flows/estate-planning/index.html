@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estate & End of Life Planning | QiAlly</title>
+    <meta
+      name="description"
+      content="Comprehensive estate planning and end of life documentation. Templates for Wills, Trusts, and Power of Attorney."
+    />
+    <link rel="icon" type="image/png" href="/assets/imgs/favicon.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    
+    <!-- Global Design System -->
+    <link rel="stylesheet" href="../../../assets/css/global_styles.css">
+    
+    <!-- CSS & Frameworks -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+            colors: {
+              "brand-bg": "#f8fafc",
+              "glass-border": "rgba(255, 255, 255, 0.5)",
+              "glass-bg": "rgba(255, 255, 255, 0.7)",
+              "brand-green": "#1AB16D",
+              "deep-blue": "#0f172a",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .blob-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(59, 130, 246, 0.1),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(16, 185, 129, 0.1),
+            transparent 40%
+          );
+        filter: blur(60px);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        transition: all 0.3s ease;
+      }
+      .glass-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12);
+        border-color: rgba(26, 177, 109, 0.3);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+    <div class="blob-bg"></div>
+
+    <!-- Navigation Placeholder -->
+    <div id="nav-placeholder"></div>
+
+    <main class="relative pt-32 pb-20 overflow-hidden">
+      <!-- Hero Section -->
+      <section class="max-w-7xl mx-auto px-6 mb-20 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-sm font-semibold mb-6 animate-fade-in">
+          <i class="fa-solid fa-shield-heart"></i>
+          Secure Your Legacy
+        </div>
+        <h1 class="text-4xl md:text-6xl font-serif font-medium text-slate-900 mb-6 leading-tight">
+          Estate & End of Life <br />
+          <span class="italic text-slate-400">Planning.</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-xl text-slate-500 font-light leading-relaxed">
+          Orchestrating clarity for your future and your family. Access the essential documents, templates, and guides to ensure your final wishes are honored with precision.
+        </p>
+      </section>
+
+      <!-- Document Categories -->
+      <section class="max-w-7xl mx-auto px-6 mb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Last Will & Testament -->
+          <div class="glass-card p-8 rounded-3xl group">
+            <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+              <i class="fa-solid fa-scroll text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-medium mb-3 text-slate-900">Last Will & Testament</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+              Define how your assets should be distributed and appoint guardians for minors. The foundation of any estate plan.
+            </p>
+            <div class="flex flex-col gap-3">
+              <a href="#" class="flex items-center justify-between px-4 py-2 bg-slate-900 text-white rounded-xl text-sm font-medium hover:bg-slate-800 transition">
+                <span>Download Template</span>
+                <i class="fa-solid fa-download text-xs"></i>
+              </a>
+              <button class="text-slate-400 text-xs text-center italic">Digital Draft Coming Soon</button>
+            </div>
+          </div>
+
+          <!-- Revocable Living Trust -->
+          <div class="glass-card p-8 rounded-3xl group">
+            <div class="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mb-6 text-amber-600 transition-colors group-hover:bg-amber-600 group-hover:text-white">
+              <i class="fa-solid fa-vault text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-medium mb-3 text-slate-900">Living Trust</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+              Maintain control over your assets during your life and avoid the lengthy probate process for your beneficiaries.
+            </p>
+            <div class="flex flex-col gap-3">
+              <a href="#" class="flex items-center justify-between px-4 py-2 bg-slate-900 text-white rounded-xl text-sm font-medium hover:bg-slate-800 transition">
+                <span>Download Template</span>
+                <i class="fa-solid fa-download text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Power of Attorney -->
+          <div class="glass-card p-8 rounded-3xl group">
+            <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
+              <i class="fa-solid fa-file-signature text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-medium mb-3 text-slate-900">Financial Power of Attorney</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+              Designate a trusted person to manage your financial affairs if you become unable to do so yourself.
+            </p>
+            <div class="flex flex-col gap-3">
+              <a href="#" class="flex items-center justify-between px-4 py-2 bg-slate-900 text-white rounded-xl text-sm font-medium hover:bg-slate-800 transition">
+                <span>Download Template</span>
+                <i class="fa-solid fa-download text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Healthcare Directive -->
+          <div class="glass-card p-8 rounded-3xl group">
+            <div class="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center mb-6 text-rose-600 transition-colors group-hover:bg-rose-600 group-hover:text-white">
+              <i class="fa-solid fa-heart-pulse text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-medium mb-3 text-slate-900">Healthcare Directive</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+              Specify your medical treatment preferences and appoint a healthcare proxy for critical medical decisions.
+            </p>
+            <div class="flex flex-col gap-3">
+              <a href="#" class="flex items-center justify-between px-4 py-2 bg-slate-900 text-white rounded-xl text-sm font-medium hover:bg-slate-800 transition">
+                <span>Download Template</span>
+                <i class="fa-solid fa-download text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Digital Asset Inventory -->
+          <div class="glass-card p-8 rounded-3xl group">
+            <div class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 text-indigo-600 transition-colors group-hover:bg-indigo-600 group-hover:text-white">
+              <i class="fa-solid fa-key text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-medium mb-3 text-slate-900">Digital Asset Inventory</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+              A comprehensive list of your digital accounts, passwords, and instructions for your online legacy.
+            </p>
+            <div class="flex flex-col gap-3">
+              <a href="#" class="flex items-center justify-between px-4 py-2 bg-slate-900 text-white rounded-xl text-sm font-medium hover:bg-slate-800 transition">
+                <span>Download Template</span>
+                <i class="fa-solid fa-download text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Letter of Intent -->
+          <div class="glass-card p-8 rounded-3xl group">
+            <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center mb-6 text-slate-600 transition-colors group-hover:bg-slate-600 group-hover:text-white">
+              <i class="fa-solid fa-envelope-open-text text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-medium mb-3 text-slate-900">Letter of Intent</h3>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+              Non-binding guidance for your survivors regarding funeral wishes, personal messages, and practical advice.
+            </p>
+            <div class="flex flex-col gap-3">
+              <a href="#" class="flex items-center justify-between px-4 py-2 bg-slate-900 text-white rounded-xl text-sm font-medium hover:bg-slate-800 transition">
+                <span>Download Template</span>
+                <i class="fa-solid fa-download text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Why Planning Matters -->
+      <section class="max-w-5xl mx-auto px-6 py-20 bg-deep-blue rounded-[3rem] text-white overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/20 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/20 rounded-full blur-[100px]"></div>
+        
+        <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-serif font-medium mb-6">Why Early Planning <br/><span class="text-emerald-400">is the Greatest Gift.</span></h2>
+            <p class="text-slate-400 mb-8 leading-relaxed">
+              Estate planning isn't just about money. It's about removing the burden of difficult decisions from your grieving loved ones during their hardest moments.
+            </p>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3">
+                <i class="fa-solid fa-check text-emerald-400"></i>
+                <span class="text-sm">Avoid expensive and public probate courts.</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fa-solid fa-check text-emerald-400"></i>
+                <span class="text-sm">Minimize family conflict with clear instructions.</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fa-solid fa-check text-emerald-400"></i>
+                <span class="text-sm">Protect minor children with designated guardians.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10">
+            <blockquote class="text-xl italic font-serif text-slate-200 mb-4">
+              "The best time to plant a tree was 20 years ago. The second best time is now."
+            </blockquote>
+            <p class="text-emerald-400 font-semibold">— Planning for the Unpredictable</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="max-w-7xl mx-auto px-6 py-24 text-center">
+        <h2 class="text-3xl font-serif font-medium text-slate-900 mb-6">Need Professional Guidance?</h2>
+        <p class="text-slate-500 mb-10 max-w-xl mx-auto">
+          While these templates provide a strong foundation, complex estates may require personalized review by a legal professional.
+        </p>
+        <div class="flex justify-center gap-4">
+          <a href="/#contact" class="px-8 py-3 rounded-full bg-brand-green text-white font-medium hover:bg-emerald-600 transition shadow-lg">
+            Schedule a Consultation
+          </a>
+          <a href="/pages/resources/" class="px-8 py-3 rounded-full bg-slate-200 text-slate-700 font-medium hover:bg-slate-300 transition">
+            View All Resources
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <script src="/assets/js/i18n.js"></script>
+    <script src="/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+{
+  "qid0400000": {
+    "root_id": "qid0400000_0",
+    "root_int": 400000,
+    "band": "CLIENT",
+    "created_at": "2025-12-30 00:55:43",
+    "title": "rle",
+    "path": ".",
+    "next_child": 1,
+    "status": "active"
+  },
+  "qid0400001": {
+    "root_id": "qid0400001_0",
+    "root_int": 400001,
+    "band": "CLIENT",
+    "created_at": "2025-12-30 00:56:10",
+    "title": "zjk",
+    "path": ".",
+    "next_child": 1,
+    "status": "active"
+  },
+  "qid0400002": {
+    "root_id": "qid0400002_0",
+    "root_int": 400002,
+    "band": "CLIENT",
+    "created_at": "2025-12-30 00:56:44",
+    "title": "lae",
+    "path": ".",
+    "next_child": 1,
+    "status": "active"
+  },
+  "qid1500000": {
+    "root_id": "qid1500000_0",
+    "root_int": 1500000,
+    "band": "PRODUCT",
+    "created_at": "2025-12-30 02:41:07",
+    "title": "Client Site Template MultiTenant",
+    "path": ".",
+    "next_child": 1,
+    "status": "active"
+  },
+  "qid0200000": {
+    "root_id": "qid0200000_0",
+    "root_int": 200000,
+    "band": "ORG",
+    "created_at": "2025-12-30 03:07:00",
+    "title": "test root",
+    "path": ".",
+    "next_child": 1,
+    "status": "active"
+  },
+  "qid0000001": {
+    "root_id": "qid0000001_0",
+    "root_int": 1,
+    "band": "SYSTEM",
+    "created_at": "2026-01-07 21:00:12",
+    "title": "00_Module_Alpha",
+    "path": ".",
+    "next_child": 2,
+    "status": "active"
+  },
+  "qid0400003": {
+    "root_id": "qid0400003_0",
+    "root_int": 400003,
+    "band": "CLIENT",
+    "created_at": "2026-01-21 17:03:34",
+    "title": "c.bbr",
+    "path": ".",
+    "next_child": 1,
+    "status": "active"
+  }
+}
