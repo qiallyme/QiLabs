@@ -28,6 +28,31 @@ const moduleColorMap: any = {
   tax: 'from-rose-600 to-pink-800 shadow-rose-500/20',
 };
 
+// Auto-magically derives URLs based on the environment and the Qially rules
+function getAppUrl(slug: string): string {
+  // Strip "qi" prefix or "s" plural if it exists to match subdomain naming rules
+  let cleanName = slug.toLowerCase().replace(/^qi/, '');
+  if (cleanName === 'cases') cleanName = 'case'; 
+  
+  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  
+  if (isLocal) {
+    // Local development port mapping
+    const localPorts: Record<string, string> = {
+      case: '5175',
+      care: '5176',
+      message: '5177',
+      docs: '5178',
+      vault: '5179',
+      admin: '5180'
+    };
+    return `http://localhost:${localPorts[cleanName] || '5173'}`;
+  }
+  
+  // Production auto-routing (e.g., care.qially.com)
+  return `https://${cleanName}.qially.com`;
+}
+
 export default function Dashboard() {
   const { profile, user, modules, signOut } = useAuth();
   const [recentFiles, setRecentFiles] = useState<any[]>([]);
@@ -116,7 +141,10 @@ export default function Dashboard() {
               return (
                 <button
                   key={m.id}
-                  onClick={() => navigate(`/${m.slug}`)}
+                  onClick={() => {
+                    const targetUrl = getAppUrl(m.slug);
+                    window.location.href = targetUrl;
+                  }}
                   className="group relative h-48 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[32px] p-8 text-left transition-all hover:bg-white/[0.05] hover:border-white/20 active:scale-95"
                 >
                   <div className={cn(
