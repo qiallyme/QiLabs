@@ -1,14 +1,12 @@
-name = "gina-metadata-naming"
-main = "worker_metadata_naming.ts"
+name = "gina-repair"
+main = "src/worker.ts"
 compatibility_date = "2024-11-23"
 
 [vars]
-WORKER_ID = "metadata_naming"
+WORKER_ID = "self_heal"
 
 [triggers]
-crons = ["*/10 * * * *"]  # every 10 minutes
+crons = ["*/10 * * * *"]
 
 # Bind Supabase environment secrets
-# DO NOT hardcode keys directly here
 # Use .dev.vars for local development
-

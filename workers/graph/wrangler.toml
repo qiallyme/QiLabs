@@ -1,14 +1,8 @@
-name = "gina-metadata-naming"
-main = "worker_metadata_naming.ts"
+name = "gina-graph"
+main = "src/worker.ts"
 compatibility_date = "2024-11-23"
 
 [vars]
-WORKER_ID = "metadata_naming"
-
-[triggers]
-crons = ["*/10 * * * *"]  # every 10 minutes
+WORKER_ID = "graph"
 
 # Bind Supabase environment secrets
-# DO NOT hardcode keys directly here
-# Use .dev.vars for local development
-

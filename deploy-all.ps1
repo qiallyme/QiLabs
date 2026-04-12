@@ -2,7 +2,7 @@ param(
     [switch]$Deploy = $true
 )
 
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Continue" # Don't stop the whole thing if one build fails
 
 Write-Host "=========================================================" -ForegroundColor Cyan
 Write-Host "🚀 QiLabs Mass Deployment & Build Protocol" -ForegroundColor Cyan
@@ -29,26 +29,21 @@ $appsDir = "C:\QiLabs\apps"
 $apps = Get-ChildItem -Path $appsDir -Directory | Where-Object { $_.Name -notmatch "_archive" }
 
 foreach ($app in $apps) {
-    $pkgJson = Join-Path $app.FullName "package.json"
-    
-    if (Test-Path $pkgJson) {
+    if (Test-Path (Join-Path $app.FullName "package.json")) {
         # Intelligent naming derived from Qi rules
-        # Strips prefix (e.g. 'qi1ne-portal' -> 'one', 'qicare' -> 'care')
         $cleanName = $app.Name.ToLower() -replace "^q?i1?ne-?", "" -replace "^qi", ""
-        if ($cleanName -eq "portal") { $cleanName = "one" }
+        if ($cleanName -eq "portal" -or $cleanName -eq "1ne-portal") { $cleanName = "one" }
         if ($cleanName -eq "cases") { $cleanName = "case" }
 
         Write-Host "`n📦 Initiating [$($app.Name)] -> Target: $cleanName.qially.com" -ForegroundColor Yellow
         
         Write-Host "🔨 Building..."
-        try {
-            $process = Start-Process -FilePath "pnpm" -ArgumentList "--filter", $($app.Name), "build" -NoNewWindow -Wait -PassThru
-            if ($process.ExitCode -ne 0) {
-                Write-Host "❌ Build failed for $($app.Name). Skipping deployment." -ForegroundColor Red
-                continue
-            }
-        } catch {
-            Write-Host "❌ Failed to run build command." -ForegroundColor Red
+        # Using directory-based filter so we don't have to guess the package name
+        $relativeDir = "apps/$($app.Name)"
+        pnpm --filter "./$relativeDir" build
+        
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "❌ Build failed for $($app.Name). Skipping deployment." -ForegroundColor Red
             continue
         }
 
@@ -56,17 +51,16 @@ foreach ($app in $apps) {
             $distPath = Join-Path $app.FullName "dist"
             if (Test-Path $distPath) {
                 Write-Host "🚀 Pushing $cleanName to Cloudflare Pages edge..." -ForegroundColor Green
-                # Deploy to Pages (CI=true makes it auto-create smoothly)
                 npx wrangler pages deploy $distPath --project-name=$cleanName --branch=main
             } else {
-                Write-Host "⚠️ Warning: No 'dist' folder generated for $($app.Name). Might be a backend app." -ForegroundColor DarkYellow
+                Write-Host "⚠️ Warning: No 'dist' folder found for $($app.Name). Might be a backend app or build failed to produce dist." -ForegroundColor DarkYellow
             }
             
-            # Check if this app has a nested API Worker
-            $apiWrangler = Join-Path $app.FullName "api\wrangler.toml"
-            if (Test-Path $apiWrangler) {
+            # Check for nested App API
+            $apiDir = Join-Path $app.FullName "api"
+            if (Test-Path (Join-Path $apiDir "wrangler.toml")) {
                 Write-Host "⚡ Deploying App API Worker [$($app.Name)/api]..." -ForegroundColor Magenta
-                Push-Location (Join-Path $app.FullName "api")
+                Push-Location $apiDir
                 npx wrangler deploy
                 Pop-Location
             }
@@ -83,8 +77,7 @@ $workersDir = "C:\QiLabs\workers"
 if (Test-Path $workersDir) {
     $workers = Get-ChildItem -Path $workersDir -Directory
     foreach ($worker in $workers) {
-        $wranglerPath = Join-Path $worker.FullName "wrangler.toml"
-        if (Test-Path $wranglerPath) {
+        if (Test-Path (Join-Path $worker.FullName "wrangler.toml")) {
             Write-Host "⚡ Deploying Global Worker: [$($worker.Name)]..." -ForegroundColor Magenta
             Push-Location $worker.FullName
             npx wrangler deploy

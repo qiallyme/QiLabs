@@ -20,7 +20,7 @@ const app = new Hono<{ Bindings: Bindings; Variables: Variables }>();
 app.use(
   '*',
   cors({
-    origin: 'https://mycare.qially.com',
+    origin: ['https://care.qially.com', 'http://localhost:5173', 'http://localhost:5179'],
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization', 'apikey'],
     exposeHeaders: ['Content-Length'],
