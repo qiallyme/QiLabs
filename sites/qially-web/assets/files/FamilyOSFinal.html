@@ -1,0 +1,486 @@
+```html
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family OS | Stabilization Manual v3.6</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+Arabic:wght@400;700;900&display=swap');
+
+        :root {
+            --electric-blue: #0056b3;
+            --deep-navy: #002b6b;
+            --soft-bg: #F8FAFC;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Arabic', sans-serif;
+            background-color: var(--soft-bg);
+            color: #0F172A;
+            transition: all 0.3s ease;
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        .pashto-mode { font-family: 'Noto Sans Arabic', sans-serif; }
+
+        .gradient-brand {
+            background: linear-gradient(135deg, #0056b3 0%, #002b6b 100%);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chapter-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        /* Mobile First Sub-Cards */
+        .info-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 1.25rem;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .lang-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            gap: 0.5rem;
+            border: 1px solid #E2E8F0;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        .lang-btn.active {
+            background: var(--electric-blue);
+            color: white;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin: 2rem auto;
+            height: 350px;
+        }
+
+        [dir="rtl"] .chapter-card { border-right: 12px solid var(--electric-blue); }
+        [dir="ltr"] .chapter-card { border-left: 12px solid var(--electric-blue); }
+
+        .mom-callout {
+            background: #eff6ff;
+            border: 2px solid #bfdbfe;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        #scroll-tracker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 6px;
+            background: #60a5fa;
+            z-index: 101;
+            width: 0%;
+        }
+
+        .deep-dive-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: var(--electric-blue);
+            color: white !important;
+            border-radius: 1.5rem;
+            font-weight: 900;
+            text-decoration: none !important;
+            box-shadow: 0 10px 20px -5px rgba(0, 70, 173, 0.4);
+            transition: transform 0.2s;
+        }
+        .deep-dive-btn:hover { transform: scale(1.02); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="scroll-tracker"></div>
+
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">English</button>
+        <button onclick="setLanguage('ps')" id="btn-ps" class="lang-btn">پښتو</button>
+    </div>
+
+    <!-- Header -->
+    <header class="gradient-brand text-white py-28 px-6 text-center shadow-2xl relative overflow-hidden">
+        <div class="max-w-4xl mx-auto">
+            <h1 id="hero-title" class="text-6xl md:text-8xl font-black mb-4 uppercase tracking-tighter">Family OS</h1>
+            <p id="hero-subtitle" class="text-2xl md:text-3xl font-bold opacity-90 leading-tight">One Plan. One System. Bilingual Translator v3.7</p>
+            <div class="mt-12">
+                <button onclick="document.getElementById('start').scrollIntoView({behavior:'smooth'})" class="bg-white text-blue-900 px-10 py-5 rounded-full font-black text-2xl shadow-2xl hover:scale-105 transition-transform">
+                    Start the Story
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="start" class="max-w-4xl mx-auto px-6 py-16">
+
+        <!-- One System Rule -->
+        <div class="reveal-on-scroll bg-red-600 text-white p-10 rounded-[2.5rem] text-center mb-16 shadow-2xl border-4 border-red-800">
+            <h2 data-key="rule-title" class="text-3xl font-black uppercase mb-4">📌 The One System Rule</h2>
+            <p data-key="rule-desc" class="text-xl font-medium leading-relaxed">
+                If a request, bill, or task is not in <strong>FamilyWall</strong>, it is not recognized by the system. No verbal-only requests.
+            </p>
+        </div>
+
+        <!-- Executive Summary -->
+        <section class="reveal-on-scroll chapter-card">
+            <div class="flex items-center gap-4 mb-8">
+                <span class="text-6xl">🏡</span>
+                <h2 data-key="exec-title" class="text-4xl font-black text-blue-900">A New Chapter for Mom</h2>
+            </div>
+            <p data-key="exec-desc" class="text-xl text-slate-700 mb-8 font-bold">
+                This plan is about stabilizing our home. Cody handles the logistics, timing, and bill-paying so Mom can focus on recovery and guidance.
+            </p>
+            
+            <div id="benefits-container" class="space-y-4 mb-8">
+                <!-- Dynamic cards populated via JS -->
+            </div>
+
+            <div class="mom-callout">
+                <h4 data-key="mom-callout-title" class="font-black text-blue-900 uppercase text-sm mb-2">✨ What this means for you:</h4>
+                <p data-key="mom-callout-desc" class="text-blue-800 italic font-medium">You define the "What." Cody handles the "How." You focus on our future, not the electricity bill.</p>
+            </div>
+        </section>
+
+        <!-- Roles -->
+        <section class="reveal-on-scroll chapter-card">
+            <h2 data-key="roles-title" class="text-4xl font-black text-blue-900 mb-8 uppercase">Your Support Team</h2>
+            <div class="space-y-10">
+                <div class="info-card !bg-blue-50 border-blue-100">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-black">C</div>
+                        <h4 class="text-xl font-black text-slate-900">Cody — Executor</h4>
+                    </div>
+                    <p data-key="role-cody" class="text-slate-600">Manages the schedule, pays the bills, and executes the tasks approved by Mom.</p>
+                </div>
+                <div class="info-card !bg-slate-50 border-slate-100">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-black">M</div>
+                        <h4 class="text-xl font-black text-slate-900">Mom — The North Star</h4>
+                    </div>
+                    <p data-key="role-mom" class="text-slate-600">Guides the family priorities and approves major spending decisions.</p>
+                </div>
+                <div class="info-card !bg-blue-50 border-blue-100">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center font-black">Z</div>
+                        <h4 class="text-xl font-black text-slate-900">Zai — The Stabilizer</h4>
+                    </div>
+                    <p data-key="role-zai" class="text-slate-600">Owns yard care, Gigi's care, and household maintenance independently.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How We Talk -->
+        <section class="reveal-on-scroll chapter-card border-indigo-200">
+            <h2 data-key="comm-title" class="text-4xl font-black text-indigo-900 mb-8 uppercase">How We Talk</h2>
+            <div class="bg-indigo-900 text-white p-8 rounded-[2rem] mb-8 shadow-xl">
+                <h4 data-key="cutoff-title" class="text-2xl font-black mb-4 tracking-tight">⏰ The 8 AM Rule</h4>
+                <p data-key="cutoff-desc" class="text-lg opacity-90 leading-relaxed italic">
+                    To keep the day efficient, all requests for Cody must be entered into FamilyWall by <strong>8 AM</strong> each morning. This allows Cody to batch errands and save gas/time.
+                </p>
+            </div>
+            <div class="info-card !bg-slate-50 border-slate-200">
+                <h4 class="font-black text-indigo-900 mb-1 uppercase text-sm tracking-widest" data-key="format-label">Standard Format:</h4>
+                <p class="text-3xl font-black tracking-tighter">"WHAT — WHEN — WHY"</p>
+                <p class="mt-2 text-slate-500 font-medium italic" data-key="format-example">Example: "I need milk — by 10 AM — because we are out."</p>
+                
+                <div class="mt-4 p-4 bg-indigo-50 rounded-xl border border-indigo-100">
+                    <p class="text-sm font-bold text-indigo-800 leading-snug" data-key="format-clarification">
+                        <strong>Important:</strong> Specifying "WHEN" helps Cody prioritize, but it is not a guarantee of the exact time. However, Cody <strong>must</strong> know "WHAT" is needed and "WHY" it is a priority for the system to move.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Monthly Bills -->
+        <section class="reveal-on-scroll chapter-card bg-slate-900 text-white border-none">
+            <h2 data-key="bills-title" class="text-3xl font-black text-blue-400 mb-8 uppercase tracking-tighter">The Monthly Baseline</h2>
+            
+            <div id="bills-container" class="space-y-3">
+                <!-- Dynamic cards -->
+            </div>
+
+            <div class="mt-8 p-8 bg-blue-600 rounded-3xl text-center shadow-lg">
+                <p data-key="total-label" class="text-sm font-black uppercase mb-1">Total Monthly Baseline</p>
+                <p class="text-5xl font-black">$1,311.00</p>
+            </div>
+        </section>
+
+        <!-- Zai's Vehicle Plan -->
+        <section class="reveal-on-scroll chapter-card">
+            <h2 data-key="zai-title" class="text-4xl font-black text-blue-900 mb-6 uppercase">Zai's Path to a Car</h2>
+            <p data-key="zai-desc" class="text-xl text-slate-700 mb-8 font-medium">
+                Independence requires math, not just hope. Here is how Zai builds his own future through driving:
+            </p>
+            
+            <div id="zai-math-container" class="space-y-4 mb-8">
+                <!-- Dynamic cards -->
+            </div>
+
+            <div class="p-8 bg-blue-50 border-2 border-blue-200 rounded-[2.5rem]">
+                <h4 data-key="savings-title" class="font-black text-blue-900 uppercase text-sm mb-2">Target Monthly Savings:</h4>
+                <p class="text-5xl font-black text-blue-800 tracking-tighter">$567.00</p>
+                <p data-key="savings-desc" class="text-sm text-blue-600 mt-3 font-black uppercase tracking-wide">This is Zai's contribution to his own independence and the family's stability.</p>
+            </div>
+        </section>
+
+        <!-- Reset Budget -->
+        <section class="reveal-on-scroll chapter-card">
+            <h2 data-key="budget-title" class="text-4xl font-black text-blue-900 mb-8 uppercase">The $7,531 Reset</h2>
+            <div class="chart-wrapper">
+                <canvas id="resetChart"></canvas>
+            </div>
+            <p data-key="budget-desc" class="text-center text-slate-500 font-bold mt-4">We are using this money to "stop the bleeding" and build a safe foundation.</p>
+        </section>
+
+        <!-- Deep Dive Section -->
+        <section class="reveal-on-scroll chapter-card border-slate-900 border-t-[12px]">
+            <h2 data-key="dive-title" class="text-4xl font-black text-slate-900 mb-8 uppercase">Need a Deep Dive?</h2>
+            <p data-key="dive-desc" class="text-xl text-slate-700 mb-10 leading-relaxed font-medium">
+                The manual is dense, but the logic is simple. If you want to hear an AI explain the whole system, use the links below.
+            </p>
+            <div class="space-y-4">
+                <a href="https://notebooklm.google.com/notebook/e5a9f574-aa13-4bb5-80b0-f91403736a00/artifact/2372fb58-f2e2-4c75-a4e4-b56c66ec4ad4" target="_blank" class="deep-dive-btn">
+                    <span>🔍 Open the Deep Dive Explainer</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-white py-32 px-6 text-center">
+        <h3 class="text-5xl font-black mb-6 uppercase tracking-tighter">Family OS v3.6</h3>
+        <p class="text-xl text-slate-400 mb-12 italic">"Respect the system. Protect the home."</p>
+        <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="px-12 py-6 bg-blue-600 rounded-full text-2xl font-black shadow-2xl hover:scale-105 transition-all">
+            Back to Top
+        </button>
+    </footer>
+
+    <script>
+        const content = {
+            en: {
+                dir: 'ltr',
+                heroTitle: 'Family OS',
+                heroSubtitle: 'One Plan. One System. Bilingual Translator v3.7',
+                ruleTitle: '📌 The One System Rule',
+                ruleDesc: 'If a request, bill, or task is not in FamilyWall, it is not recognized by the system. No verbal-only requests.',
+                execTitle: 'A New Chapter for Mom',
+                execDesc: 'This plan is about stabilizing our home. Cody handles the logistics, timing, and bill-paying so Mom can focus on recovery and guidance.',
+                benefits: [
+                    { title: 'Fewer Emergencies', text: 'Bills and needs are tracked early.' },
+                    { title: 'Less Wasted Money', text: 'Duplicate services are stopped.' },
+                    { title: 'Full Transparency', text: 'All records go into the App.' },
+                    { title: 'Peace of Mind', text: 'Cody executes the details.' }
+                ],
+                rolesTitle: 'Your Support Team',
+                roleCody: 'Manages the schedule, pays the bills, and executes the tasks approved by Mom.',
+                roleMom: 'Guides the family priorities and approves major spending decisions.',
+                roleZai: 'Owns yard care, Gigi\'s care, and household maintenance independently.',
+                commTitle: 'How We Talk',
+                cutoffTitle: '⏰ The 8 AM Rule',
+                cutoffDesc: 'To keep the day efficient, all requests for Cody must be entered into FamilyWall by 8 AM each morning. This allows Cody to batch errands and save gas/time.',
+                formatLabel: 'Standard Format:',
+                formatExample: 'Example: "I need milk — by 10 AM — because we are out."',
+                formatClarification: '<strong>Important:</strong> Specifying "WHEN" helps Cody prioritize, but it is not a guarantee of the exact time. However, Cody <strong>must</strong> know "WHAT" is needed and "WHY" it is a priority for the system to move.',
+                billsTitle: 'The Monthly Baseline',
+                bills: [
+                    { title: 'Rent & Utilities', value: '$1,050.00' },
+                    { title: 'Internet & Phones', value: '$145.00' },
+                    { title: 'Insurances & Subscriptions', value: '$116.00' }
+                ],
+                totalLabel: 'Total Monthly Baseline',
+                zaiTitle: 'Zai\'s Path to a Car',
+                zaiDesc: 'Independence requires math, not just hope. Here is how Zai builds his own future through driving:',
+                zaiMath: [
+                    { title: 'Weekly Gross Income', value: '$500.00' },
+                    { title: 'Operational Costs (50%)', value: '-$1,000.00' },
+                    { title: 'Household Contribution (33%)', value: '-$433.00' }
+                ],
+                savingsTitle: 'Target Monthly Savings:',
+                savingsDesc: 'This is Zai\'s contribution to his own independence and the family\'s stability.',
+                budgetTitle: 'The $7,531 Reset',
+                budgetDesc: 'We are using this money to "stop the bleeding" and build a safe foundation.',
+                diveTitle: 'Need a Deep Dive?',
+                diveDesc: 'The manual is dense, but the logic is simple. If you want to hear an AI explain the whole system, use the links below.',
+                momCalloutTitle: '✨ What this means for you:',
+                momCalloutDesc: 'You define the "What." Cody handles the "How." You focus on our future, not the electricity bill.'
+            },
+            ps: {
+                dir: 'rtl',
+                heroTitle: 'د کورنۍ سیسټم',
+                heroSubtitle: 'یو پلان. یو سیسټم. دوه ژبنی ژباړونکی v3.7',
+                ruleTitle: '📌 د یو سیسټم اصول',
+                ruleDesc: 'که کومه غوښتنه یا بل په FamilyWall کې نه وي، سیسټم یې نه پېژني. لفظي غوښتنې نه منل کېږي.',
+                execTitle: 'د مور لپاره یو نوی فصل',
+                execDesc: 'دا پلان زموږ د کور ثبات لپاره دی. کوډي لوجستیک او بلونه سمبالوي ترڅو مور پر رغیدو تمرکز وکړي.',
+                benefits: [
+                    { title: 'کمه بېړنۍ اړتیا', text: 'بلونه مخکې له مخکې تعقیبېږي.' },
+                    { title: 'کم ضایع شوي پیسې', text: 'تکراري لګښتونه بندېږي.' },
+                    { title: 'بشپړه روڼتیا', text: 'ټول ریکارډونه په اپلیکیشن کې دي.' },
+                    { title: 'د ذهن ارامي', text: 'کوډي جزییات پلي کوي.' }
+                ],
+                rolesTitle: 'ستاسو ملاتړې ډله',
+                roleCody: 'مهالویش سمبالوي، بلونه ورکوي او د مور لخوا تایید شوي کارونه ترسره کوي.',
+                roleMom: 'د کورنۍ لومړیتوبونه ټاکي او لوی لګښتونه تاییدوي.',
+                roleZai: 'د انګړ، ګیګي او کور ساتنې مسؤلیت په خپله پر غاړه لري.',
+                commTitle: 'موږ څنګه خبرې کوو',
+                cutoffTitle: '⏰ د سهار ۸ بجو اصول',
+                cutoffDesc: 'د ورځې موثریت لپاره، کوډي ته ټولې غوښتنې باید د سهار تر ۸ بجو پورې په اپلیکیشن کې ولیکل شي. دا کوډي ته اجازه ورکوي چې کارونه یوځای کړي او وخت خوندي کړي.',
+                formatLabel: 'معیاري بڼه:',
+                formatExample: 'مثال: "زه شیدو ته اړتیا لرم — د سهار تر ۱۰ بجو پورې — ځکه چې شیدې خلاصې شوي."',
+                formatClarification: '<strong>مهم:</strong> د "کله" ټاکل کوډي سره د لومړیتوب په ټاکلو کې مرسته کوي، مګر دا په دقیق وخت کې د ترسره کېدو تضمین نه دی. په هرصورت، کوډي <strong>باید</strong> پوه شي چې "څه" ته اړتیا ده او "ولې" لومړیتوب لري ترڅو سیسټم پرمخ لاړ شي.',
+                billsTitle: 'میاشتنی بنسټیز لګښت',
+                bills: [
+                    { title: 'کرایه او اسانتیاوې', value: '۱۰۵۰ ډالر' },
+                    { title: 'انټرنیټ او تلیفونونه', value: '۱۴۵ ډالر' },
+                    { title: 'بیمې او ګډونونه', value: '۱۱۶ ډالر' }
+                ],
+                totalLabel: 'د میاشتني لګښتونو مجموعه',
+                zaiTitle: 'د موټر په لور د زای لاره',
+                zaiDesc: 'خپلواکي حساب ته اړتیا لري. دلته د زای د سپما حساب دی:',
+                zaiMath: [
+                    { title: 'اونیز عاید', value: '۵۰۰ ډالر' },
+                    { title: 'عملیاتي لګښتونه (۵۰٪)', value: '۱۰۰۰- ډالر' },
+                    { title: 'د کور کرایه کې ونډه (۳۳٪)', value: '۴۳۳- ډالر' }
+                ],
+                savingsTitle: 'میاشتنی د سپما هدف:',
+                savingsDesc: 'دا د زای د خپلواکۍ او د کورنۍ د ثبات لپاره د هغه ونډه ده.',
+                budgetTitle: 'د ۷۵۳۱ ډالرو بیا تنظیم',
+                budgetDesc: 'موږ دا پیسې د کور د مالي بنسټ د خوندي کولو لپاره کاروو.',
+                diveTitle: 'بشپړ توضیحات غواړئ؟',
+                diveDesc: 'که غواړئ چې یو AI دا ټول سیسټم درته تشریح کړي، لاندې لینک وکاروئ.',
+                momCalloutTitle: '✨ دا ستاسو لپاره څه مانا لري:',
+                momCalloutDesc: 'تاسو لومړیتوبونه ټاکئ. کوډي جزییات سمبالوي. تاسو پر خپل راتلونکي تمرکز وکړئ، نه پر بریښنا بیل.'
+            }
+        };
+
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const data = content[lang];
+            document.documentElement.dir = data.dir;
+            document.body.className = lang === 'ps' ? 'antialiased pashto-mode' : 'antialiased';
+
+            document.getElementById('hero-title').textContent = data.heroTitle;
+            document.getElementById('hero-subtitle').textContent = data.heroSubtitle;
+            document.getElementById('btn-en').className = `lang-btn ${lang === 'en' ? 'active' : ''}`;
+            document.getElementById('btn-ps').className = `lang-btn ${lang === 'ps' ? 'active' : ''}`;
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                const camelKey = key.replace(/-([a-z])/g, g => g[1].toUpperCase());
+                if (data[camelKey]) el.innerHTML = data[camelKey];
+            });
+
+            // Benefits Cards
+            const benContainer = document.getElementById('benefits-container');
+            benContainer.innerHTML = data.benefits.map(b => `
+                <div class="info-card">
+                    <span class="font-black text-blue-900 uppercase text-xs tracking-wider">${b.title}</span>
+                    <span class="text-slate-600 font-medium">${b.text}</span>
+                </div>
+            `).join('');
+
+            // Bills Cards
+            const billContainer = document.getElementById('bills-container');
+            billContainer.innerHTML = data.bills.map(b => `
+                <div class="flex justify-between items-center p-4 bg-white/5 border border-white/10 rounded-xl">
+                    <span class="text-sm font-bold opacity-80 uppercase">${b.title}</span>
+                    <span class="font-mono text-blue-400 font-black">${b.value}</span>
+                </div>
+            `).join('');
+
+            // Zai Math Cards
+            const mathContainer = document.getElementById('zai-math-container');
+            mathContainer.innerHTML = data.zaiMath.map(m => `
+                <div class="info-card !bg-white">
+                    <span class="font-black text-slate-500 uppercase text-[10px] tracking-widest">${m.title}</span>
+                    <span class="text-2xl font-black text-blue-900 tracking-tighter">${m.value}</span>
+                </div>
+            `).join('');
+        }
+
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement, b = document.body, st = 'scrollTop', sh = 'scrollHeight';
+            const percent = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+            document.getElementById('scroll-tracker').style.width = percent + '%';
+        });
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+        }, { threshold: 0.1 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('en');
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+            const ctx = document.getElementById('resetChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Debt Cleanup', 'Bill Bridge', 'Jeep Repairs', 'Essentials', 'Dental', 'Rental Test', 'Other'],
+                    datasets: [{
+                        data: [1950, 1250, 1161, 935, 600, 500, 1135],
+                        backgroundColor: ['#1E3A8A', '#2563EB', '#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE', '#E2E8F0'],
+                        borderWidth: 6, borderColor: '#ffffff'
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } }
+            });
+        });
+    </script>
+</body>
+</html>
+
+```
