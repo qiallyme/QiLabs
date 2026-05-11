@@ -1,0 +1,8 @@
+
+import __ASTRO_IMAGE_IMPORT_Z1KNTj from "./imgs/agents-md-ecosystem.png?astroContentImageFlag=&importer=src%2Fcontent%2Fslides%2F2025-09%2Fagents-md-101.md";
+import __ASTRO_IMAGE_IMPORT_Z1vXF8g from "./imgs/slides-01.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblogs%2F2025-09%2Fenhance-image-rendering-in-reveal.js-with-codex.md";
+import __ASTRO_IMAGE_IMPORT_ZbUifB from "./imgs/slides-02.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblogs%2F2025-09%2Fenhance-image-rendering-in-reveal.js-with-codex.md";
+import __ASTRO_IMAGE_IMPORT_1gKLGG from "./imgs/doodle.png?astroContentImageFlag=&importer=src%2Fcontent%2Fdoodles%2F2025-10%2Fmona-update-doodle-and-more.md";
+import __ASTRO_IMAGE_IMPORT_ZBRDG8 from "./imgs/doodle-list.png?astroContentImageFlag=&importer=src%2Fcontent%2Fdoodles%2F2025-10%2Fmona-update-doodle-and-more.md";
+export default new Map([["./imgs/agents-md-ecosystem.png?astroContentImageFlag=&importer=src%2Fcontent%2Fslides%2F2025-09%2Fagents-md-101.md", __ASTRO_IMAGE_IMPORT_Z1KNTj], ["./imgs/slides-01.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblogs%2F2025-09%2Fenhance-image-rendering-in-reveal.js-with-codex.md", __ASTRO_IMAGE_IMPORT_Z1vXF8g], ["./imgs/slides-02.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblogs%2F2025-09%2Fenhance-image-rendering-in-reveal.js-with-codex.md", __ASTRO_IMAGE_IMPORT_ZbUifB], ["./imgs/doodle.png?astroContentImageFlag=&importer=src%2Fcontent%2Fdoodles%2F2025-10%2Fmona-update-doodle-and-more.md", __ASTRO_IMAGE_IMPORT_1gKLGG], ["./imgs/doodle-list.png?astroContentImageFlag=&importer=src%2Fcontent%2Fdoodles%2F2025-10%2Fmona-update-doodle-and-more.md", __ASTRO_IMAGE_IMPORT_ZBRDG8]]);
+		

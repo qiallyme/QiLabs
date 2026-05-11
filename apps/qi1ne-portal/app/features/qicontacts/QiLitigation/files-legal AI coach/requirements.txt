@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+# Gemini 2.0 SDK or API client (add correct package name when available)
+# lexisplus-ai
+# harvey-ai

@@ -1,0 +1,507 @@
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  Grid,
+  Paper,
+  Typography,
+  Box,
+  Card,
+  CardContent,
+  CardActionArea,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  Chip,
+  LinearProgress,
+  Tooltip,
+  Button,
+  IconButton,
+} from '@mui/material';
+import {
+  Gavel,
+  People,
+  Assignment,
+  Schedule,
+  TrendingUp,
+  Description,
+  CheckCircle,
+  Warning,
+  CalendarToday,
+  Alarm,
+  PriorityHigh,
+  TaskAlt,
+} from '@mui/icons-material';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts';
+import { useAuth } from '../contexts/AuthContext';
+import { api } from '../utils/api';
+
+interface DashboardStats {
+  totalCases: number;
+  activeCases: number;
+  pendingCases: number;
+  closedCases: number;
+  totalClients: number;
+  newClientsThisMonth: number;
+  upcomingDeadlines: number;
+  tasksDue: number;
+  tasksCompleted: number;
+  documentsUploaded: number;
+  upcomingDeadlinesList: Array<{
+    id: string;
+    title: string;
+    caseTitle: string;
+    dueDate: string;
+    priority: 'high' | 'medium' | 'low';
+    type: string;
+    daysUntilDue: number;
+  }>;
+  tasksDueList: Array<{
+    id: string;
+    title: string;
+    caseTitle: string;
+    assignedTo: string;
+    dueDate: string;
+    priority: 'high' | 'medium' | 'low';
+    daysUntilDue: number;
+  }>;
+  recentActivity: Array<{
+    action: string;
+    details: string;
+    time: string;
+    user: string;
+  }>;
+}
+
+const Dashboard: React.FC = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchDashboardStats();
+  }, []);
+
+  const fetchDashboardStats = async () => {
+    try {
+      // Mock data with focus on deadlines and tasks
+      const mockStats: DashboardStats = {
+        totalCases: 45,
+        activeCases: 32,
+        pendingCases: 8,
+        closedCases: 5,
+        totalClients: 78,
+        newClientsThisMonth: 12,
+        upcomingDeadlines: 18,
+        tasksDue: 24,
+        tasksCompleted: 156,
+        documentsUploaded: 89,
+        upcomingDeadlinesList: [
+          {
+            id: '1',
+            title: 'Motion to Dismiss Due',
+            caseTitle: 'Smith v. Johnson',
+            dueDate: '2024-08-10',
+            priority: 'high',
+            type: 'Court Filing',
+            daysUntilDue: 4
+          },
+          {
+            id: '2',
+            title: 'Discovery Response',
+            caseTitle: 'Brown Industries LLC',
+            dueDate: '2024-08-12',
+            priority: 'high',
+            type: 'Discovery',
+            daysUntilDue: 6
+          },
+          {
+            id: '3',
+            title: 'Settlement Conference',
+            caseTitle: 'Davis v. City',
+            dueDate: '2024-08-15',
+            priority: 'medium',
+            type: 'Conference',
+            daysUntilDue: 9
+          },
+          {
+            id: '4',
+            title: 'Deposition Prep',
+            caseTitle: 'Wilson Contract Dispute',
+            dueDate: '2024-08-18',
+            priority: 'medium',
+            type: 'Preparation',
+            daysUntilDue: 12
+          },
+          {
+            id: '5',
+            title: 'Appeal Brief Filing',
+            caseTitle: 'Thompson Appeal',
+            dueDate: '2024-08-22',
+            priority: 'high',
+            type: 'Court Filing',
+            daysUntilDue: 16
+          }
+        ],
+        tasksDueList: [
+          {
+            id: '1',
+            title: 'Review Medical Records',
+            caseTitle: 'Personal Injury - Miller',
+            assignedTo: 'Sarah Chen',
+            dueDate: '2024-08-08',
+            priority: 'high',
+            daysUntilDue: 2
+          },
+          {
+            id: '2',
+            title: 'Client Interview Summary',
+            caseTitle: 'Employment Law - Garcia',
+            assignedTo: 'Mike Johnson',
+            dueDate: '2024-08-09',
+            priority: 'medium',
+            daysUntilDue: 3
+          },
+          {
+            id: '3',
+            title: 'Contract Review',
+            caseTitle: 'Business Law - TechCorp',
+            assignedTo: 'Lisa Wang',
+            dueDate: '2024-08-11',
+            priority: 'high',
+            daysUntilDue: 5
+          },
+          {
+            id: '4',
+            title: 'Research Case Precedents',
+            caseTitle: 'Constitutional Law - State',
+            assignedTo: 'David Park',
+            dueDate: '2024-08-14',
+            priority: 'medium',
+            daysUntilDue: 8
+          }
+        ],
+        recentActivity: [
+          {
+            action: 'New Case Filed',
+            details: 'Johnson v. ABC Corp - Personal Injury',
+            time: '2 hours ago',
+            user: 'John Doe'
+          },
+          {
+            action: 'Document Uploaded',
+            details: 'Medical Records - Miller Case',
+            time: '4 hours ago',
+            user: 'Sarah Chen'
+          },
+          {
+            action: 'Task Completed',
+            details: 'Discovery Response - Brown Case',
+            time: '6 hours ago',
+            user: 'Mike Johnson'
+          }
+        ]
+      };
+
+      setStats(mockStats);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching dashboard stats:', error);
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="50vh">
+        <LinearProgress sx={{ width: '300px' }} />
+      </Box>
+    );
+  }
+
+  if (!stats) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="50vh">
+        <Typography variant="h6">Unable to load dashboard data</Typography>
+      </Box>
+    );
+  }
+
+
+  const StatCard = ({ title, value, icon, color, onClick, tooltip }: any) => (
+    <Tooltip title={tooltip} arrow>
+      <Card sx={{ height: '100%', cursor: 'pointer', '&:hover': { boxShadow: 6 } }}>
+        <CardActionArea onClick={onClick} sx={{ height: '100%' }}>
+          <CardContent>
+            <Box display="flex" alignItems="center" justifyContent="space-between">
+              <Box>
+                <Typography color="textSecondary" gutterBottom variant="h6">
+                  {title}
+                </Typography>
+                <Typography variant="h3" component="div">
+                  {value}
+                </Typography>
+              </Box>
+              <Avatar sx={{ bgcolor: color, width: 56, height: 56 }}>
+                {icon}
+              </Avatar>
+            </Box>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Tooltip>
+  );
+
+  const getPriorityColor = (priority: 'high' | 'medium' | 'low') => {
+    switch (priority) {
+      case 'high': return '#f44336';
+      case 'medium': return '#ff9800';
+      case 'low': return '#4caf50';
+      default: return '#757575';
+    }
+  };
+
+  const formatDaysUntilDue = (days: number) => {
+    if (days < 0) return 'Overdue';
+    if (days === 0) return 'Due today';
+    if (days === 1) return '1 day left';
+    return `${days} days left`;
+  };
+
+  const tasksPriorityData = [
+    { name: 'High Priority', tasks: (stats?.tasksDueList || []).filter(t => t.priority === 'high').length, fill: '#f44336' },
+    { name: 'Medium Priority', tasks: (stats?.tasksDueList || []).filter(t => t.priority === 'medium').length, fill: '#ff9800' },
+    { name: 'Low Priority', tasks: (stats?.tasksDueList || []).filter(t => t.priority === 'low').length, fill: '#4caf50' },
+  ];
+
+  return (
+    <Box>
+      <Typography variant="h4" gutterBottom sx={{ mb: 3, fontWeight: 'bold' }}>
+        Litigation Management System
+n      {/* Litigation Focus - Deadline Alert */}
+      <Box sx={{ mb: 3, p: 2, backgroundColor: "warning.light", borderRadius: 1 }}>
+        <Typography variant="h6" color="warning.contrastText" gutterBottom>
+          ⚠️ Deadline Convergence Alert - August 10-16, 2025
+        </Typography>
+        <Typography variant="body2" color="warning.contrastText">
+          3 major deadlines within 5 days. Resource allocation warning recommended.
+        </Typography>
+      </Box>
+      </Typography>
+
+      {/* Key Metrics */}
+      <Grid container spacing={3} sx={{ mb: 4 }}>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard
+            title="Active Cases"
+            value={stats?.activeCases || 0}
+            icon={<Gavel />}
+            color="primary.main"
+            onClick={() => navigate('/cases')}
+            tooltip="Click to view all active cases"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard
+            title="Upcoming Deadlines"
+            value={stats?.upcomingDeadlines || 0}
+            icon={<Schedule />}
+            color="error.main"
+            onClick={() => navigate('/calendar')}
+            tooltip="Critical deadlines requiring attention"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard
+            title="Tasks Due"
+            value={stats?.tasksDue || 0}
+            icon={<Assignment />}
+            color="warning.main"
+            onClick={() => navigate('/tasks')}
+            tooltip="Tasks that need completion"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard
+            title="Total Clients"
+            value={stats?.totalClients || 0}
+            icon={<People />}
+            color="success.main"
+            onClick={() => navigate('/clients')}
+            tooltip="All active clients"
+          />
+        </Grid>
+      </Grid>
+
+      {/* Main Content - Upcoming Deadlines and Tasks */}
+      <Grid container spacing={3} sx={{ mb: 4 }}>
+        {/* Upcoming Deadlines */}
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2, height: 400 }}>
+            <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
+              <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Alarm color="error" />
+                Critical Upcoming Deadlines
+              </Typography>
+              <Button 
+                variant="outlined" 
+                size="small" 
+                onClick={() => navigate('/calendar')}
+              >
+                View All
+              </Button>
+            </Box>
+            <List sx={{ maxHeight: 320, overflow: 'auto' }}>
+              {(stats?.upcomingDeadlinesList || []).map((deadline) => (
+                <ListItem 
+                  key={deadline.id}
+                  sx={{ 
+                    border: '1px solid #e0e0e0',
+                    borderRadius: 1,
+                    mb: 1,
+                    '&:hover': { backgroundColor: '#f5f5f5' }
+                  }}
+                >
+                  <ListItemAvatar>
+                    <Avatar sx={{ bgcolor: getPriorityColor(deadline.priority) }}>
+                      <CalendarToday />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={deadline.title}
+                    secondary={
+                      <Box>
+                        <Typography variant="body2" component="div">
+                          {deadline.caseTitle}
+                        </Typography>
+                        <Box display="flex" alignItems="center" gap={1} mt={0.5}>
+                          <Chip 
+                            label={deadline.type} 
+                            size="small" 
+                            variant="outlined" 
+                          />
+                          <Chip
+                            label={formatDaysUntilDue(deadline.daysUntilDue)}
+                            size="small"
+                            color={deadline.daysUntilDue <= 3 ? 'error' : deadline.daysUntilDue <= 7 ? 'warning' : 'default'}
+                          />
+                        </Box>
+                      </Box>
+                    }
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+        </Grid>
+
+        {/* Tasks Due */}
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2, height: 400 }}>
+            <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
+              <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <TaskAlt color="warning" />
+                Tasks Requiring Attention
+              </Typography>
+              <Button 
+                variant="outlined" 
+                size="small" 
+                onClick={() => navigate('/tasks')}
+              >
+                View All
+              </Button>
+            </Box>
+            <List sx={{ maxHeight: 320, overflow: 'auto' }}>
+              {(stats?.tasksDueList || []).map((task) => (
+                <ListItem 
+                  key={task.id}
+                  sx={{ 
+                    border: '1px solid #e0e0e0',
+                    borderRadius: 1,
+                    mb: 1,
+                    '&:hover': { backgroundColor: '#f5f5f5' }
+                  }}
+                >
+                  <ListItemAvatar>
+                    <Avatar sx={{ bgcolor: getPriorityColor(task.priority) }}>
+                      <Assignment />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={task.title}
+                    secondary={
+                      <Box>
+                        <Typography variant="body2" component="div">
+                          {task.caseTitle}
+                        </Typography>
+                        <Box display="flex" alignItems="center" gap={1} mt={0.5}>
+                          <Chip 
+                            label={task.priority} 
+                            size="small" 
+                            variant="outlined" 
+                          />
+                          <Chip
+                            label={formatDaysUntilDue(task.daysUntilDue)}
+                            size="small"
+                            color={task.daysUntilDue <= 1 ? 'error' : task.daysUntilDue <= 3 ? 'warning' : 'default'}
+                          />
+                        </Box>
+                      </Box>
+                    }
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+        </Grid>
+      </Grid>
+
+      {/* Tasks Priority Chart and Recent Activity */}
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2, height: 300 }}>
+            <Typography variant="h6" gutterBottom>
+              Tasks by Priority Level
+            </Typography>
+            <ResponsiveContainer width="100%" height={240}>
+              <BarChart data={tasksPriorityData} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <RechartsTooltip />
+                <Bar dataKey="tasks" fill="#8884d8" />
+              </BarChart>
+            </ResponsiveContainer>
+          </Paper>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2, height: 300 }}>
+            <Typography variant="h6" gutterBottom>
+              Recent Activity
+            </Typography>
+            <List sx={{ maxHeight: 240, overflow: 'auto' }}>
+              {(stats?.recentActivity || []).map((activity, index) => (
+                <ListItem key={index}>
+                  <ListItemAvatar>
+                    <Avatar sx={{ bgcolor: 'primary.main' }}>
+                      <CheckCircle />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={activity.action}
+                    secondary={activity.time}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
+
+export default Dashboard;

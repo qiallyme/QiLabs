@@ -1,0 +1,143 @@
+  const getEventTypeConfig = (type: CalendarEvent['type']) => {
+    switch (type) {
+      case 'COURT_DATE':
+        return { icon: <Gavel />, color: '#d32f2f', label: 'Court Date' };
+      case 'DEADLINE':
+        return { icon: <Schedule />, color: '#f57c00', label: 'Deadline' };
+      case 'MEETING':
+        return { icon: <Person />, color: '#1976d2', label: 'Meeting' };
+      case 'TASK':
+        return { icon: <Assignment />, color: '#388e3c', label: 'Task' };
+      default:
+        return { icon: <Event />, color: '#7b1fa2', label: 'Other' };
+    }
+  };
+
+  const renderMonthView = () => {
+    const monthStart = startOfMonth(currentDate);
+    const monthEnd = endOfMonth(currentDate);
+    const startDate = startOfWeek(monthStart);
+    const endDate = endOfWeek(monthEnd);
+
+    const rows = [];
+    let days = [];
+    let day = startDate;
+
+    // Week headers
+    const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const weekHeaders = (
+      <Grid container key="headers">
+        {weekDays.map((dayName) => (
+          <Grid item xs={12 / 7} key={dayName}>
+            <Box sx={{ p: 2, textAlign: 'center', fontWeight: 'bold', bgcolor: 'grey.100' }}>
+              {dayName}
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
+    );
+
+    while (day <= endDate) {
+      for (let i = 0; i < 7; i++) {
+        const dayEvents = events.filter(event => 
+          isSameDay(parseISO(event.date), day)
+        );
+        
+        const isCurrentMonth = isSameMonth(day, currentDate);
+        const isSelected = selectedDate && isSameDay(day, selectedDate);
+
+        days.push(
+          <Grid item xs={12 / 7} key={day.toString()}>
+            <Box
+              onClick={() => handleDateClick(day)}
+              sx={{
+                minHeight: 100,
+                p: 1,
+                border: 1,
+                borderColor: isSelected ? 'primary.main' : 'divider',
+                bgcolor: isCurrentMonth ? 'background.paper' : 'grey.50',
+                cursor: 'pointer',
+                position: 'relative',
+                '&:hover': {
+                  bgcolor: 'action.hover',
+                },
+              }}
+            >
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: isCurrentMonth ? 'text.primary' : 'text.secondary',
+                    fontWeight: isToday(day) ? 'bold' : 'normal',
+                  }}
+                >
+                  {format(day, 'd')}
+                </Typography>
+                {isToday(day) && (
+                  <Chip 
+                    label="Today" 
+                    size="small" 
+                    color="primary"
+                    sx={{ fontSize: '0.7rem', height: '20px' }}
+                  />
+                )}
+              </Box>
+              
+              {dayEvents.slice(0, 3).map((event) => {
+                const eventType = getEventTypeConfig(event.type);
+                return (
+                  <Box
+                    key={event.id}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedEvent(event);
+                      setOpenEventDialog(true);
+                    }}
+                    sx={{
+                      mb: 0.5,
+                      p: 0.5,
+                      bgcolor: eventType.color,
+                      color: 'white',
+                      borderRadius: 0.5,
+                      fontSize: '0.75rem',
+                      cursor: 'pointer',
+                      '&:hover': { opacity: 0.8 },
+                    }}
+                  >
+                    <Typography variant="caption" noWrap>
+                      {event.startTime && `${event.startTime} `}
+                      {event.title}
+                    </Typography>
+                  </Box>
+                );
+              })}
+              
+              {dayEvents.length > 3 && (
+                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                  +{dayEvents.length - 3} more
+                </Typography>
+              )}
+            </Box>
+          </Grid>
+        );
+        day = addDays(day, 1);
+      }
+
+      if (days.length === 7) {
+        rows.push(
+          <Grid container key={day.toString()}>
+            {days}
+          </Grid>
+        );
+        days = [];
+      }
+    }
+
+    return (
+      <Paper sx={{ p: 1 }}>
+        {weekHeaders}
+        {rows}
+      </Paper>
+    );
+  };
+

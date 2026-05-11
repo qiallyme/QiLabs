@@ -1,0 +1,127 @@
+Perfect — this screenshot confirms two important things:
+
+1️⃣ Your root directory is correct
+
+/apps/api
+
+That’s exactly what we want.
+
+2️⃣ Railway is routing to port 8000
+
+qiarchive-production.up.railway.app → Port 8000
+
+Also correct.
+
+So the infrastructure side is configured properly.
+
+⸻
+
+Why you were seeing Bad Gateway
+
+When Railway shows Bad Gateway, it means:
+
+The container started, but the app process inside crashed.
+
+Your screenshot of main.py already shows the most likely cause:
+
+Base.metadata.create_all(bind=engine)
+
+That runs during import time before FastAPI even starts.
+
+If DATABASE_URL isn’t correct yet, the app dies immediately → Railway gateway error.
+
+⸻
+
+Fix (one small change)
+
+Move the DB initialization into a startup event.
+
+Update apps/api/app/main.py to this:
+
+from fastapi import FastAPI
+from .routes import router
+from .db import engine, Base
+from .config import settings
+
+app = FastAPI(title="QiArchive Cloud API", version="1.0.0")
+
+@app.on_event("startup")
+def startup():
+    Base.metadata.create_all(bind=engine)
+
+app.include_router(router)
+
+@app.get("/")
+def health_check():
+    return {"status": "healthy", "env": settings.APP_ENV}
+
+
+⸻
+
+Then do this
+
+1️⃣ commit
+
+git add .
+git commit -m "move db init to startup"
+git push
+
+2️⃣ Railway will auto redeploy
+
+⸻
+
+After redeploy test these
+
+Open:
+
+https://qiarchive-production.up.railway.app/
+
+You should see:
+
+{"status":"healthy","env":"production"}
+
+Then:
+
+https://qiarchive-production.up.railway.app/docs
+
+You should see FastAPI Swagger UI.
+
+⸻
+
+If it still fails
+
+Open:
+
+qiarchive-api → Deployments → Logs
+
+Paste the first Python traceback.
+
+Not the Railway wrapper — the actual Python error.
+
+That will tell us instantly.
+
+⸻
+
+Good news though
+
+Your stack is now basically built:
+
+Local QiArchive Agent
+        ↓
+QiArchive API (Railway)
+        ↓
+Postgres ledger
+        ↓
+Paperless document storage
+
+That’s actually a professional ingest architecture.
+
+You’re now about one step away from the full pipeline.
+
+⸻
+
+Next cool step (after this works)
+
+We wire the local agent → API so that every document event gets synced to Railway.
+
+Then I’ll show you how to build a mobile QiArchive dashboard in ~40 lines so you can manage the ingest queue from your phone.

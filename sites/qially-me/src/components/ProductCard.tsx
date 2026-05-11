@@ -17,7 +17,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <img
           src={product.cover}
           alt={product.name}
-          className="h-24 w-24 rounded-lg border border-slate-700 object-cover md:h-28 md:w-28 bg-white/90"
+          className="h-24 w-24 rounded-lg border border-slate-700 object-cover md:h-28 md:w-28"
           loading="lazy"
         />
       </div>

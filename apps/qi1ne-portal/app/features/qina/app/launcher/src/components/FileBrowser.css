@@ -1,0 +1,168 @@
+.file-browser {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--card-border);
+}
+
+.file-browser-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.file-browser-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.file-search {
+  padding: 8px 14px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  min-width: 200px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.file-search:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--accent-glow), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.file-browser-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.file-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  border-right: 1px solid var(--border-color);
+}
+
+.file-item {
+  padding: 14px;
+  margin-bottom: 10px;
+  background: var(--item-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--item-shadow);
+}
+
+.file-item:hover {
+  background: var(--item-hover-bg);
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 12px var(--accent-glow);
+  transform: translateX(2px);
+}
+
+.file-item.selected {
+  background: var(--item-selected-bg);
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.file-path {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+
+.file-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.file-details {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.file-details h4 {
+  margin: 0 0 10px 0;
+  color: var(--text-primary);
+}
+
+.file-path-display {
+  padding: 10px;
+  background: var(--item-bg);
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-family: 'Courier New', monospace;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.file-events h5 {
+  margin: 15px 0 10px 0;
+  color: var(--text-primary);
+}
+
+.event-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  background: var(--item-bg);
+  border-left: 3px solid var(--accent-color);
+  border-radius: 4px;
+}
+
+.event-header {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.event-type {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.event-actor {
+  color: var(--text-secondary);
+}
+
+.event-time {
+  margin-left: auto;
+  color: var(--text-secondary);
+}
+
+.event-meta {
+  margin-top: 8px;
+}
+
+.event-meta pre {
+  margin: 0;
+  padding: 8px;
+  background: var(--code-bg);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  overflow-x: auto;
+}
+
+.file-browser-loading {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+

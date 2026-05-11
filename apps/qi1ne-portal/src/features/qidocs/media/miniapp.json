@@ -1,0 +1,15 @@
+{
+  "name": "qilife.qivideoflipnstitch",
+  "displayName": "Video Flip & Stitch",
+  "version": "1.0.0",
+  "type": "hybrid",
+  "ui": {
+    "entry": "dist/index.html"
+  },
+  "backend": {
+    "runtime": "python",
+    "entry": "app.py",
+    "args": [],
+    "env": {}
+  }
+}

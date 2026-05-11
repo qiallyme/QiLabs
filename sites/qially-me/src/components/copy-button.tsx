@@ -48,7 +48,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
       aria-label="Copy content"
     >
       <CopyIcon
-        className={`${iconSize} transition-colors duration-150 ${textColor ?? ""} group-hover:text-gray-500`.trim()}
+        className={`${iconSize} transition-colors duration-150 ${textColor ?? ""} group-hover:text-emerald-400`.trim()}
       />
     </button>
   );

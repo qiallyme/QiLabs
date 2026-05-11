@@ -1,0 +1,30 @@
+# NoteDiscovery Configuration
+
+app:
+  name: "QiArchive Notes"
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+  reload: false
+  allowed_origins: ["*"]
+  debug: false
+
+storage:
+  notes_dir: "./data"
+  plugins_dir: "./plugins"
+
+search:
+  enabled: true
+
+authentication:
+  # --- PRODUCTION SECURITY ---
+  # Authentication is ENABLED by default.
+  # To disable it (LOCAL ONLY), set this to false.
+  enabled: true
+
+  # CHANGE THESE in your .env file or Railway Environment Variables
+  secret_key: "change_me_to_something_random"
+  password: "admin"
+
+  session_max_age: 604800

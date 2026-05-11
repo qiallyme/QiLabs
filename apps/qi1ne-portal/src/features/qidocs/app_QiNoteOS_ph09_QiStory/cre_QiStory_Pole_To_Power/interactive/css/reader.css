@@ -1,0 +1,54 @@
+/* Base Transitions */
+.word {
+    display: inline-block;
+    opacity: 0.1; /* Ghost text */
+    transform: translateY(2px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out, color 0.3s;
+    margin-right: 0.25em; /* Space between words */
+    filter: blur(2px);
+}
+
+.word.active {
+    opacity: 1;
+    color: #fff;
+    transform: translateY(0);
+    filter: blur(0);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.word.past {
+    opacity: 0.8;
+    color: #e5e7eb; /* Gray-200 */
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+/* Cursor Effect (Optional, can be toggled) */
+.word.active::after {
+    /* content: '|'; */
+    /* color: #ec4899; Pink-500 */
+    /* margin-left: -2px; */
+    /* animation: blink 1s infinite; */
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Background Fades */
+#bg-layer {
+    transition: background-image 1s ease-in-out, opacity 2s ease;
+}
+
+/* Next Button Pulse */
+#next-btn.visible {
+    opacity: 1;
+    pointer-events: auto;
+    animation: pulse-soft 3s infinite;
+}
+
+@keyframes pulse-soft {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1); }
+    50% { box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.1); }
+}

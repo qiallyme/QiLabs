@@ -245,3 +245,8 @@ Icon?
 **/*.vec
 *.index
 *.bin
+python_core/core_tools.zip
+
+apps/MomsCare/
+
+python_local/core_tools.zip

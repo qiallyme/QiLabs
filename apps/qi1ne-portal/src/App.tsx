@@ -2,9 +2,17 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import AuthPage from './pages/auth/login';
+import AuthCallback from './pages/auth/callback';
 import Dashboard from './pages/dashboard/index';
 import ProfilePage from './pages/profile/index';
 import AdminUsersPage from './pages/admin/users';
+import QiHomeDashboard from './pages/qihome/index';
+import CasesPage from './pages/cases/index';
+import VaultPage from './pages/vault/index';
+import KnowledgePage from './pages/knowledge/index';
+import TaxPage from './pages/tax/index';
+import SettingsPage from './pages/settings/index';
+import QiCarePage from './pages/qicare/index';
 import ModernLayout from './layouts/ModernLayout';
 import { Loader2 } from 'lucide-react';
 
@@ -45,6 +53,7 @@ function App() {
           <Routes>
             {/* Public Auth */}
             <Route path="/login" element={<AuthPage />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
             
             {/* Protected Routes inside Modern Layout */}
             <Route element={
@@ -56,6 +65,9 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile" element={<ProfilePage />} />
               
+              {/* QiHome Module */}
+              <Route path="/qihome" element={<QiHomeDashboard />} />
+              
               {/* Admin Only */}
               <Route path="/admin/users" element={
                 <AdminGuard>
@@ -63,12 +75,13 @@ function App() {
                 </AdminGuard>
               } />
 
-              {/* Module Placeholders */}
-              <Route path="/cases" element={<div className="text-white text-center p-20 font-bold uppercase tracking-widest bg-white/5 rounded-[32px] border border-white/10">Legal Domain Module Initializing...</div>} />
-              <Route path="/vault" element={<div className="text-white text-center p-20 font-bold uppercase tracking-widest bg-white/5 rounded-[32px] border border-white/10">Artifact Vault Initializing...</div>} />
-              <Route path="/knowledge" element={<div className="text-white text-center p-20 font-bold uppercase tracking-widest bg-white/5 rounded-[32px] border border-white/10">Research Domain Initializing...</div>} />
-              <Route path="/tax" element={<div className="text-white text-center p-20 font-bold uppercase tracking-widest bg-white/5 rounded-[32px] border border-white/10">Financial Domain Initializing...</div>} />
-              <Route path="/settings" element={<div className="text-white text-center p-20 font-bold uppercase tracking-widest bg-white/5 rounded-[32px] border border-white/10">Settings Module Initializing...</div>} />
+              {/* Domain Modules */}
+              <Route path="/cases" element={<CasesPage />} />
+              <Route path="/vault" element={<VaultPage />} />
+              <Route path="/knowledge" element={<KnowledgePage />} />
+              <Route path="/tax" element={<TaxPage />} />
+              <Route path="/qicare" element={<QiCarePage />} />
+              <Route path="/settings" element={<SettingsPage />} />
             </Route>
 
             {/* Default Catch-all */}

@@ -1,0 +1,27 @@
+/* Listening EPUB: bigger type + more breathing room for TTS + skim */
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: serif;
+  font-size: 1.15em;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+h1 {
+  font-size: 1.8em;
+  margin: 1.6em 0 0.9em;
+  page-break-before: always;
+}
+h2 { font-size: 1.35em; margin: 1.3em 0 0.7em; }
+h3 { font-size: 1.1em; margin: 1.1em 0 0.6em; }
+p { margin: 0.9em 0; }
+blockquote { margin: 1.2em 1.4em; }
+hr { margin: 1.4em 0; }
+em, i { font-style: italic; }
+strong, b { font-weight: 700; }
+
+/* Encourage visual “pause” at scene breaks */
+hr, .scene-break { page-break-inside: avoid; }
+
+/* If you use "* * *" as breaks, pandoc emits <hr/> */

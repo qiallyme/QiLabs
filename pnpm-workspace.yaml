@@ -3,6 +3,7 @@ packages:
   - apps/*/api
   - apps/experiments/*
   - packages/*
+  - sites/*
 
 ignoredBuiltDependencies:
   - esbuild

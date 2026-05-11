@@ -1,0 +1,45 @@
+{
+  "extends": "./tsconfig-base/react.jsonc",
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@repo/api": [
+        "../api/src/index.ts"
+      ],
+      "@repo/api/*": [
+        "../api/src/*"
+      ],
+      "@repo/db": [
+        "../db/index.ts"
+      ],
+      "@repo/db/*": [
+        "../db/*"
+      ],
+      "@repo/ui": [
+        "./ui/index.ts"
+      ],
+      "@repo/ui/*": [
+        "./ui/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.json",
+    "./src/routeTree.gen.ts"
+  ],
+  "exclude": [
+    "**/dist/**/*",
+    "**/node_modules/**/*"
+  ],
+  "references": [
+    {
+      "path": "../api"
+    }
+  ]
+}

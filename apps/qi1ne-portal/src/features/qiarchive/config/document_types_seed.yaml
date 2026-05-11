@@ -1,0 +1,11 @@
+document_types:
+  - "Contract"
+  - "Invoice"
+  - "Bank Statement"
+  - "Tax Return"
+  - "Medical Record"
+  - "Court Order"
+  - "Property Title"
+  - "Employment Record"
+  - "Educational Certificate"
+  - "Generic Document"

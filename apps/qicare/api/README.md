@@ -1,1 +1,0 @@
-# qicare-api

@@ -1,0 +1,562 @@
+import React, { useState } from 'react';
+import {
+  Box,
+  Typography,
+  Paper,
+  Grid,
+  TextField,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Card,
+  CardContent,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  Chip,
+  Alert,
+  Divider,
+  IconButton,
+  Tooltip,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material';
+import {
+  Schedule,
+  Event,
+  Warning,
+  Info,
+  CalendarToday,
+  Add,
+  Delete,
+  ContentCopy,
+  Download,
+  Gavel,
+  Description,
+} from '@mui/icons-material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { format, addDays, addMonths, addYears, isWeekend, addBusinessDays } from 'date-fns';
+
+interface DeadlineRule {
+  id: string;
+  name: string;
+  description: string;
+  daysToAdd: number;
+  businessDays: boolean;
+  category: string;
+}
+
+interface CalculatedDeadline {
+  id: string;
+  description: string;
+  baseDate: Date;
+  dueDate: Date;
+  daysRemaining: number;
+  rule: DeadlineRule;
+  notes?: string;
+}
+
+const DeadlineCalculator: React.FC = () => {
+  const [jurisdiction, setJurisdiction] = useState<string>('federal');
+  const [statute, setStatute] = useState<string>('');
+  const [baseDate, setBaseDate] = useState<Date | null>(new Date());
+  const [customRuleName, setCustomRuleName] = useState('');
+  const [customRuleDays, setCustomRuleDays] = useState('');
+  const [calculatedDeadlines, setCalculatedDeadlines] = useState<CalculatedDeadline[]>([]);
+  const [showCustomRule, setShowCustomRule] = useState(false);
+
+  // Mock deadline rules by jurisdiction and statute
+  const deadlineRules: Record<string, Record<string, DeadlineRule[]>> = {
+    federal: {
+      'civil_complaint': [
+        { id: '1', name: 'Answer to Complaint', description: 'Defendant must file answer', daysToAdd: 21, businessDays: false, category: 'Response' },
+        { id: '2', name: 'Motion to Dismiss', description: 'Deadline to file motion to dismiss', daysToAdd: 21, businessDays: false, category: 'Motion' },
+        { id: '3', name: 'Initial Disclosures', description: 'Exchange initial disclosures', daysToAdd: 14, businessDays: false, category: 'Discovery' },
+      ],
+      'discovery': [
+        { id: '4', name: 'Interrogatory Response', description: 'Response to interrogatories', daysToAdd: 30, businessDays: false, category: 'Discovery' },
+        { id: '5', name: 'Document Production', description: 'Produce requested documents', daysToAdd: 30, businessDays: false, category: 'Discovery' },
+        { id: '6', name: 'Deposition Notice', description: 'Minimum notice for deposition', daysToAdd: 7, businessDays: true, category: 'Discovery' },
+      ],
+      'motion_practice': [
+        { id: '7', name: 'Opposition Brief', description: 'File opposition to motion', daysToAdd: 14, businessDays: false, category: 'Motion' },
+        { id: '8', name: 'Reply Brief', description: 'File reply brief', daysToAdd: 7, businessDays: false, category: 'Motion' },
+        { id: '9', name: 'Motion Hearing Notice', description: 'Notice of motion hearing', daysToAdd: 5, businessDays: true, category: 'Hearing' },
+      ],
+      'appeal': [
+        { id: '10', name: 'Notice of Appeal', description: 'File notice of appeal', daysToAdd: 30, businessDays: false, category: 'Appeal' },
+        { id: '11', name: 'Appellant Brief', description: 'File appellant brief', daysToAdd: 40, businessDays: false, category: 'Appeal' },
+        { id: '12', name: 'Appellee Brief', description: 'File appellee brief', daysToAdd: 30, businessDays: false, category: 'Appeal' },
+      ],
+    },
+    california: {
+      'civil_complaint': [
+        { id: '13', name: 'Answer to Complaint', description: 'Defendant must file answer', daysToAdd: 30, businessDays: false, category: 'Response' },
+        { id: '14', name: 'Demurrer', description: 'Deadline to file demurrer', daysToAdd: 30, businessDays: false, category: 'Motion' },
+        { id: '15', name: 'Case Management Conference', description: 'Initial case management conference', daysToAdd: 90, businessDays: false, category: 'Hearing' },
+      ],
+      'discovery': [
+        { id: '16', name: 'Interrogatory Response', description: 'Response to interrogatories', daysToAdd: 30, businessDays: false, category: 'Discovery' },
+        { id: '17', name: 'Document Production', description: 'Produce requested documents', daysToAdd: 30, businessDays: false, category: 'Discovery' },
+        { id: '18', name: 'Expert Disclosure', description: 'Disclose expert witnesses', daysToAdd: 50, businessDays: false, category: 'Discovery' },
+      ],
+      'motion_practice': [
+        { id: '19', name: 'Opposition Papers', description: 'File opposition papers', daysToAdd: 9, businessDays: true, category: 'Motion' },
+        { id: '20', name: 'Reply Papers', description: 'File reply papers', daysToAdd: 5, businessDays: true, category: 'Motion' },
+        { id: '21', name: 'Motion Hearing', description: 'Minimum notice for motion hearing', daysToAdd: 16, businessDays: true, category: 'Hearing' },
+      ],
+    },
+    new_york: {
+      'civil_complaint': [
+        { id: '22', name: 'Answer to Complaint', description: 'Defendant must file answer', daysToAdd: 20, businessDays: false, category: 'Response' },
+        { id: '23', name: 'Motion to Dismiss', description: 'Pre-answer motion to dismiss', daysToAdd: 20, businessDays: false, category: 'Motion' },
+        { id: '24', name: 'Preliminary Conference', description: 'Request preliminary conference', daysToAdd: 45, businessDays: false, category: 'Conference' },
+      ],
+      'discovery': [
+        { id: '25', name: 'Bill of Particulars', description: 'Serve bill of particulars', daysToAdd: 30, businessDays: false, category: 'Discovery' },
+        { id: '26', name: 'Discovery Demands', description: 'Respond to discovery demands', daysToAdd: 20, businessDays: false, category: 'Discovery' },
+        { id: '27', name: 'Physical Examination', description: 'Notice of physical examination', daysToAdd: 20, businessDays: false, category: 'Discovery' },
+      ],
+    },
+    texas: {
+      'civil_complaint': [
+        { id: '28', name: 'Answer Deadline', description: 'File answer by 10am Monday following 20 days', daysToAdd: 20, businessDays: false, category: 'Response' },
+        { id: '29', name: 'Special Exceptions', description: 'File special exceptions', daysToAdd: 20, businessDays: false, category: 'Motion' },
+        { id: '30', name: 'Scheduling Order', description: 'Court issues scheduling order', daysToAdd: 60, businessDays: false, category: 'Order' },
+      ],
+    },
+  };
+
+  const statuteOptions: Record<string, { value: string; label: string }[]> = {
+    federal: [
+      { value: 'civil_complaint', label: 'Civil Complaint (FRCP 12)' },
+      { value: 'discovery', label: 'Discovery (FRCP 26-37)' },
+      { value: 'motion_practice', label: 'Motion Practice (FRCP 6, 7)' },
+      { value: 'appeal', label: 'Appeal (FRAP 3, 4)' },
+    ],
+    california: [
+      { value: 'civil_complaint', label: 'Civil Complaint (CCP §412.20, §430.40)' },
+      { value: 'discovery', label: 'Discovery (CCP §2030-2036)' },
+      { value: 'motion_practice', label: 'Motion Practice (CCP §1005)' },
+    ],
+    new_york: [
+      { value: 'civil_complaint', label: 'Civil Complaint (CPLR 320, 3211)' },
+      { value: 'discovery', label: 'Discovery (CPLR 3101-3134)' },
+    ],
+    texas: [
+      { value: 'civil_complaint', label: 'Civil Complaint (TRCP 99, 169)' },
+    ],
+  };
+
+  const calculateDeadline = (rule: DeadlineRule, base: Date): Date => {
+    if (rule.businessDays) {
+      return addBusinessDays(base, rule.daysToAdd);
+    } else {
+      let deadline = addDays(base, rule.daysToAdd);
+      // If deadline falls on weekend, move to next Monday
+      while (isWeekend(deadline)) {
+        deadline = addDays(deadline, 1);
+      }
+      return deadline;
+    }
+  };
+
+  const calculateDaysRemaining = (dueDate: Date): number => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    dueDate.setHours(0, 0, 0, 0);
+    const diffTime = dueDate.getTime() - today.getTime();
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  };
+
+  const handleCalculate = () => {
+    if (!baseDate || !statute || !jurisdiction) {
+      return;
+    }
+
+    const rules = deadlineRules[jurisdiction]?.[statute] || [];
+    const newDeadlines: CalculatedDeadline[] = rules.map(rule => {
+      const dueDate = calculateDeadline(rule, baseDate);
+      return {
+        id: `${rule.id}-${Date.now()}`,
+        description: rule.description,
+        baseDate: baseDate,
+        dueDate: dueDate,
+        daysRemaining: calculateDaysRemaining(dueDate),
+        rule: rule,
+      };
+    });
+
+    setCalculatedDeadlines(newDeadlines);
+  };
+
+  const handleAddCustomRule = () => {
+    if (!customRuleName || !customRuleDays || !baseDate) return;
+
+    const customRule: DeadlineRule = {
+      id: `custom-${Date.now()}`,
+      name: customRuleName,
+      description: customRuleName,
+      daysToAdd: parseInt(customRuleDays),
+      businessDays: false,
+      category: 'Custom',
+    };
+
+    const dueDate = calculateDeadline(customRule, baseDate);
+    const customDeadline: CalculatedDeadline = {
+      id: `${customRule.id}-${Date.now()}`,
+      description: customRule.description,
+      baseDate: baseDate,
+      dueDate: dueDate,
+      daysRemaining: calculateDaysRemaining(dueDate),
+      rule: customRule,
+    };
+
+    setCalculatedDeadlines([...calculatedDeadlines, customDeadline]);
+    setCustomRuleName('');
+    setCustomRuleDays('');
+    setShowCustomRule(false);
+  };
+
+  const handleRemoveDeadline = (id: string) => {
+    setCalculatedDeadlines(calculatedDeadlines.filter(d => d.id !== id));
+  };
+
+  const handleExportToCalendar = () => {
+    // In a real app, this would export to calendar format (ICS)
+    console.log('Exporting deadlines to calendar...');
+  };
+
+  const handleCopyToClipboard = () => {
+    const text = calculatedDeadlines
+      .map(d => `${d.rule.name}: ${format(d.dueDate, 'MMM dd, yyyy')} (${d.daysRemaining} days)`)
+      .join('\n');
+    navigator.clipboard.writeText(text);
+  };
+
+  const getDeadlineColor = (daysRemaining: number) => {
+    if (daysRemaining < 0) return 'error';
+    if (daysRemaining <= 7) return 'warning';
+    if (daysRemaining <= 30) return 'info';
+    return 'success';
+  };
+
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Box>
+        <Typography variant="h4" gutterBottom>
+          Deadline Calculator
+        </Typography>
+        <Typography variant="body1" color="textSecondary" gutterBottom>
+          Calculate important legal deadlines based on jurisdiction and applicable statutes
+        </Typography>
+
+        <Grid container spacing={3} sx={{ mt: 1 }}>
+          {/* Input Section */}
+          <Grid item xs={12} md={6}>
+            <Paper sx={{ p: 3 }}>
+              <Typography variant="h6" gutterBottom>
+                Deadline Parameters
+              </Typography>
+              
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <InputLabel>Jurisdiction</InputLabel>
+                    <Select
+                      value={jurisdiction}
+                      onChange={(e) => {
+                        setJurisdiction(e.target.value);
+                        setStatute('');
+                      }}
+                      label="Jurisdiction"
+                    >
+                      <MenuItem value="federal">Federal</MenuItem>
+                      <MenuItem value="california">California</MenuItem>
+                      <MenuItem value="new_york">New York</MenuItem>
+                      <MenuItem value="texas">Texas</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <FormControl fullWidth disabled={!jurisdiction}>
+                    <InputLabel>Applicable Statute/Rule</InputLabel>
+                    <Select
+                      value={statute}
+                      onChange={(e) => setStatute(e.target.value)}
+                      label="Applicable Statute/Rule"
+                    >
+                      {statuteOptions[jurisdiction]?.map(option => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <DatePicker
+                    label="Base Date (Event Date)"
+                    value={baseDate}
+                    onChange={(newValue) => setBaseDate(newValue)}
+                    slotProps={{
+                      textField: {
+                        fullWidth: true,
+                        helperText: 'Date of filing, service, or triggering event',
+                      },
+                    }}
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    onClick={handleCalculate}
+                    disabled={!jurisdiction || !statute || !baseDate}
+                    startIcon={<Schedule />}
+                  >
+                    Calculate Deadlines
+                  </Button>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Divider sx={{ my: 1 }} />
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    onClick={() => setShowCustomRule(!showCustomRule)}
+                    startIcon={<Add />}
+                  >
+                    Add Custom Deadline
+                  </Button>
+                </Grid>
+
+                {showCustomRule && (
+                  <>
+                    <Grid item xs={12}>
+                      <TextField
+                        fullWidth
+                        label="Custom Rule Name"
+                        value={customRuleName}
+                        onChange={(e) => setCustomRuleName(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <TextField
+                        fullWidth
+                        label="Days to Add"
+                        type="number"
+                        value={customRuleDays}
+                        onChange={(e) => setCustomRuleDays(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Button
+                        variant="contained"
+                        fullWidth
+                        onClick={handleAddCustomRule}
+                        disabled={!customRuleName || !customRuleDays}
+                      >
+                        Add
+                      </Button>
+                    </Grid>
+                  </>
+                )}
+              </Grid>
+            </Paper>
+
+            {/* Common Rules Reference */}
+            <Paper sx={{ p: 3, mt: 3 }}>
+              <Typography variant="h6" gutterBottom>
+                Common Filing Rules
+              </Typography>
+              <Alert severity="info" sx={{ mb: 2 }}>
+                <Typography variant="body2">
+                  Most jurisdictions follow the "next business day" rule: if a deadline falls on a weekend or holiday, it moves to the next business day.
+                </Typography>
+              </Alert>
+              <List dense>
+                <ListItem>
+                  <ListItemIcon>
+                    <Gavel />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Federal Rules"
+                    secondary="FRCP 6(a): Exclude day of event, count every day including weekends"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <Description />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Service Extensions"
+                    secondary="Add 3 days for mail service (FRCP 6(d))"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <Warning />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Holiday Considerations"
+                    secondary="Check local court calendars for holidays"
+                  />
+                </ListItem>
+              </List>
+            </Paper>
+          </Grid>
+
+          {/* Results Section */}
+          <Grid item xs={12} md={6}>
+            <Paper sx={{ p: 3 }}>
+              <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+                <Typography variant="h6">
+                  Calculated Deadlines
+                </Typography>
+                {calculatedDeadlines.length > 0 && (
+                  <Box>
+                    <Tooltip title="Copy to clipboard">
+                      <IconButton onClick={handleCopyToClipboard} size="small">
+                        <ContentCopy />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Export to calendar">
+                      <IconButton onClick={handleExportToCalendar} size="small">
+                        <Download />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                )}
+              </Box>
+
+              {calculatedDeadlines.length === 0 ? (
+                <Alert severity="info">
+                  Select jurisdiction, statute, and base date to calculate deadlines
+                </Alert>
+              ) : (
+                <TableContainer>
+                  <Table size="small">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Deadline</TableCell>
+                        <TableCell>Due Date</TableCell>
+                        <TableCell>Days</TableCell>
+                        <TableCell>Actions</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {calculatedDeadlines.map((deadline) => (
+                        <TableRow key={deadline.id}>
+                          <TableCell>
+                            <Box>
+                              <Typography variant="body2" fontWeight="medium">
+                                {deadline.rule.name}
+                              </Typography>
+                              <Typography variant="caption" color="textSecondary">
+                                {deadline.description}
+                              </Typography>
+                            </Box>
+                          </TableCell>
+                          <TableCell>
+                            <Typography variant="body2">
+                              {format(deadline.dueDate, 'MMM dd, yyyy')}
+                            </Typography>
+                            <Typography variant="caption" color="textSecondary">
+                              {format(deadline.dueDate, 'EEEE')}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Chip
+                              label={`${Math.abs(deadline.daysRemaining)} days`}
+                              size="small"
+                              color={getDeadlineColor(deadline.daysRemaining)}
+                              variant={deadline.daysRemaining < 0 ? 'filled' : 'outlined'}
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <IconButton
+                              size="small"
+                              onClick={() => handleRemoveDeadline(deadline.id)}
+                            >
+                              <Delete />
+                            </IconButton>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              )}
+            </Paper>
+
+            {/* Calendar Preview */}
+            {calculatedDeadlines.length > 0 && (
+              <Paper sx={{ p: 3, mt: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  Timeline View
+                </Typography>
+                <List>
+                  {calculatedDeadlines
+                    .sort((a, b) => a.dueDate.getTime() - b.dueDate.getTime())
+                    .map((deadline, index) => (
+                      <React.Fragment key={deadline.id}>
+                        <ListItem>
+                          <ListItemIcon>
+                            <Event color={getDeadlineColor(deadline.daysRemaining)} />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Box display="flex" justifyContent="space-between" alignItems="center">
+                                <Typography variant="body1">
+                                  {deadline.rule.name}
+                                </Typography>
+                                <Chip
+                                  label={deadline.rule.category}
+                                  size="small"
+                                  variant="outlined"
+                                />
+                              </Box>
+                            }
+                            secondary={
+                              <Box>
+                                <Typography variant="body2" color="textSecondary">
+                                  {format(deadline.dueDate, 'EEEE, MMMM dd, yyyy')}
+                                </Typography>
+                                <Typography variant="caption" color={getDeadlineColor(deadline.daysRemaining)}>
+                                  {deadline.daysRemaining > 0
+                                    ? `${deadline.daysRemaining} days remaining`
+                                    : deadline.daysRemaining === 0
+                                    ? 'Due today!'
+                                    : `${Math.abs(deadline.daysRemaining)} days overdue`}
+                                </Typography>
+                              </Box>
+                            }
+                          />
+                        </ListItem>
+                        {index < calculatedDeadlines.length - 1 && <Divider />}
+                      </React.Fragment>
+                    ))}
+                </List>
+              </Paper>
+            )}
+          </Grid>
+        </Grid>
+      </Box>
+    </LocalizationProvider>
+  );
+};
+
+export default DeadlineCalculator;

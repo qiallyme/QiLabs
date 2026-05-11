@@ -1,0 +1,58 @@
+{
+  "chapter_title": "The Knife Scene",
+  "technical_note": "Timing map for Paid in Full interactive component",
+  "total_duration_estimate": "180s",
+  "phases": [
+    {
+      "name": "Phase 1 - The Freeze (Soul)",
+      "duration_approx": "30s",
+      "audio_style": "Narration only, calm, measured",
+      "visual_style": "Static dark background, no motion",
+      "text_behavior": "One sentence at a time, slow typing",
+      "ux_rules": [
+        "No background motion",
+        "No sound effects",
+        "Uncomfortable but calm"
+      ],
+      "segments": [
+        { "id": "freeze_01", "content": "Time stops." },
+        { "id": "freeze_02", "content": "The ledger is open." },
+        { "id": "freeze_03", "content": "This was the cost." }
+      ]
+    },
+    {
+      "name": "Phase 2 - The Snap (Body)",
+      "duration_approx": "60s",
+      "audio_style": "Faster, natural panic (not dramatic), breath-focused",
+      "visual_style": "Fading abstract textures (dark red, shadow, blur). NO literal knife imagery.",
+      "text_behavior": "Fast, chunked by breath, short blocks",
+      "ux_rules": [
+        "Do NOT animate words individually",
+        "Silence between sentences"
+      ],
+      "segments": [
+        { "id": "snap_01", "content": "Breath." },
+        { "id": "snap_02", "content": "Grip." },
+        { "id": "snap_03", "content": "Metal on bone." },
+        { "id": "snap_04", "content": "Move." }
+      ]
+    },
+    {
+      "name": "Phase 3 - The After (Reconnection)",
+      "duration_approx": "45s",
+      "audio_style": "Slows down, exhausted",
+      "visual_style": "Stabilized background, symbolic light fading in",
+      "text_behavior": "Steady typing pace returns",
+      "ux_rules": [
+        "End state is silence",
+        "Show 'Next' button manually",
+        "No autoplay"
+      ],
+      "segments": [
+        { "id": "after_01", "content": "I didn't win." },
+        { "id": "after_02", "content": "I survived." },
+        { "id": "after_03", "content": "Paid in full." }
+      ]
+    }
+  ]
+}

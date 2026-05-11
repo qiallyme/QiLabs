@@ -1,0 +1,44 @@
+id: script.repo_triage
+name: Repo Triage
+type: standalone_script
+language: python
+entrypoint: repo_triage.py
+description: Audits the QiOS monorepo, writes inventory files, updates .gitignore, and quarantines obvious junk.
+status: active
+owner: QiLabs
+safe_to_run: true
+requires_network: false
+requires_secrets: false
+
+usage:
+  command: python scripts/repo_triage/repo_triage.py
+  working_directory: repo_root
+
+inputs:
+  - name: repo_root
+    type: directory
+    required: true
+    source: current_working_directory
+
+outputs:
+  - docs/repo_dirs_DATE.txt
+  - docs/repo_files_DATE.txt
+  - _quarantine/
+
+side_effects:
+  - creates docs folder if missing
+  - creates _quarantine folder if missing
+  - moves obvious cache/temp folders to _quarantine
+  - appends QiOS hygiene block to .gitignore
+
+safety:
+  deletes_files: false
+  touches_secrets: false
+  modifies_gitignore: true
+  moves_files: true
+
+tags:
+  - repo
+  - hygiene
+  - audit
+  - codex-safe

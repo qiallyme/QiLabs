@@ -1,0 +1,305 @@
+The PWA should not talk directly to the local agent.
+
+That would be messy, fragile, and usually impossible from your phone unless your laptop is exposed to the internet. Bad design.
+
+Correct architecture
+
+Your phone PWA should talk to the QiArchive Cloud API on Railway.
+
+Your local agent should report status/events up to the cloud API.
+
+So the flow is:
+
+Local Agent on laptop
+    ↓
+QiArchive API on Railway
+    ↓
+Phone PWA
+
+That way:
+	•	phone only needs internet
+	•	laptop can come and go
+	•	cloud becomes source of truth
+	•	no weird port forwarding to your machine
+	•	no direct phone-to-Windows nonsense
+
+What the local agent needs to send
+
+Every time something happens, the agent posts an event to Railway.
+
+Examples:
+	•	agent started
+	•	agent heartbeat
+	•	file detected
+	•	file hashed
+	•	duplicate found
+	•	uploaded to Paperless
+	•	moved to archive
+	•	moved to review
+	•	error occurred
+
+Minimum data model
+
+Agent heartbeat
+
+Sent every 15–60 seconds:
+
+{
+  "machine_name": "CODY-LAPTOP",
+  "agent_status": "online",
+  "last_seen_at": "2026-03-06T16:42:00",
+  "watch_folder": "G:\\My Drive\\QiArchive\\00_INBOX",
+  "queue_depth": 0,
+  "processed_today": 12,
+  "duplicates_today": 2,
+  "review_today": 1
+}
+
+Document event
+
+Sent when a file is processed:
+
+{
+  "doc_id": "QDOC-2026-000014",
+  "original_filename": "bill_march.pdf",
+  "canonical_filename": "QDOC-2026-000014__bill_march.pdf",
+  "sha256": "abc123...",
+  "status": "uploaded",
+  "paperless_document_id": 482,
+  "machine_name": "CODY-LAPTOP",
+  "event_type": "upload_complete"
+}
+
+What the PWA should show
+
+Version 1 should stay tiny.
+
+PWA screens
+
+1. Dashboard
+
+Show:
+	•	agent online/offline
+	•	last heartbeat
+	•	inbox count
+	•	uploaded count today
+	•	duplicates count today
+	•	review count today
+
+2. Recent documents
+
+List last 25 or 50 docs with:
+	•	QDOC ID
+	•	filename
+	•	status
+	•	timestamp
+
+3. Problem queue
+
+Show only:
+	•	duplicates
+	•	review
+	•	errors
+
+4. Agent status
+
+Show:
+	•	machine name
+	•	last seen
+	•	watch folder
+	•	running yes/no
+
+That is enough for v1.
+
+How the phone “knows” the local agent is alive
+
+Because the local agent sends a heartbeat to Railway every X seconds.
+
+If heartbeat is stale, API marks it offline.
+
+Example rule:
+	•	heartbeat within 60 sec = online
+	•	older than 60 sec = stale
+	•	older than 5 min = offline
+
+So the phone is not “watching” your machine directly.
+It is just reading the latest reported state from the cloud.
+
+What to build
+
+Part 1: add these API endpoints
+
+You likely need these on Railway:
+
+POST /api/agent/heartbeat
+POST /api/events/document
+GET  /api/dashboard/summary
+GET  /api/documents/recent
+GET  /api/agent/status
+GET  /api/issues
+
+Part 2: update local agent
+
+Your local agent should call Railway:
+
+QIARCHIVE_API_URL=https://qiarchive-production.up.railway.app
+QIARCHIVE_AGENT_NAME=CODY-LAPTOP
+QIARCHIVE_HEARTBEAT_INTERVAL=30
+
+Then:
+	•	on startup → send heartbeat
+	•	every 30 sec → send heartbeat
+	•	on each file event → send document event
+
+Part 3: build the PWA
+
+Best path:
+	•	frontend on Cloudflare Pages
+	•	simple static app
+	•	fetches Railway API
+	•	installable to phone home screen
+
+Why Cloudflare Pages:
+	•	cheap
+	•	easy
+	•	fast
+	•	perfect for static PWA
+	•	no need to host frontend on Railway unless you want everything there
+
+Tech stack for the PWA
+
+Use the lightest thing possible:
+
+Good option
+	•	Vite
+	•	React
+	•	basic CSS
+	•	manifest.json
+	•	service worker
+
+That’s it.
+
+No giant framework circus.
+
+What “installed on phone” means
+
+A PWA is just a website with:
+	•	manifest.json
+	•	service worker
+	•	icons
+	•	mobile-friendly layout
+
+Then on iPhone/Android you do:
+	•	open site
+	•	Add to Home Screen
+
+Now it behaves like an app.
+
+The truth
+
+The missing piece is not the PWA itself.
+The missing piece is the sync plane between local agent and Railway API.
+
+Once that exists, the PWA is easy.
+
+Without that, your phone has nothing reliable to display.
+
+Best next move
+
+Build this in order:
+	1.	local agent heartbeat + event posting
+	2.	Railway API endpoints to store them
+	3.	tiny dashboard PWA
+
+Not the other way around.
+
+IDE prompt
+
+Paste this to the IDE:
+
+We are building the QiArchive mobile PWA and the required sync plane.
+
+Goal:
+The phone app must NOT connect directly to the local machine.
+The local QiArchive agent must push status and document events to the QiArchive Cloud API on Railway.
+The PWA will read only from the cloud API.
+
+## Part 1: Cloud API updates
+Add these endpoints to apps/api:
+
+POST /api/agent/heartbeat
+POST /api/events/document
+GET /api/dashboard/summary
+GET /api/documents/recent
+GET /api/agent/status
+GET /api/issues
+
+Add or extend models as needed:
+- AgentStatus
+- Document
+- DocumentEvent
+
+Minimum AgentStatus fields:
+- machine_name
+- agent_status
+- last_seen_at
+- watch_folder
+- queue_depth
+- processed_today
+- duplicates_today
+- review_today
+- updated_at
+
+## Part 2: Local agent updates
+In app/agent add a small client module that posts to the Railway API.
+
+Environment variables:
+- QIARCHIVE_API_URL
+- QIARCHIVE_AGENT_NAME
+- QIARCHIVE_HEARTBEAT_INTERVAL
+
+Requirements:
+- send heartbeat on startup
+- send heartbeat every 30 seconds
+- send document event on file processed
+- send document event on duplicate
+- send document event on review/error
+- fail gracefully if API unreachable
+
+## Part 3: PWA frontend
+Create a new frontend app for a very small installable PWA.
+
+Suggested path:
+apps/pwa
+
+Use:
+- Vite
+- React
+- plain CSS
+
+Required screens:
+1. Dashboard
+2. Recent Documents
+3. Issues
+4. Agent Status
+
+Required PWA pieces:
+- manifest.json
+- service worker
+- mobile installability
+- app icons placeholders
+
+Data source:
+- QiArchive Cloud API only
+
+Do NOT overbuild.
+Do NOT add auth yet beyond a placeholder note.
+Do NOT add RAG, vector DB, or chat.
+
+At the end provide:
+1. new file tree
+2. required env vars
+3. local run steps
+4. deploy steps for Cloudflare Pages
+
+The clean answer is: your phone app talks to Railway, and Railway reflects what the local agent reports. That’s the sane architecture.

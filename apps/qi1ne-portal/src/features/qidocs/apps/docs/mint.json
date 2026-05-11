@@ -1,0 +1,105 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "htmldocs",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "theme": "venus",
+  "layout": "topnav",
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#0D9373",
+    "light": "#07C983",
+    "dark": "#0D9373",
+    "anchors": {
+      "from": "#0D9373",
+      "to": "#07C983"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "mailto:hello@htmldocs.com"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Dashboard",
+    "url": "https://htmldocs.com/dashboard"
+  },
+  "tabs": [
+    {
+      "name": "API Reference",
+      "url": "api-reference"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Slack",
+      "icon": "slack",
+      "url": "https://join.slack.com/t/htmldocs/shared_invite/zt-29hw1bnmu-ShX6Jo1KNc_XeF~gFQJH_Q"
+    },
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/htmldocs-js/htmldocs"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Overview",
+      "pages": [
+        "introduction",
+        "comparison",
+        "getting-started",
+        "cli"
+      ]
+    },
+    {
+      "group": "Usage",
+      "pages": [
+        "usage/static-content",
+        "usage/template-variables",
+        "usage/custom-fonts",
+        "usage/tailwind",
+        "usage/publishing-to-the-cloud"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "integrations/resend"
+      ]
+    },
+    {
+      "group": "Components",
+      "pages": [
+        "components/document",
+        "components/page",
+        "components/head",
+        "components/spacer",
+        "components/margin-box",
+        "components/footer"
+
+      ]
+    },
+    {
+      "group": "Using the API",
+      "pages": [
+        "api-reference/authorization"
+      ]
+    },
+    {
+      "group": "API Documentation",
+      "pages": [
+        "api-reference/generate-document",
+        "api-reference/generate-html"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "x": "https://x.com/htmldocs",
+    "github": "https://github.com/htmldocs-js/htmldocs",
+    "linkedin": "https://www.linkedin.com/company/htmldocs"
+  }
+}

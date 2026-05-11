@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
-import { User, Save, ArrowLeft, Loader2, Camera, Mail, Shield } from 'lucide-react';
+import { User, Save, ArrowLeft, Loader2, Mail, Shield, AtSign } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import AvatarEditor from '@/components/AvatarEditor';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 export default function ProfilePage() {
   const { profile, user, refreshProfile } = useAuth();
   const [fullName, setFullName] = useState(profile?.full_name || '');
+  const [username, setUsername] = useState(profile?.username || '');
   const [avatarUrl, setAvatarUrl] = useState(profile?.avatar_url || '');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -15,12 +23,13 @@ export default function ProfilePage() {
   useEffect(() => {
     if (profile) {
       setFullName(profile.full_name || '');
+      setUsername(profile.username || '');
       setAvatarUrl(profile.avatar_url || '');
     }
   }, [profile]);
 
-  const handleSave = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSave = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     if (!user) return;
     setLoading(true);
     setMessage(null);
@@ -30,6 +39,7 @@ export default function ProfilePage() {
         .from('qione.profiles')
         .update({
           full_name: fullName,
+          username: username,
           avatar_url: avatarUrl,
           updated_at: new Date().toISOString(),
         })
@@ -42,6 +52,23 @@ export default function ProfilePage() {
       setMessage(`Error: ${err.message}`);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleAvatarUpload = async (filePath: string) => {
+    setAvatarUrl(filePath);
+    // Auto-save on avatar upload for better UX
+    if (user) {
+      try {
+        const { error } = await supabase
+          .from('qione.profiles')
+          .update({ avatar_url: filePath })
+          .eq('id', user.id);
+        if (error) throw error;
+        await refreshProfile();
+      } catch (err: any) {
+        console.error('Error auto-saving avatar:', err.message);
+      }
     }
   };
 
@@ -64,18 +91,11 @@ export default function ProfilePage() {
         {/* Left Column: Avatar & Summary */}
         <div className="md:col-span-1 space-y-6">
           <div className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-3xl p-8 text-center space-y-4">
-            <div className="relative inline-block group">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-purple-600 to-blue-600 flex items-center justify-center text-white text-3xl font-bold shadow-2xl overflow-hidden ring-4 ring-white/10 group-hover:ring-purple-500/50 transition-all">
-                {avatarUrl ? (
-                  <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
-                ) : (
-                  profile?.full_name?.[0] || user?.email?.[0]?.toUpperCase()
-                )}
-              </div>
-              <button className="absolute bottom-0 right-0 p-2 bg-white/10 hover:bg-white/20 rounded-full border border-white/20 backdrop-blur-md text-white transition-colors">
-                <Camera size={14} />
-              </button>
-            </div>
+            <AvatarEditor 
+              url={avatarUrl} 
+              size={120} 
+              onUpload={handleAvatarUpload} 
+            />
             <div>
               <h2 className="text-xl font-bold text-white">{profile?.full_name || 'System User'}</h2>
               <p className="text-gray-400 text-sm font-medium tracking-tight truncate px-4">{user?.email}</p>
@@ -109,6 +129,24 @@ export default function ProfilePage() {
                 </div>
               </div>
 
+              {/* Username (QiHome compatibility) */}
+              <div className="space-y-2 group">
+                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-1">Username</label>
+                <div className="relative">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-purple-500 transition-colors">
+                    <AtSign size={16} />
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="johndoe"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full bg-white/[0.04] border border-white/[0.08] text-white rounded-2xl py-3.5 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-purple-600/50 transition-all font-medium placeholder:text-gray-700"
+                  />
+                </div>
+              </div>
+
               {/* Full Name */}
               <div className="space-y-2 group">
                 <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-1">Full Name</label>
@@ -122,23 +160,6 @@ export default function ProfilePage() {
                     placeholder="Enter your full name"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    className="w-full bg-white/[0.04] border border-white/[0.08] text-white rounded-2xl py-3.5 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-purple-600/50 transition-all font-medium placeholder:text-gray-700"
-                  />
-                </div>
-              </div>
-
-              {/* Avatar URL */}
-              <div className="space-y-2 group">
-                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-1">Avatar Resource URL</label>
-                <div className="relative">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-purple-500 transition-colors">
-                    <Camera size={16} />
-                  </div>
-                  <input
-                    type="url"
-                    placeholder="https://images.unsplash.com/..."
-                    value={avatarUrl}
-                    onChange={(e) => setAvatarUrl(e.target.value)}
                     className="w-full bg-white/[0.04] border border-white/[0.08] text-white rounded-2xl py-3.5 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-purple-600/50 transition-all font-medium placeholder:text-gray-700"
                   />
                 </div>
@@ -170,10 +191,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-
-function cn(...inputs: any[]) {
-  return twMerge(clsx(inputs));
-}
-
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';

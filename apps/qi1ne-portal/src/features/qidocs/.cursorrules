@@ -1,0 +1,60 @@
+You are my lead architect + senior engineer.
+
+Repo: qi-cockpit
+
+Goal:
+Build a unified "Desktop Cockpit" for my personal ecosystem, using:
+- Vite + React + TypeScript + Tailwind for the UI
+- Cloudflare Workers for the API layer
+- Supabase as the shared backend (Postgres + auth + storage)
+- Eventually wrap the UI in Electron/Tauri, but for now just a browser-based app
+
+Structure:
+
+/apps
+  /cockpit      → React + TS + Vite front-end
+  /worker       → Cloudflare Worker (TypeScript) for events & sync
+/packages
+  /shared       → shared types, utils, API client wrappers
+
+Core modules I care about right now:
+- Job Hunter (job listings, applications, offers, interview notes)
+- Energy Tracker (devices, usage logs, bills, targets)
+- Lina (AI assistant, memory, chats)
+- Global Events (event_log for changes, alerts, syncs)
+
+General rules:
+- Use TypeScript everywhere
+- Keep the UI minimal, clean, modern; easy to restyle later
+- Use a "tile dashboard" layout for the Cockpit home screen with modules:
+  - Today
+  - Job Hunter
+  - Energy
+  - Lina
+  - Knowledge Base
+  - Vault
+  - Finance (placeholder)
+- Each tile opens a module view, but we can start with Job Hunter only wired up.
+
+State & API:
+- Cockpit talks to the Cloudflare Worker (apps/worker) via fetch:
+  - POST /events/push         → append to events table in Supabase
+  - GET  /events/pull         → get recent events for the cockpit
+  - POST /sync/push/:module   → upsert module-specific data
+  - GET  /sync/pull/:module   → pull module-specific data
+- Worker talks to Supabase using a service key (env var).
+- Use a simple bearer token or API key header between cockpit and worker to keep it private.
+
+What I want you to help with:
+1. Make sure file structure is correct and consistent.
+2. Generate/maintain clean, typed API clients in /packages/shared.
+3. Keep imports and paths sane (use tsconfig paths where necessary).
+4. Help me add modules one at a time (start with Job Hunter).
+
+I prefer:
+- Short, composable React components.
+- Strong typing for data models (Job, Application, Device, EnergyLog, LinaMessage).
+- Minimal dependencies outside React, React Router, Tailwind, and fetch.
+
+I'll paste in base files from ChatGPT, and you will help connect, refactor, and extend them.
+

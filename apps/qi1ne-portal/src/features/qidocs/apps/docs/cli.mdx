@@ -1,0 +1,178 @@
+---
+title: "CLI"
+sidebarTitle: "CLI"
+description: "After installing the htmldocs package, you can start using the command line interface (CLI)."
+"og:image": "https://htmldocs.com/static/covers/htmldocs.png"
+icon: "square-terminal"
+---
+
+## `init`
+
+Initializes a new htmldocs project in the current directory.
+
+<CodeGroup>
+```bash npm
+npx htmldocs@latest init
+```
+
+```bash pnpm
+pnpx htmldocs@latest init
+```
+
+```bash yarn
+yarn dlx htmldocs@latest init
+```
+
+```bash bun
+bunx htmldocs@latest init
+```
+</CodeGroup>
+
+{/* **Options**
+
+<ResponseField name="--template" type="string" default="default">
+  Specify a template to use for the new project. Available templates: default, minimal, advanced.
+</ResponseField> */}
+
+## `login`
+
+Authenticates the CLI with the cloud. This allows you to publish your documents to the cloud.
+
+<CodeGroup>
+```bash npm
+npx htmldocs@latest login
+```
+
+```bash pnpm
+pnpx htmldocs@latest login
+```
+
+```bash yarn
+yarn dlx htmldocs@latest login
+```
+
+```bash bun
+bunx htmldocs@latest login
+```
+</CodeGroup>
+
+## `dev`
+
+Starts a local development server that will watch your files and automatically rebuild your document template when you make changes. Login not required.
+
+<CodeGroup>
+```bash npm
+npx htmldocs@latest dev
+```
+
+```bash pnpm
+pnpx htmldocs@latest dev
+```
+
+```bash yarn
+yarn dlx htmldocs@latest dev
+```
+
+```bash bun
+bunx htmldocs@latest dev
+```
+</CodeGroup>
+
+**Options**
+
+<ResponseField name="--dir" type="string" default="./documents">
+  Change the directory of your document templates.
+</ResponseField>
+<ResponseField name="--port" type="string" default="3000">
+  Port to run dev server on
+</ResponseField>
+
+## `publish <file>`
+
+Publishes the document to the cloud for API use. Must be [authenticated](/cli#login).
+
+<Warning>Be sure to run this from the root of your project.</Warning>
+
+<CodeGroup>
+```bash npm
+npx htmldocs@latest publish <file>
+```
+
+```bash pnpm
+pnpx htmldocs@latest publish <file>
+```
+
+```bash yarn
+yarn dlx htmldocs@latest publish <file>
+```
+
+```bash bun
+bunx htmldocs@latest publish <file>
+```
+</CodeGroup>
+
+**Options**
+
+<ResponseField name="file" type="string" required>
+  The file path of the document to publish.
+</ResponseField>
+
+## `--help`
+
+Shows all available commands and options.
+
+<CodeGroup>
+```bash npm
+npx htmldocs@latest --help
+```
+
+```bash pnpm
+pnpx htmldocs@latest --help
+```
+
+```bash yarn
+yarn dlx htmldocs@latest --help
+```
+
+```bash bun
+bunx htmldocs@latest --help
+```
+</CodeGroup>
+
+**Options**
+
+<ResponseField name="-v, --verbose" type="boolean">
+  Enable verbose logging
+</ResponseField>
+
+**F.A.Q**
+
+<AccordionGroup>
+  <Accordion title="How can I define props specific to the document's preview?">
+    You can define preview props for your document by adding a `PreviewProps` property to your default export. For example:
+
+    ```jsx
+    export default function Document(props) {
+      return (
+        <div>
+          <h1>{props.title}</h1>
+          <p>{props.content}</p>
+        </div>
+      );
+    }
+
+    Document.PreviewProps = {
+      title: "Preview Title",
+      content: "This is preview content",
+    };
+    ```
+
+    These props will be used when previewing the document in the development server.
+  </Accordion>
+  <Accordion title="How do I set up authentication for publishing?">
+    To publish documents, you need to authenticate with the cloud service. Use the `htmldocs login` command to start the authentication process. This will open a browser window where you can select a team and complete the authentication. Once authenticated, your tokens will be securely stored for future use.
+  </Accordion>
+  <Accordion title="Where are the built files stored?">
+    By default, built files are stored in a `dist` directory in your project root. You can customize this location by setting the `NEXT_PUBLIC_USER_PROJECT_LOCATION` environment variable.
+  </Accordion>
+</AccordionGroup>

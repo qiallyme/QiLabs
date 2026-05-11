@@ -1,0 +1,153 @@
+/* Print Styles for Paid In Full - Condensed Professional Edition */
+
+@page {
+    size: 8.5in 11in; /* US Letter Standard */
+    /* Aggressive margin reduction but with footer space */
+    margin: 0.15in 0.15in 0.75in 0.15in;
+    
+    @bottom-center {
+        content: counter(page);
+        font-family: "Georgia", serif;
+        font-size: 12pt;
+    }
+}
+
+@page :first {
+    margin: 0;
+    @bottom-center { content: none; }
+}
+
+@page :blank {
+    @bottom-center { content: none; }
+}
+
+body {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 12pt;     /* User requested small print */
+    line-height: 1.6;   /* User requested tighter leading (was 1, bumped slightly for readability) */
+    color: #111;
+    margin: 0;
+    text-align: justify;
+}
+
+/* Typography */
+h1 {
+    page-break-before: always;
+    margin-top: 5%;     /* Drastically reduced whitespace */
+    margin-bottom: 0.5rem;
+    font-size: 12pt;    /* Increased slightly over body, but kept small */
+    text-align: center;
+    font-weight: bold; 
+    font-family: "Georgia", serif;
+    text-transform: uppercase;
+}
+
+h2 {
+    margin-top: 0.5rem;
+    font-size: 12pt;
+    text-align: center;
+    font-weight: normal;
+    font-style: italic;
+}
+
+p {
+    margin: 0;
+    text-indent: 0;     /* User requested block style (no indent) */
+    margin-bottom: 0.5em; /* Add small spacing between paragraphs since indent is gone */
+}
+
+/* Cover Styling - Edge to Edge strategy */
+.cover-container {
+    page-break-after: always;
+    width: 9in; /* 8.5in + margin safety */
+    height: 11.5in; /* 11in + margin safety */
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    margin-left: -0.25in; /* Pull back into margin */
+    margin-top: -0.25in;
+    z-index: -1;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+/* Title Page */
+.title-page {
+    text-align: center;
+    margin-top: 10%;
+    page-break-after: always;
+}
+
+.title-page h1 {
+    font-size: 14pt;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.title-page h2 {
+    font-size: 12pt;
+}
+
+/* TOC Styling */
+#TOC {
+    page-break-after: always;
+    margin-top: 5%;
+}
+
+#TOC ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#TOC li {
+    margin-bottom: 0.5rem;
+    font-size: 12pt;
+    border-bottom: 1px dotted #ccc;
+}
+
+#TOC a {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+}
+
+#TOC a::after {
+    content: target-counter(attr(href), page);
+}
+
+/* Author Section - Compact */
+.author-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-top: 1rem;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.author-image {
+    width: 20%;
+    max-width: 1.5in;
+    border-radius: 0;
+    margin: 0;
+}
+
+.author-bio {
+    flex: 1;
+    text-align: left;
+    font-size: 12pt;
+    line-height: 1.2;
+}
+
+/* Utilities */
+.page-break {
+    page-break-after: always;
+}

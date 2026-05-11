@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-01-02T09:37:29-05:00",
+  "vault_path": "C:\\QiOS_Local_Only\\QiNoteOSv1\\vault",
+  "module_count": 2,
+  "modules": [
+    {
+      "module_id": "qid0400003",
+      "folder": "qid0400003_fcfcu_case",
+      "slug": "fcfcu_case",
+      "title": "Fcfcu Case",
+      "type": "case",
+      "status": "invalid",
+      "updated": "2026-01-02",
+      "entrypoints": {
+        "readme": "README.md",
+        "content": "content.md"
+      },
+      "derived": {
+        "module_index_url": "/derived/modules/qid0400003_fcfcu_case/module_index.json"
+      }
+    },
+    {
+      "module_id": "qid1500001",
+      "folder": "qid1500001_how_to_use_qinoteos",
+      "slug": "how_to_use_qinoteos",
+      "title": "How to Use QiNoteOS",
+      "type": "howto",
+      "status": "invalid",
+      "updated": "2026-01-01",
+      "entrypoints": {
+        "readme": "README.md",
+        "content": "content.md"
+      },
+      "derived": {
+        "module_index_url": "/derived/modules/qid1500001_how_to_use_qinoteos/module_index.json"
+      }
+    }
+  ]
+}

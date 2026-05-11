@@ -1,0 +1,62 @@
+[
+  {
+    "routeName": "getHealth",
+    "method": "GET",
+    "path": "/health",
+    "authRequired": false,
+    "tenantScoped": false,
+    "ownerLayer": "worker",
+    "status": "implemented",
+    "notes": "Edge gateway health check"
+  },
+  {
+    "routeName": "getMe",
+    "method": "GET",
+    "path": "/v1/me",
+    "authRequired": true,
+    "tenantScoped": false,
+    "ownerLayer": "worker",
+    "status": "implemented",
+    "notes": "Validate identity and active session properties."
+  },
+  {
+    "routeName": "listTenants",
+    "method": "GET",
+    "path": "/v1/tenants",
+    "authRequired": true,
+    "tenantScoped": false,
+    "ownerLayer": "worker",
+    "status": "implemented",
+    "notes": "Lists allowed tenants based on user."
+  },
+  {
+    "routeName": "setActiveTenant",
+    "method": "POST",
+    "path": "/v1/tenants/active",
+    "authRequired": true,
+    "tenantScoped": false,
+    "ownerLayer": "worker",
+    "status": "implemented",
+    "notes": "Assigns current tenant strictly in the gateway."
+  },
+  {
+    "routeName": "listTenantMembers",
+    "method": "GET",
+    "path": "/v1/admin/tenants/:tenantId/members",
+    "authRequired": true,
+    "tenantScoped": true,
+    "ownerLayer": "worker",
+    "status": "implemented",
+    "notes": "Tenant-scoped member management list."
+  },
+  {
+    "routeName": "inviteTenantMember",
+    "method": "POST",
+    "path": "/v1/admin/tenants/:tenantId/members/invite",
+    "authRequired": true,
+    "tenantScoped": true,
+    "ownerLayer": "worker",
+    "status": "frontend_stubbed",
+    "notes": "Stubbed in Worker until RPC is safe."
+  }
+]

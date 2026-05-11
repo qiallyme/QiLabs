@@ -1,0 +1,119 @@
+---
+title: Introduction
+sidebarTitle: Introduction
+icon: "hand-wave"
+---
+
+![htmldocs editor](/images/editor.png)
+
+PDF document creation is stuck in the past, from clunky Word docs to complex LaTeX to outdated tools. htmldocs brings document generation into 2025 with a modern developer experience using **React**, **TypeScript**, and **Tailwind**.
+
+## Key Features
+
+- 📌 Support for the latest CSS features like margin boxes and flexbox
+- 🧩 Collection of unstyled components for document layout
+- 📄 JSX templating system for building dynamic documents
+- 🔗 Full TypeScript support for type safety
+- ⚡ Dynamic data integration through props and APIs
+- 📊 Real-time preview server with hot reloading
+
+## Example
+
+To see htmldocs in action, here's a simple example of a dynamic invoice template:
+
+![Invoice template with htmldocs](https://github.com/user-attachments/assets/40e4ec91-e5eb-483a-ba28-14c6fd57ad8b)
+
+Creating multiple invoices is as simple as passing different customer information through props. Here's how you can generate a new invoice by updating the customer details:
+
+```tsx
+<Invoice 
+  customer={{
+    name: "John Doe",
+    address: "456 Main St",
+    city: "Anytown",
+    state: "CA",
+    zip: "12345",
+    phone: "123-456-7890",
+  }}
+  items={[
+    {
+      name: "Website Development",
+      description: "Frontend implementation with React",
+      price: 2000.00,
+      quantity: 1
+    },
+    {
+      name: "UI/UX Design",
+      description: "Custom design system creation",
+      price: 1500.00,
+      quantity: 1
+    }
+  ]}
+/>
+```
+
+<CardGroup cols={2}>
+  <Card
+    title="Automatic Installation"
+    icon="rocket"
+    href="/getting-started#automatic-setup"
+  >
+    Use the CLI tool to quickly set up htmldocs in your project with minimal configuration.
+  </Card>
+  <Card
+    title="Manual Installation"
+    icon="screwdriver-wrench"
+    href="/getting-started#manual-setup"
+  >
+    Integrate htmldocs step-by-step into your existing TypeScript project.
+  </Card>
+</CardGroup>
+
+## Components
+
+htmldocs comes with a set of standardized components that makes it easy to build documents.
+
+<CardGroup cols={2}>
+  <Card
+    title="Document"
+    icon="file-lines"
+    href="/components/document"
+  >
+    The root wrapper component representing a document.
+  </Card>
+  <Card
+    title="Page"
+    icon="file"
+    href="/components/page"
+  >
+    A single page within a document.
+  </Card>
+  <Card
+    title="Head"
+    icon="head-side"
+    href="/components/head"
+  >
+    Add custom content to the top of your document pages.
+  </Card>
+  <Card
+    title="Spacer"
+    icon="table"
+    href="/components/spacer"
+  >
+    Add vertical space between document pages.
+  </Card>
+  <Card
+    title="MarginBox"
+    icon="border-all"
+    href="/components/margin-box"
+  >
+    Position content in the margins of printed pages.
+  </Card>
+  <Card
+    title="Footer"
+    icon="shoe-prints"
+    href="/components/footer"
+  >
+    Add page numbers and custom footers to your documents.
+  </Card>
+</CardGroup>

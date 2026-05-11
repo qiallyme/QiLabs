@@ -1,0 +1,5 @@
+httpx
+openai
+boto3
+neo4j
+PyPDF2

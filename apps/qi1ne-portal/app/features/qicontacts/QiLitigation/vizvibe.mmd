@@ -1,0 +1,68 @@
+flowchart TD
+    %% === PROJECT GOALS ===
+    %% Ultimate Goal: Deploy a fully functional serverless litigation management system on Cloudflare Pages/Railway with Supabase backend.
+    %% Current Goal: Monitor production deployment and verify features.
+
+    %% === START ===
+    %% @project_start [start, closed, 2025-08-12, eric]
+    project_start("Project Inception<br/><sub>Initial commit of the litigation<br/>management system using React,<br/>TypeScript, and Supabase.</sub>")
+
+    %% @ultimate_goal [end, opened, 2026-02-15, antigravity]
+    ultimate_goal("Successful Deployment<br/><sub>A stable, production-ready<br/>application running on Cloudflare<br/>Pages with a Supabase backend.</sub>")
+
+    %% === COMPLETED WORK ===
+    %% @supabase_schema [ai-task, closed, 2025-08-12, eric]
+    supabase_schema("Supabase Schema Design<br/><sub>Defined core database tables<br/>for cases, clients, tasks, and<br/>documents with RLS policies.</sub>")
+
+    %% @render_fix_attempt [ai-task, closed, 2025-08-12, eric]
+    render_fix_attempt("Render Deployment Fixes<br/><sub>Attempted to resolve 'index.html'<br/>missing errors by moving public<br/>files to src/public.</sub>")
+
+    %% @public_folder_recreation [ai-task, closed, 2026-02-15, antigravity]
+    public_folder_recreation("Public Folder Restoration<br/><sub>Recreated missing public directory<br/>with index.html, _redirects,<br/>and config.json for CRA.</sub>")
+
+    %% @cloudflare_guide [ai-task, closed, 2026-02-15, antigravity]
+    cloudflare_guide("Cloudflare Migration Guide<br/><sub>Updated DEPLOYMENT.md to prioritize<br/>Cloudflare Pages and Railway over<br/>the original Render setup.</sub>")
+
+    %% @dependency_fix [ai-task, closed, 2026-02-15, antigravity]
+    dependency_fix("Dependency Optimization<br/><sub>Fixed react-scripts version and<br/>restored node_modules after a<br/>destructive npm audit fix.</sub>")
+
+    %% @build_verification [ai-task, closed, 2026-02-15, antigravity]
+    build_verification("Build Verification<br/><sub>Successfully generated an optimized<br/>production build in the 'build/'<br/>directory for deployment.</sub>")
+
+    %% === FUTURE WORK ===
+    %% @production_test [ai-task, opened, 2026-02-15, antigravity]
+    production_test("Production Validation<br/><sub>Verify authentication flow and<br/>database connectivity on the<br/>live Cloudflare environment.</sub>")
+
+    %% === CONNECTIONS ===
+    project_start --> supabase_schema
+    supabase_schema --> render_fix_attempt
+    render_fix_attempt --> cloudflare_guide
+    cloudflare_guide --> public_folder_recreation
+    public_folder_recreation --> dependency_fix
+    dependency_fix --> build_verification
+    build_verification --> production_test
+    production_test -.-> ultimate_goal
+
+    %% === RECENT WORK HIGHLIGHT ===
+    subgraph recent [RECENT]
+        build_verification
+    end
+
+    %% === STYLES ===
+    %% Closed tasks (soft purple)
+    style project_start fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style supabase_schema fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style render_fix_attempt fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style cloudflare_guide fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style public_folder_recreation fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style dependency_fix fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+
+    %% Recent node (highlighted purple)
+    style build_verification fill:#2d1f4e,stroke:#c084fc,color:#e9d5ff,stroke-width:2px
+
+    %% Recent subgraph (dashed border)
+    style recent fill:transparent,stroke:#c084fc,color:#c084fc,stroke-width:2px,stroke-dasharray:5 5
+
+    %% Open tasks (soft green)
+    style ultimate_goal fill:#1a1a2e,stroke:#4ade80,color:#86efac,stroke-width:1px
+    style production_test fill:#1a1a2e,stroke:#4ade80,color:#86efac,stroke-width:1px

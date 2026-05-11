@@ -1,0 +1,23 @@
+vault_path: "../../../vault"
+derived_dirname: "_derived"
+modules_dirname: "modules"
+
+host: "0.0.0.0"
+port: 8787
+
+poll_interval_sec: 1.0
+debounce_ms: 500
+
+strict: false
+clean_derived_on_build: false
+
+ignore_dirnames:
+  - "_derived"
+  - ".git"
+  - "node_modules"
+ignore_extensions:
+  - ".bak"
+  - ".tmp"
+  - ".swp"
+ignore_prefixes:
+  - "~$"

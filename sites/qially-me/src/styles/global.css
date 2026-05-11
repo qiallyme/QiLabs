@@ -36,12 +36,12 @@
   --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
 
-  --tea-main: oklch(12.9% 0.042 264.7);
-  --tea-main-light: oklch(30% 0.04 264.7);
-  --tea-secondary: oklch(60% 0.04 264.7);
-  --tea-light: oklch(27.9% 0.041 260.031);
-  --tea-bg: oklch(95% 0.01 264.7);
-  --tea-gray: oklch(86.9% 0.022 252.894);
+  --tea-main: oklch(25% 0.042 264.7);
+  --tea-main-light: oklch(40% 0.04 264.7);
+  --tea-secondary: oklch(65% 0.04 264.7);
+  --tea-light: oklch(20.9% 0.041 260.031);
+  --tea-bg: oklch(5% 0.01 264.7);
+  --tea-gray: oklch(15.9% 0.022 252.894);
   /* slate-300 */
   --tea-gray-light: oklch(70% 0.01 264.7);
   --tea-light-alpha: oklch(90% 0.02 264.7 / 0.3);
@@ -115,6 +115,9 @@ pre.mermaid {
   --color-nebula: hsl(var(--nebula));
   --color-solar: hsl(var(--solar));
   --color-cosmic: hsl(var(--cosmic));
+  --color-tea-main: var(--tea-main);
+  --color-tea-bg: var(--tea-bg);
+  --color-tea-gray: var(--tea-gray);
 }
 
 @layer base {

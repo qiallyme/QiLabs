@@ -4,20 +4,18 @@ import { useAuth } from '@/contexts/AuthContext';
 import { 
   LayoutDashboard, Folder, Book, Gavel, DollarSign, 
   User, Settings, LogOut, Menu, X, Sparkles, ChevronLeft, ChevronRight,
-  Shield, Bell
+  Shield, Bell, Home, Heart
 } from 'lucide-react';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { cn } from '@/lib/utils';
+import UserAvatar from '@/components/UserAvatar';
 
 const moduleIconMap: any = {
   cases: Gavel,
   vault: Folder,
   knowledge: Book,
   tax: DollarSign,
+  qihome: Home,
+  qicare: Heart,
 };
 
 export default function ModernLayout() {
@@ -188,9 +186,11 @@ export default function ModernLayout() {
                     <div className="text-xs font-bold text-white group-hover:text-purple-400 transition-colors uppercase tracking-tight">{profile?.full_name || 'Incognito User'}</div>
                     <div className="text-[10px] text-gray-500 font-bold uppercase tracking-widest leading-none mt-1">Operator Profile</div>
                  </div>
-                 <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 text-sm font-black group-hover:border-purple-600/50 group-hover:scale-105 transition-all">
-                    {profile?.avatar_url ? <img src={profile.avatar_url} className="w-full h-full object-cover rounded-2xl" /> : profile?.full_name?.[0]}
-                 </div>
+                 <UserAvatar 
+                   url={profile?.avatar_url || null} 
+                   name={profile?.full_name || null}
+                   className="group-hover:border-purple-600/50 group-hover:scale-105 transition-all"
+                 />
               </div>
            </div>
         </div>

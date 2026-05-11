@@ -1,0 +1,5 @@
+category: void ab initio - RETURNS
+tags: [due-process, constitutional-defects]
+---
+This legal memorandum outlines a strategic argument for voiding a default judgment in a foreclosure case based on a lack of personal jurisdiction. The primary contention is that the plaintiff withheld information regarding the defendant’s disability, which directly impeded the defendant's ability to receive and process standard legal notice. By failing to disclose these limitations or provide alternative communication methods, the plaintiff allegedly violated both constitutional due process and the Americans with Disabilities Act. The text asserts that because the plaintiff knew traditional service would be ineffective but took no additional steps, the resulting notice was constitutionally deficient. Consequently, the author argues the court never obtained jurisdiction, rendering the previous judgment legally void from its inception. This document serves as a specialized template designed to force judicial recognition of ADA accommodations within the context of service of process.
+
