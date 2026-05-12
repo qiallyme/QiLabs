@@ -250,3 +250,116 @@ python_core/core_tools.zip
 apps/MomsCare/
 
 python_local/core_tools.zip
+
+# ------------------------------------------------------------
+# QiAccess / Local Runtime / Cloudflare
+# ------------------------------------------------------------
+
+.wrangler/
+.dev.vars
+.runtime/
+.local/
+local/
+*.local
+*.tmp
+tmp/
+temp/
+
+# Cloudflare / deployment secrets
+wrangler.toml.local
+*.secrets
+secrets/
+**/secrets/
+**/.secrets/
+
+# ------------------------------------------------------------
+# Vite / generated config artifacts
+# ------------------------------------------------------------
+
+vite.config.js
+vite.config.d.ts
+tailwind.config.js
+tailwind.config.d.ts
+postcss.config.js
+postcss.config.d.ts
+
+# Keep source TS configs tracked if they exist
+!vite.config.ts
+!tailwind.config.ts
+!postcss.config.ts
+
+# ------------------------------------------------------------
+# Obsidian vault config
+# Keep stable config, ignore churn
+# ------------------------------------------------------------
+
+# Ignore default Obsidian config if it appears accidentally.
+docs/.obsidian/
+
+# Track the intentional QiDocs profile, but ignore volatile files.
+!docs/.obsidian-qidocs/
+!docs/.obsidian-qidocs/**
+docs/.obsidian-qidocs/workspace.json
+docs/.obsidian-qidocs/workspace-mobile.json
+docs/.obsidian-qidocs/workspace*/
+docs/.obsidian-qidocs/cache/
+docs/.obsidian-qidocs/.trash/
+docs/.obsidian-qidocs/plugins/*/data.json
+
+# Optional: ignore Obsidian trash anywhere.
+.trash/
+**/.trash/
+
+# ------------------------------------------------------------
+# Generated docs / audits / diagrams
+# ------------------------------------------------------------
+
+# Keep audit markdown if desired, but ignore large generated CSV churn.
+docs/30_audits/*_findings.csv
+docs/30_audits/*_summary.csv
+
+# Generated MarkMind exports. Keep source maps if intentionally promoted.
+docs/**/_markmind_export.md
+
+# If blueprint_map.md is generated, ignore it unless you want it committed.
+# Uncomment if generated maps should not be tracked.
+# docs/10_blueprint/assets/diagrams/blueprint_map.md
+
+# ------------------------------------------------------------
+# Python local tooling artifacts
+# ------------------------------------------------------------
+
+tools/**/__pycache__/
+tools/**/*.pyc
+tools/**/*.pyo
+tools/**/*.log
+
+# Local toolbox/generated archives
+python_core/core_tools.zip
+python_local/core_tools.zip
+**/core_tools.zip
+
+# ------------------------------------------------------------
+# Local databases / indexes / vector stores
+# ------------------------------------------------------------
+
+**/*.db
+**/*.sqlite
+**/*.sqlite3
+**/*.vec
+**/*.index
+**/*.faiss
+**/*.ann
+**/*.qdrant
+*.index
+
+# ------------------------------------------------------------
+# OS / editor clutter
+# ------------------------------------------------------------
+
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.Spotlight-V100/
+.Trashes/
