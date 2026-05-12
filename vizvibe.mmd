@@ -90,9 +90,12 @@ flowchart TD
     %% @qiaccess_ui_repair [ai-task, closed, 2026-05-10, antigravity]
     qiaccess_ui_repair("QiAccess UI & Registry Sync<br/><sub>Restored local build stability by<br/>fixing pnpm resolution, updating<br/>service registry links, and<br/>streamlining the Homepage UI.</sub>")
 
+    %% @brain_alignment_final [ai-task, closed, 2026-05-12, antigravity]
+    brain_alignment_final("System Brain Alignment<br/><sub>Completed final structural alignment<br/>with strict 10-70 numbering across<br/>all layers. Resolved UI numbering<br/>collisions and fixed build errors.</sub>")
+
     %% === RECENT WORK ===
     subgraph recent [RECENT]
-        qiaccess_ui_repair
+        brain_alignment_final
     end
 
     %% === FUTURE WORK ===
@@ -107,20 +110,14 @@ flowchart TD
     legacy_cleanup("Decommission Legacy Apps<br/><sub>Systematically archive or delete<br/>standalone app folders (qitax, qicase,<br/>etc.) now that qi1ne-portal is the<br/>production source of truth.</sub>")
 
     %% === CONNECTIONS ===
-    project_start --> portal_integration
-    portal_integration --> auth_upgrade
-    auth_upgrade --> profile_sync
-    profile_sync --> domain_expansion
-    domain_expansion --> operational_hardening
-    operational_hardening --> consolidation_success
+    project_start --> consolidation_success
     consolidation_success --> homepage_setup
     homepage_setup --> web_only_decision
     web_only_decision --> homepage_config
     homepage_config --> homepage_polish
     homepage_polish --> moms_care_scaffold
     moms_care_scaffold --> moms_care_schema
-    moms_care_schema --> moms_care_today_screen
-    moms_care_today_screen --> live_dashboard_interaction
+    moms_care_schema --> live_dashboard_interaction
     live_dashboard_interaction --> legacy_port
     legacy_port --> momscare_repo_split
     momscare_repo_split --> deployment_lockfile_fix
@@ -129,7 +126,8 @@ flowchart TD
     care_schema_types --> type_import_fix
     type_import_fix --> qinexus_reorg_ph0
     qinexus_reorg_ph0 --> qiaccess_ui_repair
-    qiaccess_ui_repair --> paperless_setup
+    qiaccess_ui_repair --> brain_alignment_final
+    brain_alignment_final --> paperless_setup
     paperless_setup --> qi_queue_worker
     qi_queue_worker -.-> legacy_cleanup
     legacy_cleanup -.-> ultimate_goal
@@ -137,19 +135,25 @@ flowchart TD
     %% === STYLES ===
     %% Closed tasks (soft purple)
     style project_start fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style portal_integration fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style auth_upgrade fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style profile_sync fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style domain_expansion fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style operational_hardening fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
     style consolidation_success fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
     style homepage_setup fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
     style web_only_decision fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
     style homepage_config fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
     style homepage_polish fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style moms_care_scaffold fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style moms_care_schema fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style live_dashboard_interaction fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style legacy_port fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style momscare_repo_split fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style deployment_lockfile_fix fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style worker_config_sync fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style care_schema_types fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style type_import_fix fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style qinexus_reorg_ph0 fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
+    style qiaccess_ui_repair fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
 
     %% Recent node (highlighted purple)
-    style qiaccess_ui_repair fill:#2d1f4e,stroke:#c084fc,color:#e9d5ff,stroke-width:2px
+    style brain_alignment_final fill:#2d1f4e,stroke:#c084fc,color:#e9d5ff,stroke-width:2px
 
     %% Recent subgraph (dashed border)
     style recent fill:transparent,stroke:#c084fc,color:#c084fc,stroke-width:2px,stroke-dasharray:5 5
@@ -159,20 +163,3 @@ flowchart TD
     style legacy_cleanup fill:#1a1a2e,stroke:#4ade80,color:#86efac,stroke-width:1px
     style paperless_setup fill:#1a1a2e,stroke:#4ade80,color:#86efac,stroke-width:1px
     style qi_queue_worker fill:#1a1a2e,stroke:#4ade80,color:#86efac,stroke-width:1px
-
-    %% MomsCare styles
-    style moms_care_scaffold fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style moms_care_schema fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style moms_care_today_screen fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style live_dashboard_interaction fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style legacy_port fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style momscare_repo_split fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style deployment_lockfile_fix fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style worker_config_sync fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style care_schema_types fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style type_import_fix fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style qinexus_reorg_ph0 fill:#1a1a2e,stroke:#a78bfa,color:#c4b5fd,stroke-width:1px
-    style qiaccess_ui_repair fill:#2d1f4e,stroke:#c084fc,color:#e9d5ff,stroke-width:2px
-
-
-
