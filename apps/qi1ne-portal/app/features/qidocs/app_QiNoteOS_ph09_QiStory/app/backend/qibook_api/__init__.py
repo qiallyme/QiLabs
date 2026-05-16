@@ -1,2 +1,0 @@
-"""QiBook Local API package."""
-
