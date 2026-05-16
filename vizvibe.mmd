@@ -97,9 +97,12 @@ flowchart TD
     %% @repo_sync_walk [ai-task, closed, 2026-05-15, antigravity]
     repo_sync_walk("Repository Sync Walk<br/><sub>Performed a comprehensive walk<br/>of all sub-repos in QiLabs and<br/>QiNexus workspaces, committing<br/>pending changes and pushing to<br/>respective remotes.</sub>")
 
+    %% @qilegacy_build_fix [ai-task, closed, 2026-05-15, antigravity]
+    qilegacy_build_fix("QiLegacy Build Fix<br/><sub>Resolved PostCSS configuration<br/>conflict by isolating the sub-app<br/>from root Tailwind CSS plugins<br/>that were causing build failures.</sub>")
+
     %% === RECENT WORK ===
     subgraph recent [RECENT]
-        repo_sync_walk
+        qilegacy_build_fix
     end
 
     %% === FUTURE WORK ===
@@ -132,7 +135,8 @@ flowchart TD
     qinexus_reorg_ph0 --> qiaccess_ui_repair
     qiaccess_ui_repair --> brain_alignment_final
     brain_alignment_final --> repo_sync_walk
-    repo_sync_walk --> paperless_setup
+    repo_sync_walk --> qilegacy_build_fix
+    qilegacy_build_fix --> paperless_setup
     paperless_setup --> qi_queue_worker
     qi_queue_worker -.-> legacy_cleanup
     legacy_cleanup -.-> ultimate_goal
