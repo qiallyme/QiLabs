@@ -1,20 +1,39 @@
-import { useEffect, useState, startTransition } from "react";
+import { startTransition, useEffect, useRef, useState } from "react";
 import { emptyPacket, steps } from "./data/blueprint";
 import {
   buildActivePreview,
+  buildJurisdictionReviewChecklist,
+  buildPacketReadiness,
   buildPrintableDocuments,
+  buildReviewSections,
   calculateSectionCompletion,
 } from "./lib/documents";
-import { downloadPacketBackup, loadPacket, savePacket } from "./lib/storage";
+import {
+  downloadPacketBackup,
+  importPacketBackup,
+  loadPacket,
+  savePacket,
+} from "./lib/storage";
 import type {
   AssetRecord,
   BeneficiaryAccountRecord,
   PacketState,
   PersonRecord,
   PersonRoleKey,
+  ReadinessIssue,
   StepDefinition,
   StepId,
 } from "./types";
+
+type ChoiceOption = {
+  label: string;
+  value: string;
+};
+
+type NoticeState = {
+  tone: "info" | "success" | "error";
+  text: string;
+};
 
 const roleLabels: Record<PersonRoleKey, string> = {
   executor: "Executor / Personal Representative",
@@ -27,9 +46,94 @@ const roleLabels: Record<PersonRoleKey, string> = {
   primaryHipaaRecipient: "Primary HIPAA Recipient",
 };
 
+const remainsOptions: ChoiceOption[] = [
+  { label: "Select remains instructions", value: "" },
+  { label: "Burial", value: "Burial" },
+  { label: "Cremation", value: "Cremation" },
+  { label: "Donation to science", value: "Donation to science" },
+  { label: "Green burial", value: "Green burial" },
+  { label: "Custom written instructions", value: "Custom written instructions" },
+];
+
+const lifeSupportOptions: ChoiceOption[] = [
+  { label: "Select life support preference", value: "" },
+  {
+    label: "Continue only if meaningful recovery is likely",
+    value: "Continue only if meaningful recovery to an interactive quality of life is likely.",
+  },
+  {
+    label: "Short-term trial, then comfort care if no improvement",
+    value: "Allow a short-term trial of life support, then shift to comfort-focused care if recovery is not occurring.",
+  },
+  {
+    label: "Comfort-focused care only",
+    value: "Prefer comfort-focused care and decline prolonged life-sustaining treatment when recovery is unlikely.",
+  },
+  {
+    label: "Follow agent and physician guidance with written limits",
+    value: "Allow the health-care agent and treating physician to apply written limits based on the medical situation.",
+  },
+];
+
+const cprOptions: ChoiceOption[] = [
+  { label: "Select CPR preference", value: "" },
+  { label: "Attempt CPR unless physician advises otherwise", value: "Attempt CPR unless the treating physician advises otherwise." },
+  { label: "Do not resuscitate / DNR", value: "Do not attempt resuscitation (DNR)." },
+  { label: "Case-by-case with agent guidance", value: "Use case-by-case guidance from the health-care agent and physician." },
+];
+
+const feedingTubeOptions: ChoiceOption[] = [
+  { label: "Select feeding tube preference", value: "" },
+  { label: "Allow short-term only", value: "Allow feeding tubes only for short-term stabilization or recovery." },
+  { label: "Allow if recovery is likely", value: "Allow feeding tubes when recovery to an acceptable quality of life is likely." },
+  { label: "Decline artificial feeding", value: "Decline artificial feeding when recovery is unlikely." },
+  { label: "Agent decides with physician", value: "Allow the health-care agent to decide with the physician based on the situation." },
+];
+
+const organDonationOptions: ChoiceOption[] = [
+  { label: "Select organ donation preference", value: "" },
+  { label: "Donate any medically suitable organs", value: "Donate any medically suitable organs and tissue." },
+  { label: "Donate limited organs or tissue only", value: "Donate only the organs or tissue specifically approved by the principal or family." },
+  { label: "Do not donate organs or tissue", value: "Do not donate organs or tissue." },
+  { label: "Family decides at time of death", value: "Allow the family and health-care agent to decide at the time of death." },
+];
+
+const autopsyOptions: ChoiceOption[] = [
+  { label: "Select autopsy preference", value: "" },
+  { label: "Allow if medically or legally necessary", value: "Allow an autopsy when medically or legally necessary." },
+  { label: "Allow with family approval", value: "Allow an autopsy only with family or agent approval unless required by law." },
+  { label: "Decline autopsy unless required by law", value: "Decline an autopsy unless required by law." },
+];
+
+const trustStatusOptions: ChoiceOption[] = [
+  { label: "Select trust status", value: "" },
+  { label: "Optional but recommended", value: "Optional but recommended when probate avoidance matters." },
+  { label: "Yes, plan to use a living trust", value: "Yes, the estate plan should include a revocable living trust." },
+  { label: "No, not part of this packet", value: "No, a living trust is not part of this packet at this time." },
+];
+
+const witnessCountOptions: ChoiceOption[] = [
+  { label: "Select witness count", value: "" },
+  { label: "1 witness", value: "1" },
+  { label: "2 witnesses", value: "2" },
+  { label: "3 witnesses", value: "3" },
+  { label: "Check state rules first", value: "Confirm by state before signing" },
+];
+
+const notaryOptions: ChoiceOption[] = [
+  { label: "Select notary plan", value: "" },
+  { label: "Notary required for some documents", value: "Review by state before execution" },
+  { label: "Notary scheduled for final signing", value: "Notary scheduled for the final signing session." },
+  { label: "Attorney will confirm notary needs", value: "Attorney review will confirm which documents need notarization." },
+  { label: "Witness-only plan pending state review", value: "Witness-only execution may be possible, pending state review." },
+];
+
 function App() {
   const [activeStep, setActiveStep] = useState<StepId>("overview");
   const [packet, setPacket] = useState<PacketState>(() => loadPacket());
+  const [notice, setNotice] = useState<NoticeState | null>(null);
+  const [isImporting, setIsImporting] = useState(false);
+  const importInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     setPacket((current) => ({
@@ -43,24 +147,41 @@ function App() {
   }, [packet]);
 
   const completion = calculateSectionCompletion(packet);
+  const readiness = buildPacketReadiness(packet);
   const printableDocuments = buildPrintableDocuments(packet);
   const activePreview = buildActivePreview(packet, activeStep);
+  const reviewSections = buildReviewSections(packet);
+  const jurisdictionChecklist = buildJurisdictionReviewChecklist(packet);
   const overallCompletion = Math.round(
     Object.values(completion).reduce((sum, value) => sum + value, 0) /
       Object.keys(completion).length,
   );
 
+  function stampPacket(next: PacketState): PacketState {
+    return {
+      ...next,
+      lastUpdatedAt: new Date().toLocaleString(),
+    };
+  }
+
+  function applyPacketUpdate(updater: (current: PacketState) => PacketState) {
+    setPacket((current) => stampPacket(updater(current)));
+  }
+
+  function goToStep(stepId: StepId) {
+    startTransition(() => setActiveStep(stepId));
+  }
+
   function updateHousehold<K extends keyof PacketState["household"]>(
     key: K,
     value: PacketState["household"][K],
   ) {
-    setPacket((current) => ({
+    applyPacketUpdate((current) => ({
       ...current,
       household: {
         ...current.household,
         [key]: value,
       },
-      lastUpdatedAt: new Date().toLocaleString(),
     }));
   }
 
@@ -69,7 +190,7 @@ function App() {
     key: keyof PersonRecord,
     value: string,
   ) {
-    setPacket((current) => ({
+    applyPacketUpdate((current) => ({
       ...current,
       people: {
         ...current.people,
@@ -78,7 +199,6 @@ function App() {
           [key]: value,
         },
       },
-      lastUpdatedAt: new Date().toLocaleString(),
     }));
   }
 
@@ -89,28 +209,26 @@ function App() {
     >,
     ValueKey extends keyof PacketState[SectionKey],
   >(section: SectionKey, key: ValueKey, value: PacketState[SectionKey][ValueKey]) {
-    setPacket((current) => ({
+    applyPacketUpdate((current) => ({
       ...current,
       [section]: {
         ...current[section],
         [key]: value,
       },
-      lastUpdatedAt: new Date().toLocaleString(),
     }));
   }
 
   function updateAsset(id: string, key: keyof AssetRecord, value: string | boolean) {
-    setPacket((current) => ({
+    applyPacketUpdate((current) => ({
       ...current,
       assets: current.assets.map((asset) =>
         asset.id === id ? { ...asset, [key]: value } : asset,
       ),
-      lastUpdatedAt: new Date().toLocaleString(),
     }));
   }
 
   function addAsset() {
-    setPacket((current) => ({
+    applyPacketUpdate((current) => ({
       ...current,
       assets: [
         ...current.assets,
@@ -124,15 +242,13 @@ function App() {
           notes: "",
         },
       ],
-      lastUpdatedAt: new Date().toLocaleString(),
     }));
   }
 
   function removeAsset(id: string) {
-    setPacket((current) => ({
+    applyPacketUpdate((current) => ({
       ...current,
       assets: current.assets.filter((asset) => asset.id !== id),
-      lastUpdatedAt: new Date().toLocaleString(),
     }));
   }
 
@@ -141,17 +257,16 @@ function App() {
     key: keyof BeneficiaryAccountRecord,
     value: string,
   ) {
-    setPacket((current) => ({
+    applyPacketUpdate((current) => ({
       ...current,
       beneficiaryAccounts: current.beneficiaryAccounts.map((entry) =>
         entry.id === id ? { ...entry, [key]: value } : entry,
       ),
-      lastUpdatedAt: new Date().toLocaleString(),
     }));
   }
 
   function addBeneficiary() {
-    setPacket((current) => ({
+    applyPacketUpdate((current) => ({
       ...current,
       beneficiaryAccounts: [
         ...current.beneficiaryAccounts,
@@ -166,24 +281,59 @@ function App() {
           reviewedOn: "",
         },
       ],
-      lastUpdatedAt: new Date().toLocaleString(),
     }));
   }
 
   function removeBeneficiary(id: string) {
-    setPacket((current) => ({
+    applyPacketUpdate((current) => ({
       ...current,
       beneficiaryAccounts: current.beneficiaryAccounts.filter((entry) => entry.id !== id),
-      lastUpdatedAt: new Date().toLocaleString(),
     }));
   }
 
   function resetPacket() {
-    setPacket({
-      ...emptyPacket,
-      lastUpdatedAt: new Date().toLocaleString(),
+    setPacket(stampPacket(emptyPacket));
+    setNotice({
+      tone: "info",
+      text: "The questionnaire was reset. Import a backup if you meant to restore a prior draft.",
     });
-    startTransition(() => setActiveStep("overview"));
+    goToStep("overview");
+  }
+
+  async function handleImportChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+
+    if (!file) {
+      return;
+    }
+
+    setIsImporting(true);
+    setNotice({
+      tone: "info",
+      text: `Importing ${file.name}. The restored packet will replace the current in-browser draft.`,
+    });
+
+    try {
+      const importedPacket = await importPacketBackup(file);
+      setPacket(stampPacket(importedPacket));
+      setNotice({
+        tone: "success",
+        text: `Imported ${file.name}. Review the restored packet before final export.`,
+      });
+      goToStep("export");
+    } catch (error) {
+      setNotice({
+        tone: "error",
+        text: error instanceof Error ? error.message : "The backup file could not be imported.",
+      });
+    } finally {
+      setIsImporting(false);
+    }
+  }
+
+  function triggerImport() {
+    importInputRef.current?.click();
   }
 
   function StepNavItem({ step }: { step: StepDefinition }) {
@@ -194,7 +344,7 @@ function App() {
         className={`step-nav-item${isActive ? " is-active" : ""}`}
         type="button"
         onClick={() => {
-          startTransition(() => setActiveStep(step.id));
+          goToStep(step.id);
         }}
       >
         <span className="step-nav-title">{step.label}</span>
@@ -226,6 +376,31 @@ function App() {
           placeholder={placeholder}
           onChange={(event) => onChange(event.target.value)}
         />
+      </label>
+    );
+  }
+
+  function SelectField({
+    label,
+    value,
+    onChange,
+    options,
+  }: {
+    label: string;
+    value: string;
+    onChange: (next: string) => void;
+    options: ChoiceOption[];
+  }) {
+    return (
+      <label className="field">
+        <span>{label}</span>
+        <select value={value} onChange={(event) => onChange(event.target.value)}>
+          {options.map((option) => (
+            <option key={option.label} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       </label>
     );
   }
@@ -315,6 +490,36 @@ function App() {
     );
   }
 
+  function IssueList({
+    title,
+    issues,
+    emptyText,
+  }: {
+    title: string;
+    issues: ReadinessIssue[];
+    emptyText: string;
+  }) {
+    return (
+      <div className="editor-card inset">
+        <h3>{title}</h3>
+        {issues.length ? (
+          <ul className="issue-list">
+            {issues.map((issue) => (
+              <li key={`${issue.stepId}-${issue.label}`}>
+                <button type="button" className="issue-link" onClick={() => goToStep(issue.stepId)}>
+                  {issue.label}
+                </button>
+                <span>{issue.detail}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>{emptyText}</p>
+        )}
+      </div>
+    );
+  }
+
   function renderOverview() {
     return (
       <div className="stack">
@@ -324,7 +529,7 @@ function App() {
             <h1>{packet.household.packetTitle}</h1>
             <p className="hero-copy">
               This app turns the legacy QiLegacy document bundle into a guided,
-              editable packet with live preview and printable PDF kit output.
+              editable packet with live preview, red-line review, and printable PDF output.
             </p>
           </div>
           <div className="hero-metrics">
@@ -333,8 +538,8 @@ function App() {
               <strong>{overallCompletion}%</strong>
             </div>
             <div className="metric">
-              <span>Printable documents</span>
-              <strong>{printableDocuments.length}</strong>
+              <span>Required blockers</span>
+              <strong>{readiness.requiredIssues.length}</strong>
             </div>
             <div className="metric">
               <span>Storage mode</span>
@@ -345,8 +550,23 @@ function App() {
 
         <section className="data-warning" aria-label="Draft retention warning">
           <strong>Important:</strong> This draft is saved only in this browser on this device.
-          Print the PDF kit or download the JSON backup before you leave, switch devices,
-          clear browser data, or reset this packet.
+          Import the JSON backup if you return later on the same machine, and always save the PDF
+          packet plus the JSON backup before switching devices or clearing browser data.
+        </section>
+
+        <section
+          className={`status-panel${readiness.isReadyToFinalize ? " is-success" : " is-warning"}`}
+        >
+          <strong>
+            {readiness.isReadyToFinalize
+              ? "Required export blockers are clear."
+              : `${readiness.requiredIssues.length} required item(s) still block final export.`}
+          </strong>
+          <p>
+            {readiness.isReadyToFinalize
+              ? "Use the Export Kit step for final review, state-law confirmation, and PDF generation."
+              : "Open Export Kit to review the blocker list, state-law checklist, and read-only packet summary."}
+          </p>
         </section>
 
         <section className="grid two-up">
@@ -359,6 +579,7 @@ function App() {
             </div>
             <ul className="plain-list">
               <li>Last Will and Testament</li>
+              <li>Readiness Review and State-Law Checklist</li>
               <li>Living Will and Health Care Power</li>
               <li>Durable Power of Attorney (Financial)</li>
               <li>HIPAA Authorization</li>
@@ -377,10 +598,10 @@ function App() {
             </div>
             <ul className="plain-list">
               <li>Jurisdiction state and full legal identity details</li>
-              <li>Executor, agents, trustee, guardian, and HIPAA recipient names</li>
-              <li>Medical directive preferences like CPR, life support, and organ donation</li>
+              <li>Executor, health-care agent, attorney-in-fact, and HIPAA recipient names</li>
+              <li>Structured life-support and CPR directives</li>
               <li>Specific asset transfers and outside-the-will account beneficiaries</li>
-              <li>Funeral, memorial, and digital-estate instructions</li>
+              <li>Remains instructions, storage plan, and attorney review status</li>
             </ul>
           </div>
         </section>
@@ -545,37 +766,40 @@ function App() {
             </div>
           </div>
           <div className="grid two-up">
-            <TextArea
+            <SelectField
               label="Life support preference"
               value={packet.healthCare.lifeSupportPreference}
               onChange={(value) => updateSection("healthCare", "lifeSupportPreference", value)}
-              placeholder="Conditions for withholding or withdrawing life-sustaining treatment."
+              options={lifeSupportOptions}
             />
-            <TextArea
+            <SelectField
               label="CPR / resuscitation preference"
               value={packet.healthCare.cprPreference}
               onChange={(value) => updateSection("healthCare", "cprPreference", value)}
-              placeholder="CPR, DNR, DNI, or case-by-case directions."
+              options={cprOptions}
             />
-            <TextArea
+            <SelectField
               label="Feeding tube preference"
               value={packet.healthCare.feedingTubePreference}
               onChange={(value) => updateSection("healthCare", "feedingTubePreference", value)}
+              options={feedingTubeOptions}
             />
             <TextArea
               label="Comfort care and pain management"
               value={packet.healthCare.comfortCarePreference}
               onChange={(value) => updateSection("healthCare", "comfortCarePreference", value)}
             />
-            <TextArea
+            <SelectField
               label="Organ donation preference"
               value={packet.healthCare.organDonationPreference}
               onChange={(value) => updateSection("healthCare", "organDonationPreference", value)}
+              options={organDonationOptions}
             />
-            <TextArea
+            <SelectField
               label="Autopsy preference"
               value={packet.healthCare.autopsyPreference}
               onChange={(value) => updateSection("healthCare", "autopsyPreference", value)}
+              options={autopsyOptions}
             />
           </div>
           <TextArea
@@ -679,10 +903,11 @@ function App() {
             </div>
           </div>
           <div className="grid two-up">
-            <TextArea
+            <SelectField
               label="Trust status"
               value={packet.trust.trustEnabled}
               onChange={(value) => updateSection("trust", "trustEnabled", value)}
+              options={trustStatusOptions}
             />
             <Field
               label="Trust name"
@@ -853,11 +1078,11 @@ function App() {
             </div>
           </div>
           <div className="grid two-up">
-            <Field
+            <SelectField
               label="Disposition of remains"
               value={packet.finalWishes.remainsPreference}
               onChange={(value) => updateSection("finalWishes", "remainsPreference", value)}
-              placeholder="Burial, cremation, donation, green burial, or custom instructions"
+              options={remainsOptions}
             />
             <Field
               label="Preferred funeral home"
@@ -922,15 +1147,17 @@ function App() {
             </div>
           </div>
           <div className="grid two-up">
-            <Field
+            <SelectField
               label="Witness count"
               value={packet.signatures.witnessCount}
               onChange={(value) => updateSection("signatures", "witnessCount", value)}
+              options={witnessCountOptions}
             />
-            <Field
+            <SelectField
               label="Notary requirement"
               value={packet.signatures.notaryRequired}
               onChange={(value) => updateSection("signatures", "notaryRequired", value)}
+              options={notaryOptions}
             />
           </div>
           <div className="grid two-up">
@@ -963,42 +1190,96 @@ function App() {
           <div className="section-heading">
             <div>
               <h2>Export Kit</h2>
-              <p>Print or download this packet now if you need a retained copy outside this browser.</p>
+              <p>Run the red-line review here before printing or saving the packet.</p>
             </div>
-            <div className="button-row">
-              <button className="primary-button" type="button" onClick={() => window.print()}>
-                Print / Save PDF Kit
+            <div className="button-row wrap-actions">
+              <button
+                className="primary-button"
+                type="button"
+                disabled={!readiness.isReadyToFinalize}
+                onClick={() => window.print()}
+              >
+                Finalize PDF Kit
+              </button>
+              <button className="secondary-button" type="button" onClick={() => window.print()}>
+                Print Draft Review Copy
               </button>
               <button className="secondary-button" type="button" onClick={() => downloadPacketBackup(packet)}>
                 Download JSON Backup
               </button>
+              <button className="ghost-button" type="button" disabled={isImporting} onClick={triggerImport}>
+                Import JSON Backup
+              </button>
             </div>
           </div>
-          <div className="data-warning compact" aria-label="Export reminder">
-            <strong>Before you leave:</strong> use both <span>Print / Save PDF Kit</span> and
-            <span> Download JSON Backup</span>. Browser autosave alone is not a safe final copy.
+
+          <div
+            className={`status-panel${readiness.isReadyToFinalize ? " is-success" : " is-warning"}`}
+            aria-label="Export readiness"
+          >
+            <strong>
+              {readiness.isReadyToFinalize
+                ? "Required blockers are clear. Final export can proceed."
+                : `${readiness.requiredIssues.length} required blocker(s) still need attention.`}
+            </strong>
+            <p>
+              {readiness.isReadyToFinalize
+                ? "Use Finalize PDF Kit for the production packet, then keep both the PDF and JSON backup."
+                : "Finalize PDF Kit stays disabled until the required blockers below are resolved. Print Draft Review Copy remains available for attorney review."}
+            </p>
           </div>
+
+          <div className="data-warning compact" aria-label="Export reminder">
+            <strong>Before you leave:</strong> keep both <span>Finalize PDF Kit</span> and
+            <span> Download JSON Backup</span> in your final handoff. Browser autosave alone is not a safe final copy.
+          </div>
+
           <div className="export-grid">
-            <div className="editor-card inset">
-              <h3>Packet contents</h3>
+            <IssueList
+              title="Required blockers"
+              issues={readiness.requiredIssues}
+              emptyText="No required blockers remain."
+            />
+            <IssueList
+              title="Recommended follow-up"
+              issues={readiness.recommendedIssues}
+              emptyText="No recommended follow-up items are currently flagged."
+            />
+          </div>
+        </section>
+
+        <section className="grid two-up">
+          {reviewSections.map((section) => (
+            <div className="editor-card inset" key={section.title}>
+              <h3>{section.title}</h3>
               <ul className="plain-list">
-                {printableDocuments.map((doc) => (
-                  <li key={doc.id}>
-                    <strong>{doc.title}</strong>
-                    <span>{doc.subtitle}</span>
-                  </li>
+                {section.items.map((item) => (
+                  <li key={item}>{item}</li>
                 ))}
               </ul>
             </div>
-            <div className="editor-card inset">
-              <h3>Recommended final workflow</h3>
-              <ul className="plain-list">
-                <li>Finish all red-line missing fields in Household, Will, Health Care, and Final Wishes.</li>
-                <li>Download the JSON backup and save the PDF packet before closing this browser session.</li>
-                <li>Generate the PDF kit and send it for legal review in the relevant state.</li>
-                <li>Collect signatures, witnesses, and notarization only after attorney confirmation.</li>
-              </ul>
-            </div>
+          ))}
+        </section>
+
+        <section className="grid two-up">
+          <div className="editor-card inset">
+            <h3>State-law execution checklist</h3>
+            <ul className="plain-list">
+              {jurisdictionChecklist.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="editor-card inset">
+            <h3>Packet contents</h3>
+            <ul className="plain-list">
+              {printableDocuments.map((doc) => (
+                <li key={doc.id}>
+                  <strong>{doc.title}</strong>
+                  <span>{doc.subtitle}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       </div>
@@ -1034,6 +1315,14 @@ function App() {
 
   return (
     <>
+      <input
+        ref={importInputRef}
+        className="visually-hidden"
+        type="file"
+        accept=".json,application/json"
+        onChange={handleImportChange}
+      />
+
       <div className="app-shell">
         <aside className="sidebar">
           <div className="brand-block">
@@ -1047,7 +1336,11 @@ function App() {
             <div className="progress-bar">
               <div style={{ width: `${overallCompletion}%` }} />
             </div>
-            <small>Saved only in this browser on this device until you export or back it up.</small>
+            <small>
+              {readiness.isReadyToFinalize
+                ? "Required blockers are clear. Use Export Kit for final review."
+                : `${readiness.requiredIssues.length} required blocker(s) still need attention before final export.`}
+            </small>
           </div>
           <nav className="step-nav">
             {steps.map((step) => (
@@ -1067,15 +1360,38 @@ function App() {
               <p className="eyebrow">{steps.find((step) => step.id === activeStep)?.label}</p>
               <h2>{steps.find((step) => step.id === activeStep)?.description}</h2>
             </div>
-            <div className="button-row">
+            <div className="button-row wrap-actions">
+              <button className="ghost-button" type="button" disabled={isImporting} onClick={triggerImport}>
+                Import JSON
+              </button>
               <button className="secondary-button" type="button" onClick={() => downloadPacketBackup(packet)}>
                 Backup JSON
               </button>
-              <button className="primary-button" type="button" onClick={() => window.print()}>
-                Export PDF Kit
+              <button
+                className="primary-button"
+                type="button"
+                onClick={() =>
+                  readiness.isReadyToFinalize ? window.print() : goToStep("export")
+                }
+              >
+                {readiness.isReadyToFinalize ? "Finalize PDF Kit" : "Resolve Export Issues"}
               </button>
             </div>
           </header>
+
+          {notice ? (
+            <section className={`status-panel is-${notice.tone}`} aria-live="polite">
+              <strong>
+                {notice.tone === "success"
+                  ? "Update saved."
+                  : notice.tone === "error"
+                    ? "Action failed."
+                    : "Notice."}
+              </strong>
+              <p>{notice.text}</p>
+            </section>
+          ) : null}
+
           <section className="content-panel">{renderStep()}</section>
         </main>
 
@@ -1089,6 +1405,13 @@ function App() {
             {activePreview.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
+            {activePreview.checklistItems?.length ? (
+              <ol className="plain-list plain-list-ordered">
+                {activePreview.checklistItems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            ) : null}
             {activePreview.bullets?.length ? (
               <ul>
                 {activePreview.bullets.map((bullet) => (
@@ -1101,7 +1424,7 @@ function App() {
       </div>
 
       <div className="print-root" aria-hidden="true">
-        {printableDocuments.map((document) => (
+        {printableDocuments.map((document, index) => (
           <section className="print-page" key={document.id}>
             <header className="print-header">
               <p>QiLegacy Estate Packet</p>
@@ -1111,6 +1434,13 @@ function App() {
             {document.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
+            {document.checklistItems?.length ? (
+              <ol className="print-checklist">
+                {document.checklistItems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            ) : null}
             {document.bullets?.length ? (
               <ul>
                 {document.bullets.map((bullet) => (
@@ -1118,9 +1448,16 @@ function App() {
                 ))}
               </ul>
             ) : null}
+            {document.signatureLines?.length ? (
+              <div className="signature-sheet">
+                {document.signatureLines.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+              </div>
+            ) : null}
             <footer className="print-footer">
-              <span>State review required before execution.</span>
-              <span>{packet.lastUpdatedAt || "Draft"}</span>
+              <span>{document.footerNote || "State review required before execution."}</span>
+              <span>Page {index + 1} of {printableDocuments.length}</span>
             </footer>
           </section>
         ))}

@@ -3,6 +3,26 @@ import type { PacketState } from "../types";
 
 const STORAGE_KEY = "qilegacy-estate-packet-v1";
 
+function hydratePacket(parsed: Partial<PacketState>): PacketState {
+  return {
+    ...emptyPacket,
+    ...parsed,
+    household: { ...emptyPacket.household, ...parsed.household },
+    people: { ...emptyPacket.people, ...parsed.people },
+    will: { ...emptyPacket.will, ...parsed.will },
+    healthCare: { ...emptyPacket.healthCare, ...parsed.healthCare },
+    financialPoa: { ...emptyPacket.financialPoa, ...parsed.financialPoa },
+    hipaa: { ...emptyPacket.hipaa, ...parsed.hipaa },
+    trust: { ...emptyPacket.trust, ...parsed.trust },
+    finalWishes: { ...emptyPacket.finalWishes, ...parsed.finalWishes },
+    signatures: { ...emptyPacket.signatures, ...parsed.signatures },
+    assets: parsed.assets?.length ? parsed.assets : emptyPacket.assets,
+    beneficiaryAccounts: parsed.beneficiaryAccounts?.length
+      ? parsed.beneficiaryAccounts
+      : emptyPacket.beneficiaryAccounts,
+  };
+}
+
 export function loadPacket(): PacketState {
   if (typeof window === "undefined") {
     return emptyPacket;
@@ -15,23 +35,7 @@ export function loadPacket(): PacketState {
 
   try {
     const parsed = JSON.parse(raw) as PacketState;
-    return {
-      ...emptyPacket,
-      ...parsed,
-      household: { ...emptyPacket.household, ...parsed.household },
-      people: { ...emptyPacket.people, ...parsed.people },
-      will: { ...emptyPacket.will, ...parsed.will },
-      healthCare: { ...emptyPacket.healthCare, ...parsed.healthCare },
-      financialPoa: { ...emptyPacket.financialPoa, ...parsed.financialPoa },
-      hipaa: { ...emptyPacket.hipaa, ...parsed.hipaa },
-      trust: { ...emptyPacket.trust, ...parsed.trust },
-      finalWishes: { ...emptyPacket.finalWishes, ...parsed.finalWishes },
-      signatures: { ...emptyPacket.signatures, ...parsed.signatures },
-      assets: parsed.assets?.length ? parsed.assets : emptyPacket.assets,
-      beneficiaryAccounts: parsed.beneficiaryAccounts?.length
-        ? parsed.beneficiaryAccounts
-        : emptyPacket.beneficiaryAccounts,
-    };
+    return hydratePacket(parsed);
   } catch {
     return emptyPacket;
   }
@@ -55,4 +59,15 @@ export function downloadPacketBackup(packet: PacketState): void {
   link.download = "qilegacy-estate-packet.json";
   link.click();
   URL.revokeObjectURL(url);
+}
+
+export async function importPacketBackup(file: File): Promise<PacketState> {
+  const raw = await file.text();
+
+  try {
+    const parsed = JSON.parse(raw) as Partial<PacketState>;
+    return hydratePacket(parsed);
+  } catch {
+    throw new Error("This JSON backup could not be read.");
+  }
 }

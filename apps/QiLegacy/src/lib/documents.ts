@@ -1,7 +1,18 @@
-import type { PacketState, PrintableDocument, StepId } from "../types";
+import type {
+  PacketReadiness,
+  PacketState,
+  PrintableDocument,
+  ReadinessIssue,
+  ReviewSection,
+  StepId,
+} from "../types";
+
+function hasText(value: string): boolean {
+  return value.trim().length > 0;
+}
 
 function orBlank(value: string, fallback = "[Pending]"): string {
-  return value.trim() || fallback;
+  return hasText(value) ? value.trim() : fallback;
 }
 
 function personLabel(
@@ -16,17 +27,30 @@ function personLabel(
     | "guardian"
     | "primaryHipaaRecipient",
 ): string {
-  const person = packet.people[key];
-  return orBlank(person.fullName);
+  return orBlank(packet.people[key].fullName);
 }
 
 function principal(packet: PacketState): string {
   return orBlank(packet.household.principalFullName);
 }
 
+function formatIssue(issue: ReadinessIssue): string {
+  return `${issue.label}: ${issue.detail}`;
+}
+
+function addIssue(
+  issues: ReadinessIssue[],
+  condition: boolean,
+  issue: ReadinessIssue,
+): void {
+  if (condition) {
+    issues.push(issue);
+  }
+}
+
 function assetSummary(packet: PacketState): string[] {
   const active = packet.assets.filter(
-    (asset) => asset.description.trim() || asset.intendedRecipient.trim(),
+    (asset) => hasText(asset.description) || hasText(asset.intendedRecipient),
   );
 
   if (!active.length) {
@@ -45,9 +69,9 @@ function assetSummary(packet: PacketState): string[] {
 function beneficiarySummary(packet: PacketState): string[] {
   const active = packet.beneficiaryAccounts.filter(
     (entry) =>
-      entry.institutionName.trim() ||
-      entry.accountLabel.trim() ||
-      entry.primaryBeneficiary.trim(),
+      hasText(entry.institutionName) ||
+      hasText(entry.accountLabel) ||
+      hasText(entry.primaryBeneficiary),
   );
 
   if (!active.length) {
@@ -65,11 +89,266 @@ function beneficiarySummary(packet: PacketState): string[] {
   });
 }
 
+function buildSignatureLines(packet: PacketState): string[] {
+  const witnessCount = Number.parseInt(packet.signatures.witnessCount, 10);
+  const normalizedWitnessCount = Number.isFinite(witnessCount) && witnessCount > 0
+    ? Math.min(witnessCount, 4)
+    : 2;
+
+  const lines = [
+    `${principal(packet)} signature: ______________________________________`,
+    "Date signed: ______________________________________",
+  ];
+
+  for (let index = 0; index < normalizedWitnessCount; index += 1) {
+    lines.push(`Witness ${index + 1} signature: ______________________________________`);
+    lines.push(`Witness ${index + 1} printed name: ___________________________________`);
+  }
+
+  lines.push("Notary acknowledgment / seal: ___________________________________");
+  return lines;
+}
+
+export function buildPacketReadiness(packet: PacketState): PacketReadiness {
+  const requiredIssues: ReadinessIssue[] = [];
+  const recommendedIssues: ReadinessIssue[] = [];
+
+  addIssue(requiredIssues, !hasText(packet.household.principalFullName), {
+    stepId: "household",
+    label: "Principal full legal name",
+    detail: "Add the exact legal name of the person whose estate packet is being prepared.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.household.jurisdictionState), {
+    stepId: "household",
+    label: "Jurisdiction state",
+    detail: "Choose the state whose execution rules the packet must follow.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.household.addressLine1), {
+    stepId: "household",
+    label: "Street address",
+    detail: "Add the principal address used for the packet and future attorney review.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.household.city) || !hasText(packet.household.state), {
+    stepId: "household",
+    label: "City and state",
+    detail: "Complete the jurisdictional address details before final export.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.household.postalCode), {
+    stepId: "household",
+    label: "Postal code",
+    detail: "Finish the principal mailing address.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.people.executor.fullName), {
+    stepId: "household",
+    label: "Executor / personal representative",
+    detail: "Name the primary person who handles the estate.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.will.primaryBeneficiary), {
+    stepId: "will",
+    label: "Primary beneficiary",
+    detail: "The will should not be finalized without a named primary beneficiary or estate plan direction.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.people.primaryHealthAgent.fullName), {
+    stepId: "healthCare",
+    label: "Primary health care agent",
+    detail: "Name the main health-care proxy before finalizing the directive.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.healthCare.lifeSupportPreference), {
+    stepId: "healthCare",
+    label: "Life support preference",
+    detail: "Choose a structured directive instead of leaving this open-ended.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.healthCare.cprPreference), {
+    stepId: "healthCare",
+    label: "CPR / resuscitation preference",
+    detail: "Record a resuscitation preference before export.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.people.attorneyInFact.fullName), {
+    stepId: "financialPoa",
+    label: "Attorney-in-fact",
+    detail: "Name the financial decision-maker for the power of attorney.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.people.primaryHipaaRecipient.fullName), {
+    stepId: "hipaa",
+    label: "Primary HIPAA recipient",
+    detail: "Choose who may receive medical-information disclosures.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.finalWishes.remainsPreference), {
+    stepId: "finalWishes",
+    label: "Disposition of remains",
+    detail: "Capture burial, cremation, donation, or other final remains instructions.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.signatures.notaryRequired), {
+    stepId: "signatures",
+    label: "Notary plan",
+    detail: "State how notarization will be handled before execution.",
+    severity: "required",
+  });
+  addIssue(requiredIssues, !hasText(packet.signatures.storagePlan), {
+    stepId: "signatures",
+    label: "Signed-copy storage plan",
+    detail: "Define where the executed originals and backups will live.",
+    severity: "required",
+  });
+
+  addIssue(recommendedIssues, !hasText(packet.will.alternateBeneficiary), {
+    stepId: "will",
+    label: "Alternate beneficiary",
+    detail: "Add a backup beneficiary path if the primary beneficiary cannot inherit.",
+    severity: "recommended",
+  });
+  addIssue(recommendedIssues, !hasText(packet.people.alternateExecutor.fullName), {
+    stepId: "household",
+    label: "Alternate executor",
+    detail: "A backup estate representative reduces handoff risk.",
+    severity: "recommended",
+  });
+  addIssue(recommendedIssues, !hasText(packet.people.alternateHealthAgent.fullName), {
+    stepId: "healthCare",
+    label: "Alternate health care agent",
+    detail: "Add a backup medical proxy in case the primary agent is unavailable.",
+    severity: "recommended",
+  });
+  addIssue(recommendedIssues, !hasText(packet.people.successorTrustee.fullName), {
+    stepId: "trust",
+    label: "Successor trustee",
+    detail: "Name the person who would step in if the trust is used.",
+    severity: "recommended",
+  });
+  addIssue(
+    recommendedIssues,
+    hasText(packet.household.dependentNotes) && !hasText(packet.people.guardian.fullName),
+    {
+      stepId: "household",
+      label: "Guardian for dependents",
+      detail: "You recorded dependent notes but did not name a guardian.",
+      severity: "recommended",
+    },
+  );
+  addIssue(
+    recommendedIssues,
+    !packet.assets.some((asset) => hasText(asset.description)),
+    {
+      stepId: "beneficiaries",
+      label: "Asset inventory",
+      detail: "List at least the major assets that drive trust funding or specific bequests.",
+      severity: "recommended",
+    },
+  );
+  addIssue(
+    recommendedIssues,
+    !packet.beneficiaryAccounts.some((entry) => hasText(entry.institutionName)),
+    {
+      stepId: "beneficiaries",
+      label: "Beneficiary account review",
+      detail: "Track retirement, bank, or insurance accounts that pass outside the will.",
+      severity: "recommended",
+    },
+  );
+  addIssue(recommendedIssues, !hasText(packet.healthCare.organDonationPreference), {
+    stepId: "healthCare",
+    label: "Organ donation preference",
+    detail: "This is commonly reviewed with the health-care directive.",
+    severity: "recommended",
+  });
+  addIssue(recommendedIssues, !hasText(packet.finalWishes.funeralHome), {
+    stepId: "finalWishes",
+    label: "Preferred funeral home",
+    detail: "Capture the preferred provider if one is already known.",
+    severity: "recommended",
+  });
+  addIssue(recommendedIssues, !hasText(packet.signatures.attorneyReviewStatus), {
+    stepId: "signatures",
+    label: "Attorney review status",
+    detail: "Mark whether a lawyer has reviewed the packet for the selected state.",
+    severity: "recommended",
+  });
+
+  return {
+    isReadyToFinalize: requiredIssues.length === 0,
+    requiredIssues,
+    recommendedIssues,
+  };
+}
+
+export function buildJurisdictionReviewChecklist(packet: PacketState): string[] {
+  const stateLabel = orBlank(packet.household.jurisdictionState, "the selected state");
+
+  return [
+    `Confirm ${stateLabel} witness requirements for wills, advance directives, and powers of attorney.`,
+    `Confirm whether ${stateLabel} expects notarization, self-proving affidavits, or separate notary blocks for each document.`,
+    `Confirm whether witnesses in ${stateLabel} must be disinterested, non-beneficiaries, or unrelated to the health-care agent.`,
+    `Confirm whether the health-care directive language should be revised to match ${stateLabel} statutory forms or notice text.`,
+    `Confirm where the signed originals, scanned copies, and emergency copies should be stored after execution.`,
+  ];
+}
+
+export function buildReviewSections(packet: PacketState): ReviewSection[] {
+  return [
+    {
+      title: "Identity and jurisdiction",
+      items: [
+        `Principal: ${principal(packet)}`,
+        `Jurisdiction state: ${orBlank(packet.household.jurisdictionState)}`,
+        `Address: ${orBlank(packet.household.addressLine1)}, ${orBlank(packet.household.city)}, ${orBlank(
+          packet.household.state,
+        )} ${orBlank(packet.household.postalCode)}`,
+      ],
+    },
+    {
+      title: "Decision-makers",
+      items: [
+        `Executor: ${personLabel(packet, "executor")}`,
+        `Health care agent: ${personLabel(packet, "primaryHealthAgent")}`,
+        `Attorney-in-fact: ${personLabel(packet, "attorneyInFact")}`,
+        `HIPAA recipient: ${personLabel(packet, "primaryHipaaRecipient")}`,
+      ],
+    },
+    {
+      title: "Medical and final-wishes directives",
+      items: [
+        `Life support: ${orBlank(packet.healthCare.lifeSupportPreference)}`,
+        `CPR / resuscitation: ${orBlank(packet.healthCare.cprPreference)}`,
+        `Organ donation: ${orBlank(packet.healthCare.organDonationPreference, "Not yet selected")}`,
+        `Disposition of remains: ${orBlank(packet.finalWishes.remainsPreference)}`,
+        `Digital vault: ${orBlank(packet.finalWishes.digitalVaultLocation, "Not yet recorded")}`,
+      ],
+    },
+    {
+      title: "Execution handoff",
+      items: [
+        `Witness count: ${orBlank(packet.signatures.witnessCount)}`,
+        `Notary plan: ${orBlank(packet.signatures.notaryRequired)}`,
+        `Storage plan: ${orBlank(packet.signatures.storagePlan)}`,
+        `Attorney review status: ${orBlank(packet.signatures.attorneyReviewStatus, "Not yet noted")}`,
+      ],
+    },
+  ];
+}
+
 export function buildPrintableDocuments(packet: PacketState): PrintableDocument[] {
+  const readiness = buildPacketReadiness(packet);
   const principalName = principal(packet);
   const hometown = [packet.household.city, packet.household.state]
-    .filter(Boolean)
+    .filter(hasText)
     .join(", ");
+  const requiredReadinessLines = readiness.requiredIssues.length
+    ? readiness.requiredIssues.map(formatIssue)
+    : ["No required blockers are currently flagged."]
+  const reviewChecklist = buildJurisdictionReviewChecklist(packet);
 
   return [
     {
@@ -78,11 +357,14 @@ export function buildPrintableDocuments(packet: PacketState): PrintableDocument[
       subtitle: "QiLegacy Questionnaire Output",
       paragraphs: [
         `Prepared for ${principalName}${hometown ? ` of ${hometown}` : ""}.`,
-        "This packet is a document-preparation workflow output and should be reviewed for state-specific execution requirements before signing.",
+        readiness.isReadyToFinalize
+          ? "Required questionnaire blockers have been cleared. This packet is ready for attorney and state-law execution review."
+          : `This packet still has ${readiness.requiredIssues.length} required item(s) to resolve before it should be treated as a final signing packet.`,
         `Last updated: ${orBlank(packet.lastUpdatedAt, "Not yet saved")}.`,
       ],
       bullets: [
         "Last Will and Testament",
+        "Readiness Review and State-Law Checklist",
         "Living Will and Health Care Power",
         "Durable Power of Attorney (Financial)",
         "HIPAA Authorization",
@@ -91,6 +373,24 @@ export function buildPrintableDocuments(packet: PacketState): PrintableDocument[
         "Final Wishes Addendum",
         "Master Signature and Storage Notes",
       ],
+    },
+    {
+      id: "readiness-summary",
+      title: "Readiness Review and State-Law Checklist",
+      subtitle: "Review Before Execution",
+      paragraphs: [
+        readiness.isReadyToFinalize
+          ? "No required blockers are currently flagged in the questionnaire."
+          : "Resolve the required blockers below before relying on this packet as the final signing set.",
+        `Jurisdiction selected: ${orBlank(packet.household.jurisdictionState)}.`,
+        "Even after the questionnaire is complete, this packet still needs attorney and state-specific execution review before signing.",
+      ],
+      checklistItems: requiredReadinessLines,
+      bullets: [
+        ...reviewChecklist,
+        ...readiness.recommendedIssues.map((issue) => `Follow-up: ${formatIssue(issue)}`),
+      ],
+      footerNote: "Use this page as the print-time red-line review sheet.",
     },
     {
       id: "will",
@@ -205,6 +505,8 @@ export function buildPrintableDocuments(packet: PacketState): PrintableDocument[
         `Attorney review status: ${orBlank(packet.signatures.attorneyReviewStatus, "Not yet reviewed.")}`,
         `Execution checklist: ${orBlank(packet.signatures.finalChecklist)}.`,
       ],
+      signatureLines: buildSignatureLines(packet),
+      footerNote: "Collect signatures only after confirming state-specific execution rules.",
     },
   ];
 }
@@ -222,7 +524,7 @@ export function buildActivePreview(packet: PacketState, activeStep: StepId): Pri
     beneficiaries: "beneficiaries",
     finalWishes: "final-wishes",
     signatures: "signature-record",
-    export: "cover-sheet",
+    export: "readiness-summary",
   };
 
   const doc = docs.find((item) => item.id === byStep[activeStep]);
@@ -237,7 +539,7 @@ export function calculateSectionCompletion(packet: PacketState): Record<StepId, 
         packet.household.principalFullName,
         packet.household.jurisdictionState,
         packet.household.addressLine1,
-      ].filter(Boolean).length,
+      ].filter(hasText).length,
       3,
     ],
     will: [
@@ -245,7 +547,7 @@ export function calculateSectionCompletion(packet: PacketState): Record<StepId, 
         packet.will.primaryBeneficiary,
         packet.people.executor.fullName,
         packet.will.taxAndExpenseInstructions,
-      ].filter(Boolean).length,
+      ].filter(hasText).length,
       3,
     ],
     healthCare: [
@@ -253,7 +555,7 @@ export function calculateSectionCompletion(packet: PacketState): Record<StepId, 
         packet.people.primaryHealthAgent.fullName,
         packet.healthCare.lifeSupportPreference,
         packet.healthCare.cprPreference,
-      ].filter(Boolean).length,
+      ].filter(hasText).length,
       3,
     ],
     financialPoa: [
@@ -261,7 +563,7 @@ export function calculateSectionCompletion(packet: PacketState): Record<StepId, 
         packet.people.attorneyInFact.fullName,
         packet.financialPoa.effectiveDate,
         packet.financialPoa.powersGranted,
-      ].filter(Boolean).length,
+      ].filter(hasText).length,
       3,
     ],
     hipaa: [
@@ -269,7 +571,7 @@ export function calculateSectionCompletion(packet: PacketState): Record<StepId, 
         packet.people.primaryHipaaRecipient.fullName,
         packet.hipaa.releaseScope,
         packet.hipaa.expirationRule,
-      ].filter(Boolean).length,
+      ].filter(hasText).length,
       3,
     ],
     trust: [
@@ -277,15 +579,15 @@ export function calculateSectionCompletion(packet: PacketState): Record<StepId, 
         packet.people.successorTrustee.fullName,
         packet.trust.trustEnabled,
         packet.trust.trustPurpose,
-      ].filter(Boolean).length,
+      ].filter(hasText).length,
       3,
     ],
     beneficiaries: [
       [
-        packet.assets.some((asset) => asset.description.trim()) ? "1" : "",
-        packet.beneficiaryAccounts.some((entry) => entry.institutionName.trim()) ? "1" : "",
+        packet.assets.some((asset) => hasText(asset.description)) ? "1" : "",
+        packet.beneficiaryAccounts.some((entry) => hasText(entry.institutionName)) ? "1" : "",
         packet.will.alternateBeneficiary,
-      ].filter(Boolean).length,
+      ].filter(hasText).length,
       3,
     ],
     finalWishes: [
@@ -293,7 +595,7 @@ export function calculateSectionCompletion(packet: PacketState): Record<StepId, 
         packet.finalWishes.remainsPreference,
         packet.finalWishes.personalMessage,
         packet.finalWishes.digitalVaultLocation,
-      ].filter(Boolean).length,
+      ].filter(hasText).length,
       3,
     ],
     signatures: [
@@ -301,10 +603,10 @@ export function calculateSectionCompletion(packet: PacketState): Record<StepId, 
         packet.signatures.witnessCount,
         packet.signatures.notaryRequired,
         packet.signatures.storagePlan,
-      ].filter(Boolean).length,
+      ].filter(hasText).length,
       3,
     ],
-    export: [1, 1],
+    export: [buildPacketReadiness(packet).isReadyToFinalize ? 1 : 0, 1],
   };
 
   return Object.fromEntries(

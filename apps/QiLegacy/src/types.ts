@@ -158,4 +158,27 @@ export type PrintableDocument = {
   subtitle: string;
   paragraphs: string[];
   bullets?: string[];
+  checklistItems?: string[];
+  signatureLines?: string[];
+  footerNote?: string;
+};
+
+export type ReadinessSeverity = "required" | "recommended";
+
+export type ReadinessIssue = {
+  stepId: StepId;
+  label: string;
+  detail: string;
+  severity: ReadinessSeverity;
+};
+
+export type PacketReadiness = {
+  isReadyToFinalize: boolean;
+  requiredIssues: ReadinessIssue[];
+  recommendedIssues: ReadinessIssue[];
+};
+
+export type ReviewSection = {
+  title: string;
+  items: string[];
 };
