@@ -20,6 +20,7 @@ from tools.organize.folder_flattener import FolderFlattenerTool
 from tools.organize.unlock_downloads import UnblockDownloadsTool
 from tools.organize.unzip_sync import UnzipSyncTool
 from tools.organize.vault_router import VaultRouterTool
+from tools.system.sys_directory_markmind_mapper import DirectoryMarkmindMapperTool
 # --- AUTO-IMPORTS END ---
 
 class QiOneShell:
@@ -49,7 +50,7 @@ class QiOneShell:
         self.root.configure(bg=self.BG)
 
         # --- AUTO-REGISTER START ---
-        self.tools = [CustomModuleTool(), ExportBlueprintTool(), TextExtractorTool(), GitPushTool(), RuleTesterTool(), BulkPdfSplitterTool(), TaxPdfCompilerTool(), VideoConverterTool(), ArchiveRouterTool(), DestroyerTool(), DownloadsInspectorTool(), FilenameCleanerTool(), FolderFlattenerTool(), UnblockDownloadsTool(), UnzipSyncTool(), VaultRouterTool()]
+        self.tools = [CustomModuleTool(), ExportBlueprintTool(), TextExtractorTool(), GitPushTool(), RuleTesterTool(), BulkPdfSplitterTool(), TaxPdfCompilerTool(), VideoConverterTool(), ArchiveRouterTool(), DestroyerTool(), DownloadsInspectorTool(), FilenameCleanerTool(), FolderFlattenerTool(), UnblockDownloadsTool(), UnzipSyncTool(), VaultRouterTool(), DirectoryMarkmindMapperTool()]
         # --- AUTO-REGISTER END ---
 
         self.active_tool = None
