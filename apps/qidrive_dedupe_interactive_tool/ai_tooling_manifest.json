@@ -1,0 +1,23 @@
+{
+  "tool_name": "qidrive_dedupe_interactive",
+  "purpose": "Interactive safe duplicate cleanup for local Google Drive folders",
+  "entrypoint": "qidrive_dedupe_interactive.py",
+  "launcher": "RUN_QIDRIVE_DEDUPE.bat",
+  "language": "python",
+  "mode": "interactive-first",
+  "requires": [
+    "python>=3.10"
+  ],
+  "optional_dependencies": [
+    "blake3"
+  ],
+  "safety": [
+    "interactive prompting by default",
+    "dry-run before real move",
+    "requires CSV review confirmation",
+    "requires typing QUARANTINE before real apply",
+    "quarantine instead of delete",
+    "preserves folder structure",
+    "ignores quarantine folder on future scans"
+  ]
+}

@@ -1,0 +1,9 @@
+id: toolbox.doc_markmind_exporter
+name: Doc MarkMind Exporter
+category: documentation
+entrypoint: doc_markmind_exporter.py
+language: python
+status: prototype
+inputs: target folder path
+outputs: MarkMind-compatible Markdown file
+safety: read-only scan of target folder; writes only output file; requires --force to overwrite

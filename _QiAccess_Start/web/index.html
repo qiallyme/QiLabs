@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QiAccess // Quantum Entry</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div class="background-wrapper">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="brand">
+                <div class="status-line">
+                    <div class="status-indicator"></div>
+                    SYSTEM_ACCESS_GRANTED // v1.2.6
+                </div>
+                <h1>QiAccess</h1>
+            </div>
+            <div class="clock-wrapper">
+                <div id="clock">00:00:00</div>
+                <div class="date-text" id="current-date">APRIL 21, 2026</div>
+            </div>
+        </header>
+
+        <!-- Actions -->
+        <div class="action-bar">
+            <input type="text" class="search-input" placeholder="Search access points or bookmarks..." id="search">
+            <a href="add.html" class="btn-add">
+                <i data-lucide="plus"></i> New Bookmark
+            </a>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="grid">
+            
+            <!-- CORE INFRA (Large) -->
+            <a href="https://qiserver-1.cerberus-sirius.ts.net:9446" target="_blank" class="card col-span-2 row-span-2 card-large">
+                <div>
+                    <div class="card-icon"><i data-lucide="bot" class="w-8 h-8"></i></div>
+                    <h3>Neural Core</h3>
+                    <p class="card-desc">Open WebUI // Primary AI Intelligence Hub</p>
+                </div>
+                <div class="badge badge-local">
+                    <i data-lucide="shield"></i> Secured Access
+                </div>
+            </a>
+
+            <!-- CLOUD STACK -->
+            <a href="https://github.com/qiallyme/QiLabs" target="_blank" class="card">
+                <div class="card-icon"><i data-lucide="github"></i></div>
+                <div>
+                    <div class="card-title">GitHub</div>
+                    <p class="card-desc">Source & Versioning</p>
+                </div>
+            </a>
+
+            <a href="https://dash.cloudflare.com/" target="_blank" class="card">
+                <div class="card-icon"><i data-lucide="cloud"></i></div>
+                <div>
+                    <div class="card-title">Cloudflare</div>
+                    <p class="card-desc">Edge Network Admin</p>
+                </div>
+            </a>
+
+            <a href="https://supabase.com/dashboard" target="_blank" class="card">
+                <div class="card-icon"><i data-lucide="database"></i></div>
+                <div>
+                    <div class="card-title">Supabase</div>
+                    <p class="card-desc">Data & Auth Core</p>
+                </div>
+            </a>
+
+            <a href="https://drive.google.com/" target="_blank" class="card">
+                <div class="card-icon"><i data-lucide="hard-drive"></i></div>
+                <div>
+                    <div class="card-title">Archives</div>
+                    <p class="card-desc">Knowledge Storage</p>
+                </div>
+            </a>
+
+            <!-- LOCAL SERVICES -->
+            <a href="https://100.121.111.106:9090" target="_blank" class="card">
+                <div class="card-icon"><i data-lucide="terminal"></i></div>
+                <div>
+                    <div class="card-title">Cockpit</div>
+                    <p class="card-desc">OS Level Control</p>
+                </div>
+            </a>
+
+            <a href="https://100.121.111.106:9443" target="_blank" class="card">
+                <div class="card-icon"><i data-lucide="container"></i></div>
+                <div>
+                    <div class="card-title">Portainer</div>
+                    <p class="card-desc">Container Orchestration</p>
+                </div>
+            </a>
+
+            <a href="http://100.121.111.106:80" target="_blank" class="card">
+                <div class="card-icon"><i data-lucide="server"></i></div>
+                <div>
+                    <div class="card-title">TrueNAS</div>
+                    <p class="card-desc">Network Storage</p>
+                </div>
+            </a>
+
+            <a href="https://qiserver-1.cerberus-sirius.ts.net" target="_blank" class="card">
+                <div class="card-icon"><i data-lucide="home"></i></div>
+                <div>
+                    <div class="card-title">Private Launcher</div>
+                    <p class="card-desc">Local Server Utility (gethomepage)</p>
+                </div>
+            </a>
+
+            <a href="http://100.121.111.106:2283" target="_blank" class="card">
+                <div class="card-icon"><i data-lucide="image"></i></div>
+                <div>
+                    <div class="card-title">Immich</div>
+                    <p class="card-desc">Photo Intelligence</p>
+                </div>
+            </a>
+
+            <!-- RECOVERY (Full Width) -->
+            <a href="https://login.tailscale.com/admin" target="_blank" class="card col-span-2 md:col-span-4" style="flex-direction: row; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div class="card-icon" style="margin-bottom: 0;"><i data-lucide="shield-alert"></i></div>
+                    <div>
+                        <div class="card-title">Recovery Protocol</div>
+                        <p class="card-desc">Tailscale Mesh Administration</p>
+                    </div>
+                </div>
+                <i data-lucide="arrow-right" class="text-zinc-600"></i>
+            </a>
+
+            <div class="card col-span-2" style="background: transparent; border-style: dashed; border-color: rgba(255,255,255,0.1); justify-content: center; align-items: center; color: var(--text-muted);">
+                <div class="text-center">
+                    <p style="font-size: 0.75rem; font-family: 'JetBrains Mono';">MORE_NODES_PENDING</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Dynamic Bookmarks Section (to be populated by JS) -->
+        <section style="margin-top: 4rem;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; font-weight: 600; opacity: 0.8;">Dynamic Bookmarks</h2>
+            <div class="grid" id="bookmarks-container">
+                <!-- Dynamically loaded bookmarks will go here -->
+                <div class="card" style="opacity: 0.3; pointer-events: none;">
+                    <div class="card-title">Loading...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-logo">
+                QI_OS // ACCESS_LAYER_V1
+            </div>
+            <div style="display: flex; gap: 1.5rem; color: var(--text-muted);">
+                <i data-lucide="zap" class="w-4 h-4"></i>
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                <i data-lucide="cpu" class="w-4 h-4"></i>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Update date
+        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', dateOptions).toUpperCase();
+        
+        // Fetch dynamic bookmarks from the Worker
+        const API_URL = 'https://api.access.qially.com/bookmarks';
+        
+        async function loadBookmarks() {
+            try {
+                const res = await fetch(API_URL);
+                if (!res.ok) throw new Error('API unreachable');
+                const bookmarks = await res.json();
+                
+                const container = document.getElementById('bookmarks-container');
+                container.innerHTML = '';
+                
+                if (bookmarks.length === 0) {
+                    container.innerHTML = '<div class="card col-span-full" style="padding: 3rem; text-align: center; opacity: 0.5;">No dynamic bookmarks found.</div>';
+                    return;
+                }
+
+                bookmarks.forEach(bm => {
+                    const card = document.createElement('a');
+                    card.href = bm.url;
+                    card.target = '_blank';
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div class="card-icon"><i data-lucide="link-2"></i></div>
+                        <div>
+                            <div class="card-title">${bm.title}</div>
+                            <p class="card-desc">${bm.category || 'Uncategorized'}</p>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+                
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            } catch (err) {
+                document.getElementById('bookmarks-container').innerHTML = 
+                    `<div class="card col-span-full" style="color: #ef4444; text-align: center;">Worker Offline: ${err.message}</div>`;
+            }
+        }
+        
+        // Search functionality
+        document.getElementById('search').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.grid .card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title')?.textContent.toLowerCase() || 
+                              card.querySelector('h3')?.textContent.toLowerCase() || "";
+                const desc = card.querySelector('.card-desc')?.textContent.toLowerCase() || "";
+                
+                if (title.includes(term) || desc.includes(term)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        loadBookmarks();
+    </script>
+</body>
+</html>
