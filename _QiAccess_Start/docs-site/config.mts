@@ -4,6 +4,7 @@ export default defineConfig({
   title: "QiAccess Docs",
   description: "QiAccess Start operating documentation",
   base: "/docs/",
+  srcDir: "../docs",
   outDir: "../.vitepress-dist",
   cleanUrls: true,
   ignoreDeadLinks: true,

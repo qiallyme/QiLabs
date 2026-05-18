@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build:app": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit && vite build",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
+    "docs:dev": "vitepress dev docs-site --config docs-site/config.mts",
+    "docs:build": "vitepress build docs-site --config docs-site/config.mts",
     "docs:copy": "node scripts/copy-vitepress-docs.mjs",
     "build:all": "npm run build:app && npm run docs:build && npm run docs:copy",
     "preview": "vite preview"
