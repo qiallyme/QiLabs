@@ -54,7 +54,7 @@ except Exception:
     blake3 = None
 
 
-DEFAULT_QUARANTINE_NAME = "_QIDEDUPE_QUARANTINE"
+DEFAULT_QUARANTINE_NAME = r"G:\My Drive\_Quarantined"
 
 DEFAULT_ALLOWED_EXTENSIONS = {
     ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".csv", ".tsv", ".txt", ".md",
@@ -169,7 +169,15 @@ def pause_enter(message: str = "Press Enter to continue...") -> None:
     input(message)
 
 
-def print_progress(current: int, total: Optional[int] = None, prefix: str = "", suffix: str = "") -> None:
+_last_print_time = 0.0
+
+def print_progress(current: int, total: Optional[int] = None, prefix: str = "", suffix: str = "", force: bool = False) -> None:
+    global _last_print_time
+    now = time.time()
+    if not force and current != total and now - _last_print_time < 0.1:
+        return
+    _last_print_time = now
+
     if len(suffix) > 40:
         suffix = suffix[:37] + "..."
     else:
@@ -592,7 +600,11 @@ def apply_plan(args) -> None:
             action = json.loads(line)
             seen += 1
             duplicate = root / action["duplicate_rel_path"]
-            quarantine = root / action["quarantine_rel_path"]
+            q_path = action["quarantine_rel_path"]
+            if Path(q_path).is_absolute() or ":" in q_path:
+                quarantine = Path(q_path)
+            else:
+                quarantine = root / q_path
             quarantine = unique_destination(quarantine)
 
             status = "dry_run"
@@ -613,6 +625,11 @@ def apply_plan(args) -> None:
 
                 print_progress(seen, total_actions, "[apply]" if not dry_run else "[dry-run]", f"{status}: {duplicate.name}")
 
+                try:
+                    q_db_path = str(quarantine.relative_to(root)).replace("\\", "/")
+                except ValueError:
+                    q_db_path = str(quarantine).replace("\\", "/")
+
                 conn.execute(
                     """
                     INSERT INTO actions
@@ -627,7 +644,7 @@ def apply_plan(args) -> None:
                         action["stage"],
                         action["original_rel_path"],
                         action["duplicate_rel_path"],
-                        str(quarantine.relative_to(root)).replace("\\", "/"),
+                        q_db_path,
                         action["reason"],
                         status,
                         error,
@@ -775,7 +792,8 @@ def interactive_main() -> None:
                 ("plan", "Create duplicate review plan"),
                 ("dry_apply", "Dry-run an existing plan"),
                 ("real_apply", "Quarantine files from an approved plan"),
-                ("workflow_strict", "Guided safe workflow: scan → strict plan → dry-run"),
+                ("workflow_guided", "Guided end-to-end safe cleanup workflow (all stages)"),
+                ("change_folder", "Change target folder"),
                 ("settings", "Settings"),
                 ("exit", "Exit"),
             ],
@@ -785,6 +803,16 @@ def interactive_main() -> None:
         if action == "exit":
             print("Done.")
             return
+
+        if action == "change_folder":
+            print()
+            default_root = Path(config["root"]) if config.get("root") else None
+            root = prompt_path("New Drive/root folder to work on", default_root, must_exist=True)
+            config["root"] = str(root)
+            save_config(script_dir, session_name, config)
+            print(f"Target folder updated to: {root}")
+            pause_enter()
+            continue
 
         if action == "settings":
             print()
@@ -827,19 +855,16 @@ def interactive_main() -> None:
             if action == "scan":
                 continue
 
-        if action in {"plan", "workflow_strict"}:
-            if action == "workflow_strict":
-                stage = "strict"
-            else:
-                stage = choose(
-                    "Choose duplicate strictness stage",
-                    [
-                        ("strict", "STRICT: same filename + same size + same hash"),
-                        ("same_hash_diff_name", "MEDIUM: same size + same hash, names may differ"),
-                        ("hash_only", "LOOSE: same content hash only"),
-                    ],
-                    default_index=0,
-                )
+        if action == "plan":
+            stage = choose(
+                "Choose duplicate strictness stage",
+                [
+                    ("strict", "STRICT: same filename + same size + same hash"),
+                    ("same_hash_diff_name", "MEDIUM: same size + same hash, names may differ"),
+                    ("hash_only", "LOOSE: same content hash only"),
+                ],
+                default_index=0,
+            )
 
             if stage == "hash_only":
                 print()
@@ -857,17 +882,91 @@ def interactive_main() -> None:
             plan_path = plan(plan_args)
             pause_enter()
 
-            if action == "workflow_strict":
-                print()
-                print("Next: dry-run the strict plan. This still moves nothing.")
-                if yes_no("Dry-run this strict plan now?", default=True):
-                    apply_args = make_args(
-                        **common_kwargs,
-                        plan=str(plan_path),
-                        apply=False,
-                    )
-                    apply_plan(apply_args)
-                    pause_enter()
+            pause_enter()
+            continue
+
+        if action == "workflow_guided":
+            print("\n[Auto-Scan] Running initial scan before starting guided workflow...")
+            scan_args = make_args(
+                **common_kwargs,
+                hash_algo=config["hash_algo"],
+                chunk_size=int(config["chunk_size"]),
+                allowed_exts=config.get("allowed_exts", ""),
+                excluded_exts=config.get("excluded_exts", ""),
+                excluded_dirs=config.get("excluded_dirs", ""),
+                manifest_jsonl=None,
+                manifest_csv=None,
+                out_dir=str(script_dir),
+            )
+            scan(scan_args)
+
+            stages = [
+                ("strict", "STRICT: same filename + same size + same hash"),
+                ("same_hash_diff_name", "MEDIUM: same size + same hash, names may differ"),
+                ("hash_only", "LOOSE: same content hash only")
+            ]
+            
+            for stage_id, stage_desc in stages:
+                print("=" * 60)
+                print(f"STAGE: {stage_desc}")
+                print("=" * 60)
+                
+                if not yes_no(f"Do you want to run the '{stage_id}' duplicate check?", default=True):
+                    print(f"Skipping {stage_id} stage...")
+                    continue
+                
+                plan_args = make_args(
+                    **common_kwargs,
+                    scan_id=None,
+                    stage=stage_id,
+                    out_dir=str(plans_dir),
+                )
+                plan_path = plan(plan_args)
+                
+                with plan_path.open("r", encoding="utf-8") as f:
+                    if sum(1 for _ in f if _.strip()) == 0:
+                        print(f"No duplicates found for stage '{stage_id}'. Moving to next stage.")
+                        pause_enter()
+                        continue
+                
+                print("\nOptions:")
+                print("1. Continue (Approve & Quarantine these files)")
+                print("2. Skip (Leave files alone, move to next stage)")
+                print("3. Cancel (Abandon the workflow)")
+                
+                while True:
+                    choice = input("Choose action (1-3) [default 1]: ").strip()
+                    if choice == "1" or choice == "":
+                        apply_args = make_args(**common_kwargs, plan=str(plan_path), apply=True)
+                        apply_plan(apply_args)
+                        print("\n[Auto-Scan] Automatically updating the database after move...")
+                        scan_args = make_args(
+                            **common_kwargs,
+                            hash_algo=config["hash_algo"],
+                            chunk_size=int(config["chunk_size"]),
+                            allowed_exts=config.get("allowed_exts", ""),
+                            excluded_exts=config.get("excluded_exts", ""),
+                            excluded_dirs=config.get("excluded_dirs", ""),
+                            manifest_jsonl=None,
+                            manifest_csv=None,
+                            out_dir=str(script_dir),
+                        )
+                        scan(scan_args)
+                        break
+                    elif choice == "2":
+                        print(f"Skipping {stage_id} stage.")
+                        break
+                    elif choice == "3":
+                        print("Canceling workflow.")
+                        break
+                    else:
+                        print("Invalid choice. Please enter 1, 2, or 3.")
+                
+                if choice == "3":
+                    break
+            
+            print("\nGuided workflow completed.")
+            pause_enter()
             continue
 
         if action in {"dry_apply", "real_apply"}:
@@ -914,6 +1013,22 @@ def interactive_main() -> None:
                 apply=real,
             )
             apply_plan(apply_args)
+            
+            if real:
+                print("\n[Auto-Scan] Automatically updating the database after move...")
+                scan_args = make_args(
+                    **common_kwargs,
+                    hash_algo=config["hash_algo"],
+                    chunk_size=int(config["chunk_size"]),
+                    allowed_exts=config.get("allowed_exts", ""),
+                    excluded_exts=config.get("excluded_exts", ""),
+                    excluded_dirs=config.get("excluded_dirs", ""),
+                    manifest_jsonl=None,
+                    manifest_csv=None,
+                    out_dir=str(script_dir),
+                )
+                scan(scan_args)
+
             pause_enter()
 
 

@@ -1,0 +1,1 @@
+action_id,plan_id,stage,scan_id,reason,original_rel_path,duplicate_rel_path,duplicate_abs_path,quarantine_rel_path,size,content_hash,status,created_at

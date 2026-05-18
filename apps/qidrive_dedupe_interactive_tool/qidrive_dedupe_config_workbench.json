@@ -1,0 +1,14 @@
+{
+  "root": "G:\\My Drive\\QiNexus\\10_workbench",
+  "db": "C:\\QiLabs\\apps\\qidrive_dedupe_interactive_tool\\qidrive_manifest_workbench.sqlite",
+  "plans_dir": "C:\\QiLabs\\apps\\qidrive_dedupe_interactive_tool\\plans_workbench",
+  "quarantine_name": "G:\\My Drive\\_Quarantined",
+  "hash_algo": "auto",
+  "sleep_every": 500,
+  "sleep_seconds": 2.0,
+  "commit_every": 250,
+  "chunk_size": 1048576,
+  "allowed_exts": "",
+  "excluded_exts": "",
+  "excluded_dirs": ""
+}

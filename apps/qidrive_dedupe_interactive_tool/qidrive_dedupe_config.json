@@ -1,8 +1,8 @@
 {
-  "root": "G:\\My Drive\\QiNexus\\00_inbox",
+  "root": "G:\\My Drive\\_Sort",
   "db": "C:\\QiLabs\\apps\\qidrive_dedupe_interactive_tool\\qidrive_manifest.sqlite",
   "plans_dir": "C:\\QiLabs\\apps\\qidrive_dedupe_interactive_tool\\plans",
-  "quarantine_name": "_QIDEDUPE_QUARANTINE",
+  "quarantine_name": "G:\\My Drive\\_Quarantined",
   "hash_algo": "auto",
   "sleep_every": 500,
   "sleep_seconds": 2.0,
