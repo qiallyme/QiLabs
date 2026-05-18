@@ -1,4 +1,4 @@
-id: toolbox.sys.directory_markmind_mapper
+id: toolbox.system.sys_directory_markmind_mapper
 name: Directory Markmind Mapper
 type: toolbox_tool
 language: python
@@ -6,14 +6,14 @@ status: active
 owner: QiLabs
 
 module:
-  package: tools.sys.directory_markmind_mapper
+  package: tools.system.sys_directory_markmind_mapper
   file: directory_markmind_mapper.py
   class_name: DirectoryMarkmindMapperTool
   entrypoint: DirectoryMarkmindMapperTool
 
 toolbox:
   ui_enabled: true
-  bucket: sys
+  bucket: system
   category: system
   launch_surface:
     - QiOne Desktop Tools
@@ -35,8 +35,8 @@ safety:
   review_before_live: false
 
 paths:
-  source: tools/sys/directory_markmind_mapper/directory_markmind_mapper.py
-  readme: tools/sys/directory_markmind_mapper/README.md
+  source: tools/system/sys_directory_markmind_mapper/directory_markmind_mapper.py
+  readme: tools/system/sys_directory_markmind_mapper/README.md
 
 outputs:
   - markdown
@@ -44,7 +44,7 @@ outputs:
 
 tags:
   - toolbox
-  - sys
+  - system
   - qione
   - directory-map
   - markmind

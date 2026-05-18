@@ -1,0 +1,26 @@
+{
+  "tool_name": "qidrive_dedupe",
+  "purpose": "Safe staged duplicate cleanup for a local Google Drive-synced folder",
+  "entrypoint": "qidrive_dedupe.py",
+  "language": "python",
+  "requires": [
+    "python>=3.10"
+  ],
+  "optional_dependencies": [
+    "blake3"
+  ],
+  "commands": [
+    "scan",
+    "plan --stage strict",
+    "plan --stage same_hash_diff_name",
+    "plan --stage hash_only",
+    "apply --plan PLAN.jsonl --apply"
+  ],
+  "safety": [
+    "dry-run by default",
+    "quarantine instead of delete",
+    "preserves relative folder structure",
+    "ignores quarantine folder on future scans",
+    "logs manifest and actions"
+  ]
+}

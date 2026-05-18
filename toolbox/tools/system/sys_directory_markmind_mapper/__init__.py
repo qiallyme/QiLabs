@@ -2,4 +2,7 @@
 
 from .directory_markmind_mapper import DirectoryMarkmindMapperTool
 
-__all__ = ["DirectoryMarkmindMapperTool"]
+# Backward-compatible alias for older loader/import expectations.
+SysDirectoryMarkmindMapperTool = DirectoryMarkmindMapperTool
+
+__all__ = ["DirectoryMarkmindMapperTool", "SysDirectoryMarkmindMapperTool"]

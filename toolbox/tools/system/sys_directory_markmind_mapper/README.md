@@ -8,17 +8,21 @@ It is designed for the QiOne Desktop Tools UI and follows the QiLabs toolbox mod
 
 ## Location
 
-`tools/sys/directory_markmind_mapper/`
+`tools/system/sys_directory_markmind_mapper/`
 
 ## Files
 
 - `directory_markmind_mapper.py`
-- `tool_manifest.yaml`
+- `manifest.yaml`
 - `README.md`
 
 ## Tool Class
 
 `DirectoryMarkmindMapperTool`
+
+Compatibility alias:
+
+`SysDirectoryMarkmindMapperTool`
 
 ## Inputs
 
