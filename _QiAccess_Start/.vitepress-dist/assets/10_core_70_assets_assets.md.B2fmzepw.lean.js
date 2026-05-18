@@ -1,0 +1,1 @@
+import{_ as s,o as e,c as t}from"./chunks/framework.NIzFHKo_.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"10_core/70_assets/assets.md","filePath":"10_core/70_assets/assets.md"}'),a={name:"10_core/70_assets/assets.md"};function r(o,c,_,n,p,d){return e(),t("div")}const f=s(a,[["render",r]]);export{m as __pageData,f as default};

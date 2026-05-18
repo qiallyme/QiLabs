@@ -14,6 +14,12 @@ const launcherViews: Array<{ id: LauncherView; label: string }> = [
 
 const routeCards = [
   {
+    title: "QiDocs",
+    detail: "Static Docs Site",
+    href: "/docs/",
+    badge: "Docs",
+  },
+  {
     title: "Capture",
     detail: "Quick intake",
     to: "/capture",
@@ -37,7 +43,7 @@ const routeCards = [
     to: "/system",
     badge: "Ops",
   },
-] as const;
+];
 
 function matchesView(resource: Resource, view: LauncherView) {
   if (view === "all") {
@@ -98,10 +104,13 @@ export function StartPage() {
       <section className="panel p-5 sm:p-6">
         <div className="eyebrow">QiAccess Start</div>
         <h1 className="mt-2 text-2xl font-semibold text-heading sm:text-3xl">Open what you need.</h1>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
           <Link className="button-primary h-12" to="/capture">
             Capture
           </Link>
+          <a className="button-primary h-12" href="/docs/">
+            QiDocs
+          </a>
           <Link className="button-secondary h-12" to="/knowledge">
             Wiki.js
           </Link>
@@ -117,16 +126,34 @@ export function StartPage() {
       </section>
 
       <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-        {routeCards.map((card) => (
-          <Link className="panel card-lift flex min-h-[128px] flex-col gap-2 p-5" key={card.title} to={card.to}>
-            <div className="flex items-center justify-between gap-3">
-              <div className="text-lg font-semibold text-heading">{card.title}</div>
-              <span className="chip-brand">{card.badge}</span>
-            </div>
-            <div className="text-sm text-body">{card.detail}</div>
-            <div className="mt-auto text-xs font-semibold uppercase tracking-[0.22em] text-brand-600">Open route</div>
-          </Link>
-        ))}
+        {routeCards.map((card) => {
+          const inner = (
+            <>
+              <div className="flex items-center justify-between gap-3">
+                <div className="text-lg font-semibold text-heading">{card.title}</div>
+                <span className="chip-brand">{card.badge}</span>
+              </div>
+              <div className="text-sm text-body">{card.detail}</div>
+              <div className="mt-auto text-xs font-semibold uppercase tracking-[0.22em] text-brand-600">
+                {card.href ? "Open Site" : "Open Route"}
+              </div>
+            </>
+          );
+          
+          if (card.href) {
+            return (
+              <a className="panel card-lift flex min-h-[128px] flex-col gap-2 p-5" key={card.title} href={card.href}>
+                {inner}
+              </a>
+            );
+          }
+          
+          return (
+            <Link className="panel card-lift flex min-h-[128px] flex-col gap-2 p-5" key={card.title} to={card.to as string}>
+              {inner}
+            </Link>
+          );
+        })}
       </section>
 
       <section className="panel overflow-hidden">

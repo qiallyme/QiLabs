@@ -52,19 +52,23 @@ npm run preview -- --host 127.0.0.1 --port 4173
 
 ## Docs Workflow
 
-Source docs live in `docs/`.
+- `/docs` source Markdown remains the source of truth for the system architecture.
+- **Wiki.js** acts as the living operational Knowledge Base.
+- **VitePress** builds a static backup and published docs layer from the `/docs` folder.
+- **Cloudflare Pages** builds both the React app and VitePress together, outputting:
+  - `/` -> QiAccess Start App
+  - `/docs/` -> Static Docs Site
 
-Generate the docs runtime copy with:
+To build both locally:
 
 ```bash
-npm run docs:sync
+npm run build:all
 ```
 
-Optional site build/serve:
+For docs development:
 
 ```bash
-npm run docs:build
-npm run docs:serve
+npm run docs:dev
 ```
 
 ## Access Mode Rules
