@@ -3,7 +3,6 @@ node_modules/
 .wrangler/
 .dev.vars
 dist/
-docs/
 .DS_Store
 .npm-cache/
 .runtime/

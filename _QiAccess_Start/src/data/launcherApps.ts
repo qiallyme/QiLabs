@@ -2,6 +2,22 @@ import type { Resource } from "../types/resource";
 
 export const launcherApps: Resource[] = [
   {
+    id: "qidocs",
+    name: "QiDocs",
+    slug: "qidocs",
+    type: "app",
+    zone: "public",
+    exposure: "public",
+    description: "Static backup documentation site built from the /docs markdown knowledge base.",
+    publicUrl: "/docs/",
+    docsUrl: "/docs/",
+    verificationState: "verified",
+    status: "online",
+    portalRole: "front-door",
+    tags: ["portal", "docs", "knowledge"],
+    notes: "VitePress-powered static documentation site compiled from local /docs markdown files.",
+  },
+  {
     id: "qiaccess",
     name: "QiAccess",
     slug: "qiaccess",
