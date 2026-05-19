@@ -1,4 +1,4 @@
-﻿# 10 Governance
+# 10 Governance
 <sub>System Rules + Intent Layer</sub>
 
 Documentation for the rules, principles, and decisions that govern the QiOS ecosystem.

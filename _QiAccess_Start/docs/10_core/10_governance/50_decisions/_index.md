@@ -14,3 +14,4 @@ This section contains the canonical record of architectural and operational deci
 - [ADR-0007: Unified Front Matter and Progressive Doc Topology](ADR-0007_unified_front_matter_and_progressive_doc_topology.md)
 - [ADR-0008: QiLabs Root](ADR-0008_qilabs_root.md)
 - [ADR-0009: Backup Server Control Plane and Public Edge Pattern](ADR-0009_backup_server_control_plane_and_public_edge_pattern.md)
+- [[ADR-0010_qios_namespace_as_routing_metadata_layer]]
