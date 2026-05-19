@@ -17,8 +17,7 @@
   --radius-md: 18px;
   --radius-sm: 12px;
   --sidebar-width: 18.5rem;
-  --preview-width: 24rem;
-  --content-width: 78rem;
+  --content-width: 58rem;
   font-family: "Inter", "Segoe UI", sans-serif;
   background:
     radial-gradient(circle at top left, rgba(13, 107, 103, 0.12), transparent 26rem),
@@ -54,7 +53,7 @@ button {
 
 .app-shell {
   display: grid;
-  grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--preview-width);
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
   gap: 1.25rem;
   width: min(100%, calc(var(--content-width) + 4rem));
   margin: 0 auto;
@@ -63,15 +62,13 @@ button {
 
 .sidebar,
 .content-panel,
-.preview-rail,
 .hero-card,
 .editor-card,
 .progress-card {
   backdrop-filter: blur(18px);
 }
 
-.sidebar,
-.preview-rail {
+.sidebar {
   position: sticky;
   top: 1.5rem;
   align-self: start;
@@ -90,7 +87,6 @@ button {
 .brand-block h1,
 .hero-card h1,
 .topbar h2,
-.preview-header h3,
 .editor-card h2,
 .editor-card h3,
 .print-header h1 {
@@ -637,17 +633,7 @@ button {
   font-size: 9pt;
 }
 
-@media (max-width: 1200px) {
-  .app-shell {
-    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
-  }
 
-  .preview-rail {
-    grid-column: 1 / -1;
-    position: static;
-    max-height: none;
-  }
-}
 
 @media (max-width: 900px) {
   .app-shell {
@@ -655,8 +641,7 @@ button {
     padding: 1rem;
   }
 
-  .sidebar,
-  .preview-rail {
+  .sidebar {
     position: static;
     max-height: none;
   }

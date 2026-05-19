@@ -363,3 +363,5 @@ Desktop.ini
 $RECYCLE.BIN/
 .Spotlight-V100/
 .Trashes/
+# QiLegacy quarantined bloated HTML files
+apps/QiLegacy/_quarantine/

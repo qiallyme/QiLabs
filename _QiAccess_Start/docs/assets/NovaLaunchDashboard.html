@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#060b28] text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="QiAccess is the access-layer portal for your ecosystem.">
+    <title>QiAccess // Premium Launchpad</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#060b28',
+                            card: '#0a0e31',
+                            border: 'rgba(226, 232, 240, 0.08)',
+                            blue: '#0075ff',
+                            purple: '#b19ffb',
+                            neonPurple: '#a100ff',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #060b28;
+        }
+
+        /* Custom premium scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060b28;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 117, 255, 0.3);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(161, 0, 255, 0.5);
+        }
+
+        /* Glassmorphism card borders & ambient glows */
+        .glass-card {
+            background: linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 49, 0.49) 76.65%);
+            border: 1px solid rgba(226, 232, 240, 0.08);
+            backdrop-filter: blur(20px);
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .neon-glow-blue {
+            box-shadow: 0 0 15px rgba(0, 117, 255, 0.35);
+        }
+
+        .neon-glow-purple {
+            box-shadow: 0 0 15px rgba(161, 0, 255, 0.35);
+        }
+
+        /* Animated Glowing Jellyfish Elements */
+        @keyframes float-jelly {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        @keyframes pulse-light {
+            0%, 100% { opacity: 0.4; filter: drop-shadow(0 0 5px rgba(161, 0, 255, 0.5)); }
+            50% { opacity: 0.8; filter: drop-shadow(0 0 25px rgba(0, 117, 255, 0.8)); }
+        }
+        .jellyfish-container {
+            animation: float-jelly 6s ease-in-out infinite;
+        }
+        .jellyfish-glow {
+            animation: pulse-light 4s ease-in-out infinite;
+        }
+
+        /* Rotating ring speed settings */
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .spin-slow {
+            animation: spin-slow 12s linear infinite;
+        }
+    </style>
+</head>
+<body class="h-full overflow-hidden antialiased text-slate-100 bg-[#060b28]">
+
+    <!-- Ambient background layout -->
+    <div class="absolute top-0 right-0 w-[600px] h-[500px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute bottom-10 left-10 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+    <div class="flex h-screen overflow-hidden relative z-10">
+
+        <!-- ================= SIDEBAR (Desktop) ================= -->
+        <aside id="sidebar" class="hidden lg:flex flex-col w-64 bg-[#060b28]/80 backdrop-blur-xl border-r border-slate-800/60 transition-all duration-300 relative z-30">
+            <!-- Brand Info Block -->
+            <div class="h-20 flex items-center justify-between px-6 border-b border-slate-800/40">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0075ff] to-[#a100ff] p-[1.5px] shadow-lg">
+                        <div class="w-full h-full bg-[#060b28] rounded-[10px] flex items-center justify-center">
+                            <span class="text-white font-black text-sm">Q</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="font-extrabold text-sm tracking-widest text-white uppercase">QiAccess</h1>
+                        <span class="text-[9px] text-blue-400 font-bold tracking-wider uppercase">LAUNCH PAD</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tree Navigation Menu -->
+            <div class="flex-1 overflow-y-auto px-4 py-6 space-y-6">
+                <div>
+                    <div class="flex items-center justify-between px-2 mb-3">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Portal Tree</span>
+                        <button onclick="expandAllTreeNodes()" class="text-[10px] text-blue-400 hover:text-blue-300 transition">Expand All</button>
+                    </div>
+
+                    <ul class="space-y-1.5 text-xs font-semibold text-slate-400" id="navigation-tree">
+                        <!-- Core Routes Tree -->
+                        <li class="tree-item" id="node-core">
+                            <div class="flex items-center justify-between py-2 px-3 hover:bg-slate-800/40 rounded-xl cursor-pointer transition text-slate-300" onclick="toggleTreeNode('node-core')">
+                                <div class="flex items-center space-x-2.5">
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-500 transition-transform duration-200 tree-arrow"></i>
+                                    <div class="p-1 bg-blue-500/10 rounded-lg">
+                                        <i data-lucide="home" class="w-3.5 h-3.5 text-blue-400"></i>
+                                    </div>
+                                    <span>Core Sections</span>
+                                </div>
+                                <span class="text-[10px] bg-blue-500/15 text-blue-400 px-2 py-0.5 rounded-full font-bold">4</span>
+                            </div>
+                            <ul class="pl-7 pr-2 py-1 space-y-1 hidden tree-submenu border-l border-slate-800/60 ml-5 mt-1">
+                                <li><a href="/" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-blue-400 flex items-center space-x-1.5">
+                                    <i data-lucide="layout-grid" class="w-3 h-3"></i><span>Home</span></a>
+                                </li>
+                                <li><a href="/capture" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400 flex items-center space-x-1.5">
+                                    <i data-lucide="pencil" class="w-3 h-3"></i><span>Capture</span></a>
+                                </li>
+                                <li><a href="/knowledge" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400 flex items-center space-x-1.5">
+                                    <i data-lucide="book" class="w-3 h-3"></i><span>Knowledge</span></a>
+                                </li>
+                                <li><a href="/system" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400 flex items-center space-x-1.5">
+                                    <i data-lucide="terminal" class="w-3 h-3"></i><span>System</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Infrastructure & Ops Tree -->
+                        <li class="tree-item" id="node-ops">
+                            <div class="flex items-center justify-between py-2 px-3 hover:bg-slate-800/40 rounded-xl cursor-pointer transition text-slate-300" onclick="toggleTreeNode('node-ops')">
+                                <div class="flex items-center space-x-2.5">
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-500 transition-transform duration-200 tree-arrow"></i>
+                                    <div class="p-1 bg-purple-500/10 rounded-lg">
+                                        <i data-lucide="shield" class="w-3.5 h-3.5 text-purple-400"></i>
+                                    </div>
+                                    <span>Infrastructure & Ops</span>
+                                </div>
+                                <span class="text-[10px] bg-purple-500/15 text-purple-400 px-2 py-0.5 rounded-full font-bold">3</span>
+                            </div>
+                            <ul class="pl-7 pr-2 py-1 space-y-1 hidden tree-submenu border-l border-slate-800/60 ml-5 mt-1">
+                                <li><a href="#" onclick="filterByCategory('Ops')" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400">Cloudflare Dash</a></li>
+                                <li><a href="#" onclick="filterByCategory('Ops')" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400">GitHub Source</a></li>
+                                <li><a href="#" onclick="filterByCategory('Core')" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400">Private Server</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Ecosystem Portals Tree -->
+                        <li class="tree-item" id="node-ecosystem">
+                            <div class="flex items-center justify-between py-2 px-3 hover:bg-slate-800/40 rounded-xl cursor-pointer transition text-slate-300" onclick="toggleTreeNode('node-ecosystem')">
+                                <div class="flex items-center space-x-2.5">
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-500 transition-transform duration-200 tree-arrow"></i>
+                                    <div class="p-1 bg-pink-500/10 rounded-lg">
+                                        <i data-lucide="globe" class="w-3.5 h-3.5 text-pink-400"></i>
+                                    </div>
+                                    <span>Ecosystem Portals</span>
+                                </div>
+                                <span class="text-[10px] bg-pink-500/15 text-pink-400 px-2 py-0.5 rounded-full font-bold">5</span>
+                            </div>
+                            <ul class="pl-7 pr-2 py-1 space-y-1 hidden tree-submenu border-l border-slate-800/60 ml-5 mt-1">
+                                <li><a href="#" onclick="filterByCategory('Ecosystem')" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400">EmpowerQNow</a></li>
+                                <li><a href="#" onclick="filterByCategory('Ecosystem')" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400">FamilyOS</a></li>
+                                <li><a href="#" onclick="filterByCategory('Ecosystem')" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400">FamilyWall</a></li>
+                                <li><a href="#" onclick="filterByCategory('Ecosystem')" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400">IND Loop</a></li>
+                                <li><a href="#" onclick="filterByCategory('Ecosystem')" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400">Lumara Brand</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Docs & Knowledge Tree -->
+                        <li class="tree-item" id="node-docs">
+                            <div class="flex items-center justify-between py-2 px-3 hover:bg-slate-800/40 rounded-xl cursor-pointer transition text-slate-300" onclick="toggleTreeNode('node-docs')">
+                                <div class="flex items-center space-x-2.5">
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-500 transition-transform duration-200 tree-arrow"></i>
+                                    <div class="p-1 bg-emerald-500/10 rounded-lg">
+                                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-emerald-400"></i>
+                                    </div>
+                                    <span>Docs & Knowledge</span>
+                                </div>
+                                <span class="text-[10px] bg-emerald-500/15 text-emerald-400 px-2 py-0.5 rounded-full font-bold">3</span>
+                            </div>
+                            <ul class="pl-7 pr-2 py-1 space-y-1 hidden tree-submenu border-l border-slate-800/60 ml-5 mt-1">
+                                <li><a href="#" onclick="filterByCategory('Docs')" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400">Google Drive</a></li>
+                                <li><a href="#" onclick="filterByCategory('Docs')" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400">QiDocs Static</a></li>
+                                <li><a href="#" onclick="filterByCategory('Docs')" class="block py-1.5 px-3 rounded-lg hover:text-white hover:bg-slate-800/30 transition text-slate-400">QiNote Workspace</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Custom Interactive Filter Links -->
+                <div class="pt-4 border-t border-slate-800/60">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block px-2 mb-2">Launcher Filters</span>
+                    <div class="space-y-1">
+                        <button onclick="filterByTag('starred')" class="w-full flex items-center justify-between py-1.5 px-3 rounded-xl hover:bg-slate-800/30 text-slate-400 hover:text-white transition text-xs text-left">
+                            <span class="flex items-center space-x-2">
+                                <i data-lucide="star" class="w-3.5 h-3.5 text-yellow-500 fill-yellow-500"></i>
+                                <span>Favorite Portals</span>
+                            </span>
+                            <span id="fav-count-badge" class="text-[10px] text-blue-400 font-bold bg-blue-500/10 px-1.5 py-0.2 rounded-full">5</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QiAccess Sidebar Launcher Actions -->
+            <div class="p-4 border-t border-slate-800/40 space-y-2">
+                <div class="rounded-xl border border-brand-blue/30 bg-brand-blue/10 p-3 text-center">
+                    <a href="https://qiserver-1.cerberus-sirius.ts.net" target="_blank" onclick="registerLaunch('Private Launcher')" class="block text-xs font-bold text-blue-400 hover:underline">
+                        Private Launcher <i data-lucide="external-link" class="inline w-3 h-3 ml-0.5"></i>
+                    </a>
+                </div>
+                <div class="rounded-xl border border-slate-800 bg-[#0f1535]/50 p-3 text-center">
+                    <button onclick="runLocalExecutable()" class="w-full text-xs font-bold text-slate-300 hover:text-white flex items-center justify-center space-x-1.5">
+                        <i data-lucide="terminal" class="w-3.5 h-3.5 text-purple-400"></i>
+                        <span>QiOne Tools</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ================= MOBILE MENU SLIDE-OUT ================= -->
+        <div id="mobile-sidebar" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+            <div class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm" onclick="toggleMobileSidebar()"></div>
+            <div class="fixed inset-y-0 left-0 w-64 bg-[#060b28] flex flex-col border-r border-slate-800 z-50 p-4">
+                <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                    <span class="font-extrabold text-sm tracking-wider text-white">QIACCESS HUB</span>
+                    <button onclick="toggleMobileSidebar()" class="text-slate-400 hover:text-white">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <div class="flex-1 overflow-y-auto pt-4" id="mobile-tree-container">
+                    <!-- Cloned dynamically on window load -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= MAIN DASHBOARD SECTION ================= -->
+        <main class="flex-1 flex flex-col min-w-0 overflow-y-auto relative">
+
+            <!-- Global Premium Top Navigation -->
+            <header class="h-20 flex items-center justify-between px-6 border-b border-slate-800/40 bg-[#060b28]/50 backdrop-blur-md sticky top-0 z-20">
+                <div class="flex items-center space-x-4 flex-1 max-w-lg">
+                    <button onclick="toggleMobileSidebar()" class="lg:hidden text-slate-300 hover:text-white">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                    <div class="relative w-full">
+                        <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slate-400"></i>
+                        <input
+                            type="text"
+                            id="global-search"
+                            onkeyup="handleSearch()"
+                            placeholder="Search active launchers, routes, status..."
+                            class="w-full bg-[#0f1535] text-slate-100 placeholder-slate-500 pl-10 pr-4 py-2 rounded-xl text-xs border border-slate-800 focus:outline-none focus:ring-1 focus:ring-[#0075ff]"
+                        >
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3.5">
+                    <button onclick="clearAllFilters()" class="hidden sm:inline-flex items-center space-x-1 px-3 py-1.5 bg-[#0f1535] border border-slate-800 rounded-lg text-xs text-slate-300 hover:bg-slate-800 transition">
+                        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                        <span>Reset Filters</span>
+                    </button>
+                    <button onclick="openAddModal()" class="inline-flex items-center space-x-1.5 px-4 py-2 bg-[#0075ff] hover:bg-blue-500 text-white rounded-xl text-xs font-semibold shadow-lg shadow-blue-500/20 transition-all">
+                        <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        <span>Add Portal</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Content Scrollspace -->
+            <div class="flex-1 p-6 space-y-6 max-w-7xl w-full mx-auto">
+
+                <!-- ================= ROW 1: COMPACT METRIC CARDS ================= -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Metric Card 1 -->
+                    <div class="glass-card rounded-2xl p-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Indexed Launchers</span>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <span id="stat-total" class="text-lg font-extrabold text-white">11</span>
+                                <span class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded-full">ACTIVE</span>
+                            </div>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-[#0075ff] flex items-center justify-center text-white neon-glow-blue">
+                            <i data-lucide="grid" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+
+                    <!-- Metric Card 2 -->
+                    <div class="glass-card rounded-2xl p-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Online Portals</span>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <span id="stat-online-count" class="text-lg font-extrabold text-white">7</span>
+                                <span class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded-full">100% OK</span>
+                            </div>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-[#0075ff] flex items-center justify-center text-white neon-glow-blue">
+                            <i data-lucide="activity" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+
+                    <!-- Metric Card 3 -->
+                    <div class="glass-card rounded-2xl p-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Favorites Pin</span>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <span id="stat-favs" class="text-lg font-extrabold text-white">5</span>
+                                <span class="text-[10px] text-yellow-400 font-bold bg-yellow-500/10 px-1.5 py-0.5 rounded-full">PINNED</span>
+                            </div>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-[#0075ff] flex items-center justify-center text-white neon-glow-blue">
+                            <i data-lucide="star" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+
+                    <!-- Metric Card 4 -->
+                    <div class="glass-card rounded-2xl p-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Workspace Launches</span>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <span id="stat-clicks" class="text-lg font-extrabold text-white">2,142</span>
+                                <span class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded-full">+12%</span>
+                            </div>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-[#0075ff] flex items-center justify-center text-white neon-glow-blue">
+                            <i data-lucide="mouse-pointer-click" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= ROW 2: QIACCESS PRIMARY WELCOME & DOCK CONSOLE ================= -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+                    <!-- Welcome Console Card (Left / 7 Cols) -->
+                    <div class="lg:col-span-7 glass-card rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between min-h-[280px]">
+                        <!-- Background Mesh Layer -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/30 via-slate-900/40 to-slate-950/20 pointer-events-none z-0"></div>
+
+                        <!-- Premium Interactive CSS Animated Glowing Jellyfish -->
+                        <div class="absolute right-4 bottom-4 w-40 h-40 pointer-events-none z-10 jellyfish-container select-none opacity-80">
+                            <svg class="w-full h-full jellyfish-glow" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <radialGradient id="jellyGlow" cx="50%" cy="40%" r="50%">
+                                        <stop offset="0%" stop-color="#b19ffb" stop-opacity="1"/>
+                                        <stop offset="60%" stop-color="#a100ff" stop-opacity="0.8"/>
+                                        <stop offset="100%" stop-color="#0075ff" stop-opacity="0"/>
+                                    </radialGradient>
+                                    <linearGradient id="tentacleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#a100ff" stop-opacity="0.8"/>
+                                        <stop offset="100%" stop-color="#0075ff" stop-opacity="0.1"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M25,50 Q25,15 60,15 Q95,15 95,50 Q95,62 80,60 Q60,55 40,60 Q25,62 25,50 Z" fill="url(#jellyGlow)" />
+                                <circle cx="60" cy="40" r="18" fill="#ffffff" opacity="0.3" filter="blur(4px)" />
+                                <path d="M35,58 C32,70 38,85 34,105 C33,110 37,110 39,105 C42,85 38,70 41,58 Z" fill="url(#tentacleGrad)" />
+                                <path d="M48,56 C44,72 52,90 47,112 C46,117 50,117 52,112 C56,90 49,72 53,56 Z" fill="url(#tentacleGrad)" />
+                                <path d="M60,55 C57,75 66,92 61,115 C60,120 64,120 66,115 C70,92 62,75 65,55 Z" fill="url(#tentacleGrad)" />
+                                <path d="M72,56 C69,72 77,90 73,112 C72,117 76,117 78,112 C81,90 74,72 77,56 Z" fill="url(#tentacleGrad)" />
+                            </svg>
+                        </div>
+
+                        <div class="relative z-10 space-y-1">
+                            <span class="text-blue-400 text-xs font-semibold uppercase tracking-widest">QIACCESS START</span>
+                            <h2 class="text-2xl font-extrabold text-white tracking-tight">Open what you need.</h2>
+                            <p class="text-[11px] text-slate-300 max-w-[420px] leading-relaxed">
+                                Seamless access-layer portal for local containers, personal workflows, and the wider Tailscale cluster ecosystem.
+                            </p>
+                        </div>
+
+                        <!-- QiAccess Dock Action Row -->
+                        <div class="relative z-10 grid grid-cols-2 sm:grid-cols-5 gap-2.5 pt-4">
+                            <a href="/capture" class="flex flex-col items-center justify-center py-2 px-1 bg-gradient-to-tr from-blue-600 to-blue-500 text-white rounded-xl text-xs font-bold hover:shadow-lg hover:shadow-blue-500/20 transition-all text-center">
+                                <i data-lucide="edit" class="w-4 h-4 mb-1"></i>
+                                <span>Capture</span>
+                            </a>
+                            <a href="/docs/" class="flex flex-col items-center justify-center py-2 px-1 bg-gradient-to-tr from-blue-600 to-blue-500 text-white rounded-xl text-xs font-bold hover:shadow-lg hover:shadow-blue-500/20 transition-all text-center">
+                                <i data-lucide="book-open" class="w-4 h-4 mb-1"></i>
+                                <span>QiDocs</span>
+                            </a>
+                            <a href="/knowledge" class="flex flex-col items-center justify-center py-2 px-1 bg-slate-800/80 border border-slate-700/60 text-slate-200 rounded-xl text-xs font-bold hover:bg-slate-700 transition-all text-center">
+                                <i data-lucide="book" class="w-4 h-4 mb-1"></i>
+                                <span>Wiki.js</span>
+                            </a>
+                            <a href="/server" class="flex flex-col items-center justify-center py-2 px-1 bg-slate-800/80 border border-slate-700/60 text-slate-200 rounded-xl text-xs font-bold hover:bg-slate-700 transition-all text-center">
+                                <i data-lucide="terminal" class="w-4 h-4 mb-1"></i>
+                                <span>Server</span>
+                            </a>
+                            <a href="https://qiserver-1.cerberus-sirius.ts.net" target="_blank" onclick="registerLaunch('Private Launcher')" class="col-span-2 sm:col-span-1 flex flex-col items-center justify-center py-2 px-1 bg-slate-800/80 border border-slate-700/60 text-slate-200 rounded-xl text-xs font-bold hover:bg-slate-700 transition-all text-center">
+                                <i data-lucide="external-link" class="w-4 h-4 mb-1"></i>
+                                <span class="truncate max-w-[65px]">Launcher</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Uptime Status Rate (Center / 5 Cols) -->
+                    <div class="lg:col-span-5 glass-card rounded-3xl p-6 flex flex-col justify-between min-h-[280px]">
+                        <div>
+                            <span class="text-xs font-bold text-white block">Cluster Health Index</span>
+                            <span class="text-[10px] text-slate-400 block mt-0.5">Automated status health-checks</span>
+                        </div>
+
+                        <!-- Semi-Circular Gauge Container -->
+                        <div class="relative flex items-center justify-center my-1">
+                            <svg class="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
+                                <!-- Background Circle Track -->
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#0f1535" stroke-width="8"></circle>
+                                <!-- Foreground Glowing Circle Track -->
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="url(#bluePurpleGrad)" stroke-width="8" stroke-dasharray="251.2" stroke-dashoffset="50" stroke-linecap="round"></circle>
+                                <defs>
+                                    <linearGradient id="bluePurpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#0075ff" />
+                                        <stop offset="100%" stop-color="#a100ff" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <!-- Absolute Center Content -->
+                            <div class="absolute text-center">
+                                <span class="text-2xl font-extrabold text-white block">100%</span>
+                                <span class="text-[9px] text-emerald-400 block uppercase tracking-wider font-bold">ONLINE DEPLOY</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-800/60 pt-3">
+                            <span>0 Active Alerts</span>
+                            <span class="font-bold text-slate-200">7 Node Routes Live</span>
+                            <span>Secure SSL</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ================= ROW 3: WAVE CHARTS AND PORTALS GRID ================= -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+                    <!-- Sales & Portal Launch Overview (Left / 7 Cols) -->
+                    <div class="lg:col-span-7 glass-card rounded-3xl p-6 flex flex-col justify-between min-h-[350px]">
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">Ecosystem Launch Telemetry</h3>
+                                    <p class="text-[10px] text-emerald-400 mt-1 flex items-center">
+                                        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-1 animate-pulse"></span>
+                                        <span>Diagnostic pipeline linked and tracking</span>
+                                    </p>
+                                </div>
+                                <!-- Interactive Dataset Selector -->
+                                <div class="flex space-x-1.5 bg-[#0a0e31] p-1 rounded-lg border border-slate-800">
+                                    <button onclick="switchChartData('traffic')" id="btn-chart-sales" class="px-3 py-1 bg-blue-600 text-white rounded-md text-[10px] font-bold transition">Traffic</button>
+                                    <button onclick="switchChartData('sessions')" id="btn-chart-launches" class="px-3 py-1 text-slate-400 hover:text-white rounded-md text-[10px] font-bold transition">Sessions</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Real-time Interactive SVG Chart wave -->
+                        <div class="relative w-full h-44 my-4" id="chart-area">
+                            <svg class="w-full h-full" viewBox="0 0 500 150" preserveAspectRatio="none">
+                                <defs>
+                                    <!-- Double Gradients -->
+                                    <linearGradient id="chartGlowBlue" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#0075ff" stop-opacity="0.4"/>
+                                        <stop offset="100%" stop-color="#0075ff" stop-opacity="0"/>
+                                    </linearGradient>
+                                    <linearGradient id="chartGlowPurple" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#a100ff" stop-opacity="0.4"/>
+                                        <stop offset="100%" stop-color="#a100ff" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Grid lines inside chart -->
+                                <line x1="0" y1="30" x2="500" y2="30" stroke="rgba(255,255,255,0.03)" stroke-width="1"></line>
+                                <line x1="0" y1="70" x2="500" y2="70" stroke="rgba(255,255,255,0.03)" stroke-width="1"></line>
+                                <line x1="0" y1="110" x2="500" y2="110" stroke="rgba(255,255,255,0.03)" stroke-width="1"></line>
+
+                                <!-- WAVE LINE A -->
+                                <path id="chart-path-a-fill" d="M0,130 C100,60 150,110 250,50 C350,20 400,100 500,80 L500,150 L0,150 Z" fill="url(#chartGlowPurple)"></path>
+                                <path id="chart-path-a-stroke" d="M0,130 C100,60 150,110 250,50 C350,20 400,100 500,80" fill="none" stroke="#a100ff" stroke-width="3" stroke-linecap="round"></path>
+
+                                <!-- WAVE LINE B -->
+                                <path id="chart-path-b-fill" d="M0,100 C120,40 180,120 280,70 C350,40 420,130 500,40 L500,150 L0,150 Z" fill="url(#chartGlowBlue)"></path>
+                                <path id="chart-path-b-stroke" d="M0,100 C120,40 180,120 280,70 C350,40 420,130 500,40" fill="none" stroke="#0075ff" stroke-width="3" stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+
+                        <!-- Months bar -->
+                        <div class="flex items-center justify-between text-[9px] font-bold text-slate-500 uppercase tracking-widest px-2">
+                            <span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span>
+                        </div>
+                    </div>
+
+                    <!-- Active System Services & Metrics (Right / 5 Cols) -->
+                    <div class="lg:col-span-5 glass-card rounded-3xl p-6 flex flex-col justify-between min-h-[350px]">
+                        <!-- Embedded micro vertical bar charts -->
+                        <div class="h-32 bg-[#0c123b] border border-slate-800/60 rounded-2xl p-4 flex flex-col justify-between">
+                            <div class="flex items-end justify-between h-full space-x-1">
+                                <div class="w-2.5 bg-[#0075ff] rounded-t-lg h-[60%]" title="Jan: 60%"></div>
+                                <div class="w-2.5 bg-slate-700/60 rounded-t-lg h-[40%]" title="Feb: 40%"></div>
+                                <div class="w-2.5 bg-[#0075ff] rounded-t-lg h-[95%]" title="Mar: 95%"></div>
+                                <div class="w-2.5 bg-purple-500 rounded-t-lg h-[50%]" title="Apr: 50%"></div>
+                                <div class="w-2.5 bg-[#0075ff] rounded-t-lg h-[80%]" title="May: 80%"></div>
+                                <div class="w-2.5 bg-slate-700/60 rounded-t-lg h-[35%]" title="Jun: 35%"></div>
+                                <div class="w-2.5 bg-[#0075ff] rounded-t-lg h-[90%]" title="Jul: 90%"></div>
+                                <div class="w-2.5 bg-purple-500 rounded-t-lg h-[75%]" title="Aug: 75%"></div>
+                                <div class="w-2.5 bg-[#0075ff] rounded-t-lg h-[85%]" title="Sep: 85%"></div>
+                                <div class="w-2.5 bg-[#0075ff] rounded-t-lg h-[100%]" title="Oct: 100%"></div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <h3 class="text-sm font-bold text-white">Resource Pool Load</h3>
+                            <p class="text-[10px] text-slate-400 font-bold"><span class="text-emerald-400 mr-1">(+14% load)</span>than last week</p>
+                        </div>
+
+                        <!-- Mini Micro stats table inside -->
+                        <div class="grid grid-cols-4 gap-2 border-t border-slate-800/60 pt-4">
+                            <div class="space-y-1.5">
+                                <div class="flex items-center space-x-1.5">
+                                    <span class="text-[9px] text-slate-400 font-bold uppercase">CPU</span>
+                                </div>
+                                <span class="text-xs font-extrabold text-white">12.4%</span>
+                                <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                                    <div class="bg-blue-500 h-full w-[12.4%]"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <div class="flex items-center space-x-1.5">
+                                    <span class="text-[9px] text-slate-400 font-bold uppercase">RAM</span>
+                                </div>
+                                <span class="text-xs font-extrabold text-white">64.1%</span>
+                                <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                                    <div class="bg-purple-500 h-full w-[64.1%]"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <div class="flex items-center space-x-1.5">
+                                    <span class="text-[9px] text-slate-400 font-bold uppercase">Network</span>
+                                </div>
+                                <span class="text-xs font-extrabold text-white">4.2 Gbps</span>
+                                <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                                    <div class="bg-pink-500 h-full w-[42%]"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <div class="flex items-center space-x-1.5">
+                                    <span class="text-[9px] text-slate-400 font-bold uppercase">Storage</span>
+                                </div>
+                                <span class="text-xs font-extrabold text-white">1.8 TB</span>
+                                <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                                    <div class="bg-emerald-500 h-full w-[78%]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Active Filter Alert Panel -->
+                <div id="filter-bar" class="hidden flex items-center justify-between bg-purple-950/20 border border-purple-500/20 rounded-2xl px-5 py-3">
+                    <div class="flex items-center space-x-2 text-xs text-slate-300">
+                        <i data-lucide="filter" class="w-4 h-4 text-purple-400"></i>
+                        <span>Displaying filtered launcher entries: <strong id="filter-label" class="text-white">All</strong></span>
+                    </div>
+                    <button onclick="clearAllFilters()" class="text-xs text-blue-400 hover:text-blue-300 font-bold underline">Show all items</button>
+                </div>
+
+                <!-- ================= ROW 4: BOOKMARK TABLES & ACTIONS ================= -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+                    <!-- Core Projects Launcher Panel (Left / 8 Cols) -->
+                    <div class="lg:col-span-8 glass-card rounded-3xl p-6 flex flex-col justify-between">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h3 class="text-sm font-bold text-white">Interactive Launchers & Portals</h3>
+                                <p class="text-[10px] text-slate-400 mt-1"><span class="text-emerald-400 font-bold" id="grid-count">11</span> portals match current filter index</p>
+                            </div>
+                            <div class="flex items-center space-x-1.5 bg-[#0f1535] p-1 rounded-lg border border-slate-800">
+                                <button onclick="toggleView('grid')" id="btn-view-grid" class="p-1.5 rounded bg-slate-800 text-white transition">
+                                    <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <button onclick="toggleView('list')" id="btn-view-list" class="p-1.5 rounded text-slate-400 hover:text-white transition">
+                                    <i data-lucide="list" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Adaptive Launchers Wrapper -->
+                        <div id="launchers-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Click logs / Live Activity (Right / 4 Cols) -->
+                    <div class="lg:col-span-4 glass-card rounded-3xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-sm font-bold text-white">Live Click Overview</h3>
+                            <p class="text-[10px] text-slate-400 mt-1">Telemetry generated this session</p>
+                        </div>
+
+                        <!-- Visual vertical step indicators -->
+                        <div class="space-y-4 my-6" id="logs-container">
+                            <!-- Recent logs rendered dynamically -->
+                        </div>
+
+                        <div class="border-t border-slate-800/60 pt-3">
+                            <button onclick="clearAllLogs()" class="w-full py-1.5 bg-slate-800/40 hover:bg-slate-800 hover:text-white text-slate-400 rounded-xl text-[10px] font-bold transition">
+                                CLEAR SESSION LOGS
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= MODAL: ADD PORTAL ENTRY ================= -->
+    <div id="add-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden" role="dialog" aria-modal="true">
+        <div class="w-full max-w-md bg-[#0a0e31] border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative">
+            <div class="p-5 border-b border-slate-800/60 flex items-center justify-between">
+                <h3 class="text-sm font-bold text-white flex items-center space-x-2">
+                    <i data-lucide="link-2" class="text-blue-400"></i>
+                    <span>Register New Portal Entry</span>
+                </h3>
+                <button onclick="closeAddModal()" class="text-slate-400 hover:text-white">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <form id="add-tool-form" onsubmit="handleFormSubmit(event)" class="p-5 space-y-4">
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1" for="tool-title">Tool Name</label>
+                    <input type="text" id="tool-title" required placeholder="e.g., Sentry Core Dashboard" class="w-full bg-[#060b28] border border-slate-800 focus:border-blue-500 focus:outline-none rounded-xl px-3.5 py-2 text-xs text-white">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1" for="tool-category">Category Group</label>
+                        <select id="tool-category" class="w-full bg-[#060b28] border border-slate-800 focus:border-blue-500 focus:outline-none rounded-xl px-3.5 py-2 text-xs text-white">
+                            <option value="Core">Core System</option>
+                            <option value="Ops">Infrastructure & Ops</option>
+                            <option value="Ecosystem">Ecosystem</option>
+                            <option value="Docs">Docs & Notes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1" for="tool-status">Initial Status</label>
+                        <select id="tool-status" class="w-full bg-[#060b28] border border-slate-800 focus:border-blue-500 focus:outline-none rounded-xl px-3.5 py-2 text-xs text-white">
+                            <option value="online">online</option>
+                            <option value="unknown">unknown</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1" for="tool-icon">Visual Icon</label>
+                        <select id="tool-icon" class="w-full bg-[#060b28] border border-slate-800 focus:border-blue-500 focus:outline-none rounded-xl px-3.5 py-2 text-xs text-white">
+                            <option value="server">Server</option>
+                            <option value="shield">Shield</option>
+                            <option value="globe">Globe</option>
+                            <option value="git-branch">Git Branch</option>
+                            <option value="book-open">Book Open</option>
+                            <option value="file-text">Document</option>
+                            <option value="activity">Activity</option>
+                            <option value="users">Users Group</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1" for="tool-repo">Git Repository Link</label>
+                        <input type="url" id="tool-repo" placeholder="https://github.com/... (Optional)" class="w-full bg-[#060b28] border border-slate-800 focus:border-blue-500 focus:outline-none rounded-xl px-3.5 py-2 text-xs text-white">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1" for="tool-url">Target URL Link</label>
+                    <input type="url" id="tool-url" required placeholder="https://dash.cloudflare.com" class="w-full bg-[#060b28] border border-slate-800 focus:border-blue-500 focus:outline-none rounded-xl px-3.5 py-2 text-xs text-white">
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1" for="tool-desc">Summary description</label>
+                    <textarea id="tool-desc" required placeholder="Describe the portal's diagnostic node objective..." rows="2" class="w-full bg-[#060b28] border border-slate-800 focus:border-blue-500 focus:outline-none rounded-xl px-3.5 py-2 text-xs text-white resize-none"></textarea>
+                </div>
+
+                <div class="flex items-center space-x-2 pt-1">
+                    <input type="checkbox" id="tool-fav" class="w-4 h-4 bg-[#060b28] border border-slate-800 rounded text-blue-500 focus:ring-0">
+                    <label for="tool-fav" class="text-[11px] text-slate-300 font-bold select-none cursor-pointer">Add to Favorites Shelf immediately</label>
+                </div>
+
+                <div class="flex justify-end space-x-3 pt-4 border-t border-slate-800/60">
+                    <button type="button" onclick="closeAddModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs transition">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-[#0075ff] to-[#a100ff] hover:opacity-95 text-white font-bold rounded-xl text-xs shadow-lg transition">Create Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= TOAST BANNER SYSTEM ================= -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-[#0a0e31] border border-blue-500/30 shadow-2xl rounded-2xl p-4 flex items-center space-x-3 max-w-sm">
+            <div class="w-8 h-8 rounded-full bg-blue-500/25 flex items-center justify-center text-blue-400">
+                <i data-lucide="info" class="w-4 h-4"></i>
+            </div>
+            <div>
+                <p id="toast-title" class="text-xs font-bold text-white">System Signal</p>
+                <p id="toast-message" class="text-[10px] text-slate-400 mt-0.5">Notification parsed successfully.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= CORE CODE ENGINE ================= -->
+    <script>
+        // Exact Portal Data Structure integrated from your target index.html layout
+        let tools = [
+            { id: 1, title: 'Private Server Launcher', category: 'Core', icon: 'server', url: 'https://qiserver-1.cerberus-sirius.ts.net', desc: 'Private gethomepage utility for local server management and tailnet-only links.', status: 'online', isFavorite: true },
+            { id: 2, title: 'Cloudflare', category: 'Ops', icon: 'shield', url: 'https://dash.cloudflare.com', desc: 'Protects public routes, DNS, tunnels, and Zero Trust access.', status: 'online', isFavorite: false },
+            { id: 3, title: 'EmpowerQNow', category: 'Ecosystem', icon: 'globe', url: 'https://empowerqnow.qially.com', repo: 'https://github.com/qially/empowerqnow', desc: 'Business-facing initiative and outward access surface.', status: 'unknown', isFavorite: false },
+            { id: 4, title: 'FamilyOS', category: 'Ecosystem', icon: 'home', url: 'https://familyos.qially.com', repo: 'https://github.com/qially/familyos', desc: 'Household systems, routines, planning, and family-facing workflows.', status: 'unknown', isFavorite: false },
+            { id: 5, title: 'FamilyWall', category: 'Ecosystem', icon: 'users', url: 'https://www.familywall.com/home.php', desc: 'Family coordination surface for calendar, routines, and household visibility.', status: 'online', isFavorite: false },
+            { id: 6, title: 'GitHub', category: 'Ops', icon: 'git-branch', url: 'https://github.com', desc: 'Source control, deployment workflows, and repository tracking.', status: 'online', isFavorite: true },
+            { id: 7, title: 'Google Drive', category: 'Docs', icon: 'database', url: 'https://drive.google.com', desc: 'Document and file storage backing notes, docs, and client material.', status: 'online', isFavorite: true },
+            { id: 8, title: 'IND Loop', category: 'Ecosystem', icon: 'activity', url: 'https://indloop.qially.com', repo: 'https://github.com/qially/ind-loop', desc: 'Operational loop for internal development and delivery.', status: 'unknown', isFavorite: false },
+            { id: 9, title: 'Lumara', category: 'Ecosystem', icon: 'palette', url: 'https://lumara.qially.com', repo: 'https://github.com/qially/lumara', desc: 'Brand and product surface inside the wider Qi ecosystem.', status: 'unknown', isFavorite: false },
+            { id: 10, title: 'QiDocs', category: 'Docs', icon: 'book-open', url: '/docs/', desc: 'Static backup documentation site built from the /docs markdown knowledge base.', status: 'online', isFavorite: true },
+            { id: 11, title: 'QiNote', category: 'Docs', icon: 'file-text', url: 'https://qinote.qially.com', repo: 'https://github.com/qially/qinote', desc: 'Notes, knowledge surfaces, and working documents.', status: 'online', isFavorite: true }
+        ];
+
+        // Click Logs Activity Mock Array
+        let clickLogs = [
+            { id: 101, time: '22 DEC 7:20 PM', msg: 'System initialized new QiAccess routing instance.' },
+            { id: 102, time: '21 DEC 11:40 PM', msg: 'Connected to tailnet server cluster successfully.' }
+        ];
+
+        // UI State Parameters
+        let currentFilter = { type: 'all', value: null };
+        let currentViewMode = 'grid';
+        let clickCount = 2142;
+
+        window.onload = function() {
+            // Mirror side nav to mobile version
+            mirrorTreeNavigationToMobile();
+            // Perform primary render
+            render();
+            // Initialize vector icons
+            lucide.createIcons();
+        };
+
+        // Render system loop
+        function render() {
+            const container = document.getElementById('launchers-container');
+            const searchVal = document.getElementById('global-search').value.toLowerCase().trim();
+
+            // Filter list based on active conditions
+            let filtered = tools.filter(tool => {
+                if (currentFilter.type === 'category' && tool.category !== currentFilter.value) {
+                    return false;
+                }
+                if (currentFilter.type === 'tag' && currentFilter.value === 'starred' && !tool.isFavorite) {
+                    return false;
+                }
+                if (searchVal !== '') {
+                    const matchTitle = tool.title.toLowerCase().includes(searchVal);
+                    const matchDesc = tool.desc.toLowerCase().includes(searchVal);
+                    const matchCat = tool.category.toLowerCase().includes(searchVal);
+                    const matchStatus = tool.status.toLowerCase().includes(searchVal);
+                    if (!matchTitle && !matchDesc && !matchCat && !matchStatus) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+
+            // Erase and rebuild container elements
+            container.innerHTML = '';
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-12 text-center bg-[#0a0e31]/40 border border-slate-800 rounded-3xl p-5">
+                        <i data-lucide="search" class="w-8 h-8 text-slate-600 mx-auto mb-2"></i>
+                        <p class="text-xs text-slate-400 font-bold">No portals match your selected filter path.</p>
+                        <button onclick="clearAllFilters()" class="mt-3 px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-[10px] font-bold transition">Clear Active Selection</button>
+                    </div>
+                `;
+            } else {
+                filtered.forEach(tool => {
+                    const isStarred = tool.isFavorite;
+                    const starIcon = isStarred ? 'fill-yellow-500 text-yellow-500' : 'text-slate-500 hover:text-yellow-400';
+                    const categoryColor = getCategoryTagStyles(tool.category);
+
+                    // Status styles
+                    const isOnline = tool.status === 'online';
+                    const statusChipClass = isOnline ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20';
+
+                    let itemHtml = '';
+                    if (currentViewMode === 'grid') {
+                        itemHtml = `
+                            <div class="glass-card rounded-2xl p-5 hover:-translate-y-1 transition-all duration-300 relative group flex flex-col justify-between hover:border-blue-500/50">
+                                <div>
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="w-10 h-10 rounded-xl bg-[#060b28] border border-slate-800 flex items-center justify-center text-slate-300 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                            <i data-lucide="${tool.icon}" class="w-4.5 h-4.5"></i>
+                                        </div>
+                                        <div class="flex items-center space-x-1">
+                                            <button onclick="toggleFavorite(${tool.id}, event)" class="p-1.5 bg-[#060b28] border border-slate-800 rounded-lg hover:bg-slate-800 transition">
+                                                <i data-lucide="star" class="w-3 h-3 ${starIcon}"></i>
+                                            </button>
+                                            <button onclick="deleteTool(${tool.id}, event)" class="p-1.5 bg-[#060b28] border border-slate-800 rounded-lg hover:bg-red-950/40 hover:text-red-400 text-slate-500 transition">
+                                                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="text-[9px] font-bold uppercase tracking-wider ${categoryColor} px-2 py-0.5 rounded-md bg-slate-950/60 border border-white/5 inline-block">${tool.category}</span>
+                                        <span class="text-[9px] font-bold uppercase tracking-wider ${statusChipClass} px-2 py-0.5 rounded-md inline-block">${tool.status}</span>
+                                    </div>
+                                    <h4 class="font-bold text-slate-100 text-xs leading-snug truncate">${tool.title}</h4>
+                                    <p class="text-[11px] text-slate-400 mt-1.5 line-clamp-2 leading-relaxed h-[34px]">${tool.desc}</p>
+                                </div>
+
+                                <div class="mt-4 pt-3.5 border-t border-slate-800/60 flex items-center justify-between">
+                                    <div class="flex space-x-2">
+                                        <span class="text-[9px] text-slate-500 font-bold hover:text-slate-300 select-none cursor-pointer uppercase tracking-wider" onclick="copyToClipboard('${tool.url}')">
+                                            COPY LINK
+                                        </span>
+                                        ${tool.repo ? `
+                                            <a href="${tool.repo}" target="_blank" class="text-[9px] text-purple-400 font-bold hover:underline uppercase tracking-wider flex items-center gap-0.5">
+                                                <span>Repo</span> <i data-lucide="git-branch" class="w-2.5 h-2.5"></i>
+                                            </a>
+                                        ` : ''}
+                                    </div>
+                                    <a href="${tool.url}" target="_blank" onclick="registerLaunch('${tool.title}')" class="inline-flex items-center space-x-1 text-[11px] text-blue-400 font-bold transition">
+                                        <span>OPEN</span>
+                                        <i data-lucide="external-link" class="w-3 h-3"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        itemHtml = `
+                            <div class="col-span-full glass-card rounded-2xl p-4 flex items-center justify-between hover:border-purple-500/40 transition">
+                                <div class="flex items-center space-x-3.5 min-w-0 flex-1">
+                                    <div class="w-9 h-9 rounded-xl bg-[#060b28] border border-slate-800 flex items-center justify-center text-slate-300">
+                                        <i data-lucide="${tool.icon}" class="w-4 h-4"></i>
+                                    </div>
+                                    <div class="min-w-0 flex-1">
+                                        <div class="flex items-center space-x-2">
+                                            <h4 class="font-bold text-xs text-white truncate">${tool.title}</h4>
+                                            <span class="text-[8px] font-bold uppercase ${categoryColor} bg-slate-950 px-2 py-0.2 rounded-md border border-white/5">${tool.category}</span>
+                                            <span class="text-[8px] font-bold uppercase ${statusChipClass} px-2 py-0.2 rounded-md inline-block">${tool.status}</span>
+                                        </div>
+                                        <p class="text-[10px] text-slate-400 mt-0.5 truncate">${tool.desc}</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center space-x-2 ml-4">
+                                    <button onclick="toggleFavorite(${tool.id}, event)" class="p-1.5 bg-slate-950 border border-slate-800 rounded-lg text-slate-400 hover:text-white transition">
+                                        <i data-lucide="star" class="w-3 h-3 ${starIcon}"></i>
+                                    </button>
+                                    <button onclick="deleteTool(${tool.id}, event)" class="p-1.5 bg-slate-950 border border-slate-800 rounded-lg text-slate-500 hover:text-red-400 transition">
+                                        <i data-lucide="trash-2" class="w-3 h-3"></i>
+                                    </button>
+                                    <a href="${tool.url}" target="_blank" onclick="registerLaunch('${tool.title}')" class="px-3.5 py-1.5 bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white rounded-xl text-[10px] font-bold transition flex items-center space-x-1">
+                                        <span>Open</span>
+                                        <i data-lucide="chevron-right" class="w-3 h-3"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    container.insertAdjacentHTML('beforeend', itemHtml);
+                });
+            }
+
+            // Refresh recent logs
+            renderLogs();
+
+            // Refresh Live Displays
+            const onlineCount = tools.filter(t => t.status === 'online').length;
+            document.getElementById('stat-total').innerText = tools.length;
+            document.getElementById('stat-online-count').innerText = onlineCount;
+            document.getElementById('stat-favs').innerText = tools.filter(t => t.isFavorite).length;
+            document.getElementById('grid-count').innerText = filtered.length;
+            document.getElementById('fav-count-badge').innerText = tools.filter(t => t.isFavorite).length;
+
+            lucide.createIcons();
+        }
+
+        // Render timeline logs
+        function renderLogs() {
+            const logsContainer = document.getElementById('logs-container');
+            logsContainer.innerHTML = '';
+
+            clickLogs.forEach((log, index) => {
+                const isFirst = index === 0;
+                const activeColor = isFirst ? 'bg-blue-500 ring-4 ring-blue-500/20' : 'bg-purple-500';
+                const textStyle = isFirst ? 'text-white' : 'text-slate-400';
+
+                const logHtml = `
+                    <div class="flex items-start space-x-3 relative">
+                        <!-- Left indicator ring link -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-2.5 h-2.5 rounded-full ${activeColor} z-10"></div>
+                            ${index !== clickLogs.length - 1 ? '<div class="w-[1.5px] h-11 bg-slate-800"></div>' : ''}
+                        </div>
+                        <!-- Log Content -->
+                        <div class="min-w-0">
+                            <p class="text-[10px] text-slate-500 font-bold">${log.time}</p>
+                            <p class="text-[11px] ${textStyle} truncate mt-0.5">${log.msg}</p>
+                        </div>
+                    </div>
+                `;
+                logsContainer.insertAdjacentHTML('beforeend', logHtml);
+            });
+        }
+
+        // Swaps dynamic visual paths of SVG Chart Wave
+        function switchChartData(dataset) {
+            const pathAFill = document.getElementById('chart-path-a-fill');
+            const pathAStroke = document.getElementById('chart-path-a-stroke');
+            const pathBFill = document.getElementById('chart-path-b-fill');
+            const pathBStroke = document.getElementById('chart-path-b-stroke');
+
+            const btnSales = document.getElementById('btn-chart-sales');
+            const btnLaunches = document.getElementById('btn-chart-launches');
+
+            if (dataset === 'traffic') {
+                btnSales.className = "px-3 py-1 bg-blue-600 text-white rounded-md text-[10px] font-bold transition";
+                btnLaunches.className = "px-3 py-1 text-slate-400 hover:text-white rounded-md text-[10px] font-bold transition";
+
+                pathAStroke.setAttribute('d', 'M0,130 C100,60 150,110 250,50 C350,20 400,100 500,80');
+                pathAFill.setAttribute('d', 'M0,130 C100,60 150,110 250,50 C350,20 400,100 500,80 L500,150 L0,150 Z');
+
+                pathBStroke.setAttribute('d', 'M0,100 C120,40 180,120 280,70 C350,40 420,130 500,40');
+                pathBFill.setAttribute('d', 'M0,100 C120,40 180,120 280,70 C350,40 420,130 500,40 L500,150 L0,150 Z');
+                showNotification('Visualized active Tailscale tunnel node traffic.');
+            } else {
+                btnLaunches.className = "px-3 py-1 bg-purple-600 text-white rounded-md text-[10px] font-bold transition";
+                btnSales.className = "px-3 py-1 text-slate-400 hover:text-white rounded-md text-[10px] font-bold transition";
+
+                pathAStroke.setAttribute('d', 'M0,40 C80,130 160,30 240,110 C320,50 400,120 500,30');
+                pathAFill.setAttribute('d', 'M0,40 C80,130 160,30 240,110 C320,50 400,120 500,30 L500,150 L0,150 Z');
+
+                pathBStroke.setAttribute('d', 'M0,80 C110,120 190,40 290,100 C360,30 430,90 500,50');
+                pathBFill.setAttribute('d', 'M0,80 C110,120 190,40 290,100 C360,30 430,90 500,50 L500,150 L0,150 Z');
+                showNotification('Visualized multi-user container sessions.');
+            }
+        }
+
+        // Tree navigation expand mechanics
+        function toggleTreeNode(nodeId) {
+            const element = document.getElementById(nodeId);
+            const submenu = element.querySelector('.tree-submenu');
+            const arrow = element.querySelector('.tree-arrow');
+
+            if (submenu.classList.contains('hidden')) {
+                submenu.classList.remove('hidden');
+                arrow.style.transform = 'rotate(90deg)';
+            } else {
+                submenu.classList.add('hidden');
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function expandAllTreeNodes() {
+            const items = document.querySelectorAll('.tree-item');
+            items.forEach(element => {
+                const submenu = element.querySelector('.tree-submenu');
+                const arrow = element.querySelector('.tree-arrow');
+                if (submenu) submenu.classList.remove('hidden');
+                if (arrow) arrow.style.transform = 'rotate(90deg)';
+            });
+        }
+
+        // Filtration routing
+        function filterByCategory(category) {
+            currentFilter.type = 'category';
+            currentFilter.value = category;
+
+            document.getElementById('filter-bar').classList.remove('hidden');
+            document.getElementById('filter-label').innerText = category;
+
+            render();
+            showNotification(`Filtering portals by group: ${category}`);
+        }
+
+        function filterByTag(tag) {
+            currentFilter.type = 'tag';
+            currentFilter.value = tag;
+
+            document.getElementById('filter-bar').classList.remove('hidden');
+            document.getElementById('filter-label').innerText = tag === 'starred' ? 'Favorites Shelf' : 'All Links';
+
+            render();
+            showNotification(`Filtering tags matching: ${tag}`);
+        }
+
+        function clearAllFilters() {
+            currentFilter.type = 'all';
+            currentFilter.value = null;
+            document.getElementById('global-search').value = '';
+            document.getElementById('filter-bar').classList.add('hidden');
+            render();
+            showNotification('Cleared filtration indices successfully.');
+        }
+
+        function handleSearch() {
+            render();
+        }
+
+        // Grid vs List mode triggers
+        function toggleView(mode) {
+            currentViewMode = mode;
+            const btnGrid = document.getElementById('btn-view-grid');
+            const btnList = document.getElementById('btn-view-list');
+
+            if (mode === 'grid') {
+                btnGrid.classList.add('bg-slate-800', 'text-white');
+                btnList.classList.remove('bg-slate-800', 'text-white');
+                btnList.classList.add('text-slate-400');
+            } else {
+                btnList.classList.add('bg-slate-800', 'text-white');
+                btnGrid.classList.remove('bg-slate-800', 'text-white');
+                btnGrid.classList.add('text-slate-400');
+            }
+            render();
+        }
+
+        // Starred state management
+        function toggleFavorite(id, event) {
+            event.stopPropagation();
+            event.preventDefault();
+            const tool = tools.find(t => t.id === id);
+            if (tool) {
+                tool.isFavorite = !tool.isFavorite;
+                render();
+                showNotification(tool.isFavorite ? `Saved "${tool.title}" to favorites.` : `Removed "${tool.title}" from favorites.`);
+            }
+        }
+
+        // Delete item execution
+        function deleteTool(id, event) {
+            event.stopPropagation();
+            event.preventDefault();
+            const tool = tools.find(t => t.id === id);
+            if (tool) {
+                tools = tools.filter(t => t.id !== id);
+                render();
+                showNotification(`Deleted tool configuration: "${tool.title}"`);
+            }
+        }
+
+        // Simulates launching telemetry triggers
+        function registerLaunch(title) {
+            clickCount++;
+            document.getElementById('stat-clicks').innerText = clickCount.toLocaleString();
+
+            const now = new Date();
+            const timeStr = `${now.getDate()} ${now.toLocaleString('default', { month: 'short' }).toUpperCase()} ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+            clickLogs.unshift({
+                id: Date.now(),
+                time: timeStr,
+                msg: `Routed portal connection: "${title}"`
+            });
+
+            showNotification(`Launching portal route: "${title}"`);
+            render();
+        }
+
+        function runLocalExecutable() {
+            showNotification('Triggered local Windows protocol "QiOne_Tools.exe"');
+            // Try to open the file:// protocol in background
+            window.location.href = "file:///C:/QiLabs/toolbox/dist/QiOne_Tools/QiOne_Tools.exe";
+        }
+
+        function clearAllLogs() {
+            clickLogs = [];
+            renderLogs();
+            showNotification('Timeline logs cleared.');
+        }
+
+        // Style mapping helpers
+        function getCategoryTagStyles(category) {
+            switch(category) {
+                case 'Core': return 'text-blue-400';
+                case 'Ops': return 'text-purple-400';
+                case 'Ecosystem': return 'text-pink-400';
+                case 'Docs': return 'text-emerald-400';
+                default: return 'text-slate-400';
+            }
+        }
+
+        // Clipboard URL Copy (iframe fallback support)
+        function copyToClipboard(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            showNotification('Target link copied to clipboard.');
+        }
+
+        // Portal creation Modal
+        function openAddModal() {
+            document.getElementById('add-modal').classList.remove('hidden');
+        }
+
+        function closeAddModal() {
+            document.getElementById('add-modal').classList.add('hidden');
+            document.getElementById('add-tool-form').reset();
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const title = document.getElementById('tool-title').value;
+            const category = document.getElementById('tool-category').value;
+            const status = document.getElementById('tool-status').value;
+            const icon = document.getElementById('tool-icon').value;
+            const repo = document.getElementById('tool-repo').value;
+            const url = document.getElementById('tool-url').value;
+            const desc = document.getElementById('tool-desc').value;
+            const isFavorite = document.getElementById('tool-fav').checked;
+
+            const newTool = {
+                id: Date.now(),
+                title,
+                category,
+                status,
+                icon,
+                repo: repo ? repo : null,
+                url,
+                desc,
+                isFavorite
+            };
+
+            tools.unshift(newTool);
+            closeAddModal();
+            render();
+            showNotification(`Created portal: "${title}"`);
+        }
+
+        // Show Toast Notifications
+        function showNotification(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+
+            toastMsg.innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // Mobile slide action
+        function toggleMobileSidebar() {
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+            if (mobileSidebar.classList.contains('hidden')) {
+                mobileSidebar.classList.remove('hidden');
+            } else {
+                mobileSidebar.classList.add('hidden');
+            }
+        }
+
+        // Clone desktop links list to mobile side-out drawer
+        function mirrorTreeNavigationToMobile() {
+            const desktopTree = document.getElementById('navigation-tree');
+            const mobileContainer = document.getElementById('mobile-tree-container');
+
+            const clonedTree = desktopTree.cloneNode(true);
+            clonedTree.id = 'mobile-navigation-tree';
+            mobileContainer.appendChild(clonedTree);
+        }
+    </script>
+</body>
+</html>

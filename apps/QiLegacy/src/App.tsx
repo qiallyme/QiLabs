@@ -1,7 +1,6 @@
 import { startTransition, useEffect, useRef, useState } from "react";
 import { emptyPacket, steps } from "./data/blueprint";
 import {
-  buildActivePreview,
   buildJurisdictionReviewChecklist,
   buildPacketReadiness,
   buildPrintableDocuments,
@@ -149,7 +148,6 @@ function App() {
   const completion = calculateSectionCompletion(packet);
   const readiness = buildPacketReadiness(packet);
   const printableDocuments = buildPrintableDocuments(packet);
-  const activePreview = buildActivePreview(packet, activeStep);
   const reviewSections = buildReviewSections(packet);
   const jurisdictionChecklist = buildJurisdictionReviewChecklist(packet);
   const overallCompletion = Math.round(
@@ -1394,33 +1392,6 @@ function App() {
 
           <section className="content-panel">{renderStep()}</section>
         </main>
-
-        <aside className="preview-rail">
-          <div className="preview-header">
-            <span className="eyebrow">Live packet preview</span>
-            <h3>{activePreview.title}</h3>
-            <p>{activePreview.subtitle}</p>
-          </div>
-          <article className="paper-preview">
-            {activePreview.paragraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-            {activePreview.checklistItems?.length ? (
-              <ol className="plain-list plain-list-ordered">
-                {activePreview.checklistItems.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ol>
-            ) : null}
-            {activePreview.bullets?.length ? (
-              <ul>
-                {activePreview.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
-            ) : null}
-          </article>
-        </aside>
       </div>
 
       <div className="print-root" aria-hidden="true">
